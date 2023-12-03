@@ -1,0 +1,5 @@
+name: doc_engine_rag
+channels:
+  - conda-forge
+dependencies:
+  - python
