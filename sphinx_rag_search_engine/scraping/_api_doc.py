@@ -1,5 +1,8 @@
 """Utilities to scrape the API documentation."""
+import re
+
 from bs4 import BeautifulSoup, NavigableString
+from joblib import Parallel, delayed
 
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
@@ -32,7 +35,8 @@ def _extract_text_from_section(section):
         elif elem.name == "section":
             continue
         else:
-            texts.append(elem.get_text().strip())
+            # Remove the duplicated line breaks on the fly
+            texts.append(re.sub(r'\n\s+', '\n', elem.get_text(" ")))
     return "\n".join(texts)
 
 
@@ -81,11 +85,26 @@ def extract_api_doc_from_single_file(api_html_file):
     }
 
 
-def extract_api_doc(api_doc_folder):
+def extract_api_doc(api_doc_folder, n_jobs=None):
     """Extract text from each HTML API file from a folder
 
     Parameters
     ----------
     api_doc_folder : :class:`pathlib.Path`
         The path to the API documentation folder.
+
+    n_jobs : int, default=None
+        The number of jobs to run in parallel. If None, then the number of jobs is set
+        to the number of CPU cores.
+
+    Returns
+    -------
+    generator
+        A generator of dictionaries containing the source and text of the API
+        documentation.
     """
+    parallel = Parallel(n_jobs=n_jobs, return_as="generator_unordered")
+    return parallel(
+        delayed(extract_api_doc_from_single_file)(api_html_file)
+        for api_html_file in api_doc_folder.glob("*.html")
+    )
