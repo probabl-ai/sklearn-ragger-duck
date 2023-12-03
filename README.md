@@ -6,10 +6,7 @@ This is a all components to build a RAG-based LLM for the scikit-learn documenta
 
 We can represent a RAG-based LLM as follow [1]:
 
-.. image:: doc/img/static/rag_pipeline.png
-    :width: 400
-    :align: center
-
+![RAG diagram](doc/img/static/rag_pipeline.png)
 
 ## References
 
