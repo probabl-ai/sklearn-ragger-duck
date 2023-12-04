@@ -1,11 +1,17 @@
 name: doc_engine_rag
 channels:
   - conda-forge
+  - huggingface
+  - pytorch
 dependencies:
   - python
   - beautifulsoup4
   - pytest
   - pytest-cov
+  - pytorch
+  - transformers
+  - scikit-learn
+  - sentence-transformers
   - pip:
     # We use return_generator option that will be shipped in 1.4
     - git+https://github.com/joblib/joblib.git@master
