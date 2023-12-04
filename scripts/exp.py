@@ -1,4 +1,8 @@
 # %%
+import sys
+sys.path.append("/Users/glemaitre/Documents/scratch/rag_based_llm")
+
+# %%
 from pathlib import Path
 
 API_DOC = Path(
@@ -7,9 +11,6 @@ API_DOC = Path(
 )
 
 # %%
-# temporary add the path to the sys.path
-import sys
-sys.path.append("/Users/glemaitre/Documents/scratch/rag_based_llm")
 from sphinx_rag_search_engine.scraping import extract_api_doc
 
 input_texts = extract_api_doc(API_DOC, n_jobs=-1)

@@ -49,50 +49,34 @@ def test_extract_api_doc_from_single_file(html_file):
         assert string in text["text"]
 
 
-@pytest.mark.parametrize("return_as", ["generator", "generator_unordered", "list"])
 @pytest.mark.parametrize("n_jobs", [None, 1, 2])
-def test_extract_api_doc(return_as, n_jobs):
+def test_extract_api_doc(n_jobs):
     """Checking the the behaviour of the `extract_api_doc` function."""
-    output = extract_api_doc(API_TEST_FOLDER, return_as=return_as, n_jobs=n_jobs)
-    if return_as == "list":
-        assert isinstance(output, list)
-    else:
-        assert isinstance(output, GeneratorType)
+    output = extract_api_doc(API_TEST_FOLDER, n_jobs=n_jobs)
+    assert isinstance(output, list)
 
-    scraped_files = list(output)
-    assert len(scraped_files) == 2
-    assert all([isinstance(elt, dict) for elt in scraped_files])
-    sources = sorted([file["source"] for file in scraped_files])
+    assert len(output) == 2
+    assert all([isinstance(elt, dict) for elt in output])
+    sources = sorted([file["source"] for file in output])
     expected_sources = sorted(
         [SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES]
     )
     assert sources == expected_sources
 
 
-@pytest.mark.parametrize("output_type", ["generator", "generator_unordered", "list"])
 @pytest.mark.parametrize("n_jobs", [None, 1, 2])
-def test_api_doc_extractor(output_type, n_jobs):
+def test_api_doc_extractor(n_jobs):
     """Check the APIDocExtractor class."""
-    extractor = APIDocExtractor(output_type=output_type, n_jobs=n_jobs)
+    chunk_size = 20
+    extractor = APIDocExtractor(chunk_size=20, chunk_overlap=0, n_jobs=n_jobs)
     output_extractor = extractor.fit_transform(API_TEST_FOLDER)
-    output_function = extract_api_doc(
-        API_TEST_FOLDER, return_as=output_type, n_jobs=n_jobs
-    )
-
-    if output_type == "list":
-        assert isinstance(output_extractor, list)
-        assert isinstance(output_function, list)
-    else:
-        assert isinstance(output_extractor, GeneratorType)
-        assert isinstance(output_function, GeneratorType)
-
-    output_extractor = list(output_extractor)
-    output_function = list(output_function)
-
-    sources_extractor = sorted([file["source"] for file in output_extractor])
-    sources_function = sorted([file["source"] for file in output_function])
-    assert sources_extractor == sources_function
-
-    texts_extractor = sorted([file["text"] for file in output_extractor])
-    texts_function = sorted([file["text"] for file in output_function])
-    assert texts_extractor == texts_function
+    possible_source = [
+        SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES
+    ]
+    for output in output_extractor:
+        assert isinstance(output, dict)
+        assert set(output.keys()) == {"source", "text"}
+        assert isinstance(output["source"], str)
+        assert isinstance(output["text"], str)
+        assert len(output["text"]) <= chunk_size
+        assert output["source"] in possible_source

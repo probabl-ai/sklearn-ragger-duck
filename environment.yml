@@ -6,6 +6,7 @@ channels:
 dependencies:
   - python
   - beautifulsoup4
+  - langchain
   - pytest
   - pytest-cov
   - pytorch

@@ -1,12 +1,14 @@
 """Utilities to scrape the API documentation."""
 import re
+from itertools import chain
 from numbers import Integral
 from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString
 from joblib import Parallel, delayed
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.utils._param_validation import StrOptions
+from sklearn.utils._param_validation import Interval, StrOptions
 
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
@@ -93,21 +95,13 @@ def extract_api_doc_from_single_file(api_html_file):
     }
 
 
-def extract_api_doc(api_doc_folder, *, return_as="generator", n_jobs=None):
+def extract_api_doc(api_doc_folder, *, n_jobs=None):
     """Extract text from each HTML API file from a folder
 
     Parameters
     ----------
     api_doc_folder : :class:`pathlib.Path`
         The path to the API documentation folder.
-
-    return_as : {"generator", "generator_unordered", "list"}, \
-        default="generator"
-        The type of object to return.
-
-        - If `"generator"`, is returned in an ordered fashion as provided by the input;
-        - If `"generator_unordered"`, is returned in an unordered fashion;
-        - If `"list"`, is returned as a list.
 
     n_jobs : int, default=None
         The number of jobs to run in parallel. If None, then the number of jobs is set
@@ -124,11 +118,38 @@ def extract_api_doc(api_doc_folder, *, return_as="generator", n_jobs=None):
             f"The API documentation folder should be a pathlib.Path object. Got "
             f"{api_doc_folder!r}."
         )
-    parallel = Parallel(n_jobs=n_jobs, return_as=return_as)
-    return parallel(
+    return Parallel(n_jobs=n_jobs)(
         delayed(extract_api_doc_from_single_file)(api_html_file)
         for api_html_file in api_doc_folder.glob("*.html")
     )
+
+
+def _chunk_document(text_splitter, document):
+    """Chunk a document into smaller pieces.
+
+    Parameters
+    ----------
+    text_splitter : :class:`langchain.text_splitter.RecursiveCharacterTextSplitter`
+        The text splitter to use to chunk the document.
+
+    document : dict
+        A dictionary containing two keys: `text` and `source`. The value associated
+        to the `text` key is the text to chunk. The source is propagated to the
+        chunks.
+
+    Returns
+    -------
+    list of dict
+        List of dictionary containing the `document` chunked into smaller pieces.
+    """
+    chunks = text_splitter.create_documents(
+        texts=[document["text"]],
+        metadatas=[{"source": document["source"]}],
+    )
+    return [
+        {"text": chunk.page_content, "source": chunk.metadata["source"]}
+        for chunk in chunks
+    ]
 
 
 class APIDocExtractor(BaseEstimator, TransformerMixin):
@@ -138,13 +159,11 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
 
     Parameters
     ----------
-    output_type : {"generator", "generator_unordered", "list"}, \
-        default="generator"
-        The type of object to return.
+    chunk_size : int, default=300
+        The size of the chunks to split the text into.
 
-        - If `"generator"`, is returned in an ordered fashion as provided by the input;
-        - If `"generator_unordered"`, is returned in an unordered fashion;
-        - If `"list"`, is returned as a list.
+    chunk_overlap : int, default=50
+        The overlap between two consecutive chunks.
 
     n_jobs : int, default=None
         The number of jobs to run in parallel. If None, then the number of jobs is set
@@ -152,12 +171,14 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
     """
 
     _parameter_constraints = {
-        "output_type": [StrOptions({"generator", "generator_unordered", "list"})],
+        "chunk_size": [Interval(Integral, left=1, right=None, closed="left")],
+        "chunk_overlap": [Interval(Integral, left=0, right=None, closed="left")],
         "n_jobs": [Integral, None],
     }
 
-    def __init__(self, *, output_type="generator", n_jobs=None):
-        self.output_type = output_type
+    def __init__(self, *, chunk_size=300, chunk_overlap=50, n_jobs=None):
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
         self.n_jobs = n_jobs
 
     def fit(self, X=None, y=None):
@@ -177,6 +198,12 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
             The fitted estimator.
         """
         self._validate_params()
+        self.text_splitter_ = RecursiveCharacterTextSplitter(
+            separators=["\n\n", "\n", " ", ""],
+            chunk_size=self.chunk_size,
+            chunk_overlap=self.chunk_overlap,
+            length_function=len,
+        )
         return self
 
     def transform(self, X):
@@ -193,7 +220,13 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
             A generator of dictionaries containing the source and text of the API
             documentation.
         """
-        return extract_api_doc(X, return_as=self.output_type, n_jobs=self.n_jobs)
+        chunked_content = chain.from_iterable(
+            Parallel(n_jobs=self.n_jobs, return_as="generator_unordered")(
+                delayed(_chunk_document)(self.text_splitter_, document)
+                for document in  extract_api_doc(X, n_jobs=self.n_jobs)
+            )
+        )
+        return list(chunked_content)
 
     def _more_tags(self):
         return {"X_types": ["string"], "stateless": True}
