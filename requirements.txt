@@ -1,5 +1,7 @@
 beautifulsoup4
+langchain
 pytest
 pytest-cov
+scikit-learn
 # We use return_generator option that will be shipped in 1.4
 joblib @ git+https://github.com/joblib/joblib.git@master
