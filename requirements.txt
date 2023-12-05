@@ -5,8 +5,8 @@ pytest
 pytest-cov
 scikit-learn
 sentence-transformers
---index-url https://download.pytorch.org/whl/cpu
-torch
 transformers
 # We use return_generator option that will be shipped in 1.4
 joblib @ git+https://github.com/joblib/joblib.git@master
+--extra-index https://download.pytorch.org/whl/cpu
+torch
