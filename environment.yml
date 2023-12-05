@@ -6,6 +6,7 @@ channels:
 dependencies:
   - python
   - beautifulsoup4
+  - faiss-cpu
   - langchain
   - pytest
   - pytest-cov
