@@ -221,7 +221,7 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
             documentation.
         """
         chunked_content = chain.from_iterable(
-            Parallel(n_jobs=self.n_jobs, return_as="generator_unordered")(
+            Parallel(n_jobs=self.n_jobs, return_as="generator")(
                 delayed(_chunk_document)(self.text_splitter_, document)
                 for document in  extract_api_doc(X, n_jobs=self.n_jobs)
             )

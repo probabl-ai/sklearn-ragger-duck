@@ -79,3 +79,5 @@ def test_api_doc_extractor(n_jobs):
         assert isinstance(output["text"], str)
         assert len(output["text"]) <= chunk_size
         assert output["source"] in possible_source
+
+    assert extractor._get_tags()["stateless"]
