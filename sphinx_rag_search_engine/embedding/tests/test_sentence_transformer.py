@@ -4,12 +4,25 @@ from sphinx_rag_search_engine.embedding import SentenceTransformer
 
 
 def test_sentence_transformer():
+    """Check that the SentenceTransformer wrapper works as expected."""
     cache_folder_path = Path(__file__).parent / "data"
     model_name_or_path = "sentence-transformers/paraphrase-albert-small-v2"
 
     embedder = SentenceTransformer(
-        model_name_or_path=model_name_or_path, cache_folder=str(cache_folder_path)
+        model_name_or_path=model_name_or_path,
+        cache_folder=str(cache_folder_path),
+        show_progress_bar=False,
     )
-    print(
-        embedder.fit_transform([{"source": "hello world", "text": "hello world"}])
-    )
+
+    input_texts = [
+        {
+            "source": "source 1",
+            "text": "hello world",
+        },
+        {
+            "source": "source 2",
+            "text": "hello world",
+        },
+    ]
+    text_embedded = embedder.fit_transform(input_texts)
+    assert text_embedded.shape == (len(input_texts, 768))
