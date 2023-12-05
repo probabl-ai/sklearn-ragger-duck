@@ -91,7 +91,7 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
 
         Parameters
         ----------
-        X : Iterable of dict (n_sentences,)
+        X : str or Iterable of list or dict or length (n_sentences,)
             Iterable of dictionaries with at least a "text" key.
 
         Returns
@@ -99,6 +99,8 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
         embedding : ndarray of shape (n_sentences, embedding_size)
             The embedding of the sentences.
         """
-        return self._embedding.encode(
-            [chunk["text"] for chunk in X], show_progress_bar=self.show_progress_bar
-        )
+        if isinstance(X, str):
+            X = [X]
+        elif isinstance(X[0], dict):
+            X = [chunk["text"] for chunk in X]
+        return self._embedding.encode(X, show_progress_bar=self.show_progress_bar)
