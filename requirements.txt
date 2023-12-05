@@ -1,10 +1,10 @@
+setuptools
 beautifulsoup4
 langchain
 pytest
 pytest-cov
 scikit-learn
 sentence-transformers
-setuptools
 --index-url https://download.pytorch.org/whl/cpu
 torch
 transformers
