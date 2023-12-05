@@ -25,7 +25,7 @@ def test_sentence_transformer():
         },
     ]
     text_embedded = embedder.fit_transform(input_texts)
-    assert text_embedded.shape == (len(input_texts, 768))
+    assert text_embedded.shape == (len(input_texts), 768)
 
 
 # TODO: add test for checking when the input of transform is a string or a
