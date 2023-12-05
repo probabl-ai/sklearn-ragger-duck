@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup, NavigableString
 from joblib import Parallel, delayed
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.utils._param_validation import Interval, StrOptions
+from sklearn.utils._param_validation import Interval
 
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"

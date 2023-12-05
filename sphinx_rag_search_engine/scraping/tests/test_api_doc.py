@@ -1,6 +1,5 @@
 """Test the utilities for scraping the API documentation."""
 from pathlib import Path
-from types import GeneratorType
 
 import pytest
 

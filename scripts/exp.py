@@ -1,5 +1,6 @@
 # %%
 import sys
+
 sys.path.append("/Users/glemaitre/Documents/scratch/rag_based_llm")
 
 # %%
@@ -11,15 +12,25 @@ API_DOC = Path(
 )
 
 # %%
-from sphinx_rag_search_engine.scraping import extract_api_doc
+from sphinx_rag_search_engine.scraping import APIDocExtractor
+from sphinx_rag_search_engine.embedding import SentenceTransformer
+from sklearn.pipeline import Pipeline
 
-input_texts = extract_api_doc(API_DOC, n_jobs=-1)
-text = [text["text"] for text in input_texts]
+pipeline = Pipeline(
+    steps=[
+        ("extractor", APIDocExtractor(n_jobs=-1)),
+        (
+            "embedder",
+            SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps"),
+        ),
+    ]
+)
 
 # %%
-from sentence_transformers import SentenceTransformer
+database = pipeline.fit_transform(API_DOC)
 
-model = SentenceTransformer("thenlper/gte-large")
-model.encode(text, show_progress_bar=True)
+# %%
+xxx = SentenceTransformer(model_name_or_path="sentence-transformers/paraphrase-albert-small-v2")
+xxx.fit_transform([{"source": "hello world", "text": "hello world"}])
 
 # %%
