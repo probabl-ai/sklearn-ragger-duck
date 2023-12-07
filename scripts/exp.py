@@ -14,6 +14,7 @@ API_DOC = Path(
 # %%
 from sphinx_rag_search_engine.scraping import APIDocExtractor
 from sphinx_rag_search_engine.embedding import SentenceTransformer
+from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
 from sklearn.pipeline import Pipeline
 
 pipeline = Pipeline(

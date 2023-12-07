@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 
 from sphinx_rag_search_engine.embedding import SentenceTransformer
-from sphinx_rag_search_engine.retrieval import FAISS
+from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
 
 
 @pytest.mark.parametrize(
@@ -32,5 +32,5 @@ def test_faiss(input_texts, output):
         show_progress_bar=False,
     )
 
-    faiss = FAISS(embedding=embedder, n_neighbors=1).fit(input_texts)
+    faiss = FaissNearestNeighbors(embedding=embedder, n_neighbors=1).fit(input_texts)
     assert faiss.k_neighbors("xx") == output
