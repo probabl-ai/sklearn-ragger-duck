@@ -1,10 +1,26 @@
 from pathlib import Path
 
+import pytest
+
 from sphinx_rag_search_engine.embedding import SentenceTransformer
 from sphinx_rag_search_engine.retrieval import FAISS
 
 
-def test_xxx():
+@pytest.mark.parametrize(
+    "input_texts, output",
+    [
+        (
+            [
+                {"source": "source 1", "text": "xxx"},
+                {"source": "source 2", "text": "yyy"},
+            ],
+            [[{"source": "source 1", "text": "xxx"}]],
+        ),
+        (["xxx", "yyy"], [["xxx"]]),
+    ],
+)
+def test_faiss(input_texts, output):
+    """Check that the FAISS wrapper works as expected"""
     cache_folder_path = (
         Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
     )
@@ -16,21 +32,5 @@ def test_xxx():
         show_progress_bar=False,
     )
 
-    input_texts = [
-        {
-            "source": "source 1",
-            "text": "xxx",
-        },
-        {
-            "source": "source 2",
-            "text": "yyy",
-        },
-    ]
     faiss = FAISS(embedding=embedder, n_neighbors=1).fit(input_texts)
-    test_texts = [
-        {
-            "source": "test 1",
-            "text": "xx",
-        },
-    ]
-    assert faiss.k_neighbors(test_texts) == [[input_texts[0]]]
+    assert faiss.k_neighbors("xx") == output
