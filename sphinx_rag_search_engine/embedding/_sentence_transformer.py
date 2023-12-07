@@ -91,8 +91,13 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
 
         Parameters
         ----------
-        X : str or Iterable of list or dict or length (n_sentences,)
-            Iterable of dictionaries with at least a "text" key.
+        X : str or Iterable of str or dict or length (n_sentences,)
+            The sentences to embed.
+
+            - If `str`, a single sentence to embed;
+            - If `list` of `str`, a list of sentences to embed;
+            - If `list` of `dict`, a list of dictionaries with a key "text" that
+              contains the sentence to embed.
 
         Returns
         -------
