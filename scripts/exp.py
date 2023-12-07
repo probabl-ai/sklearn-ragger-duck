@@ -17,21 +17,29 @@ from sphinx_rag_search_engine.embedding import SentenceTransformer
 from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
 from sklearn.pipeline import Pipeline
 
+embedding = SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps")
 pipeline = Pipeline(
     steps=[
         ("extractor", APIDocExtractor(n_jobs=-1)),
-        (
-            "embedder",
-            SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps"),
-        ),
+        ("retriever", FaissNearestNeighbors(embedding=embedding, n_neighbors=5)),
     ]
 )
 
 # %%
-database = pipeline.fit_transform(API_DOC)
+pipeline.fit(API_DOC)
 
 # %%
-xxx = SentenceTransformer(model_name_or_path="sentence-transformers/paraphrase-albert-small-v2")
-xxx.fit_transform([{"source": "hello world", "text": "hello world"}])
+retriever = pipeline["retriever"]
+
+# %%
+retriever.k_neighbors(
+    "What is the default value of n_neighbors in KNeighborsClassifier?",
+    n_neighbors=5,
+)
+
+# %%
+import joblib
+
+joblib.dump(retriever, "retriever.joblib")
 
 # %%
