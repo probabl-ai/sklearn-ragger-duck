@@ -1,3 +1,3 @@
-from ._faiss import FAISS
+from ._faiss import FaissNearestNeighbors
 
-__all__ = ["FAISS"]
+__all__ = ["FaissNearestNeighbors"]
