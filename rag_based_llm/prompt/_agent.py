@@ -59,7 +59,7 @@ class QueryAgent:
         """
         prompt_template = (
             "<s>[INST] {system} \n query: {query} \n context: {context} \n "
-            "source: {source} [/INST]"
+            "source: {source} [/INST] </s>"
         )
         if self.api_semantic_retriever is not None:
             system_content = self.system_content
