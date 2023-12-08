@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from sphinx_rag_search_engine.embedding import SentenceTransformer
+from rag_based_llm.embedding import SentenceTransformer
 
 
 @pytest.mark.parametrize(

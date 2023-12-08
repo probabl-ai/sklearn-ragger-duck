@@ -1,4 +1,4 @@
-"""The module :mod:`sphinx_rag_search_engine.embedding` contains functions to embed
+"""The module :mod:`rag_based_llm.embedding` contains functions to embed
 transformers allowing to embed text.
 """
 

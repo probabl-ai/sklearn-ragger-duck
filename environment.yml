@@ -13,6 +13,7 @@ dependencies:
   - pytorch
   - scikit-learn
   - sentence-transformers
+  - tiktoken
   - transformers
   - pip:
     # We use return_generator option that will be shipped in 1.4

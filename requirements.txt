@@ -6,6 +6,7 @@ pytest-cov
 scikit-learn
 sentence-transformers
 setuptools
+tiktoken
 torch --index-url https://download.pytorch.org/whl/cpu/
 transformers
 # We use return_generator option that will be shipped in 1.4

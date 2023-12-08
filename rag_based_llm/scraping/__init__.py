@@ -1,4 +1,4 @@
-"""The module :mod:`sphinx_rag_search_engine.scraping` contains functions to scrape
+"""The module :mod:`rag_based_llm.scraping` contains functions to scrape
 the documentation website of scikit-learn.
 """
 

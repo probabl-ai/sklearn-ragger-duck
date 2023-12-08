@@ -21,4 +21,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
-        run: pytest -vsl --cov=sphinx_rag_search_engine --cov-report term-missing sphinx_rag_search_engine
+        run: pytest -vsl --cov=rag_based_llm --cov-report term-missing rag_based_llm

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from sphinx_rag_search_engine.scraping import (
+from rag_based_llm.scraping import (
     extract_api_doc_from_single_file,
     extract_api_doc,
     APIDocExtractor,
