@@ -30,7 +30,7 @@ pipeline = Pipeline(
 pipeline
 
 # %% [markdown]
-# Fit the pipeline on serialized only the vector database to be reused later.
+# Fit the pipeline.
 
 # %%
 API_DOC = Path(
@@ -38,9 +38,15 @@ API_DOC = Path(
     "modules/generated"
 )
 pipeline.fit(API_DOC)
+
+# %% [markdown]
+# Save the semantic retriever to be used in the inference time.
+
+# %%
+path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 joblib.dump(
     pipeline.named_steps["semantic_retriever"],
-    "../models/api_semantic_retrieval.joblib",
+    path_api_semantic_retriever,
 )
 
 # %% [markdown]
@@ -48,7 +54,7 @@ joblib.dump(
 # most pertinent context from the API documentation.
 
 # %%
-api_semantic_retriever = joblib.load("../models/api_semantic_retrieval.joblib")
+api_semantic_retriever = joblib.load(path_api_semantic_retriever)
 
 # %% [markdown]
 # Load the LLM model to be used to generate the response to the query. Instantiate an
@@ -59,8 +65,9 @@ api_semantic_retriever = joblib.load("../models/api_semantic_retrieval.joblib")
 from rag_based_llm.prompt import QueryAgent
 from llama_cpp import Llama
 
+model_path = "../models/mistral-7b-instruct-v0.1.Q6_K.gguf"
 llm = Llama(
-    model_path="../models/mistral-7b-instruct-v0.1.Q6_K.gguf",
+    model_path=model_path,
     device="mps",
     n_gpu_layers=1,
     n_threads=4,
