@@ -14,14 +14,14 @@ API_DOC = Path(
 # %%
 from sphinx_rag_search_engine.scraping import APIDocExtractor
 from sphinx_rag_search_engine.embedding import SentenceTransformer
-from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
+from sphinx_rag_search_engine.retrieval import SemanticRetriever
 from sklearn.pipeline import Pipeline
 
 embedding = SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps")
 pipeline = Pipeline(
     steps=[
         ("extractor", APIDocExtractor(n_jobs=-1)),
-        ("retriever", FaissNearestNeighbors(embedding=embedding, n_neighbors=5)),
+        ("retriever", SemanticRetriever(embedding=embedding, n_neighbors=5)),
     ]
 )
 

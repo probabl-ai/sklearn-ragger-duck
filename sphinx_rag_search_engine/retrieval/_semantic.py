@@ -5,8 +5,10 @@ from sklearn.base import BaseEstimator
 from sklearn.utils._param_validation import HasMethods, Interval
 
 
-class FaissNearestNeighbors(BaseEstimator):
-    """K-Nearest Neighbors using FAISS indexing.
+class SemanticRetriever(BaseEstimator):
+    """Retrieve the k-nearest neighbors using a semantic embedding.
+
+    The index is build using the FAISS library.
 
     Parameters
     ----------

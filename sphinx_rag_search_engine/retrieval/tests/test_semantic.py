@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 
 from sphinx_rag_search_engine.embedding import SentenceTransformer
-from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
+from sphinx_rag_search_engine.retrieval import SemanticRetriever
 
 
 @pytest.mark.parametrize(
@@ -19,8 +19,8 @@ from sphinx_rag_search_engine.retrieval import FaissNearestNeighbors
         (["xxx", "yyy"], [["xxx"]]),
     ],
 )
-def test_faiss(input_texts, output):
-    """Check that the FAISS wrapper works as expected"""
+def test_semantic_retriever(input_texts, output):
+    """Check that the SemanticRetriever wrapper works as expected"""
     cache_folder_path = (
         Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
     )
@@ -32,5 +32,5 @@ def test_faiss(input_texts, output):
         show_progress_bar=False,
     )
 
-    faiss = FaissNearestNeighbors(embedding=embedder, n_neighbors=1).fit(input_texts)
+    faiss = SemanticRetriever(embedding=embedder, n_neighbors=1).fit(input_texts)
     assert faiss.k_neighbors("xx") == output

@@ -1,3 +1,3 @@
-from ._faiss import FaissNearestNeighbors
+from ._semantic import SemanticRetriever
 
-__all__ = ["FaissNearestNeighbors"]
+__all__ = ["SemanticRetriever"]
