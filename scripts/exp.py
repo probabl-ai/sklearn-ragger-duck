@@ -1,15 +1,18 @@
+# %% [markdown]
+# Not bothering with a installable package for now. For now, important the modules
+# directly from the source code.
+
 # %%
 import sys
-
-sys.path.append("/Users/glemaitre/Documents/scratch/rag_based_llm")
-
-# %%
 from pathlib import Path
 
-API_DOC = Path(
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
-    "modules/generated"
-)
+import joblib
+
+sys.path.append(str(Path(__file__).parent.parent))
+
+# %% [markdown]
+# Define the training pipeline that extract the text chunks from the API documentation
+# and then embed them using a sentence transformer.
 
 # %%
 from rag_based_llm.scraping import APIDocExtractor
@@ -24,22 +27,33 @@ pipeline = Pipeline(
         ("semantic_retriever", SemanticRetriever(embedding=embedding, n_neighbors=5)),
     ]
 )
+pipeline
+
+# %% [markdown]
+# Fit the pipeline on serialized only the vector database to be reused later.
 
 # %%
+API_DOC = Path(
+    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
+    "modules/generated"
+)
 pipeline.fit(API_DOC)
-
-# %%
-import joblib
-
 joblib.dump(
     pipeline.named_steps["semantic_retriever"],
     "../models/api_semantic_retrieval.joblib",
 )
 
-# %%
-import joblib
+# %% [markdown]
+# Inference time. Load the vector database. The database will be used to retrieve the
+# most pertinent context from the API documentation.
 
+# %%
 api_semantic_retriever = joblib.load("../models/api_semantic_retrieval.joblib")
+
+# %% [markdown]
+# Load the LLM model to be used to generate the response to the query. Instantiate an
+# agent that will be used to query the model and retrieve the context from the semantic
+# retriever.
 
 # %%
 from rag_based_llm.prompt import QueryAgent
@@ -52,15 +66,20 @@ llm = Llama(
     n_threads=4,
     n_ctx=4096,
 )
-api_semantic_retriever.set_params(n_neighbors=5)
 agent = QueryAgent(
     llm=llm,
     api_semantic_retriever=api_semantic_retriever,
 )
 
+# %% [markdown]
+# Query the agent with a question.
+
 # %%
 query = "What is the possible value for the strategy parameter in the DummyClassifier?"
 response = agent(query, max_tokens=4096, temperature=0.1)
+
+# %% [markdown]
+# Print the response.
 
 # %%
 print(response["choices"][0]["text"])
