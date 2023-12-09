@@ -76,5 +76,4 @@ class QueryAgent:
             context=api_content,
             source=api_source,
         )
-        print(prompt)
         return self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
