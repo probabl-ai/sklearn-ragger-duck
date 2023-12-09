@@ -54,6 +54,7 @@ joblib.dump(
 # most pertinent context from the API documentation.
 
 # %%
+path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 api_semantic_retriever = joblib.load(path_api_semantic_retriever)
 
 # %% [markdown]

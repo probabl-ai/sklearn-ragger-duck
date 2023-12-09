@@ -58,8 +58,8 @@ class QueryAgent:
             keyword arguments.
         """
         prompt_template = (
-            "<s>[INST] {system} \n query: {query} \n context: {context} \n "
-            "source: {source} [/INST] </s>"
+            "[INST] {system} \n query: {query} \n context: {context} \n "
+            "source: {source} [/INST]"
         )
         if self.api_semantic_retriever is not None:
             system_content = self.system_content
@@ -76,4 +76,5 @@ class QueryAgent:
             context=api_content,
             source=api_source,
         )
+        print(prompt)
         return self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
