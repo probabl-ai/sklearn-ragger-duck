@@ -1,6 +1,7 @@
 beautifulsoup4
 faiss-cpu  # this is an unofficial package
 langchain
+numpydoc
 pydata-sphinx-theme
 pytest
 pytest-cov

@@ -3,6 +3,11 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.parent))
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -14,15 +19,76 @@ release = '0.0.1.dev0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "numpydoc",
+]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', "_templates", 'Thumbs.db', '.DS_Store']
 
-
+# The reST default role (used for this markup: `text`) to use for all
+# documents.
+default_role = "literal"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']
+html_style = "css/rag_based_llm.css"
+html_css_files = [
+    "css/rag_based_llm.css",
+]
+html_sidebars = {
+    "changelog": [],
+}
+
+html_theme_options = {
+    "external_links": [],
+    "github_url": "https://github.com/glemaitre/sklearn-doc-rag-based-llm",
+    # "twitter_url": "https://twitter.com/pandas_dev",
+    "use_edit_page_button": True,
+    "show_toc_level": 1,
+    # "navbar_align": "right",  # For testing that the navbar items align properly
+}
+
+html_context = {
+    "github_user": "glemaitre",
+    "github_repo": "sklearn-doc-rag-based-llm",
+    "github_version": "main",
+    "doc_path": "doc",
+}
+
+# -- Options for autodoc ------------------------------------------------------
+
+autodoc_default_options = {
+    "members": True,
+    "inherited-members": True,
+}
+
+# generate autosummary even if no references
+autosummary_generate = True
+
+# -- Options for numpydoc -----------------------------------------------------
+
+# this is needed for some reason...
+# see https://github.com/numpy/numpydoc/issues/69
+numpydoc_show_class_members = False
+
+# -- Additional temporary hacks -----------------------------------------------
+
+# Temporary work-around for spacing problem between parameter and parameter
+# type in the doc, see https://github.com/numpy/numpydoc/issues/215. The bug
+# has been fixed in sphinx (https://github.com/sphinx-doc/sphinx/pull/5976) but
+# through a change in sphinx basic.css except rtd_theme does not use basic.css.
+# In an ideal world, this would get fixed in this PR:
+# https://github.com/readthedocs/sphinx_rtd_theme/pull/747/files
+
+
+def setup(app):
+    app.add_css_file("basic.css")

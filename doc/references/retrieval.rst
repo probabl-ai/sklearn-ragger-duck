@@ -13,5 +13,5 @@ Retrieval
    :toctree: generated/
    :template: class.rst
 
-    BM25Retrieval
-    SemanticRetrieval
+    BM25Retriever
+    SemanticRetriever
