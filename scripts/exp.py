@@ -114,7 +114,6 @@ query = "What the PredictionError is useful for?"
 response = agent(query, max_tokens=4096, temperature=0.1)
 
 # %%
-from textwrap import wrap
-print("\n".join(wrap(response, width=80)))
+print(response)
 
 # %%

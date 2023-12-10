@@ -1,4 +1,4 @@
-import re
+from textwrap import wrap
 
 import tiktoken
 
@@ -40,14 +40,18 @@ class QueryAgent:
         ).intersection(api["source"] for api in api_lexical_context)
         context = "\n".join(
             f"source: {api['source']} \n content: {api['text']}\n"
-            for api in api_semantic_context if api['source'] in api_common_sources
+            for api in api_semantic_context
+            if api["source"] in api_common_sources
         )
         prompt = (
             "[INST] Answer to the query related to scikit-learn using the following "
-            "pair of content and source. Be succinct. Add a link to the source(s) used."
+            "pair of content and source. Be succinct. \n"
             f"query: {query}\n"
-            f"context: {context}[/INST]."
+            f"context: {context} [/INST]."
         )
         response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
-        return response["choices"][0]["text"]
-
+        return (
+            "\n".join(wrap(response["choices"][0]["text"].strip(), width=80))
+            + "\n\nSource(s):\n"
+            + "\n".join(api_common_sources)
+        )
