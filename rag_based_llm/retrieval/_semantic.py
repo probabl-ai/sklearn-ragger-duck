@@ -81,7 +81,8 @@ class SemanticRetriever(BaseEstimator):
         X_embedded = self.embedding.transform(X)
         # normalize vectors to compute the cosine similarity
         faiss.normalize_L2(X_embedded)
-        _, indices = self.index_.search(X_embedded, n_neighbors)
+        xxx, indices = self.index_.search(X_embedded, n_neighbors)
+        print(xxx)
         if isinstance(self.X_fit_[0], dict):
             return [
                 [

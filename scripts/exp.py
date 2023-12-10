@@ -56,6 +56,7 @@ joblib.dump(
 # %%
 path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 api_semantic_retriever = joblib.load(path_api_semantic_retriever)
+api_semantic_retriever.set_params(n_neighbors=10)
 
 # %% [markdown]
 # Load the LLM model to be used to generate the response to the query. Instantiate an
@@ -83,13 +84,13 @@ agent = QueryAgent(
 # Query the agent with a question.
 
 # %%
-query = "What is the possible value for the strategy parameter in the DummyClassifier?"
+query = "What are the parameters of logistic regression?"
 response = agent(query, max_tokens=4096, temperature=0.1)
 
 # %% [markdown]
 # Print the response.
 
 # %%
-print(response["choices"][0]["text"])
+print(response)
 
 # %%
