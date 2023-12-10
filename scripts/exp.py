@@ -49,7 +49,8 @@ joblib.dump(
 )
 
 # %% [markdown]
-# Create a lexical retriever to match some keywords.
+# Create a lexical retriever to match some keywords. We use the largest chunk size
+# possible to use the full documentation API page for the lexical retrieval.
 
 # %%
 from rag_based_llm.retrieval import BM25Retriever
