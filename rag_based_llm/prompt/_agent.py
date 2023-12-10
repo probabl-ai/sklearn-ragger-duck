@@ -46,7 +46,7 @@ class QueryAgent:
         """
         max_tokens = prompt_kwargs.get("max_tokens", 1024)
 
-        api_context = self.api_semantic_retriever.k_neighbors(query)[0]
+        api_context = self.api_semantic_retriever.k_neighbors(query)
         context = "\n".join(
             f"source: {api['source']} \n content: {api['text']}\n"
             for api in api_context

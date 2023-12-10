@@ -2,6 +2,7 @@ from numbers import Integral
 
 import faiss
 from sklearn.base import BaseEstimator
+from sklearn.utils.validation import check_is_fitted
 from sklearn.utils._param_validation import HasMethods, Interval
 
 
@@ -60,12 +61,12 @@ class SemanticRetriever(BaseEstimator):
         self.index_.add(self.X_embedded_)
         return self
 
-    def k_neighbors(self, X, n_neighbors=None):
+    def k_neighbors(self, query, *, n_neighbors=None):
         """Retrieve the k-nearest neighbors.
 
         Parameters
         ----------
-        X : str or list of str or dict
+        query : str
             The input data.
 
         n_neighbors : int, default=None
@@ -77,25 +78,21 @@ class SemanticRetriever(BaseEstimator):
         list of str or dict
             The k-nearest neighbors from the training set.
         """
+        check_is_fitted(self, "X_fit_")
+        if not isinstance(query, str):
+            raise TypeError(f"query should be a string, got {type(query)}.")
         n_neighbors = n_neighbors or self.n_neighbors
-        X_embedded = self.embedding.transform(X)
+        X_embedded = self.embedding.transform(query)
         # normalize vectors to compute the cosine similarity
         faiss.normalize_L2(X_embedded)
-        xxx, indices = self.index_.search(X_embedded, n_neighbors)
-        print(xxx)
+        _, indices = self.index_.search(X_embedded, n_neighbors)
         if isinstance(self.X_fit_[0], dict):
             return [
-                [
-                    {
-                        "source": self.X_fit_[neighbor]["source"],
-                        "text": self.X_fit_[neighbor]["text"],
-                    }
-                    for neighbor in neighbors
-                ]
-                for neighbors in indices
+                {
+                    "source": self.X_fit_[neighbor]["source"],
+                    "text": self.X_fit_[neighbor]["text"],
+                }
+                for neighbor in indices[0]
             ]
         else:  # isinstance(self.X_fit_[0], str)
-            return [
-                [self.X_fit_[neighbor] for neighbor in neighbors]
-                for neighbors in indices
-            ]
+            return [self.X_fit_[neighbor] for neighbor in indices[0]]
