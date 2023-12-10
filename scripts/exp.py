@@ -45,8 +45,27 @@ pipeline.fit(API_DOC)
 # %%
 path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 joblib.dump(
-    pipeline.named_steps["semantic_retriever"],
-    path_api_semantic_retriever,
+    pipeline.named_steps["semantic_retriever"], path_api_semantic_retriever
+)
+
+# %% [markdown]
+# Create a lexical retriever to match some keywords.
+
+# %%
+from rag_based_llm.retrieval import BM25Retriever
+
+pipeline = Pipeline(
+    steps=[
+        ("extractor", APIDocExtractor(chunk_size=100_000, chunk_overlap=0, n_jobs=-1)),
+        ("lexical_retriever", BM25Retriever(n_neighbors=5)),
+    ]
+)
+pipeline.fit(API_DOC)
+
+# %%
+path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
+joblib.dump(
+    pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever
 )
 
 # %% [markdown]
@@ -56,7 +75,12 @@ joblib.dump(
 # %%
 path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 api_semantic_retriever = joblib.load(path_api_semantic_retriever)
-api_semantic_retriever.set_params(n_neighbors=10)
+api_semantic_retriever.set_params(n_neighbors=15)
+
+# %%
+path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
+api_lexical_retriever = joblib.load(path_api_lexical_retriever)
+api_lexical_retriever.set_params(n_neighbors=10)
 
 # %% [markdown]
 # Load the LLM model to be used to generate the response to the query. Instantiate an
@@ -78,19 +102,18 @@ llm = Llama(
 agent = QueryAgent(
     llm=llm,
     api_semantic_retriever=api_semantic_retriever,
+    api_lexical_retriever=api_lexical_retriever,
 )
 
 # %% [markdown]
 # Query the agent with a question.
 
 # %%
-query = "What are the parameters of logistic regression?"
+query = "What the PredictionError is useful for?"
 response = agent(query, max_tokens=4096, temperature=0.1)
 
-# %% [markdown]
-# Print the response.
-
 # %%
-print(response)
+from textwrap import wrap
+print("\n".join(wrap(response, width=80)))
 
 # %%
