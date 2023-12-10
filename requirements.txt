@@ -1,11 +1,13 @@
 beautifulsoup4
 faiss-cpu  # this is an unofficial package
 langchain
+pydata-sphinx-theme
 pytest
 pytest-cov
 scikit-learn
 sentence-transformers
 setuptools
+sphinx
 tiktoken
 torch --index-url https://download.pytorch.org/whl/cpu/
 transformers

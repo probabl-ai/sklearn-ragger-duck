@@ -8,11 +8,13 @@ dependencies:
   - beautifulsoup4
   - faiss-cpu
   - langchain
+  - pydata-sphinx-theme
   - pytest
   - pytest-cov
   - pytorch
   - scikit-learn
   - sentence-transformers
+  - sphinx
   - tiktoken
   - transformers
   - pip:
