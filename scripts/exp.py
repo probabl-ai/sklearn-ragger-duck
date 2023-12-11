@@ -15,10 +15,11 @@ sys.path.append(str(Path(__file__).parent.parent))
 # and then embed them using a sentence transformer.
 
 # %%
-from rag_based_llm.scraping import APIDocExtractor
+from sklearn.pipeline import Pipeline
+
 from rag_based_llm.embedding import SentenceTransformer
 from rag_based_llm.retrieval import SemanticRetriever
-from sklearn.pipeline import Pipeline
+from rag_based_llm.scraping import APIDocExtractor
 
 embedding = SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps")
 pipeline = Pipeline(
@@ -51,10 +52,11 @@ joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retrie
 # sure that the keywords are present in the chunk.
 
 # %%
-from rag_based_llm.scraping import APIDocExtractor
-from rag_based_llm.retrieval import BM25Retriever
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
+
+from rag_based_llm.retrieval import BM25Retriever
+from rag_based_llm.scraping import APIDocExtractor
 
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 pipeline = Pipeline(
@@ -89,8 +91,9 @@ path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
 api_lexical_retriever = joblib.load(path_api_lexical_retriever)
 
 # %%
-from rag_based_llm.retrieval import RetrieverReranker
 from sentence_transformers import CrossEncoder
+
+from rag_based_llm.retrieval import RetrieverReranker
 
 model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 cross_encoder = CrossEncoder(model_name=model_name, device="mps")
@@ -100,7 +103,7 @@ retriever_reranker = RetrieverReranker(
     lexical_retriever=api_lexical_retriever,
     threshold=2.0,
     min_top_k=3,
-    max_top_k=10,
+    max_top_k=20,
 )
 
 # %% [markdown]
@@ -109,8 +112,9 @@ retriever_reranker = RetrieverReranker(
 # retriever.
 
 # %%
-from rag_based_llm.prompt import QueryAgent
 from llama_cpp import Llama
+
+from rag_based_llm.prompt import QueryAgent
 
 model_path = "../models/mistral-7b-instruct-v0.1.Q6_K.gguf"
 llm = Llama(

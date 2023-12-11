@@ -1,5 +1,3 @@
-from textwrap import wrap
-
 import tiktoken
 
 
@@ -35,12 +33,13 @@ class QueryAgent:
         )
         sources = set([api["source"] for api in context])
         context_query = "\n".join(
-            f"source: {api['source']} \n content: {api['text']}\n"
-            for api in context
+            f"source: {api['source']} \n content: {api['text']}\n" for api in context
         )
         prompt = (
             "[INST] Answer to the query related to scikit-learn using the following "
-            "pair of content and source. Be succinct. \n"
+            "pair of content and source. The context is provided from the most "
+            "relevant to the least relevant. Use this priority to answer to the query. "
+            "Be succinct. \n"
             f"query: {query}\n"
             f"context: {context_query} [/INST]."
         )
