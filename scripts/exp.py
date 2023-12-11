@@ -44,30 +44,37 @@ pipeline.fit(API_DOC)
 
 # %%
 path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
-joblib.dump(
-    pipeline.named_steps["semantic_retriever"], path_api_semantic_retriever
-)
+joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retriever)
 
 # %% [markdown]
-# Create a lexical retriever to match some keywords. We use the largest chunk size
-# possible to use the full documentation API page for the lexical retrieval.
+# Create a lexical retriever to match some keywords. We don't use chunk for the lexical
+# retriever.
 
 # %%
+from rag_based_llm.scraping import APIDocExtractor
 from rag_based_llm.retrieval import BM25Retriever
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.pipeline import Pipeline
 
+count_vectorizer = CountVectorizer(ngram_range=(1, 3))
 pipeline = Pipeline(
     steps=[
-        ("extractor", APIDocExtractor(chunk_size=100_000, chunk_overlap=0, n_jobs=-1)),
-        ("lexical_retriever", BM25Retriever(n_neighbors=5)),
+        ("extractor", APIDocExtractor(chunk_size=None, n_jobs=-1)),
+        (
+            "lexical_retriever",
+            BM25Retriever(count_vectorizer=count_vectorizer, n_neighbors=5),
+        ),
     ]
+)
+API_DOC = Path(
+    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
+    "modules/generated"
 )
 pipeline.fit(API_DOC)
 
 # %%
 path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
-joblib.dump(
-    pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever
-)
+joblib.dump(pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever)
 
 # %% [markdown]
 # Inference time. Load the vector database. The database will be used to retrieve the
@@ -81,7 +88,7 @@ api_semantic_retriever.set_params(n_neighbors=15)
 # %%
 path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
 api_lexical_retriever = joblib.load(path_api_lexical_retriever)
-api_lexical_retriever.set_params(n_neighbors=10)
+api_lexical_retriever.set_params(n_neighbors=15)
 
 # %% [markdown]
 # Load the LLM model to be used to generate the response to the query. Instantiate an
@@ -110,7 +117,7 @@ agent = QueryAgent(
 # Query the agent with a question.
 
 # %%
-query = "What the PredictionError is useful for?"
+query = "What are the values of the strategy parameter in the dummy classifier?"
 response = agent(query, max_tokens=4096, temperature=0.1)
 
 # %%

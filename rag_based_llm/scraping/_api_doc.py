@@ -109,8 +109,8 @@ def extract_api_doc(api_doc_folder, *, n_jobs=None):
 
     Returns
     -------
-    generator or list
-        A generator or list of dictionaries containing the source and text of the API
+    list
+        A list of dictionaries containing the source and text of the API
         documentation.
     """
     if not isinstance(api_doc_folder, Path):
@@ -159,8 +159,8 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
 
     Parameters
     ----------
-    chunk_size : int, default=300
-        The size of the chunks to split the text into.
+    chunk_size : int or None, default=300
+        The size of the chunks to split the text into. If None, the text is not chunked.
 
     chunk_overlap : int, default=50
         The overlap between two consecutive chunks.
@@ -171,7 +171,7 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
     """
 
     _parameter_constraints = {
-        "chunk_size": [Interval(Integral, left=1, right=None, closed="left")],
+        "chunk_size": [Interval(Integral, left=1, right=None, closed="left"), None],
         "chunk_overlap": [Interval(Integral, left=0, right=None, closed="left")],
         "n_jobs": [Integral, None],
     }
@@ -198,12 +198,15 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
             The fitted estimator.
         """
         self._validate_params()
-        self.text_splitter_ = RecursiveCharacterTextSplitter(
-            separators=["\n\n", "\n", " ", ""],
-            chunk_size=self.chunk_size,
-            chunk_overlap=self.chunk_overlap,
-            length_function=len,
-        )
+        if self.chunk_size is not None:
+            self.text_splitter_ = RecursiveCharacterTextSplitter(
+                separators=["\n\n", "\n", " ", ""],
+                chunk_size=self.chunk_size,
+                chunk_overlap=self.chunk_overlap,
+                length_function=len,
+            )
+        else:
+            self.text_splitter_ = None
         return self
 
     def transform(self, X):
@@ -220,13 +223,16 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
             A generator of dictionaries containing the source and text of the API
             documentation.
         """
-        chunked_content = chain.from_iterable(
-            Parallel(n_jobs=self.n_jobs, return_as="generator")(
-                delayed(_chunk_document)(self.text_splitter_, document)
-                for document in  extract_api_doc(X, n_jobs=self.n_jobs)
+        if self.chunk_size is None:
+            return extract_api_doc(X, n_jobs=self.n_jobs)
+        else:
+            chunked_content = chain.from_iterable(
+                Parallel(n_jobs=self.n_jobs, return_as="generator")(
+                    delayed(_chunk_document)(self.text_splitter_, document)
+                    for document in extract_api_doc(X, n_jobs=self.n_jobs)
+                )
             )
-        )
-        return list(chunked_content)
+            return list(chunked_content)
 
     def _more_tags(self):
         return {"X_types": ["string"], "stateless": True}

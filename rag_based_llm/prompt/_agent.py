@@ -26,6 +26,7 @@ class QueryAgent:
         max_tokens = prompt_kwargs.get("max_tokens", 1024)
         prompt = (
             "[INST] Summarize the query provided by extracting keywords from it. "
+            "Only list the keywords only separated by a comma. \n"
             f"query: {query}[/INST]"
         )
         response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
@@ -51,7 +52,7 @@ class QueryAgent:
         )
         response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
         return (
-            "\n".join(wrap(response["choices"][0]["text"].strip(), width=80))
+            response["choices"][0]["text"].strip()
             + "\n\nSource(s):\n"
             + "\n".join(api_common_sources)
         )

@@ -64,10 +64,11 @@ def test_extract_api_doc(n_jobs):
 
 
 @pytest.mark.parametrize("n_jobs", [None, 1, 2])
-def test_api_doc_extractor(n_jobs):
+@pytest.mark.parametrize("chunk_size", [20, None])
+def test_api_doc_extractor(n_jobs, chunk_size):
     """Check the APIDocExtractor class."""
     chunk_size = 20
-    extractor = APIDocExtractor(chunk_size=20, chunk_overlap=0, n_jobs=n_jobs)
+    extractor = APIDocExtractor(chunk_size=chunk_size, chunk_overlap=0, n_jobs=n_jobs)
     output_extractor = extractor.fit_transform(API_TEST_FOLDER)
     possible_source = [
         SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES
