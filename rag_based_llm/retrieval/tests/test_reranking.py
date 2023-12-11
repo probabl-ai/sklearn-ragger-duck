@@ -1,6 +1,5 @@
 from pathlib import Path
 
-import numpy as np
 import pytest
 from sentence_transformers import CrossEncoder
 
@@ -11,12 +10,18 @@ from rag_based_llm.retrieval import SemanticRetriever
 
 
 @pytest.mark.parametrize(
-    "params, n_documents", [
+    "params, n_documents",
+    [
         ({"threshold": 0.5}, 2),
         ({"threshold": None}, 14),
-        ({"max_top_k": 2,}, 2),
+        (
+            {
+                "max_top_k": 2,
+            },
+            2,
+        ),
         ({"threshold": 0.5, "min_top_k": 4}, 4),
-    ]
+    ],
 )
 def test_retriever_reranker(params, n_documents):
     """Check that the hybrid retriever works as expected."""
@@ -40,7 +45,7 @@ def test_retriever_reranker(params, n_documents):
     faiss = SemanticRetriever(embedding=embedder, top_k=10).fit(input_texts)
 
     model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-    cross_encoder = CrossEncoder(model_name=model_name, device="mps")
+    cross_encoder = CrossEncoder(model_name=model_name)
     retriever_reranker = RetrieverReranker(
         cross_encoder=cross_encoder,
         semantic_retriever=faiss,
