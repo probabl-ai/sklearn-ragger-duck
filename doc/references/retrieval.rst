@@ -14,4 +14,5 @@ Retrieval
    :template: class.rst
 
     BM25Retriever
+    RetrieverReranker
     SemanticRetriever
