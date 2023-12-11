@@ -82,8 +82,8 @@ class RetrieverReranker(BaseEstimator):
 
     def query(
         self,
-        *,
         query,
+        *,
         lexical_query=None,
         semantic_query=None,
     ):
