@@ -24,7 +24,7 @@ embedding = SentenceTransformer(model_name_or_path="thenlper/gte-large", device=
 pipeline = Pipeline(
     steps=[
         ("extractor", APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)),
-        ("semantic_retriever", SemanticRetriever(embedding=embedding, n_neighbors=5)),
+        ("semantic_retriever", SemanticRetriever(embedding=embedding, top_k=15)),
     ]
 )
 pipeline
@@ -47,8 +47,8 @@ path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retriever)
 
 # %% [markdown]
-# Create a lexical retriever to match some keywords. We don't use chunk for the lexical
-# retriever.
+# Create a lexical retriever to match some keywords. We take a very long chunk to be
+# sure that the keywords are present in the chunk.
 
 # %%
 from rag_based_llm.scraping import APIDocExtractor
@@ -56,13 +56,13 @@ from rag_based_llm.retrieval import BM25Retriever
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 
-count_vectorizer = CountVectorizer(ngram_range=(1, 3))
+count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 pipeline = Pipeline(
     steps=[
-        ("extractor", APIDocExtractor(chunk_size=None, n_jobs=-1)),
+        ("extractor", APIDocExtractor(chunk_size=1_500, chunk_overlap=200, n_jobs=-1)),
         (
             "lexical_retriever",
-            BM25Retriever(count_vectorizer=count_vectorizer, n_neighbors=5),
+            BM25Retriever(count_vectorizer=count_vectorizer, top_k=15),
         ),
     ]
 )
@@ -83,12 +83,25 @@ joblib.dump(pipeline.named_steps["lexical_retriever"], path_api_lexical_retrieve
 # %%
 path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
 api_semantic_retriever = joblib.load(path_api_semantic_retriever)
-api_semantic_retriever.set_params(n_neighbors=15)
 
 # %%
 path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
 api_lexical_retriever = joblib.load(path_api_lexical_retriever)
-api_lexical_retriever.set_params(n_neighbors=15)
+
+# %%
+from rag_based_llm.retrieval import RetrieverReranker
+from sentence_transformers import CrossEncoder
+
+model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+cross_encoder = CrossEncoder(model_name=model_name, device="mps")
+retriever_reranker = RetrieverReranker(
+    cross_encoder=cross_encoder,
+    semantic_retriever=api_semantic_retriever,
+    lexical_retriever=api_lexical_retriever,
+    threshold=2.0,
+    min_top_k=3,
+    max_top_k=10,
+)
 
 # %% [markdown]
 # Load the LLM model to be used to generate the response to the query. Instantiate an
@@ -109,15 +122,14 @@ llm = Llama(
 )
 agent = QueryAgent(
     llm=llm,
-    api_semantic_retriever=api_semantic_retriever,
-    api_lexical_retriever=api_lexical_retriever,
+    retriever=retriever_reranker,
 )
 
 # %% [markdown]
 # Query the agent with a question.
 
 # %%
-query = "What are the values of the strategy parameter in the dummy classifier?"
+query = "What are the values of the strategy parameter in the DummyClassifier?"
 response = agent(query, max_tokens=4096, temperature=0.1)
 
 # %%

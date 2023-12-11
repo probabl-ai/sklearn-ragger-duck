@@ -16,8 +16,8 @@ class SemanticRetriever(BaseEstimator):
     embedding : transformer
         An embedding following the scikit-learn transformer API.
 
-    n_neighbors : int, default=1
-        Number of neighbors to retrieve.
+    top_k : int, default=1
+        Number of documents to retrieve.
 
     Attributes
     ----------
@@ -29,12 +29,12 @@ class SemanticRetriever(BaseEstimator):
     """
     _parameter_constraints = {
         "embedding": [HasMethods(["fit_transform", "transform"])],
-        "n_neighbors": [Interval(Integral, left=1, right=None, closed="left")],
+        "top_k": [Interval(Integral, left=1, right=None, closed="left")],
     }
 
-    def __init__(self, *, embedding, n_neighbors=1):
+    def __init__(self, *, embedding, top_k=1):
         self.embedding = embedding
-        self.n_neighbors = n_neighbors
+        self.top_k = top_k
 
     def fit(self, X, y=None):
         """Embed the sentences and create the index.
@@ -61,31 +61,26 @@ class SemanticRetriever(BaseEstimator):
         self.index_.add(self.X_embedded_)
         return self
 
-    def k_neighbors(self, query, *, n_neighbors=None):
-        """Retrieve the k-nearest neighbors.
+    def query(self, query):
+        """Retrieve the most relevant documents for the query.
 
         Parameters
         ----------
         query : str
             The input data.
 
-        n_neighbors : int, default=None
-           The number of neighbors to retrieve. If None, the `n_neighbors` from the
-           constructor is used.
-
         Returns
         -------
         list of str or dict
-            The k-nearest neighbors from the training set.
+            The list of the most relevant document from the training set.
         """
         check_is_fitted(self, "X_fit_")
         if not isinstance(query, str):
             raise TypeError(f"query should be a string, got {type(query)}.")
-        n_neighbors = n_neighbors or self.n_neighbors
         X_embedded = self.embedding.transform(query)
         # normalize vectors to compute the cosine similarity
         faiss.normalize_L2(X_embedded)
-        _, indices = self.index_.search(X_embedded, n_neighbors)
+        _, indices = self.index_.search(X_embedded, self.top_k)
         if isinstance(self.X_fit_[0], dict):
             return [
                 {

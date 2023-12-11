@@ -16,8 +16,8 @@ class BM25Retriever(BaseEstimator):
         A count vectorizer to compute the count of terms in documents. If None, a
         :class:`sklearn.feature_extraction.text.CountVectorizer` is used.
 
-    n_neighbors : int, default=1
-        Number of neighbors to retrieve.
+    top_k : int, default=1
+        Number of documents to retrieve.
 
     Attributes
     ----------
@@ -30,12 +30,12 @@ class BM25Retriever(BaseEstimator):
 
     _parameter_constraints = {
         "count_vectorizer": [HasMethods(["fit_transform", "transform"]), None],
-        "n_neighbors": [Interval(Integral, left=1, right=None, closed="left")],
+        "top_k": [Interval(Integral, left=1, right=None, closed="left")],
     }
 
-    def __init__(self, *, count_vectorizer=None, n_neighbors=1, b=0.75, k1=1.6):
+    def __init__(self, *, count_vectorizer=None, top_k=1, b=0.75, k1=1.6):
         self.count_vectorizer = count_vectorizer
-        self.n_neighbors = n_neighbors
+        self.top_k = top_k
         self.b = b
         self.k1 = k1
 
@@ -79,27 +79,22 @@ class BM25Retriever(BaseEstimator):
         self.idf_[self.idf_ < 0] = 0.25 * np.mean(self.idf_)
         return self
 
-    def k_neighbors(self, query, *, n_neighbors=None):
-        """Retrieve the k-nearest neighbors.
+    def query(self, query):
+        """Retrieve the most relevant documents for the query.
 
         Parameters
         ----------
         query : str
             The input data.
 
-        n_neighbors : int, default=None
-           The number of neighbors to retrieve. If None, the `n_neighbors` from the
-           constructor is used.
-
         Returns
         -------
         list of str or dict
-            The k-nearest neighbors from the training set.
+            The list of the most relevant document from the training set.
         """
         check_is_fitted(self, "X_fit_")
         if not isinstance(query, str):
             raise TypeError(f"query should be a string, got {type(query)}.")
-        n_neighbors = n_neighbors or self.n_neighbors
         query_terms_indices = self.count_vectorizer_.transform([query]).indices
         counts_query_in_X_fit = self.X_counts_[:, query_terms_indices].toarray()
         idf = self.idf_[query_terms_indices]
@@ -114,7 +109,7 @@ class BM25Retriever(BaseEstimator):
             )
         )
         scores = (idf * numerator / denominator).sum(axis=1)
-        indices = scores.argsort()[::-1][:n_neighbors]
+        indices = scores.argsort()[::-1][:self.top_k]
         if isinstance(self.X_fit_[0], dict):
             return [
                 {

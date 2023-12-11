@@ -32,8 +32,8 @@ def test_semantic_retriever(input_texts, output):
         show_progress_bar=False,
     )
 
-    faiss = SemanticRetriever(embedding=embedder, n_neighbors=1).fit(input_texts)
-    assert faiss.k_neighbors("xx") == output
+    faiss = SemanticRetriever(embedding=embedder, top_k=1).fit(input_texts)
+    assert faiss.query("xx") == output
 
 
 def test_semantic_retriever_error():
@@ -50,6 +50,6 @@ def test_semantic_retriever_error():
     )
 
     input_texts = [{"source": "source 1", "text": "xxx"}]
-    faiss = SemanticRetriever(embedding=embedder, n_neighbors=1).fit(input_texts)
+    faiss = SemanticRetriever(embedding=embedder, top_k=1).fit(input_texts)
     with pytest.raises(TypeError):
-        faiss.k_neighbors(["xxxx"])
+        faiss.query(["xxxx"])

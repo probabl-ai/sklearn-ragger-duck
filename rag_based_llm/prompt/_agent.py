@@ -13,12 +13,10 @@ class QueryAgent:
         self,
         *,
         llm,
-        api_semantic_retriever,
-        api_lexical_retriever,
+        retriever,
     ):
         self.llm = llm
-        self.api_semantic_retriever = api_semantic_retriever
-        self.api_lexical_retriever = api_lexical_retriever
+        self.retriever = retriever
 
     def __call__(self, query, **prompt_kwargs):
         # FIXME: We need to come with a design such that it is generic enough to accept
@@ -31,28 +29,24 @@ class QueryAgent:
         )
         response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
         keywords = response["choices"][0]["text"].strip()
-        api_semantic_context = self.api_semantic_retriever.k_neighbors(query)
-        api_lexical_context = self.api_lexical_retriever.k_neighbors(keywords)
 
-        # Keep the context that have common sources between the semantic and lexical
-        # retrievers.
-        api_common_sources = set(
-            api["source"] for api in api_semantic_context
-        ).intersection(api["source"] for api in api_lexical_context)
-        context = "\n".join(
+        context = self.retriever.query(
+            query=query, lexical_query=keywords, semantic_query=query
+        )
+        sources = set([api["source"] for api in context])
+        context_query = "\n".join(
             f"source: {api['source']} \n content: {api['text']}\n"
-            for api in api_semantic_context
-            if api["source"] in api_common_sources
+            for api in context
         )
         prompt = (
             "[INST] Answer to the query related to scikit-learn using the following "
             "pair of content and source. Be succinct. \n"
             f"query: {query}\n"
-            f"context: {context} [/INST]."
+            f"context: {context_query} [/INST]."
         )
         response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
         return (
             response["choices"][0]["text"].strip()
             + "\n\nSource(s):\n"
-            + "\n".join(api_common_sources)
+            + "\n".join(sources)
         )
