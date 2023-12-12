@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=300, initial-scale=1.0" />
+    <title>LLaMa Inference Web Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/site.css">
+    <script src="static/js/showdown.min.js"></script>
+    <script type="module" src="static/js/llama-tokenizer.js"></script>
+    <script src="inference.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="chat-body h-100">
+            <div class="card-body h-100">
+                <div id="top-box">
+                    <div id="messages" class="overflow-auto">
+                    </div>
+                    <span id="responseTokenCount" class="response-token-count d-none"><span
+                            id="responseTokenCountLabel">Tokens:&nbsp;</span><span id="responseTokenCountValue">0</span>
+                        / {{conf.MAX_RESPONSE_TOKENS }}</span>
+                </div>
+                <form action="" class="form-inline" id="chat-form" onsubmit="submitForm(event)">
+                    <div id="controls-box">
+                        <div class="input-box">
+                            <textarea rows=8 class="form-control" placeholder="{{ res.PROMPT }}"
+                                aria-label="{{ res.PROMPT }}" id="messageText"></textarea>
+                            <span id="tokenCount" class="token-count d-none"><span
+                                    id="tokenCountLabel">Tokens:&nbsp;</span><span id="tokenCountValue">0</span> / {{
+                                conf.CONTEXT_TOKENS }}</span>
+                        </div>
+                        <div class="float-start" style="padding-top: 5px">
+                            <span id="tempLabel">Temperature:&nbsp;</span>
+                            <div id="tempValue">{{ conf.TEMPERATURE }}</div>&nbsp;&nbsp;<input type="range" min="0.0"
+                                max="2.0" step="0.05" value="{{ conf.TEMPERATURE }}" id="tempSlider">
+                        </div>
+                        <div class="float-end">
+                            <button title="Send" id="send" type="submit" class="btn btn-primary" disabled>{{
+                                res.BUTTON_WAIT }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,11 +1,3 @@
-import tiktoken
-
-
-def trim(text, max_tokens):
-    enc = tiktoken.get_encoding("cl100k_base")
-    return enc.decode(enc.encode(text)[:max_tokens])
-
-
 class QueryAgent:
     def __init__(
         self,
@@ -19,13 +11,17 @@ class QueryAgent:
     def __call__(self, query, **prompt_kwargs):
         # FIXME: We need to come with a design such that it is generic enough to accept
         # different prompt strategies.
-        max_tokens = prompt_kwargs.get("max_tokens", 1024)
+        prompt_kwargs.get("max_tokens", 1024)
         prompt = (
             "[INST] Summarize the query provided by extracting keywords from it. "
             "Only list the keywords only separated by a comma. \n"
             f"query: {query}[/INST]"
         )
-        response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
+
+        # do not create a stream generator
+        local_prompt_kwargs = prompt_kwargs.copy()
+        local_prompt_kwargs["stream"] = False
+        response = self.llm(prompt, **local_prompt_kwargs)
         keywords = response["choices"][0]["text"].strip()
 
         context = self.retriever.query(
@@ -39,13 +35,9 @@ class QueryAgent:
             "[INST] Answer to the query related to scikit-learn using the following "
             "pair of content and source. The context is provided from the most "
             "relevant to the least relevant. Use this priority to answer to the query. "
-            "Be succinct. \n"
+            "You have to finish your answer with the source that is an https link of "
+            "the content that you used to answer the query. Be succinct. \n"
             f"query: {query}\n"
             f"context: {context_query} [/INST]."
         )
-        response = self.llm(trim(prompt, max_tokens=max_tokens), **prompt_kwargs)
-        return (
-            response["choices"][0]["text"].strip()
-            + "\n\nSource(s):\n"
-            + "\n".join(sources)
-        )
+        return self.llm(prompt, **prompt_kwargs), sources

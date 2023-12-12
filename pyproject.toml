@@ -29,3 +29,4 @@ exclude=[
 # folder.
 "scripts/*"=["E402"]
 "doc/conf.py"=["E402"]
+"app/main.py"=["E402"]

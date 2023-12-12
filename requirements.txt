@@ -1,7 +1,10 @@
 beautifulsoup4
 faiss-cpu  # this is an unofficial package
+fastapi
+jinja2
 langchain
 numpydoc
+pydantic
 pydata-sphinx-theme
 pytest
 pytest-cov
@@ -9,8 +12,9 @@ scikit-learn
 sentence-transformers
 setuptools
 sphinx
-tiktoken
 torch --index-url https://download.pytorch.org/whl/cpu/
 transformers
+uvicorn
+websockets
 # We use return_generator option that will be shipped in 1.4
 joblib @ git+https://github.com/joblib/joblib.git@master
