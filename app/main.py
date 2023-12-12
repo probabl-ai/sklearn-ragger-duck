@@ -123,7 +123,8 @@ async def websocket_endpoint(websocket: WebSocket):
                 answer_type = start_type if response_complete == "" else "stream"
                 response_complete += response_text
                 await send(websocket, response_text, answer_type)
-            response_complete += "\n\nSource(s):\n" + ";\n".join(sources)
+            # response_complete += "\n\nSource(s):\n" + "\n".join(sources)
+            logger.info("\n\nSource(s):\n".join(sources))
             await send(websocket, response_complete, start_type)
 
             await send(websocket, "", "end")

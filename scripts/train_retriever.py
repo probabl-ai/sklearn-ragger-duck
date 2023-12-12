@@ -1,4 +1,8 @@
 # %% [markdown]
+# # Training the retriever
+#
+# This notebook will train the lexical and semantic retriever and store them.
+#
 # Not bothering with a installable package for now. For now, important the modules
 # directly from the source code.
 
@@ -73,70 +77,3 @@ API_DOC = Path(
     "modules/generated"
 )
 pipeline.fit(API_DOC)
-
-# %%
-path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
-joblib.dump(pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever)
-
-# %% [markdown]
-# Inference time. Load the vector database. The database will be used to retrieve the
-# most pertinent context from the API documentation.
-
-# %%
-path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
-api_semantic_retriever = joblib.load(path_api_semantic_retriever)
-
-# %%
-path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
-api_lexical_retriever = joblib.load(path_api_lexical_retriever)
-
-# %%
-from sentence_transformers import CrossEncoder
-
-from rag_based_llm.retrieval import RetrieverReranker
-
-model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-cross_encoder = CrossEncoder(model_name=model_name, device="mps")
-retriever_reranker = RetrieverReranker(
-    cross_encoder=cross_encoder,
-    semantic_retriever=api_semantic_retriever,
-    lexical_retriever=api_lexical_retriever,
-    threshold=2.0,
-    min_top_k=3,
-    max_top_k=20,
-)
-
-# %% [markdown]
-# Load the LLM model to be used to generate the response to the query. Instantiate an
-# agent that will be used to query the model and retrieve the context from the semantic
-# retriever.
-
-# %%
-from llama_cpp import Llama
-
-from rag_based_llm.prompt import QueryAgent
-
-model_path = "../models/mistral-7b-instruct-v0.1.Q6_K.gguf"
-llm = Llama(
-    model_path=model_path,
-    device="mps",
-    n_gpu_layers=1,
-    n_threads=4,
-    n_ctx=4096,
-)
-agent = QueryAgent(
-    llm=llm,
-    retriever=retriever_reranker,
-)
-
-# %% [markdown]
-# Query the agent with a question.
-
-# %%
-query = "What are the values of the strategy parameter in the DummyClassifier?"
-response = agent(query, max_tokens=4096, temperature=0.1)
-
-# %%
-print(response)
-
-# %%
