@@ -13,6 +13,10 @@ from pathlib import Path
 import joblib
 
 sys.path.append(str(Path(__file__).parent.parent))
+API_DOC = Path(
+    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
+    "modules/generated"
+)
 
 # %% [markdown]
 # Define the training pipeline that extract the text chunks from the API documentation
@@ -31,16 +35,6 @@ pipeline = Pipeline(
         ("extractor", APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)),
         ("semantic_retriever", SemanticRetriever(embedding=embedding, top_k=15)),
     ]
-)
-pipeline
-
-# %% [markdown]
-# Fit the pipeline.
-
-# %%
-API_DOC = Path(
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
-    "modules/generated"
 )
 pipeline.fit(API_DOC)
 
@@ -71,9 +65,11 @@ pipeline = Pipeline(
             BM25Retriever(count_vectorizer=count_vectorizer, top_k=15),
         ),
     ]
-)
-API_DOC = Path(
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
-    "modules/generated"
-)
-pipeline.fit(API_DOC)
+).fit(API_DOC)
+
+# %% [markdown]
+# Save the lexical retriever to be used in the inference time.
+
+# %%
+path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
+joblib.dump(pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever)
