@@ -11,7 +11,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "rag"
+project = "Ragger Duck"
 copyright = "2023, G. Lemaitre"
 author = "G. Lemaitre"
 release = "0.0.1.dev0"
@@ -40,10 +40,10 @@ default_role = "literal"
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
-html_style = "css/rag.css"
+html_style = "css/ragger_duck.css"
 html_logo = "_static/img/logo.png"
 html_css_files = [
-    "css/rag.css",
+    "css/ragger_duck.css",
 ]
 html_sidebars = {
     "changelog": [],
@@ -51,7 +51,7 @@ html_sidebars = {
 
 html_theme_options = {
     "external_links": [],
-    "github_url": "https://github.com/glemaitre/sklearn-doc-rag-based-llm",
+    "github_url": "https://github.com/glemaitre/sklearn-ragger-duck",
     # "twitter_url": "https://twitter.com/pandas_dev",
     "use_edit_page_button": True,
     "show_toc_level": 1,
@@ -60,7 +60,7 @@ html_theme_options = {
 
 html_context = {
     "github_user": "glemaitre",
-    "github_repo": "sklearn-doc-rag-based-llm",
+    "github_repo": "sklearn-ragger-duck",
     "github_version": "main",
     "doc_path": "doc",
 }

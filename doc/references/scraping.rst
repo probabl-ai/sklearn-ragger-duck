@@ -3,11 +3,11 @@
 Scraping the documentation
 ==========================
 
-.. automodule:: rag.scraping
+.. automodule:: ragger_duck.scraping
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag.scraping
+.. currentmodule:: ragger_duck.scraping
 
 .. autosummary::
    :toctree: generated/

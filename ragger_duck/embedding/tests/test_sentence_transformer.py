@@ -2,7 +2,6 @@ from collections.abc import Iterable
 from pathlib import Path
 
 import pytest
-
 from rag.embedding import SentenceTransformer
 
 

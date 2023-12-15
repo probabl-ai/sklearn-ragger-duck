@@ -21,4 +21,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
-        run: pytest -vsl --cov=rag --cov-report term-missing rag
+        run: pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck

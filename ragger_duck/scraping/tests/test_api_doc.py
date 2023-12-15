@@ -2,7 +2,6 @@
 from pathlib import Path
 
 import pytest
-
 from rag.scraping import (
     APIDocExtractor,
     extract_api_doc,

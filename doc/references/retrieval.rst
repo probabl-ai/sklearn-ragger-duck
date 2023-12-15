@@ -3,11 +3,11 @@
 Retrieval
 =========
 
-.. automodule:: rag.retrieval
+.. automodule:: ragger_duck.retrieval
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag.retrieval
+.. currentmodule:: ragger_duck.retrieval
 
 .. autosummary::
    :toctree: generated/

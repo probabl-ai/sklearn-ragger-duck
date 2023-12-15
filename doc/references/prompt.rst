@@ -3,11 +3,11 @@
 Prompt
 ======
 
-.. automodule:: rag.prompt
+.. automodule:: ragger_duck.prompt
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag.prompt
+.. currentmodule:: ragger_duck.prompt
 
 .. autosummary::
    :toctree: generated/

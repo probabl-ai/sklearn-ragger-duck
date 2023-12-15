@@ -1,10 +1,9 @@
 from pathlib import Path
 
 import pytest
-from sentence_transformers import CrossEncoder
-
 from rag.embedding import SentenceTransformer
 from rag.retrieval import BM25Retriever, RetrieverReranker, SemanticRetriever
+from sentence_transformers import CrossEncoder
 
 
 @pytest.mark.parametrize(

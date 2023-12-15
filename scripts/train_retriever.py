@@ -23,9 +23,9 @@ API_DOC = Path(config.API_DOC_PATH)
 # %%
 from sklearn.pipeline import Pipeline
 
-from rag.embedding import SentenceTransformer
-from rag.retrieval import SemanticRetriever
-from rag.scraping import APIDocExtractor
+from ragger_duck.embedding import SentenceTransformer
+from ragger_duck.retrieval import SemanticRetriever
+from ragger_duck.scraping import APIDocExtractor
 
 embedding = SentenceTransformer(
     model_name_or_path="thenlper/gte-large", device=config.DEVICE
@@ -52,7 +52,7 @@ joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retrie
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
 
-from rag.retrieval import BM25Retriever
+from ragger_duck.retrieval import BM25Retriever
 
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 pipeline = Pipeline(

@@ -4,7 +4,7 @@
 API reference
 #############
 
-This is the full API documentation of the `rag` package.
+This is the full API documentation of the `ragger_duck` package.
 
 .. toctree::
    :maxdepth: 2
