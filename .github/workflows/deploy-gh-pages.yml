@@ -27,6 +27,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Build the documentation
+      run: |
+        cd doc
+        make html
+
     - name: Update the main gh-page website
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       uses: peaceiris/actions-gh-pages@v3.6.1
