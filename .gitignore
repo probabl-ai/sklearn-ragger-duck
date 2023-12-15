@@ -186,3 +186,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# documentation
+doc/references/generated/
+doc/_build
