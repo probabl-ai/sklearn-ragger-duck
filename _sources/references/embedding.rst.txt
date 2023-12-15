@@ -3,11 +3,11 @@
 Embedding
 =========
 
-.. automodule:: rag_based_llm.embedding
+.. automodule:: rag.embedding
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag_based_llm.embedding
+.. currentmodule:: rag.embedding
 
 .. autosummary::
    :toctree: generated/

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>APIDocExtractor &#8212; rag_based_llm 0.0.1.dev0 documentation</title>
+    <title>APIDocExtractor &#8212; rag 0.0.1.dev0 documentation</title>
   
   
   
@@ -29,9 +29,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=c72506b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -41,7 +41,7 @@
     <script src="../../_static/documentation_options.js?v=75d19225"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag_based_llm.scraping.APIDocExtractor';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag.scraping.APIDocExtractor';</script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag 0.0.1.dev0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag 0.0.1.dev0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -397,17 +397,17 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.BM25Retriever.html">BM25Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.prompt.QueryAgent.html">QueryAgent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.prompt.QueryAgent.html">QueryAgent</a></li>
 </ul>
 </li>
 </ul>
@@ -473,8 +473,8 @@ document.write(`
   <section id="apidocextractor">
 <h1>APIDocExtractor<a class="headerlink" href="#apidocextractor" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag_based_llm.scraping.</span></span><span class="sig-name descname"><span class="pre">APIDocExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag.scraping.</span></span><span class="sig-name descname"><span class="pre">APIDocExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor" title="Link to this definition">#</a></dt>
 <dd><p>Extract text from the API documentation.</p>
 <p>This function can process classes and functions.</p>
 <dl class="field-list simple">
@@ -493,32 +493,32 @@ to the number of CPU cores.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.fit" title="rag_based_llm.scraping.APIDocExtractor.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.fit" title="rag.scraping.APIDocExtractor.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
 <td><p>No-op operation, only validate parameters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.fit_transform" title="rag_based_llm.scraping.APIDocExtractor.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(X[, y])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.fit_transform" title="rag.scraping.APIDocExtractor.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(X[, y])</p></td>
 <td><p>Fit to data, then transform it.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.get_metadata_routing" title="rag_based_llm.scraping.APIDocExtractor.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.get_metadata_routing" title="rag.scraping.APIDocExtractor.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.get_params" title="rag_based_llm.scraping.APIDocExtractor.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.get_params" title="rag.scraping.APIDocExtractor.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.set_output" title="rag_based_llm.scraping.APIDocExtractor.set_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_output</span></code></a>(*[, transform])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.set_output" title="rag.scraping.APIDocExtractor.set_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_output</span></code></a>(*[, transform])</p></td>
 <td><p>Set output container.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.set_params" title="rag_based_llm.scraping.APIDocExtractor.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.set_params" title="rag.scraping.APIDocExtractor.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.scraping.APIDocExtractor.transform" title="rag_based_llm.scraping.APIDocExtractor.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(X)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.scraping.APIDocExtractor.transform" title="rag.scraping.APIDocExtractor.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(X)</p></td>
 <td><p>Extract text from the API documentation.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.fit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.fit" title="Link to this definition">#</a></dt>
 <dd><p>No-op operation, only validate parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -539,8 +539,8 @@ to the number of CPU cores.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.fit_transform">
-<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.fit_transform" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.fit_transform" title="Link to this definition">#</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with optional parameters <code class="docutils literal notranslate"><span class="pre">fit_params</span></code>
 and returns a transformed version of <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
@@ -565,8 +565,8 @@ and returns a transformed version of <code class="docutils literal notranslate">
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.get_metadata_routing">
-<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.get_metadata_routing" title="Link to this definition">#</a></dt>
 <dd><p>Get metadata routing of this object.</p>
 <p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
 mechanism works.</p>
@@ -582,8 +582,8 @@ routing information.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.get_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -603,8 +603,8 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.set_output">
-<span class="sig-name descname"><span class="pre">set_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.set_output" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.set_output">
+<span class="sig-name descname"><span class="pre">set_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.set_output" title="Link to this definition">#</a></dt>
 <dd><p>Set output container.</p>
 <p>See <span class="xref std std-ref">sphx_glr_auto_examples_miscellaneous_plot_set_output.py</span>
 for an example on how to use the API.</p>
@@ -630,8 +630,8 @@ for an example on how to use the API.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.set_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.set_params" title="Link to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -654,8 +654,8 @@ possible to update each component of a nested object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.scraping.APIDocExtractor.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.scraping.APIDocExtractor.transform" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.scraping.APIDocExtractor.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.scraping.APIDocExtractor.transform" title="Link to this definition">#</a></dt>
 <dd><p>Extract text from the API documentation.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -722,14 +722,14 @@ documentation.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.fit"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.fit_transform"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.fit_transform()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.get_metadata_routing()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.get_params"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.set_output"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.set_output()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.set_params"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.set_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.scraping.APIDocExtractor.transform"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.transform()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.fit"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.fit_transform"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.fit_transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.get_params"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.set_output"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.set_output()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.set_params"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.set_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.scraping.APIDocExtractor.transform"><code class="docutils literal notranslate"><span class="pre">APIDocExtractor.transform()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -739,7 +739,7 @@ documentation.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag_based_llm.scraping.APIDocExtractor.rst">
+    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag.scraping.APIDocExtractor.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -754,7 +754,7 @@ documentation.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/references/generated/rag_based_llm.scraping.APIDocExtractor.rst.txt">
+    <a href="../../_sources/references/generated/rag.scraping.APIDocExtractor.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

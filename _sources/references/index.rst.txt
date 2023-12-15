@@ -4,7 +4,7 @@
 API reference
 #############
 
-This is the full API documentation of the `rag_based_llm` package.
+This is the full API documentation of the `rag` package.
 
 .. toctree::
    :maxdepth: 2

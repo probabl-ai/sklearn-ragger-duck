@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SemanticRetriever &#8212; rag_based_llm 0.0.1.dev0 documentation</title>
+    <title>SentenceTransformer &#8212; rag 0.0.1.dev0 documentation</title>
   
   
   
@@ -29,9 +29,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=c72506b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -41,12 +41,12 @@
     <script src="../../_static/documentation_options.js?v=75d19225"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag_based_llm.retrieval.SemanticRetriever';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag.embedding.SentenceTransformer';</script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Prompt" href="../prompt.html" />
-    <link rel="prev" title="RetrieverReranker" href="rag_based_llm.retrieval.RetrieverReranker.html" />
+    <link rel="next" title="Retrieval" href="../retrieval.html" />
+    <link rel="prev" title="Embedding" href="../embedding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag 0.0.1.dev0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag 0.0.1.dev0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -393,21 +393,21 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../scraping.html">Scraping the documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">SentenceTransformer</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">SemanticRetriever</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.BM25Retriever.html">BM25Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.prompt.QueryAgent.html">QueryAgent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.prompt.QueryAgent.html">QueryAgent</a></li>
 </ul>
 </li>
 </ul>
@@ -451,9 +451,9 @@ document.write(`
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API reference</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../retrieval.html" class="nav-link">Retrieval</a></li>
+    <li class="breadcrumb-item"><a href="../embedding.html" class="nav-link">Embedding</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">SemanticRetriever</li>
+    <li class="breadcrumb-item active" aria-current="page">SentenceTransformer</li>
   </ul>
 </nav>
 </div>
@@ -470,27 +470,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="semanticretriever">
-<h1>SemanticRetriever<a class="headerlink" href="#semanticretriever" title="Link to this heading">#</a></h1>
+  <section id="sentencetransformer">
+<h1>SentenceTransformer<a class="headerlink" href="#sentencetransformer" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag_based_llm.retrieval.</span></span><span class="sig-name descname"><span class="pre">SemanticRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever" title="Link to this definition">#</a></dt>
-<dd><p>Retrieve the k-nearest neighbors using a semantic embedding.</p>
-<p>The index is build using the FAISS library.</p>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag.embedding.</span></span><span class="sig-name descname"><span class="pre">SentenceTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name_or_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_auth_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer" title="Link to this definition">#</a></dt>
+<dd><p>Sentence transformer that embeds sentences to embeddings.</p>
+<p>This is a thin wrapper around <code class="xref py py-class docutils literal notranslate"><span class="pre">sentence_transformers.SentenceTransformer</span></code>
+that follows the scikit-learn API and thus can be used inside a scikit-learn
+pipeline.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>embedding</strong><span class="classifier">transformer</span></dt><dd><p>An embedding following the scikit-learn transformer API.</p>
+<dt><strong>model_name_or_path</strong><span class="classifier">str, default=None</span></dt><dd><p>If it is a filepath on disc, it loads the model from that path. If it is not a
+path, it first tries to download a pre-trained SentenceTransformer model. If
+that fails, tries to construct a model from Huggingface models repository with
+that name.</p>
 </dd>
-<dt><strong>top_k</strong><span class="classifier">int, default=1</span></dt><dd><p>Number of documents to retrieve.</p>
+<dt><strong>modules</strong><span class="classifier">Iterable of nn.Module, default=None</span></dt><dd><p>This parameter can be used to create custom SentenceTransformer models from
+scratch.</p>
 </dd>
-</dl>
+<dt><strong>device</strong><span class="classifier">str, default=None</span></dt><dd><p>Device (e.g. “cpu”, “cuda”, “mps”) that should be used for computation. If None,
+checks if a GPU can be used.</p>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>X_fit_</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
+<dt><strong>cache_folder</strong><span class="classifier">str, default=None</span></dt><dd><p>Path to store models.</p>
 </dd>
-<dt><strong>X_embedded_</strong><span class="classifier">ndarray of shape (n_sentences, n_features)</span></dt><dd><p>The embedded data.</p>
+<dt><strong>use_auth_token</strong><span class="classifier">bool or str, default=None</span></dt><dd><p>HuggingFace authentication token to download private models.</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int, default=32</span></dt><dd><p>The batch size to use during <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
+</dd>
+<dt><strong>show_progress_bar</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to show a progress bar or not during <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -498,31 +507,37 @@ document.write(`
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.SemanticRetriever.fit" title="rag_based_llm.retrieval.SemanticRetriever.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X[, y])</p></td>
-<td><p>Embed the sentences and create the index.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.fit" title="rag.embedding.SentenceTransformer.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
+<td><p>No-op operation, only validate parameters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.SemanticRetriever.get_metadata_routing" title="rag_based_llm.retrieval.SemanticRetriever.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.fit_transform" title="rag.embedding.SentenceTransformer.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(X[, y])</p></td>
+<td><p>Fit to data, then transform it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.get_metadata_routing" title="rag.embedding.SentenceTransformer.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.SemanticRetriever.get_params" title="rag_based_llm.retrieval.SemanticRetriever.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.get_params" title="rag.embedding.SentenceTransformer.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.SemanticRetriever.query" title="rag_based_llm.retrieval.SemanticRetriever.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query)</p></td>
-<td><p>Retrieve the most relevant documents for the query.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.set_output" title="rag.embedding.SentenceTransformer.set_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_output</span></code></a>(*[, transform])</p></td>
+<td><p>Set output container.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.SemanticRetriever.set_params" title="rag_based_llm.retrieval.SemanticRetriever.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.set_params" title="rag.embedding.SentenceTransformer.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.embedding.SentenceTransformer.transform" title="rag.embedding.SentenceTransformer.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(X)</p></td>
+<td><p>Embed sentences to vectors.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever.fit" title="Link to this definition">#</a></dt>
-<dd><p>Embed the sentences and create the index.</p>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.fit" title="Link to this definition">#</a></dt>
+<dd><p>No-op operation, only validate parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
+<dt><strong>X</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
 </dd>
 <dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
 </dd>
@@ -538,8 +553,34 @@ document.write(`
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever.get_metadata_routing">
-<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.fit_transform" title="Link to this definition">#</a></dt>
+<dd><p>Fit to data, then transform it.</p>
+<p>Fits transformer to <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with optional parameters <code class="docutils literal notranslate"><span class="pre">fit_params</span></code>
+and returns a transformed version of <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs),                 default=None</span></dt><dd><p>Target values (None for unsupervised transformations).</p>
+</dd>
+<dt><strong>**fit_params</strong><span class="classifier">dict</span></dt><dd><p>Additional fit parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_new</strong><span class="classifier">ndarray array of shape (n_samples, n_features_new)</span></dt><dd><p>Transformed array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.get_metadata_routing" title="Link to this definition">#</a></dt>
 <dd><p>Get metadata routing of this object.</p>
 <p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
 mechanism works.</p>
@@ -555,8 +596,8 @@ routing information.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever.get_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -576,21 +617,26 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever.query" title="Link to this definition">#</a></dt>
-<dd><p>Retrieve the most relevant documents for the query.</p>
-<p>The inner product is used to compute the cosine similarity meaning that
-we expect the embedding to be normalized.</p>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.set_output">
+<span class="sig-name descname"><span class="pre">set_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.set_output" title="Link to this definition">#</a></dt>
+<dd><p>Set output container.</p>
+<p>See <span class="xref std std-ref">sphx_glr_auto_examples_miscellaneous_plot_set_output.py</span>
+for an example on how to use the API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The input data.</p>
+<dt><strong>transform</strong><span class="classifier">{“default”, “pandas”}, default=None</span></dt><dd><p>Configure output of <code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>: Default output format of a transformer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;pandas&quot;</span></code>: DataFrame output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: Transform configuration is unchanged</p></li>
+</ul>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>list of str or dict</dt><dd><p>The list of the most relevant document from the training set.</p>
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
 </dd>
 </dl>
 </dd>
@@ -598,8 +644,8 @@ we expect the embedding to be normalized.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.SemanticRetriever.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.SemanticRetriever.set_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.set_params" title="Link to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -621,6 +667,32 @@ possible to update each component of a nested object.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="rag.embedding.SentenceTransformer.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.embedding.SentenceTransformer.transform" title="Link to this definition">#</a></dt>
+<dd><p>Embed sentences to vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">str or Iterable of str or dict or length (n_sentences,)</span></dt><dd><p>The sentences to embed.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">str</span></code>, a single sentence to embed;</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">str</span></code>, a list of sentences to embed;</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">dict</span></code>, a list of dictionaries with a key “text” that
+contains the sentence to embed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>embedding</strong><span class="classifier">ndarray of shape (n_sentences, embedding_size)</span></dt><dd><p>The embedding of the sentences.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <div style='clear:both'></div></section>
@@ -636,20 +708,20 @@ possible to update each component of a nested object.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="rag_based_llm.retrieval.RetrieverReranker.html"
+       href="../embedding.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">RetrieverReranker</p>
+        <p class="prev-next-title">Embedding</p>
       </div>
     </a>
     <a class="right-next"
-       href="../prompt.html"
+       href="../retrieval.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Prompt</p>
+        <p class="prev-next-title">Retrieval</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -669,12 +741,14 @@ possible to update each component of a nested object.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever.fit"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.get_metadata_routing()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever.get_params"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever.query"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.query()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.SemanticRetriever.set_params"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.set_params()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.fit"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.fit_transform"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.fit_transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.get_params"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.set_output"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.set_output()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.set_params"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.set_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.embedding.SentenceTransformer.transform"><code class="docutils literal notranslate"><span class="pre">SentenceTransformer.transform()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -684,7 +758,7 @@ possible to update each component of a nested object.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag_based_llm.retrieval.SemanticRetriever.rst">
+    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag.embedding.SentenceTransformer.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -699,7 +773,7 @@ possible to update each component of a nested object.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/references/generated/rag_based_llm.retrieval.SemanticRetriever.rst.txt">
+    <a href="../../_sources/references/generated/rag.embedding.SentenceTransformer.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

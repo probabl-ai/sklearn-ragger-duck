@@ -1,7 +1,7 @@
 ﻿APIDocExtractor
-====================================================
+==========================================
 
-.. currentmodule:: rag_based_llm.scraping
+.. currentmodule:: rag.scraping
 
 .. autoclass:: APIDocExtractor
 
@@ -37,7 +37,7 @@
    
    
 
-.. include:: rag_based_llm.scraping.APIDocExtractor.examples
+.. include:: rag.scraping.APIDocExtractor.examples
 
 .. raw:: html
 

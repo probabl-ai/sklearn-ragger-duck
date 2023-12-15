@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RetrieverReranker &#8212; rag_based_llm 0.0.1.dev0 documentation</title>
+    <title>BM25Retriever &#8212; rag 0.0.1.dev0 documentation</title>
   
   
   
@@ -29,9 +29,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=c72506b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag_based_llm.css?v=99eb3432" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -41,12 +41,12 @@
     <script src="../../_static/documentation_options.js?v=75d19225"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag_based_llm.retrieval.RetrieverReranker';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag.retrieval.BM25Retriever';</script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SemanticRetriever" href="rag_based_llm.retrieval.SemanticRetriever.html" />
-    <link rel="prev" title="BM25Retriever" href="rag_based_llm.retrieval.BM25Retriever.html" />
+    <link rel="next" title="RetrieverReranker" href="rag.retrieval.RetrieverReranker.html" />
+    <link rel="prev" title="Retrieval" href="../retrieval.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag_based_llm 0.0.1.dev0 documentation - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag 0.0.1.dev0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag 0.0.1.dev0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -393,21 +393,21 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../scraping.html">Scraping the documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">RetrieverReranker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">BM25Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag_based_llm.prompt.QueryAgent.html">QueryAgent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag.prompt.QueryAgent.html">QueryAgent</a></li>
 </ul>
 </li>
 </ul>
@@ -453,7 +453,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../retrieval.html" class="nav-link">Retrieval</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">RetrieverReranker</li>
+    <li class="breadcrumb-item active" aria-current="page">BM25Retriever</li>
   </ul>
 </nav>
 </div>
@@ -470,29 +470,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="retrieverreranker">
-<h1>RetrieverReranker<a class="headerlink" href="#retrieverreranker" title="Link to this heading">#</a></h1>
+  <section id="bm25retriever">
+<h1>BM25Retriever<a class="headerlink" href="#bm25retriever" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag_based_llm.retrieval.</span></span><span class="sig-name descname"><span class="pre">RetrieverReranker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker" title="Link to this definition">#</a></dt>
-<dd><p>Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.</p>
-<dl class="field-list">
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag.retrieval.</span></span><span class="sig-name descname"><span class="pre">BM25Retriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_vectorizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the k-nearest neighbors using a lexical search based on BM25.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>semantic_retriever</strong><span class="classifier">semantic retriever or None</span></dt><dd><p>Semantic retriever used to retrieve the context.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>count_vectorizer</strong><span class="classifier">transformer, default=None</span></dt><dd><p>A count vectorizer to compute the count of terms in documents. If None, a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.feature_extraction.text.CountVectorizer</span></code> is used.</p>
 </dd>
-<dt><strong>lexical_retriever</strong><span class="classifier">lexical retriever or None</span></dt><dd><p>Lexical retriever used to retrieve the context.</p>
+<dt><strong>top_k</strong><span class="classifier">int, default=1</span></dt><dd><p>Number of documents to retrieve.</p>
 </dd>
-<dt><strong>cross_encoder</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sentence_transformers.CrossEncoder</span></code></span></dt><dd><p>Cross-encoder used to rerank the results of the hybrid retriever.</p>
+</dl>
 </dd>
-<dt><strong>min_top_k</strong><span class="classifier">int, default=None</span></dt><dd><p>Minimum number of document to retrieve. If None, it is possible to return
-less than <code class="docutils literal notranslate"><span class="pre">min_top_k</span></code> documents.</p>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_fit_</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
 </dd>
-<dt><strong>max_top_k</strong><span class="classifier">int, default=None</span></dt><dd><p>Maximum number of document to retrieve. If None, all the documents are
-retrieved.</p>
-</dd>
-<dt><strong>threshold</strong><span class="classifier">float, default=None</span></dt><dd><p>Threshold to filter the scores of the <code class="docutils literal notranslate"><span class="pre">cross_encoder</span></code>. If None, the
-scores are note filtered based on a threshold.</p>
+<dt><strong>X_embedded_</strong><span class="classifier">ndarray of shape (n_sentences, n_features)</span></dt><dd><p>The embedded data.</p>
 </dd>
 </dl>
 </dd>
@@ -500,26 +498,26 @@ scores are note filtered based on a threshold.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.RetrieverReranker.fit" title="rag_based_llm.retrieval.RetrieverReranker.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.retrieval.BM25Retriever.fit" title="rag.retrieval.BM25Retriever.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X[, y])</p></td>
 <td><p>Compute the vocabulary and the idf.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.RetrieverReranker.get_metadata_routing" title="rag_based_llm.retrieval.RetrieverReranker.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.retrieval.BM25Retriever.get_metadata_routing" title="rag.retrieval.BM25Retriever.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.RetrieverReranker.get_params" title="rag_based_llm.retrieval.RetrieverReranker.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.retrieval.BM25Retriever.get_params" title="rag.retrieval.BM25Retriever.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.RetrieverReranker.query" title="rag_based_llm.retrieval.RetrieverReranker.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query, *[, lexical_query, semantic_query])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#rag.retrieval.BM25Retriever.query" title="rag.retrieval.BM25Retriever.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query)</p></td>
 <td><p>Retrieve the most relevant documents for the query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#rag_based_llm.retrieval.RetrieverReranker.set_params" title="rag_based_llm.retrieval.RetrieverReranker.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rag.retrieval.BM25Retriever.set_params" title="rag.retrieval.BM25Retriever.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker.fit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever.fit" title="Link to this definition">#</a></dt>
 <dd><p>Compute the vocabulary and the idf.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -540,8 +538,8 @@ scores are note filtered based on a threshold.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker.get_metadata_routing">
-<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever.get_metadata_routing" title="Link to this definition">#</a></dt>
 <dd><p>Get metadata routing of this object.</p>
 <p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
 mechanism works.</p>
@@ -557,8 +555,8 @@ routing information.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker.get_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -578,19 +576,13 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker.query" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever.query" title="Link to this definition">#</a></dt>
 <dd><p>Retrieve the most relevant documents for the query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The user query.</p>
-</dd>
-<dt><strong>lexical_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the lexical search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
-</dd>
-<dt><strong>semantic_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the semantic search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
+<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The input data.</p>
 </dd>
 </dl>
 </dd>
@@ -604,8 +596,8 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rag_based_llm.retrieval.RetrieverReranker.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag_based_llm.retrieval.RetrieverReranker.set_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rag.retrieval.BM25Retriever.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.retrieval.BM25Retriever.set_params" title="Link to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -642,20 +634,20 @@ possible to update each component of a nested object.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="rag_based_llm.retrieval.BM25Retriever.html"
+       href="../retrieval.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">BM25Retriever</p>
+        <p class="prev-next-title">Retrieval</p>
       </div>
     </a>
     <a class="right-next"
-       href="rag_based_llm.retrieval.SemanticRetriever.html"
+       href="rag.retrieval.RetrieverReranker.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SemanticRetriever</p>
+        <p class="prev-next-title">RetrieverReranker</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -675,12 +667,12 @@ possible to update each component of a nested object.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker.fit"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.get_metadata_routing()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker.get_params"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker.query"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.query()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag_based_llm.retrieval.RetrieverReranker.set_params"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.set_params()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever"><code class="docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever.fit"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever.get_params"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever.query"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.query()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.retrieval.BM25Retriever.set_params"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.set_params()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -690,7 +682,7 @@ possible to update each component of a nested object.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag_based_llm.retrieval.RetrieverReranker.rst">
+    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag.retrieval.BM25Retriever.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -705,7 +697,7 @@ possible to update each component of a nested object.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/references/generated/rag_based_llm.retrieval.RetrieverReranker.rst.txt">
+    <a href="../../_sources/references/generated/rag.retrieval.BM25Retriever.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

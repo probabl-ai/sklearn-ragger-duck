@@ -3,11 +3,11 @@
 Scraping the documentation
 ==========================
 
-.. automodule:: rag_based_llm.scraping
+.. automodule:: rag.scraping
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag_based_llm.scraping
+.. currentmodule:: rag.scraping
 
 .. autosummary::
    :toctree: generated/
