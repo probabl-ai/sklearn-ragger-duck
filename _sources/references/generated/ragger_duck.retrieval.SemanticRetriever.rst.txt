@@ -1,7 +1,7 @@
 ﻿SemanticRetriever
-=============================================
+=====================================================
 
-.. currentmodule:: rag.retrieval
+.. currentmodule:: ragger_duck.retrieval
 
 .. autoclass:: SemanticRetriever
 
@@ -31,7 +31,7 @@
    
    
 
-.. include:: rag.retrieval.SemanticRetriever.examples
+.. include:: ragger_duck.retrieval.SemanticRetriever.examples
 
 .. raw:: html
 

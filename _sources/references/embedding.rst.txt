@@ -3,11 +3,11 @@
 Embedding
 =========
 
-.. automodule:: rag.embedding
+.. automodule:: ragger_duck.embedding
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag.embedding
+.. currentmodule:: ragger_duck.embedding
 
 .. autosummary::
    :toctree: generated/

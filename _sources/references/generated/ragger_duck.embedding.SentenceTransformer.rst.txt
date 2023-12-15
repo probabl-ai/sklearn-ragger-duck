@@ -1,7 +1,7 @@
 ﻿SentenceTransformer
-===============================================
+=======================================================
 
-.. currentmodule:: rag.embedding
+.. currentmodule:: ragger_duck.embedding
 
 .. autoclass:: SentenceTransformer
 
@@ -37,7 +37,7 @@
    
    
 
-.. include:: rag.embedding.SentenceTransformer.examples
+.. include:: ragger_duck.embedding.SentenceTransformer.examples
 
 .. raw:: html
 

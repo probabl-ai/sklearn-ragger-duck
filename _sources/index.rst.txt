@@ -5,18 +5,18 @@
 
 :notoc:
 
-#######################################
-sklearn-doc-rag-based-llm documentation
-#######################################
+#########################
+Ragger duck documentation
+#########################
 
 **Date**: |today| **Version**: |version|
 
 **Useful links**:
-`Source Repository <https://github.com/glemaitre/sklearn-doc-rag-based-llm>`__ |
-`Issues & Ideas <https://github.com/glemaitre/sklearn-doc-rag-based-llm/issues>`__ |
+`Source Repository <https://github.com/glemaitre/sklearn-ragger-duck>`__ |
+`Issues & Ideas <https://github.com/glemaitre/sklearn-ragger-duck/issues>`__ |
 
-This is the documentation for the `sklearn-doc-rag-based-llm` project.
-The idea is to provide a set of tools to build a RAG-based LLM to answer questions
+This is the documentation for the `sklearn-ragger-duck` project.
+The idea is to provide a set of tools to build a RAG to answer questions
 about the scikit-learn library.
 
 .. raw:: html
@@ -46,7 +46,7 @@ about the scikit-learn library.
                     <i class="fas fa-book fa-7x"></i>
                     <h5 class="card-title">User guide</h5>
                     <p class="card-text">The user guide provides in-depth information on the
-                    key concepts of the RAG-based LLM with useful background information and explanation.</p>
+                    key concepts of the RAG with useful background information and explanation.</p>
 
 .. container:: custom-button
 
@@ -79,7 +79,7 @@ about the scikit-learn library.
                 <div class="card-body flex-fill">
                     <i class="fas fa-chart-bar fa-7x"></i>
                     <h5 class="card-title">Examples</h5>
-                    <p class="card-text">The gallery of examples is a good place to see RAG-based LLM in action.
+                    <p class="card-text">The gallery of examples is a good place to see RAG in action.
                     Select an example and dive in.</p>
 
 .. container:: custom-button

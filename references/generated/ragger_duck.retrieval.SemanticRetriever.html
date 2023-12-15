@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>QueryAgent &#8212; rag 0.0.1.dev0 documentation</title>
+    <title>SemanticRetriever &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
   
   
   
@@ -29,9 +29,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ragger_duck.css?v=99eb3432" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=c72506b3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/rag.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ragger_duck.css?v=99eb3432" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -41,12 +41,12 @@
     <script src="../../_static/documentation_options.js?v=75d19225"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/rag.prompt.QueryAgent';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/ragger_duck.retrieval.SemanticRetriever';</script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examples" href="../../auto_examples/index.html" />
-    <link rel="prev" title="Prompt" href="../prompt.html" />
+    <link rel="next" title="Prompt" href="../prompt.html" />
+    <link rel="prev" title="RetrieverReranker" href="ragger_duck.retrieval.RetrieverReranker.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +124,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="rag 0.0.1.dev0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="rag 0.0.1.dev0 documentation - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Ragger Duck 0.0.1.dev0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Ragger Duck 0.0.1.dev0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -241,7 +241,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/glemaitre/sklearn-ragger-duck" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
@@ -377,7 +377,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/glemaitre/sklearn-ragger-duck" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
@@ -393,21 +393,21 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../scraping.html">Scraping the documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.scraping.APIDocExtractor.html">APIDocExtractor</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rag.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.retrieval.BM25Retriever.html">BM25Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">SemanticRetriever</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">QueryAgent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.prompt.QueryAgent.html">QueryAgent</a></li>
 </ul>
 </li>
 </ul>
@@ -451,9 +451,9 @@ document.write(`
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API reference</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../prompt.html" class="nav-link">Prompt</a></li>
+    <li class="breadcrumb-item"><a href="../retrieval.html" class="nav-link">Retrieval</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">QueryAgent</li>
+    <li class="breadcrumb-item active" aria-current="page">SemanticRetriever</li>
   </ul>
 </nav>
 </div>
@@ -470,16 +470,157 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="queryagent">
-<h1>QueryAgent<a class="headerlink" href="#queryagent" title="Link to this heading">#</a></h1>
+  <section id="semanticretriever">
+<h1>SemanticRetriever<a class="headerlink" href="#semanticretriever" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="rag.prompt.QueryAgent">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rag.prompt.</span></span><span class="sig-name descname"><span class="pre">QueryAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retriever</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rag.prompt.QueryAgent" title="Link to this definition">#</a></dt>
-<dd><p class="rubric">Methods</p>
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.retrieval.</span></span><span class="sig-name descname"><span class="pre">SemanticRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the k-nearest neighbors using a semantic embedding.</p>
+<p>The index is build using the FAISS library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>embedding</strong><span class="classifier">transformer</span></dt><dd><p>An embedding following the scikit-learn transformer API.</p>
+</dd>
+<dt><strong>top_k</strong><span class="classifier">int, default=1</span></dt><dd><p>Number of documents to retrieve.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_fit_</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
+</dd>
+<dt><strong>X_embedded_</strong><span class="classifier">ndarray of shape (n_sentences, n_features)</span></dt><dd><p>The embedded data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.SemanticRetriever.fit" title="ragger_duck.retrieval.SemanticRetriever.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X[, y])</p></td>
+<td><p>Embed the sentences and create the index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.SemanticRetriever.get_metadata_routing" title="ragger_duck.retrieval.SemanticRetriever.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.SemanticRetriever.get_params" title="ragger_duck.retrieval.SemanticRetriever.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.SemanticRetriever.query" title="ragger_duck.retrieval.SemanticRetriever.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query)</p></td>
+<td><p>Retrieve the most relevant documents for the query.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.SemanticRetriever.set_params" title="ragger_duck.retrieval.SemanticRetriever.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever.fit" title="Link to this definition">#</a></dt>
+<dd><p>Embed the sentences and create the index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>self</dt><dd><p>The fitted estimator.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the most relevant documents for the query.</p>
+<p>The inner product is used to compute the cosine similarity meaning that
+we expect the embedding to be normalized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The input data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of str or dict</dt><dd><p>The list of the most relevant document from the training set.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.retrieval.SemanticRetriever.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.SemanticRetriever.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <div style='clear:both'></div></section>
@@ -495,20 +636,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../prompt.html"
+       href="ragger_duck.retrieval.RetrieverReranker.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Prompt</p>
+        <p class="prev-next-title">RetrieverReranker</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../auto_examples/index.html"
+       href="../prompt.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examples</p>
+        <p class="prev-next-title">Prompt</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -528,7 +669,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag.prompt.QueryAgent"><code class="docutils literal notranslate"><span class="pre">QueryAgent</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever.fit"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever.get_params"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever.query"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.query()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.SemanticRetriever.set_params"><code class="docutils literal notranslate"><span class="pre">SemanticRetriever.set_params()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -536,7 +684,7 @@ document.write(`
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-doc-rag-based-llm/edit/main/doc/references/generated/rag.prompt.QueryAgent.rst">
+    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/references/generated/ragger_duck.retrieval.SemanticRetriever.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -551,7 +699,7 @@ document.write(`
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/references/generated/rag.prompt.QueryAgent.rst.txt">
+    <a href="../../_sources/references/generated/ragger_duck.retrieval.SemanticRetriever.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

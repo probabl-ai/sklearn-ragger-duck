@@ -1,7 +1,7 @@
 ﻿BM25Retriever
-=========================================
+=================================================
 
-.. currentmodule:: rag.retrieval
+.. currentmodule:: ragger_duck.retrieval
 
 .. autoclass:: BM25Retriever
 
@@ -31,7 +31,7 @@
    
    
 
-.. include:: rag.retrieval.BM25Retriever.examples
+.. include:: ragger_duck.retrieval.BM25Retriever.examples
 
 .. raw:: html
 

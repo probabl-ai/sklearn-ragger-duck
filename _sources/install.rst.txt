@@ -9,7 +9,7 @@ package. An easy and dirty way is to add the package into your path for the mome
 
   import sys
 
-  path_to_package = "/path/to/rag"
+  path_to_package = "/path/to/ragger_duck"
   sys.path.append(path_to_package)
 
 You can check the file `requirements.txt` for the required packages. We also provide

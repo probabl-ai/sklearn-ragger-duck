@@ -1,7 +1,7 @@
 ﻿RetrieverReranker
-=============================================
+=====================================================
 
-.. currentmodule:: rag.retrieval
+.. currentmodule:: ragger_duck.retrieval
 
 .. autoclass:: RetrieverReranker
 
@@ -31,7 +31,7 @@
    
    
 
-.. include:: rag.retrieval.RetrieverReranker.examples
+.. include:: ragger_duck.retrieval.RetrieverReranker.examples
 
 .. raw:: html
 

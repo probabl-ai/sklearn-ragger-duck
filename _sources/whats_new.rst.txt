@@ -1,4 +1,4 @@
-.. currentmodule:: rag
+.. currentmodule:: ragger_duck
 
 ===============
 Release history
