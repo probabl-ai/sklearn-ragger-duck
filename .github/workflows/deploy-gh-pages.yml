@@ -1,0 +1,36 @@
+name: deploy-gh-pages
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-gh-pages:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Update the main gh-page website
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./doc/_build/html
+        commit_message: "[ci skip] ${{ github.event.head_commit.message }}"
