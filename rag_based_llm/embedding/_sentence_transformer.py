@@ -1,6 +1,6 @@
 """SentenceTransformer with a scikit-learn API."""
-from sklearn.base import BaseEstimator, TransformerMixin
 from sentence_transformers import SentenceTransformer as SentenceTransformerBase
+from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class SentenceTransformer(BaseEstimator, TransformerMixin):
@@ -32,9 +32,13 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
     use_auth_token : bool or str, default=None
         HuggingFace authentication token to download private models.
 
+    batch_size : int, default=32
+        The batch size to use during `transform`.
+
     show_progress_bar : bool, default=True
         Whether to show a progress bar or not during `transform`.
     """
+
     _parameter_constraints = {
         "model_name_or_path": [str, None],
         "modules": "no_validation",
@@ -51,13 +55,15 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
         device=None,
         cache_folder=None,
         use_auth_token=None,
+        batch_size=32,
         show_progress_bar=True,
     ):
-        self.model_name_or_path=model_name_or_path
-        self.modules=modules
-        self.device=device
-        self.cache_folder=cache_folder
-        self.use_auth_token=use_auth_token
+        self.model_name_or_path = model_name_or_path
+        self.modules = modules
+        self.device = device
+        self.cache_folder = cache_folder
+        self.use_auth_token = use_auth_token
+        self.batch_size = batch_size
         self.show_progress_bar = show_progress_bar
 
     def fit(self, X=None, y=None):
@@ -108,4 +114,10 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
             X = [X]
         elif isinstance(X[0], dict):
             X = [chunk["text"] for chunk in X]
-        return self._embedding.encode(X, show_progress_bar=self.show_progress_bar)
+        return self._embedding.encode(
+            X,
+            batch_size=self.batch_size,
+            show_progress_bar=self.show_progress_bar,
+            # L2-normalize to use dot-product as similarity measure
+            normalize_embeddings=True,
+        )

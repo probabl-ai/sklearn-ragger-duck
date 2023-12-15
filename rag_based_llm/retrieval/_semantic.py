@@ -2,8 +2,8 @@ from numbers import Integral
 
 import faiss
 from sklearn.base import BaseEstimator
-from sklearn.utils.validation import check_is_fitted
 from sklearn.utils._param_validation import HasMethods, Interval
+from sklearn.utils.validation import check_is_fitted
 
 
 class SemanticRetriever(BaseEstimator):
@@ -27,6 +27,7 @@ class SemanticRetriever(BaseEstimator):
     X_embedded_ : ndarray of shape (n_sentences, n_features)
         The embedded data.
     """
+
     _parameter_constraints = {
         "embedding": [HasMethods(["fit_transform", "transform"])],
         "top_k": [Interval(Integral, left=1, right=None, closed="left")],
@@ -55,14 +56,15 @@ class SemanticRetriever(BaseEstimator):
         self._validate_params()
         self.X_fit_ = X
         self.X_embedded_ = self.embedding.fit_transform(X)
-        # normalize vectors to compute the cosine similarity
-        faiss.normalize_L2(self.X_embedded_)
         self.index_ = faiss.IndexFlatIP(self.X_embedded_.shape[1])
         self.index_.add(self.X_embedded_)
         return self
 
     def query(self, query):
         """Retrieve the most relevant documents for the query.
+
+        The inner product is used to compute the cosine similarity meaning that
+        we expect the embedding to be normalized.
 
         Parameters
         ----------
@@ -79,7 +81,6 @@ class SemanticRetriever(BaseEstimator):
             raise TypeError(f"query should be a string, got {type(query)}.")
         X_embedded = self.embedding.transform(query)
         # normalize vectors to compute the cosine similarity
-        faiss.normalize_L2(X_embedded)
         _, indices = self.index_.search(X_embedded, self.top_k)
         if isinstance(self.X_fit_[0], dict):
             return [

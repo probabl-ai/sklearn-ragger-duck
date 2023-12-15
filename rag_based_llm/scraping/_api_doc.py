@@ -10,7 +10,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils._param_validation import Interval
 
-
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
 
 
@@ -115,7 +114,7 @@ def extract_api_doc(api_doc_folder, *, n_jobs=None):
     """
     if not isinstance(api_doc_folder, Path):
         raise ValueError(
-            f"The API documentation folder should be a pathlib.Path object. Got "
+            "The API documentation folder should be a pathlib.Path object. Got "
             f"{api_doc_folder!r}."
         )
     return Parallel(n_jobs=n_jobs)(
@@ -219,20 +218,26 @@ class APIDocExtractor(BaseEstimator, TransformerMixin):
 
         Returns
         -------
-        generator
+        output : list
             A generator of dictionaries containing the source and text of the API
             documentation.
         """
         if self.chunk_size is None:
-            return extract_api_doc(X, n_jobs=self.n_jobs)
+            output = extract_api_doc(X, n_jobs=self.n_jobs)
         else:
-            chunked_content = chain.from_iterable(
-                Parallel(n_jobs=self.n_jobs, return_as="generator")(
-                    delayed(_chunk_document)(self.text_splitter_, document)
-                    for document in extract_api_doc(X, n_jobs=self.n_jobs)
+            output = list(
+                chain.from_iterable(
+                    Parallel(n_jobs=self.n_jobs, return_as="generator")(
+                        delayed(_chunk_document)(self.text_splitter_, document)
+                        for document in extract_api_doc(X, n_jobs=self.n_jobs)
+                    )
                 )
             )
-            return list(chunked_content)
+        if not output:
+            raise ValueError(
+                "No API documentation was extracted. Please check the input folder."
+            )
+        return output
 
     def _more_tags(self):
         return {"X_types": ["string"], "stateless": True}

@@ -4,11 +4,10 @@ from pathlib import Path
 import pytest
 
 from rag_based_llm.scraping import (
-    extract_api_doc_from_single_file,
-    extract_api_doc,
     APIDocExtractor,
+    extract_api_doc,
+    extract_api_doc_from_single_file,
 )
-
 
 API_TEST_FOLDER = Path(__file__).parent / "data" / "api_doc"
 HTML_TEST_FILES = ["sklearn.base.BaseEstimator.html", "sklearn.base.is_classifier.html"]
@@ -67,18 +66,24 @@ def test_extract_api_doc(n_jobs):
 @pytest.mark.parametrize("chunk_size", [20, None])
 def test_api_doc_extractor(n_jobs, chunk_size):
     """Check the APIDocExtractor class."""
-    chunk_size = 20
     extractor = APIDocExtractor(chunk_size=chunk_size, chunk_overlap=0, n_jobs=n_jobs)
     output_extractor = extractor.fit_transform(API_TEST_FOLDER)
-    possible_source = [
-        SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES
-    ]
+    possible_source = [SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES]
     for output in output_extractor:
         assert isinstance(output, dict)
         assert set(output.keys()) == {"source", "text"}
         assert isinstance(output["source"], str)
         assert isinstance(output["text"], str)
-        assert len(output["text"]) <= chunk_size
+        if chunk_size is not None:
+            assert len(output["text"]) <= chunk_size
         assert output["source"] in possible_source
 
     assert extractor._get_tags()["stateless"]
+
+
+def test_api_doc_extractor_error_empty():
+    """Check that we raise an error if the folder does not contain any HTML file."""
+    path_folder = Path(__file__).parent
+    err_msg = "No API documentation was extracted. Please check the input folder."
+    with pytest.raises(ValueError, match=err_msg):
+        APIDocExtractor().fit_transform(path_folder)

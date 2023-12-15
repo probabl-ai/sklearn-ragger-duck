@@ -9,10 +9,10 @@ class RetrieverReranker(BaseEstimator):
 
     Parameters
     ----------
-    semantic_retriever : semantic retriever
+    semantic_retriever : semantic retriever or None
         Semantic retriever used to retrieve the context.
 
-    lexical_retriever : lexical retriever
+    lexical_retriever : lexical retriever or None
         Lexical retriever used to retrieve the context.
 
     cross_encoder : :obj:`sentence_transformers.CrossEncoder`
@@ -30,9 +30,11 @@ class RetrieverReranker(BaseEstimator):
         Threshold to filter the scores of the `cross_encoder`. If None, the
         scores are note filtered based on a threshold.
     """
+
     _parameter_constraints = {
-        "semantic_retriever": [HasMethods(["fit", "query"])],
-        "lexical_retriever": [HasMethods(["fit", "query"])],
+        "semantic_retriever": [HasMethods(["fit", "query"]), None],
+        "lexical_retriever": [HasMethods(["fit", "query"]), None],
+        "cross_encoder": [HasMethods(["predict"])],
         "min_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
         "max_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
         "threshold": [Real, None],
