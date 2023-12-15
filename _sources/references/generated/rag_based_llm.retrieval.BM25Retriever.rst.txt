@@ -1,0 +1,38 @@
+﻿BM25Retriever
+===================================================
+
+.. currentmodule:: rag_based_llm.retrieval
+
+.. autoclass:: BM25Retriever
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~BM25Retriever.fit
+      
+      
+        ~BM25Retriever.get_metadata_routing
+      
+      
+        ~BM25Retriever.get_params
+      
+      
+        ~BM25Retriever.query
+      
+      
+        ~BM25Retriever.set_params
+      
+   
+   
+
+.. include:: rag_based_llm.retrieval.BM25Retriever.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>

@@ -1,0 +1,38 @@
+﻿RetrieverReranker
+=======================================================
+
+.. currentmodule:: rag_based_llm.retrieval
+
+.. autoclass:: RetrieverReranker
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~RetrieverReranker.fit
+      
+      
+        ~RetrieverReranker.get_metadata_routing
+      
+      
+        ~RetrieverReranker.get_params
+      
+      
+        ~RetrieverReranker.query
+      
+      
+        ~RetrieverReranker.set_params
+      
+   
+   
+
+.. include:: rag_based_llm.retrieval.RetrieverReranker.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>
