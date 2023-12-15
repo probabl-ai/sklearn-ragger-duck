@@ -11,10 +11,10 @@ sys.path.append(str(Path(__file__).parent.parent))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'rag_based_llm'
-copyright = '2023, G. Lemaitre'
-author = 'G. Lemaitre'
-release = '0.0.1.dev0'
+project = "rag_based_llm"
+copyright = "2023, G. Lemaitre"
+author = "G. Lemaitre"
+release = "0.0.1.dev0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -28,8 +28,8 @@ extensions = [
     "numpydoc",
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', "_templates", 'Thumbs.db', '.DS_Store']
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "_templates", "Thumbs.db", ".DS_Store"]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -39,8 +39,9 @@ default_role = "literal"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
-html_static_path = ['_static']
+html_static_path = ["_static"]
 html_style = "css/rag_based_llm.css"
+html_logo = "_static/img/logo.png"
 html_css_files = [
     "css/rag_based_llm.css",
 ]
