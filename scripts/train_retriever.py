@@ -10,13 +10,11 @@
 import sys
 from pathlib import Path
 
+import configuration as config
 import joblib
 
 sys.path.append(str(Path(__file__).parent.parent))
-API_DOC = Path(
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
-    "modules/generated"
-)
+API_DOC = Path(config.API_DOC_PATH)
 
 # %% [markdown]
 # Define the training pipeline that extract the text chunks from the API documentation
@@ -29,7 +27,9 @@ from rag_based_llm.embedding import SentenceTransformer
 from rag_based_llm.retrieval import SemanticRetriever
 from rag_based_llm.scraping import APIDocExtractor
 
-embedding = SentenceTransformer(model_name_or_path="thenlper/gte-large", device="mps")
+embedding = SentenceTransformer(
+    model_name_or_path="thenlper/gte-large", device=config.DEVICE
+)
 pipeline = Pipeline(
     steps=[
         ("extractor", APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)),
@@ -51,10 +51,8 @@ joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retrie
 
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.pipeline import Pipeline
 
 from rag_based_llm.retrieval import BM25Retriever
-from rag_based_llm.scraping import APIDocExtractor
 
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 pipeline = Pipeline(
