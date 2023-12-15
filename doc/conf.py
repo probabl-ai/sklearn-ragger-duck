@@ -11,7 +11,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "rag_based_llm"
+project = "rag"
 copyright = "2023, G. Lemaitre"
 author = "G. Lemaitre"
 release = "0.0.1.dev0"
@@ -40,10 +40,10 @@ default_role = "literal"
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
-html_style = "css/rag_based_llm.css"
+html_style = "css/rag.css"
 html_logo = "_static/img/logo.png"
 html_css_files = [
-    "css/rag_based_llm.css",
+    "css/rag.css",
 ]
 html_sidebars = {
     "changelog": [],

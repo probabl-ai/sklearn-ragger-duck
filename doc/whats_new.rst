@@ -1,4 +1,4 @@
-.. currentmodule:: rag_based_llm
+.. currentmodule:: rag
 
 ===============
 Release history

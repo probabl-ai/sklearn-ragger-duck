@@ -18,8 +18,8 @@ from schemas import WSMessage
 from sentence_transformers import CrossEncoder
 
 sys.path.append(str(Path(__file__).parent.parent))
-from rag_based_llm.prompt import QueryAgent
-from rag_based_llm.retrieval import RetrieverReranker
+from rag.prompt import QueryAgent
+from rag.retrieval import RetrieverReranker
 
 DEFAULT_PORT = 8123
 

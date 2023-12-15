@@ -3,11 +3,11 @@
 Prompt
 ======
 
-.. automodule:: rag_based_llm.prompt
+.. automodule:: rag.prompt
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag_based_llm.prompt
+.. currentmodule:: rag.prompt
 
 .. autosummary::
    :toctree: generated/

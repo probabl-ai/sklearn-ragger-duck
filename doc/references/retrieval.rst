@@ -3,11 +3,11 @@
 Retrieval
 =========
 
-.. automodule:: rag_based_llm.retrieval
+.. automodule:: rag.retrieval
    :no-members:
    :no-inherited-members:
 
-.. currentmodule:: rag_based_llm.retrieval
+.. currentmodule:: rag.retrieval
 
 .. autosummary::
    :toctree: generated/

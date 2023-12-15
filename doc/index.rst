@@ -28,7 +28,7 @@ about the scikit-learn library.
                 <div class="card-body flex-fill">
                     <i class="fas fa-download fa-7x"></i>
                     <h5 class="card-title">Getting started</h5>
-                    <p class="card-text">Check out the getting started guides to install <em>rag_based_llm</em>.
+                    <p class="card-text">Check out the getting started guides to install <em>rag</em>.
                     Some extra information to get started with a new contribution is also provided.</p>
 
 .. container:: custom-button
