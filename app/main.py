@@ -75,7 +75,7 @@ async def startup_event():
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
-    return FileResponse("static/favicon.ico")
+    return FileResponse("static/img/favicon.ico")
 
 
 @app.get("/")
@@ -96,7 +96,9 @@ async def get(request: Request):  # noqa: F811
 @app.websocket("/inference")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    await send(websocket, "Question the scikit-learn bot!", "info")
+    await send(
+        websocket, "I'm a ragger duck! Ask me question about scikit-learn!", "info"
+    )
 
     while True:
         try:
