@@ -2,6 +2,7 @@ beautifulsoup4
 faiss-cpu  # this is an unofficial package
 fastapi
 jinja2
+joblib
 langchain
 numpydoc
 pydantic
@@ -16,5 +17,3 @@ torch --index-url https://download.pytorch.org/whl/cpu/
 transformers
 uvicorn
 websockets
-# We use return_generator option that will be shipped in 1.4
-joblib @ git+https://github.com/joblib/joblib.git@master

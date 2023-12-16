@@ -18,6 +18,27 @@ metadata:
   custom_metadata: null
 package:
 - platform: osx-arm64
+  name: accessible-pygments
+  version: 0.0.4
+  category: main
+  manager: conda
+  dependencies:
+  - pygments
+  - python >=3.6
+  url: https://conda.anaconda.org/conda-forge/noarch/accessible-pygments-0.0.4-pyhd8ed1ab_0.conda
+  hash:
+    md5: 46a2e6e3dfa718ce3492018d5a110dd6
+    sha256: ce532e2da08fb2b77df281e3d42e2b2131641bdd6a6e8127f3718ae6860bd70d
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 15626
+  timestamp: 1679583960534
+- platform: osx-arm64
   name: aiohttp
   version: 3.9.1
   category: main
@@ -65,6 +86,26 @@ package:
   noarch: python
   size: 12730
   timestamp: 1667935912504
+- platform: osx-arm64
+  name: alabaster
+  version: 0.7.13
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.6
+  url: https://conda.anaconda.org/conda-forge/noarch/alabaster-0.7.13-pyhd8ed1ab_0.conda
+  hash:
+    md5: 06006184e203b61d3525f90de394471e
+    sha256: b2d160a050996950434c6e87a174fc01c4a937cbeffbdd20d1b46126b4478a95
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 18154
+  timestamp: 1673645756302
 - platform: osx-arm64
   name: annotated-types
   version: 0.6.0
@@ -173,6 +214,28 @@ package:
   noarch: python
   size: 55022
   timestamp: 1683424195402
+- platform: osx-arm64
+  name: babel
+  version: 2.14.0
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.7
+  - pytz
+  - setuptools
+  url: https://conda.anaconda.org/conda-forge/noarch/babel-2.14.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 9669586875baeced8fc30c0826c3270e
+    sha256: 8584e3da58e92b72641c89ff9b98c51f0d5dbe76e527867804cbdf03ac91d8e6
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 7609750
+  timestamp: 1702422720584
 - platform: osx-arm64
   name: beautifulsoup4
   version: 4.12.2
@@ -507,6 +570,26 @@ package:
   noarch: python
   size: 40074
   timestamp: 1693471512435
+- platform: osx-arm64
+  name: docutils
+  version: 0.20.1
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9,<3.10.0a0
+  - python >=3.9,<3.10.0a0 *_cpython
+  - python_abi 3.9.* *_cp39
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/docutils-0.20.1-py39h2804cbe_3.conda
+  hash:
+    md5: 70e347b3f092848cf7eb473b3ee3a72b
+    sha256: ab092e0c2f4084e0b7e38893a05e81d807a07a6a4a965bec027c39e4147672b7
+  build: py39h2804cbe_3
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 3
+  license: CC-PDDC AND BSD-3-Clause AND BSD-2-Clause AND ZPL-2.1
+  size: 708124
+  timestamp: 1701883210803
 - platform: osx-arm64
   name: exceptiongroup
   version: 1.2.0
@@ -1179,6 +1262,47 @@ package:
   noarch: python
   size: 50124
   timestamp: 1701027126206
+- platform: osx-arm64
+  name: imagesize
+  version: 1.4.1
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.4
+  url: https://conda.anaconda.org/conda-forge/noarch/imagesize-1.4.1-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 7de5386c8fea29e76b303f37dde4c352
+    sha256: c2bfd7043e0c4c12d8b5593de666c1e81d67b83c474a0a79282cc5c4ef845460
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 10164
+  timestamp: 1656939625410
+- platform: osx-arm64
+  name: importlib-metadata
+  version: 7.0.0
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.8
+  - zipp >=0.5
+  url: https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-7.0.0-pyha770c72_0.conda
+  hash:
+    md5: a941237cd06538837b25cd245fcd25d8
+    sha256: 9731e82a00d36b182dc515e31723e711ac82890bb1ca86c6a17a4b471135564f
+  build: pyha770c72_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: Apache-2.0
+  license_family: APACHE
+  noarch: python
+  size: 26076
+  timestamp: 1701632335069
 - platform: osx-arm64
   name: iniconfig
   version: 2.0.0
@@ -2574,6 +2698,29 @@ package:
   size: 5537594
   timestamp: 1700878835179
 - platform: osx-arm64
+  name: numpydoc
+  version: 1.6.0
+  category: main
+  manager: conda
+  dependencies:
+  - jinja2 >=2.10
+  - python >=3.7
+  - sphinx >=5
+  - tabulate >=0.8.10
+  url: https://conda.anaconda.org/conda-forge/noarch/numpydoc-1.6.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 191b8a622191a403700d16a2008e4e29
+    sha256: e231680a650965a1284af0a0a31c5d357720a67baa5853c5afc8d4eba8b04d2f
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 56600
+  timestamp: 1702057695306
+- platform: osx-arm64
   name: openapi-schema-pydantic
   version: 1.2.4
   category: main
@@ -2980,6 +3127,54 @@ package:
   size: 16575
   timestamp: 1700145978707
 - platform: osx-arm64
+  name: pydata-sphinx-theme
+  version: 0.14.4
+  category: main
+  manager: conda
+  dependencies:
+  - accessible-pygments
+  - babel
+  - beautifulsoup4
+  - docutils !=0.17.0
+  - packaging
+  - pygments >=2.7
+  - python >=3.8
+  - sphinx >=5.0
+  - typing-extensions
+  url: https://conda.anaconda.org/conda-forge/noarch/pydata-sphinx-theme-0.14.4-pyhd8ed1ab_0.conda
+  hash:
+    md5: c79b8443908032263ffb40ee6215e9e4
+    sha256: 95c043c648b03deafecd5d20e218d7777f292bc1962397d1493e0ef94344cafb
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 1443468
+  timestamp: 1701082204737
+- platform: osx-arm64
+  name: pygments
+  version: 2.17.2
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.7
+  url: https://conda.anaconda.org/conda-forge/noarch/pygments-2.17.2-pyhd8ed1ab_0.conda
+  hash:
+    md5: 140a7f159396547e9799aa98f9f0742e
+    sha256: af5f8867450dc292f98ea387d4d8945fc574284677c8f60eaa9846ede7387257
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 860425
+  timestamp: 1700608076927
+- platform: osx-arm64
   name: pyopenssl
   version: 23.3.0
   category: main
@@ -3168,6 +3363,26 @@ package:
   license_family: BSD
   size: 53019762
   timestamp: 1702402970548
+- platform: osx-arm64
+  name: pytz
+  version: 2023.3.post1
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.6
+  url: https://conda.anaconda.org/conda-forge/noarch/pytz-2023.3.post1-pyhd8ed1ab_0.conda
+  hash:
+    md5: c93346b446cd08c169d843ae5fc0da97
+    sha256: 6b680e63d69aaf087cd43ca765a23838723ef59b0a328799e6363eb13f52c49e
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 187454
+  timestamp: 1693930444432
 - platform: osx-arm64
   name: pyu2f
   version: 0.1.5
@@ -3566,6 +3781,26 @@ package:
   size: 14358
   timestamp: 1662051357638
 - platform: osx-arm64
+  name: snowballstemmer
+  version: 2.2.0
+  category: main
+  manager: conda
+  dependencies:
+  - python >=2
+  url: https://conda.anaconda.org/conda-forge/noarch/snowballstemmer-2.2.0-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 4d22a9315e78c6827f806065957d566e
+    sha256: a0fd916633252d99efb6223b1050202841fa8d2d53dacca564b0ed77249d3228
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-3-Clause
+  license_family: BSD
+  noarch: python
+  size: 58824
+  timestamp: 1637143137377
+- platform: osx-arm64
   name: soupsieve
   version: '2.5'
   category: main
@@ -3585,6 +3820,168 @@ package:
   noarch: python
   size: 36754
   timestamp: 1693929424267
+- platform: osx-arm64
+  name: sphinx
+  version: 7.2.6
+  category: main
+  manager: conda
+  dependencies:
+  - alabaster >=0.7,<0.8
+  - babel >=2.9
+  - colorama >=0.4.5
+  - docutils >=0.18.1,<0.21
+  - imagesize >=1.3
+  - importlib-metadata >=4.8
+  - jinja2 >=3.0
+  - packaging >=21.0
+  - pygments >=2.14
+  - python >=3.9
+  - requests >=2.25.0
+  - snowballstemmer >=2.0
+  - sphinxcontrib-applehelp
+  - sphinxcontrib-devhelp
+  - sphinxcontrib-htmlhelp >=2.0.0
+  - sphinxcontrib-jsmath
+  - sphinxcontrib-qthelp
+  - sphinxcontrib-serializinghtml >=1.1.9
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-7.2.6-pyhd8ed1ab_0.conda
+  hash:
+    md5: bbfd1120d1824d2d073bc65935f0e4c0
+    sha256: 665d1fe6d20c6cc672ff20e6ebb405860f878b487d3d8d86a5952733fb7bbc42
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 1281207
+  timestamp: 1694647544854
+- platform: osx-arm64
+  name: sphinxcontrib-applehelp
+  version: 1.0.7
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9
+  - sphinx >=5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-applehelp-1.0.7-pyhd8ed1ab_0.conda
+  hash:
+    md5: aebfabcb60c33a89c1f9290cab49bc93
+    sha256: 67e2b386c7b3c858ead88fa71fe4fa5eb1f4f59d7994d167b3910a744db392d3
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 29367
+  timestamp: 1692039716106
+- platform: osx-arm64
+  name: sphinxcontrib-devhelp
+  version: 1.0.5
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9
+  - sphinx >=5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-devhelp-1.0.5-pyhd8ed1ab_0.conda
+  hash:
+    md5: ebf08f5184d8eaa486697bc060031953
+    sha256: 770e13ebfef321426c09ec51d95c57755512db160518b2922a4337546ee51672
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 24551
+  timestamp: 1692039743416
+- platform: osx-arm64
+  name: sphinxcontrib-htmlhelp
+  version: 2.0.4
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9
+  - sphinx >=5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-htmlhelp-2.0.4-pyhd8ed1ab_0.conda
+  hash:
+    md5: a9a89000dfd19656ad004b937eeb6828
+    sha256: 5f09cd4a08a6c194c11999871a8c7cedc2cd7edd9ff7ceb6f0667b6698be4cc5
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 32872
+  timestamp: 1692039732575
+- platform: osx-arm64
+  name: sphinxcontrib-jsmath
+  version: 1.0.1
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-jsmath-1.0.1-pyhd8ed1ab_0.conda
+  hash:
+    md5: da1d979339e2714c30a8e806a33ec087
+    sha256: d4337d83b8edba688547766fc80f1ac86d6ec86ceeeda93f376acc04079c5ce2
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 10431
+  timestamp: 1691604844204
+- platform: osx-arm64
+  name: sphinxcontrib-qthelp
+  version: 1.0.6
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9
+  - sphinx >=5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-qthelp-1.0.6-pyhd8ed1ab_0.conda
+  hash:
+    md5: cf5c9649272c677a964a7313279e3a9b
+    sha256: 9ba5cea9cbab64106e8b5a9b19add855dcb52b8fbb1674398c715bccdbc04471
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 26952
+  timestamp: 1692039698081
+- platform: osx-arm64
+  name: sphinxcontrib-serializinghtml
+  version: 1.1.9
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9
+  - sphinx >=5
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-serializinghtml-1.1.9-pyhd8ed1ab_0.conda
+  hash:
+    md5: 0612e497d7860728f2cda421ea2aec09
+    sha256: c5710ae7bb7465f25a29cc845d9fb6ad0ea561972d796d379fcb48d801e96d6d
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: BSD-2-Clause
+  license_family: BSD
+  noarch: python
+  size: 28664
+  timestamp: 1692580110718
 - platform: osx-arm64
   name: sqlalchemy
   version: 2.0.23
@@ -3716,6 +4113,26 @@ package:
   noarch: python
   size: 4256289
   timestamp: 1684180689319
+- platform: osx-arm64
+  name: tabulate
+  version: 0.9.0
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.7
+  url: https://conda.anaconda.org/conda-forge/noarch/tabulate-0.9.0-pyhd8ed1ab_1.tar.bz2
+  hash:
+    md5: 4759805cce2d914c38472f70bf4d8bcb
+    sha256: f6e4a0dd24ba060a4af69ca79d32361a6678e61d78c73eb5e357909b025b4620
+  build: pyhd8ed1ab_1
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 1
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 35912
+  timestamp: 1665138565317
 - platform: osx-arm64
   name: tenacity
   version: 8.2.3
@@ -4195,6 +4612,26 @@ package:
   license_family: Apache
   size: 103664
   timestamp: 1701169000405
+- platform: osx-arm64
+  name: zipp
+  version: 3.17.0
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.8
+  url: https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 2e4d6bc0b14e10f895fc6791a7d9b26a
+    sha256: bced1423fdbf77bca0a735187d05d9b9812d2163f60ab426fc10f11f92ecbe26
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 18954
+  timestamp: 1695255262261
 - platform: osx-arm64
   name: zlib
   version: 1.2.13

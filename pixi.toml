@@ -12,18 +12,25 @@ readme = "README.md"
 [tasks]
 start_ragger_duck = { cmd = "uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train_retrievers = { cmd = "python train_retrievers.py", cwd = "scripts" }
+build_doc = { cmd = "make html", cwd = "doc" }
 
 [dependencies]
+# Dependencies for training retrievers and inference with models
 beautifulsoup4 = "*"
 faiss-cpu = "*"
-fastapi = "*"
 joblib = "*"
 langchain = "*"
 llama-cpp-python = "*"
 pytorch = "*"
 scikit-learn = "*"
 sentence-transformers = "*"
+# Dependencies for the web app
+fastapi = "*"
 uvicorn = "*"
 websockets = "*"
+# Dependencies for the documentation
+numpydoc = "*"
+pydata-sphinx-theme = "*"
+sphinx = "*"
 
 [pypi-dependencies]
