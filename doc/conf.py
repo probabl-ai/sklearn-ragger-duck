@@ -92,5 +92,5 @@ numpydoc_show_class_members = False
 # https://github.com/readthedocs/sphinx_rtd_theme/pull/747/files
 
 
-def setup(app):
-    app.add_css_file("basic.css")
+# def setup(app):
+#     app.add_css_file("basic.css")
