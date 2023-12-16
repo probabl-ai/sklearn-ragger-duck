@@ -1,5 +1,6 @@
-"""The module :mod:`rag.embedding` contains functions to embed
-transformers allowing to embed text.
+"""
+The module :mod:`ragger_duck.embedding` contains functions to embed transformers
+allowing to embed text.
 """
 
 from ._sentence_transformer import SentenceTransformer

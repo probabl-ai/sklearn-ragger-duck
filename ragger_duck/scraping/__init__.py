@@ -1,5 +1,6 @@
-"""The module :mod:`rag.scraping` contains functions to scrape
-the documentation website of scikit-learn.
+"""
+The module :mod:`ragger_duck.scraping` contains functions to scrape the documentation
+website of scikit-learn.
 """
 
 from ._api_doc import (

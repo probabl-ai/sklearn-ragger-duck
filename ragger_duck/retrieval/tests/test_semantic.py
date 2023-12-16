@@ -1,8 +1,9 @@
 from pathlib import Path
 
 import pytest
-from rag.embedding import SentenceTransformer
-from rag.retrieval import SemanticRetriever
+
+from ragger_duck.embedding import SentenceTransformer
+from ragger_duck.retrieval import SemanticRetriever
 
 
 @pytest.mark.parametrize(

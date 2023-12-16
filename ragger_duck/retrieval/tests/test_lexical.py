@@ -1,6 +1,7 @@
 import pytest
-from rag.retrieval import BM25Retriever
 from sklearn.feature_extraction.text import CountVectorizer
+
+from ragger_duck.retrieval import BM25Retriever
 
 
 @pytest.mark.parametrize(

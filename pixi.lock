@@ -1379,6 +1379,71 @@ package:
   size: 25170
   timestamp: 1666700778190
 - platform: linux-64
+  name: coverage
+  version: 7.3.3
+  category: main
+  manager: conda
+  dependencies:
+  - libgcc-ng >=12
+  - python >=3.9,<3.10.0a0
+  - python_abi 3.9.* *_cp39
+  - tomli
+  url: https://conda.anaconda.org/conda-forge/linux-64/coverage-7.3.3-py39hd1e30aa_0.conda
+  hash:
+    md5: 3d3be1af4f556b09495b8aba4aa47680
+    sha256: 74e0fe35b7cdc70d75fd825de2a3bc18573edeb44728b54be1b87b62ff806383
+  build: py39hd1e30aa_0
+  arch: x86_64
+  subdir: linux-64
+  build_number: 0
+  license: Apache-2.0
+  license_family: APACHE
+  size: 279538
+  timestamp: 1702562294449
+- platform: osx-64
+  name: coverage
+  version: 7.3.3
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.8,<3.9.0a0
+  - python_abi 3.8.* *_cp38
+  - tomli
+  url: https://conda.anaconda.org/conda-forge/osx-64/coverage-7.3.3-py38hae2e43d_0.conda
+  hash:
+    md5: f3d142b541710db00593ddb1faba1b74
+    sha256: 78fdd0e588852cb947953689bb79c22b7f0cd8a4506e78ac0696abdc033842a6
+  build: py38hae2e43d_0
+  arch: x86_64
+  subdir: osx-64
+  build_number: 0
+  license: Apache-2.0
+  license_family: APACHE
+  size: 277854
+  timestamp: 1702562751150
+- platform: osx-arm64
+  name: coverage
+  version: 7.3.3
+  category: main
+  manager: conda
+  dependencies:
+  - python >=3.9,<3.10.0a0
+  - python >=3.9,<3.10.0a0 *_cpython
+  - python_abi 3.9.* *_cp39
+  - tomli
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/coverage-7.3.3-py39h17cfd9d_0.conda
+  hash:
+    md5: ad5aafe24d38deb23737aa702ac05dd6
+    sha256: 4b48c8ccbd5984332470b2d84c9ae4ab27e5e263080eb8af3b38958f72657cff
+  build: py39h17cfd9d_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: Apache-2.0
+  license_family: APACHE
+  size: 277721
+  timestamp: 1702562611914
+- platform: linux-64
   name: cryptography
   version: 41.0.7
   category: main
@@ -8913,6 +8978,75 @@ package:
   size: 244758
   timestamp: 1698233883003
 - platform: linux-64
+  name: pytest-cov
+  version: 4.1.0
+  category: main
+  manager: conda
+  dependencies:
+  - coverage >=5.2.1
+  - pytest >=4.6
+  - python >=3.7
+  - toml
+  url: https://conda.anaconda.org/conda-forge/noarch/pytest-cov-4.1.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 06eb685a3a0b146347a58dda979485da
+    sha256: f07d3b44cabbed7843de654c4a6990a08475ce3b708bb735c7da9842614586f2
+  build: pyhd8ed1ab_0
+  arch: x86_64
+  subdir: linux-64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 25436
+  timestamp: 1684965001294
+- platform: osx-64
+  name: pytest-cov
+  version: 4.1.0
+  category: main
+  manager: conda
+  dependencies:
+  - coverage >=5.2.1
+  - pytest >=4.6
+  - python >=3.7
+  - toml
+  url: https://conda.anaconda.org/conda-forge/noarch/pytest-cov-4.1.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 06eb685a3a0b146347a58dda979485da
+    sha256: f07d3b44cabbed7843de654c4a6990a08475ce3b708bb735c7da9842614586f2
+  build: pyhd8ed1ab_0
+  arch: x86_64
+  subdir: osx-64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 25436
+  timestamp: 1684965001294
+- platform: osx-arm64
+  name: pytest-cov
+  version: 4.1.0
+  category: main
+  manager: conda
+  dependencies:
+  - coverage >=5.2.1
+  - pytest >=4.6
+  - python >=3.7
+  - toml
+  url: https://conda.anaconda.org/conda-forge/noarch/pytest-cov-4.1.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 06eb685a3a0b146347a58dda979485da
+    sha256: f07d3b44cabbed7843de654c4a6990a08475ce3b708bb735c7da9842614586f2
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 25436
+  timestamp: 1684965001294
+- platform: linux-64
   name: pytest-subtests
   version: 0.11.0
   category: main
@@ -11824,6 +11958,66 @@ package:
   license_family: APACHE
   size: 3337198
   timestamp: 1653160160134
+- platform: linux-64
+  name: toml
+  version: 0.10.2
+  category: main
+  manager: conda
+  dependencies:
+  - python >=2.7
+  url: https://conda.anaconda.org/conda-forge/noarch/toml-0.10.2-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: f832c45a477c78bebd107098db465095
+    sha256: f0f3d697349d6580e4c2f35ba9ce05c65dc34f9f049e85e45da03800b46139c1
+  build: pyhd8ed1ab_0
+  arch: x86_64
+  subdir: linux-64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 18433
+  timestamp: 1604308660817
+- platform: osx-64
+  name: toml
+  version: 0.10.2
+  category: main
+  manager: conda
+  dependencies:
+  - python >=2.7
+  url: https://conda.anaconda.org/conda-forge/noarch/toml-0.10.2-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: f832c45a477c78bebd107098db465095
+    sha256: f0f3d697349d6580e4c2f35ba9ce05c65dc34f9f049e85e45da03800b46139c1
+  build: pyhd8ed1ab_0
+  arch: x86_64
+  subdir: osx-64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 18433
+  timestamp: 1604308660817
+- platform: osx-arm64
+  name: toml
+  version: 0.10.2
+  category: main
+  manager: conda
+  dependencies:
+  - python >=2.7
+  url: https://conda.anaconda.org/conda-forge/noarch/toml-0.10.2-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: f832c45a477c78bebd107098db465095
+    sha256: f0f3d697349d6580e4c2f35ba9ce05c65dc34f9f049e85e45da03800b46139c1
+  build: pyhd8ed1ab_0
+  arch: aarch64
+  subdir: osx-arm64
+  build_number: 0
+  license: MIT
+  license_family: MIT
+  noarch: python
+  size: 18433
+  timestamp: 1604308660817
 - platform: linux-64
   name: tomli
   version: 2.0.1

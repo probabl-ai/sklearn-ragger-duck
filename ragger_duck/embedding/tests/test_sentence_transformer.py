@@ -2,7 +2,8 @@ from collections.abc import Iterable
 from pathlib import Path
 
 import pytest
-from rag.embedding import SentenceTransformer
+
+from ragger_duck.embedding import SentenceTransformer
 
 
 @pytest.mark.parametrize(

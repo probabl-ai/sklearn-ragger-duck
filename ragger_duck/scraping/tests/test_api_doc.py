@@ -2,7 +2,8 @@
 from pathlib import Path
 
 import pytest
-from rag.scraping import (
+
+from ragger_duck.scraping import (
     APIDocExtractor,
     extract_api_doc,
     extract_api_doc_from_single_file,
