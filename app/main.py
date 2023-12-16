@@ -97,7 +97,7 @@ async def get(request: Request):  # noqa: F811
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     await send(
-        websocket, "I'm a ragger duck! Ask me question about scikit-learn!", "info"
+        websocket, "I'm ragger duck! Ask me question about scikit-learn!", "info"
     )
 
     while True:
