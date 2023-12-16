@@ -1,0 +1,25 @@
+[project]
+name = "sklearn-ragger-duck"
+version = "0.0.1.dev0"
+description = "Ragger Duck is a RAG for the scikit-learn documentation."
+authors = ["Guillaume Lemaitre <g.lemaite58@gmail.com>"]
+channels = ["pytorch", "huggingface", "conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+license = "BSD-3-Clause"
+homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
+readme = "README.md"
+
+[tasks]
+start_ragger_duck = { cmd = "uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train_retrievers = { cmd = "python train_retrievers.py", cwd = "scripts" }
+
+[dependencies]
+beautifulsoup4 = "*"
+faiss-cpu = "*"
+joblib = "*"
+langchain = "*"
+pytorch = "*"
+scikit-learn = "*"
+sentence-transformers = "*"
+
+[pypi-dependencies]

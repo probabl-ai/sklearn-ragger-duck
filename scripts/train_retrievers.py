@@ -28,7 +28,9 @@ from ragger_duck.retrieval import SemanticRetriever
 from ragger_duck.scraping import APIDocExtractor
 
 embedding = SentenceTransformer(
-    model_name_or_path="thenlper/gte-large", device=config.DEVICE
+    model_name_or_path="thenlper/gte-large",
+    cache_folder=config.CACHE_PATH,
+    device=config.DEVICE,
 )
 pipeline = Pipeline(
     steps=[
@@ -42,8 +44,7 @@ pipeline.fit(API_DOC)
 # Save the semantic retriever to be used in the inference time.
 
 # %%
-path_api_semantic_retriever = "../models/api_semantic_retrieval.joblib"
-joblib.dump(pipeline.named_steps["semantic_retriever"], path_api_semantic_retriever)
+joblib.dump(pipeline.named_steps["semantic_retriever"], config.SEMANTIC_RETRIEVER_PATH)
 
 # %% [markdown]
 # Create a lexical retriever to match some keywords. We take a very long chunk to be
@@ -69,5 +70,4 @@ pipeline = Pipeline(
 # Save the lexical retriever to be used in the inference time.
 
 # %%
-path_api_lexical_retriever = "../models/api_lexical_retrieval.joblib"
-joblib.dump(pipeline.named_steps["lexical_retriever"], path_api_lexical_retriever)
+joblib.dump(pipeline.named_steps["lexical_retriever"], config.LEXICAL_RETRIEVER_PATH)

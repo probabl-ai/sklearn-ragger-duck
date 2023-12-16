@@ -190,3 +190,5 @@ Temporary Items
 # documentation
 doc/references/generated/
 doc/_build
+
+.pixi
