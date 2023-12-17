@@ -455,8 +455,10 @@ provide an easy way to install GPU-enabled packages.</p>
 <p>To ease the deployment, we rely on <code class="docutils literal notranslate"><span class="pre">pixi</span></code>. Refer to following
 <a class="reference external" href="https://pixi.sh/#installation">link</a> for installing <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.</p>
 <p>In the latest stage, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> will be in charge to create the Python environment to
-deploy the Web Console.</p>
-<p>Them, follow the following steps to deploy the Ragger Duck Web Console.</p>
+deploy the Web Console. Then, follow the following steps to deploy the Ragger Duck Web
+Console. Currently, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> only supports a single environment for the moment. So,
+the environment is <strong>CPU-only</strong>. If you want GPU support, you need to install the
+required packages by yourself.</p>
 <section id="build-the-scikit-learn-documentation">
 <h3>Build the scikit-learn documentation<a class="headerlink" href="#build-the-scikit-learn-documentation" title="Link to this heading">#</a></h3>
 <p>First, we need to have the HTML source file of the API documentation of scikit-learn.
