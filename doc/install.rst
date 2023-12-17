@@ -49,7 +49,7 @@ For the moment, you can let the other variables as-is.
 
 Then, Train the retrievers by running the following command::
 
-  pixi run train_retrievers
+  pixi run train-retrievers
 
 from the root folder of the project.
 
@@ -69,7 +69,7 @@ LLM.
 
 Then, Launch the Web Console by running the following command::
 
-  pixi run start_ragger_duck
+  pixi run start-ragger-duck
 
 from the root folder of the project.
 

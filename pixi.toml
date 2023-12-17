@@ -10,9 +10,9 @@ homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
 readme = "README.md"
 
 [tasks]
-start_ragger_duck = { cmd = "uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
-train_retrievers = { cmd = "python train_retrievers.py", cwd = "scripts" }
-build_doc = { cmd = "make html", cwd = "doc" }
+start-ragger-duck = { cmd = "uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "python train_retrievers.py", cwd = "scripts" }
+build-doc = { cmd = "make html", cwd = "doc" }
 test = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
 
 [dependencies]
