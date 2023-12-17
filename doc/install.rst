@@ -25,9 +25,9 @@ To ease the deployment, we rely on `pixi`. Refer to following
 `link <https://pixi.sh/#installation>`_ for installing `pixi`.
 
 In the latest stage, `pixi` will be in charge to create the Python environment to
-deploy the Web Console.
-
-Them, follow the following steps to deploy the Ragger Duck Web Console.
+deploy the Web Console. Then, follow the following steps to deploy the Ragger Duck Web
+Console. Currently, `pixi` only supports a single environment for the moment. So,
+the environment is **CPU-only**.
 
 Build the scikit-learn documentation
 ------------------------------------
