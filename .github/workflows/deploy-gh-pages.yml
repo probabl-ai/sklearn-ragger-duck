@@ -22,14 +22,11 @@ jobs:
       with:
         python-version: "3.10"
 
-    - name: Install pixi
-      run: curl -fsSL https://pixi.sh/install.sh | bash
-
-    - name: Source the bash profile
-      run: source ~/.bash_profile
-
     - name: Build the documentation
-      run: pixi run build_doc
+      run: |
+        curl -fsSL https://pixi.sh/install.sh | bash
+        source ~/.bash_profile
+        pixi run build_doc
 
     - name: Update the main gh-page website
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
