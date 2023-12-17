@@ -437,6 +437,8 @@ document.write(`
                   
   <section id="getting-started">
 <span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<section id="use-the-ragger-duck-library">
+<h2>Use the Ragger Duck library<a class="headerlink" href="#use-the-ragger-duck-library" title="Link to this heading">#</a></h2>
 <p>Since this is a Sunday afternoon project, there is not yet a way to install the
 package. An easy and dirty way is to add the package into your path for the moment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -445,11 +447,58 @@ package. An easy and dirty way is to add the package into your path for the mome
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_to_package</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can check the file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for the required packages. We also provide
-a <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file for conda users. You might want to check which version of
-some libraries you are installing to take profit of the GPU acceleration.</p>
-<p>We did not commit the folder “/models” to the repository but the script <code class="docutils literal notranslate"><span class="pre">scripts/exp.py</span></code>
-expect the LLM model to be in this folder.</p>
+<p>You can check the file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for the required packages. We don’t yet
+provide an easy way to install GPU-enabled packages.</p>
+</section>
+<section id="deploy-ragger-duck-web-console">
+<h2>Deploy Ragger Duck Web Console<a class="headerlink" href="#deploy-ragger-duck-web-console" title="Link to this heading">#</a></h2>
+<p>To ease the deployment, we rely on <code class="docutils literal notranslate"><span class="pre">pixi</span></code>. Refer to following
+<a class="reference external" href="https://pixi.sh/#installation">link</a> for installing <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.</p>
+<p>In the latest stage, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> will be in charge to create the Python environment to
+deploy the Web Console.</p>
+<p>Them, follow the following steps to deploy the Ragger Duck Web Console.</p>
+<section id="build-the-scikit-learn-documentation">
+<h3>Build the scikit-learn documentation<a class="headerlink" href="#build-the-scikit-learn-documentation" title="Link to this heading">#</a></h3>
+<p>First, we need to have the HTML source file of the API documentation of scikit-learn.
+You can clone the scikit-learn repository and build the documentation. Refer to the
+following <a class="reference external" href="https://scikit-learn.org/dev/developers/contributing.html#building-the-documentation">link</a>
+for building the documentation of scikit-learn:</p>
+<p>The API documentation will be located in the folder
+<code class="docutils literal notranslate"><span class="pre">doc/_build/html/stable/modules/generated</span></code>.</p>
+</section>
+<section id="train-the-semantic-and-lexical-retrievers">
+<h3>Train the semantic and lexical retrievers<a class="headerlink" href="#train-the-semantic-and-lexical-retrievers" title="Link to this heading">#</a></h3>
+<p>You need to train the retrievers that will search for the context. You need to modify
+the file <code class="docutils literal notranslate"><span class="pre">scripts/configuration.py</span></code> to specify the path to the API documentation.
+For the moment, you can let the other variables as-is.</p>
+<p>Then, Train the retrievers by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="n">train</span><span class="o">-</span><span class="n">retrievers</span>
+</pre></div>
+</div>
+<p>from the root folder of the project.</p>
+</section>
+<section id="download-the-large-language-model">
+<h3>Download the Large Language Model<a class="headerlink" href="#download-the-large-language-model" title="Link to this heading">#</a></h3>
+<p>You need to get a Large Language Model (LLM). For testing purpose, you can get the
+mistral-7b-instruct-v0.1.Q6_K.gguf model that is available at this
+<a class="reference external" href="https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main">link</a>.</p>
+</section>
+<section id="launch-the-web-console">
+<h3>Launch the Web Console<a class="headerlink" href="#launch-the-web-console" title="Link to this heading">#</a></h3>
+<p>Before to launch the web console, you need to modify the file
+<code class="docutils literal notranslate"><span class="pre">app/configuration/default.py</span></code> to provide the links to the retriever models and the
+LLM.</p>
+<p>Then, Launch the Web Console by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="n">start</span><span class="o">-</span><span class="n">ragger</span><span class="o">-</span><span class="n">duck</span>
+</pre></div>
+</div>
+<p>from the root folder of the project.</p>
+<p>Then, you can access the Web Console at the following address:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8123</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -488,6 +537,24 @@ expect the LLM model to be in this folder.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-ragger-duck-library">Use the Ragger Duck library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-ragger-duck-web-console">Deploy Ragger Duck Web Console</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-scikit-learn-documentation">Build the scikit-learn documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-semantic-and-lexical-retrievers">Train the semantic and lexical retrievers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-large-language-model">Download the Large Language Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-the-web-console">Launch the Web Console</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
