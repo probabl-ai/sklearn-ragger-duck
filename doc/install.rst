@@ -57,7 +57,7 @@ Download the Large Language Model
 ---------------------------------
 
 You need to get a Large Language Model (LLM). For testing purpose, you can get the
-mistral-7b-instruct-v0.1.Q6_K.gguf model that is available at this
+`mistral-7b-instruct-v0.1.Q6_K.gguf `model that is available at this
 `link <https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main>`_.
 
 Launch the Web Console
