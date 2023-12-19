@@ -437,7 +437,23 @@ document.write(`
                   
   <section id="user-guide">
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
-<p>One day I will write something here.</p>
+<section id="scraping">
+<h2>Scraping<a class="headerlink" href="#scraping" title="Link to this heading">#</a></h2>
+<p>The scraping module provides some simple estimator that extract meaningful
+documentation from the documentation website.</p>
+<p><a class="reference internal" href="references/generated/ragger_duck.scraping.APIDocExtractor.html#ragger_duck.scraping.APIDocExtractor" title="ragger_duck.scraping.APIDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a> is a scraper that loads the
+HTML pages and extract the documentation from the main API section. One can
+provide a <code class="docutils literal notranslate"><span class="pre">chunk_size</span></code> and <code class="docutils literal notranslate"><span class="pre">chunk_overlap</span></code> to further split the documentation
+sections into smaller chunks.</p>
+<p><a class="reference internal" href="references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is a more advanced scraper
+that uses <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> and it scraper to extract the documentation. Indeed, the
+<code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> scraper will parse the different sections and we build meaningful
+chunks of documentation from the parsed sections. While, we don’t control for
+the chunk size, the chunks are build such that they contain information only
+of a specific parameter and always refer to the class or function. We hope that
+scraping in such way can remove ambiguity that could exist when building chunks
+without any control.</p>
+</section>
 </section>
 
 
@@ -476,6 +492,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraping">Scraping</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
