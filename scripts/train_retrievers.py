@@ -41,6 +41,7 @@ pipeline = Pipeline(
     ]
 )
 pipeline.fit(API_DOC)
+pipeline
 
 # %% [markdown]
 # Save the semantic retriever to be used in the inference time.
@@ -67,6 +68,7 @@ pipeline = Pipeline(
         ),
     ]
 ).fit(API_DOC)
+pipeline
 
 # %% [markdown]
 # Save the lexical retriever to be used in the inference time.
