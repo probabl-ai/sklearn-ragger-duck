@@ -14,3 +14,4 @@ Scraping the documentation
    :template: class.rst
 
    APIDocExtractor
+   APINumPyDocExtractor

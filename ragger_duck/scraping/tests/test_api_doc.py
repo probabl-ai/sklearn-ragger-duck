@@ -5,6 +5,7 @@ import pytest
 
 from ragger_duck.scraping import (
     APIDocExtractor,
+    APINumPyDocExtractor,
     extract_api_doc,
     extract_api_doc_from_single_file,
 )
@@ -87,3 +88,18 @@ def test_api_doc_extractor_error_empty():
     err_msg = "No API documentation was extracted. Please check the input folder."
     with pytest.raises(ValueError, match=err_msg):
         APIDocExtractor().fit_transform(path_folder)
+
+
+def test_api_numpydoc_extractor():
+    """Check the APINumPyDocExtractor class."""
+    extractor = APINumPyDocExtractor()
+    output_extractor = extractor.fit_transform(API_TEST_FOLDER)
+    possible_source = [SKLEARN_API_URL + html_file for html_file in HTML_TEST_FILES]
+    for output in output_extractor:
+        assert isinstance(output, dict)
+        assert set(output.keys()) == {"source", "text"}
+        assert isinstance(output["source"], str)
+        assert isinstance(output["text"], str)
+        assert output["source"] in possible_source
+
+    assert extractor._get_tags()["stateless"]

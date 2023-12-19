@@ -5,6 +5,7 @@ website of scikit-learn.
 
 from ._api_doc import (
     APIDocExtractor,
+    APINumPyDocExtractor,
     extract_api_doc,
     extract_api_doc_from_single_file,
 )
@@ -13,4 +14,5 @@ __all__ = [
     "extract_api_doc",
     "extract_api_doc_from_single_file",
     "APIDocExtractor",
+    "APINumPyDocExtractor",
 ]

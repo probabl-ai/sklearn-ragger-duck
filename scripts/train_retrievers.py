@@ -25,16 +25,18 @@ from sklearn.pipeline import Pipeline
 
 from ragger_duck.embedding import SentenceTransformer
 from ragger_duck.retrieval import SemanticRetriever
-from ragger_duck.scraping import APIDocExtractor
+from ragger_duck.scraping import APINumPyDocExtractor
 
 embedding = SentenceTransformer(
     model_name_or_path="thenlper/gte-large",
     cache_folder=config.CACHE_PATH,
     device=config.DEVICE,
 )
+# api_scraper = APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)
+api_scraper = APINumPyDocExtractor()
 pipeline = Pipeline(
     steps=[
-        ("extractor", APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)),
+        ("extractor", api_scraper),
         ("semantic_retriever", SemanticRetriever(embedding=embedding, top_k=15)),
     ]
 )
@@ -58,7 +60,7 @@ from ragger_duck.retrieval import BM25Retriever
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 pipeline = Pipeline(
     steps=[
-        ("extractor", APIDocExtractor(chunk_size=1_500, chunk_overlap=200, n_jobs=-1)),
+        ("extractor", api_scraper),
         (
             "lexical_retriever",
             BM25Retriever(count_vectorizer=count_vectorizer, top_k=15),
