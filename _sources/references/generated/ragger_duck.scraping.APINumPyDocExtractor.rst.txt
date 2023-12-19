@@ -1,0 +1,44 @@
+﻿APINumPyDocExtractor
+=======================================================
+
+.. currentmodule:: ragger_duck.scraping
+
+.. autoclass:: APINumPyDocExtractor
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~APINumPyDocExtractor.fit
+      
+      
+        ~APINumPyDocExtractor.fit_transform
+      
+      
+        ~APINumPyDocExtractor.get_metadata_routing
+      
+      
+        ~APINumPyDocExtractor.get_params
+      
+      
+        ~APINumPyDocExtractor.set_output
+      
+      
+        ~APINumPyDocExtractor.set_params
+      
+      
+        ~APINumPyDocExtractor.transform
+      
+   
+   
+
+.. include:: ragger_duck.scraping.APINumPyDocExtractor.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>

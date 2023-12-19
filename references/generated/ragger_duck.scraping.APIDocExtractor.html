@@ -45,7 +45,7 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Embedding" href="../embedding.html" />
+    <link rel="next" title="APINumPyDocExtractor" href="ragger_duck.scraping.APINumPyDocExtractor.html" />
     <link rel="prev" title="Scraping the documentation" href="../scraping.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -394,6 +394,7 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../scraping.html">Scraping the documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">APIDocExtractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.scraping.APINumPyDocExtractor.html">APINumPyDocExtractor</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../embedding.html">Embedding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -477,7 +478,7 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.scraping.</span></span><span class="sig-name descname"><span class="pre">APIDocExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.scraping.APIDocExtractor" title="Link to this definition">#</a></dt>
 <dd><p>Extract text from the API documentation.</p>
 <p>This function can process classes and functions.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>chunk_size</strong><span class="classifier">int or None, default=300</span></dt><dd><p>The size of the chunks to split the text into. If None, the text is not chunked.</p>
@@ -486,6 +487,13 @@ document.write(`
 </dd>
 <dt><strong>n_jobs</strong><span class="classifier">int, default=None</span></dt><dd><p>The number of jobs to run in parallel. If None, then the number of jobs is set
 to the number of CPU cores.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>text_splitter_</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">langchain.text_splitter.RecursiveCharacterTextSplitter</span></code></span></dt><dd><p>The text splitter to use to chunk the document. If <code class="docutils literal notranslate"><span class="pre">chunk_size</span></code> is None, this
+attribute is None.</p>
 </dd>
 </dl>
 </dd>
@@ -666,7 +674,7 @@ possible to update each component of a nested object.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>output</strong><span class="classifier">list</span></dt><dd><p>A generator of dictionaries containing the source and text of the API
+<dt><strong>output</strong><span class="classifier">list</span></dt><dd><p>A list of dictionaries containing the source and text of the API
 documentation.</p>
 </dd>
 </dl>
@@ -698,11 +706,11 @@ documentation.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../embedding.html"
+       href="ragger_duck.scraping.APINumPyDocExtractor.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Embedding</p>
+        <p class="prev-next-title">APINumPyDocExtractor</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
