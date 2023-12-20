@@ -32,7 +32,6 @@ embedding = SentenceTransformer(
     cache_folder=config.CACHE_PATH,
     device=config.DEVICE,
 )
-# api_scraper = APIDocExtractor(chunk_size=700, chunk_overlap=50, n_jobs=-1)
 api_scraper = APINumPyDocExtractor()
 pipeline = Pipeline(
     steps=[
