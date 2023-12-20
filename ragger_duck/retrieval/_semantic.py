@@ -89,6 +89,7 @@ class SemanticRetriever(BaseEstimator):
                     "text": self.X_fit_[neighbor]["text"],
                 }
                 for neighbor in indices[0]
+                if neighbor != -1
             ]
         else:  # isinstance(self.X_fit_[0], str)
-            return [self.X_fit_[neighbor] for neighbor in indices[0]]
+            return [self.X_fit_[neighbor] for neighbor in indices[0] if neighbor != -1]

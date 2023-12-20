@@ -11,7 +11,7 @@ from ragger_duck.retrieval import BM25Retriever, RetrieverReranker, SemanticRetr
     "params, n_documents",
     [
         ({"threshold": 0.5}, 2),
-        ({"threshold": None}, 14),
+        ({"threshold": None}, 8),
         (
             {
                 "max_top_k": 2,
@@ -54,6 +54,7 @@ def test_retriever_reranker(input_texts, params, n_documents):
         cross_encoder=cross_encoder,
         semantic_retriever=faiss,
         lexical_retriever=bm25,
+        drop_duplicates=False,
         **params,
     )
     retriever_reranker.fit()  # just for parameter validation
@@ -101,3 +102,48 @@ def test_retriever_reranker_single_search(search_strategy):
         assert not context
     else:
         assert len(context) == 2
+
+
+@pytest.mark.parametrize(
+    "input_texts",
+    [
+        [
+            {"source": "source 1", "text": "xxx"},
+            {"source": "source 2", "text": "yyy"},
+            {"source": "source 3", "text": "zzz"},
+            {"source": "source 4", "text": "aaa"},
+        ],
+        ["xxx", "yyy", "zzz", "aaa"],
+    ],
+)
+@pytest.mark.parametrize(
+    "drop_duplicates, n_retrieved_documents", [(True, 4), (False, 8)]
+)
+def test_retriever_reranker_drop_duplicate(
+    input_texts, drop_duplicates, n_retrieved_documents
+):
+    """Check the behaviour of the drop_duplicates parameter."""
+    bm25 = BM25Retriever(top_k=10).fit(input_texts)
+    cache_folder_path = (
+        Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
+    )
+    model_name_or_path = "sentence-transformers/paraphrase-albert-small-v2"
+    embedder = SentenceTransformer(
+        model_name_or_path=model_name_or_path,
+        cache_folder=str(cache_folder_path),
+        show_progress_bar=False,
+    )
+    faiss = SemanticRetriever(embedding=embedder, top_k=10).fit(input_texts)
+
+    model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    cross_encoder = CrossEncoder(model_name=model_name)
+    retriever_reranker = RetrieverReranker(
+        cross_encoder=cross_encoder,
+        semantic_retriever=faiss,
+        lexical_retriever=bm25,
+        max_top_k=None,  # we don't limit the number of retrieved documents
+        drop_duplicates=drop_duplicates,
+    )
+    retriever_reranker.fit()
+    context = retriever_reranker.query("xxx")
+    assert len(context) == n_retrieved_documents

@@ -29,6 +29,10 @@ class RetrieverReranker(BaseEstimator):
     threshold : float, default=None
         Threshold to filter the scores of the `cross_encoder`. If None, the
         scores are note filtered based on a threshold.
+
+    drop_duplicates : bool, default=True
+        Whether to drop duplicates from the retrieved documents. This step is done
+        right after the retrieval step.
     """
 
     _parameter_constraints = {
@@ -38,6 +42,7 @@ class RetrieverReranker(BaseEstimator):
         "min_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
         "max_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
         "threshold": [Real, None],
+        "drop_duplicates": [bool],
     }
 
     def __init__(
@@ -49,6 +54,7 @@ class RetrieverReranker(BaseEstimator):
         min_top_k=None,
         max_top_k=None,
         threshold=None,
+        drop_duplicates=True,
     ):
         self.semantic_retriever = semantic_retriever
         self.lexical_retriever = lexical_retriever
@@ -56,6 +62,7 @@ class RetrieverReranker(BaseEstimator):
         self.min_top_k = min_top_k
         self.max_top_k = max_top_k
         self.threshold = threshold
+        self.drop_duplicates = drop_duplicates
 
     def fit(self, X=None, y=None):
         """Compute the vocabulary and the idf.
@@ -128,9 +135,18 @@ class RetrieverReranker(BaseEstimator):
         if not unranked_search:
             return []
 
+        if self.drop_duplicates:
+            filtered_unranked_search = []
+            chunk_already_seen = set()
+            for search in unranked_search:
+                if self._get_context(search) in chunk_already_seen:
+                    continue
+                chunk_already_seen.add(self._get_context(search))
+                filtered_unranked_search.append(search)
+            unranked_search = filtered_unranked_search
+
         merged_search = [
-            (query, self._get_context(search))
-            for search in lexical_search + semantic_search
+            (query, self._get_context(search)) for search in unranked_search
         ]
         scores = self.cross_encoder.predict(merged_search)
         indices = scores.argsort()[::-1]
