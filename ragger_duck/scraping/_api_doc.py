@@ -266,7 +266,7 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
         )
         for estimator, desc in docstring["See Also"]:
             chunk_doc += f"- {estimator[0][0]}"
-            if not desc:
+            if desc:
                 description = "\n".join(desc)
                 chunk_doc += f": {description}\n"
             else:
@@ -460,6 +460,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
                         f"Fail to split the full name {full_name}. Error message: {exc}"
                     )
             if module_name == "sklearn.experimental":
+                # FIXME: Only module are available in experimental
                 continue
             elif "sklearn." in module_name:
                 # FIXME: this is a hack to import the experimental modules
