@@ -35,8 +35,6 @@ class QueryAgent:
             "[INST] Answer to the query related to scikit-learn using the following "
             "pair of content and source. The context is provided from the most "
             "relevant to the least relevant. Use this priority to answer to the query. "
-            "Finish your answer with the https link corresponding to the source to "
-            "provide more information to the user while answering the query. "
             "Be succinct when providing the answer. \n"
             f"query: {query}\n"
             f"context: {context_query} [/INST]."

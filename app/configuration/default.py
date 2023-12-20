@@ -3,7 +3,7 @@ SEMANTIC_RETRIEVER_PATH = "../models/api_semantic_retrieval.joblib"
 LEXICAL_RETRIEVER_PATH = "../models/api_lexical_retrieval.joblib"
 CROSS_ENCODER_PATH = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 CROSS_ENCODER_THRESHOLD = 2.0
-CROSS_ENCODER_MIN_TOP_K = 3
+CROSS_ENCODER_MIN_TOP_K = 1
 CROSS_ENCODER_MAX_TOP_K = 20
 
 # Device parameters
