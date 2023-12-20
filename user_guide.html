@@ -452,7 +452,10 @@ chunks of documentation from the parsed sections. While, we don’t control for
 the chunk size, the chunks are build such that they contain information only
 of a specific parameter and always refer to the class or function. We hope that
 scraping in such way can remove ambiguity that could exist when building chunks
-without any control.</p>
+without any control. Since we rely on <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> for the parsing that expect
+a specific formatting, then
+<a class="reference internal" href="references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is much faster than
+<a class="reference internal" href="references/generated/ragger_duck.scraping.APIDocExtractor.html#ragger_duck.scraping.APIDocExtractor" title="ragger_duck.scraping.APIDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a>.</p>
 </section>
 </section>
 
