@@ -1,3 +1,3 @@
-from ._agent import QueryAgent
+from ._api import APIPromptingStrategy
 
-__all__ = ["QueryAgent"]
+__all__ = ["APIPromptingStrategy"]

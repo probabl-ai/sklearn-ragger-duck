@@ -19,7 +19,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 import resources as res
 from schemas import WSMessage
 
-from ragger_duck.prompt import QueryAgent
+from ragger_duck.prompt import APIPromptingStrategy
 from ragger_duck.retrieval import RetrieverReranker
 
 DEFAULT_PORT = 8123
@@ -28,10 +28,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-logging.basicConfig()
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-
+logger = logging.getLogger(__name__)
 
 config_module = (
     os.getenv("CONFIGURATION") if os.getenv("CONFIGURATION") is not None else "default"
@@ -51,9 +48,8 @@ async def startup_event():
 
     api_semantic_retriever = joblib.load(conf.SEMANTIC_RETRIEVER_PATH)
     api_lexical_retriever = joblib.load(conf.LEXICAL_RETRIEVER_PATH)
-
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=conf.DEVICE)
-    retriever_reranker = RetrieverReranker(
+    api_retriever = RetrieverReranker(
         cross_encoder=cross_encoder,
         semantic_retriever=api_semantic_retriever,
         lexical_retriever=api_lexical_retriever,
@@ -69,7 +65,7 @@ async def startup_event():
         n_threads=conf.N_THREADS,
         n_ctx=conf.CONTEXT_TOKENS,
     )
-    agent = QueryAgent(llm=llm, retriever=retriever_reranker)
+    agent = APIPromptingStrategy(llm=llm, api_retriever=api_retriever)
     logging.info("Server started")
 
 
@@ -110,8 +106,6 @@ async def websocket_endpoint(websocket: WebSocket):
 
             prompt = payload["query"]
             start_type = "start"
-            logger.info(f"Temperature: {payload['temperature']}")
-            logger.info(f"Prompt: {prompt}")
 
             await send(websocket, "Analyzing prompt...", "info")
             stream, sources = agent(

@@ -1,9 +1,13 @@
+import logging
+import time
 from numbers import Integral
 
 import faiss
 from sklearn.base import BaseEstimator
 from sklearn.utils._param_validation import HasMethods, Interval
 from sklearn.utils.validation import check_is_fitted
+
+logger = logging.getLogger(__name__)
 
 
 class SemanticRetriever(BaseEstimator):
@@ -55,9 +59,11 @@ class SemanticRetriever(BaseEstimator):
         """
         self._validate_params()
         self.X_fit_ = X
+        start = time.time()
         self.X_embedded_ = self.embedding.fit_transform(X)
         self.index_ = faiss.IndexFlatIP(self.X_embedded_.shape[1])
         self.index_.add(self.X_embedded_)
+        logger.info(f"Index created in {time.time() - start:.2f}s")
         return self
 
     def query(self, query):
@@ -79,9 +85,11 @@ class SemanticRetriever(BaseEstimator):
         check_is_fitted(self, "X_fit_")
         if not isinstance(query, str):
             raise TypeError(f"query should be a string, got {type(query)}.")
+        start = time.time()
         X_embedded = self.embedding.transform(query)
         # normalize vectors to compute the cosine similarity
         _, indices = self.index_.search(X_embedded, self.top_k)
+        logger.info(f"Semantic search done in {time.time() - start:.2f}s")
         if isinstance(self.X_fit_[0], dict):
             return [
                 {

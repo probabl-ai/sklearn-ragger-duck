@@ -1,3 +1,5 @@
+import logging
+import time
 from numbers import Integral
 
 import numpy as np
@@ -5,6 +7,8 @@ from sklearn.base import BaseEstimator, clone
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.utils._param_validation import HasMethods, Interval
 from sklearn.utils.validation import check_is_fitted
+
+logger = logging.getLogger(__name__)
 
 
 class BM25Retriever(BaseEstimator):
@@ -61,6 +65,7 @@ class BM25Retriever(BaseEstimator):
         if isinstance(X[0], dict):
             X = [x["text"] for x in X]
 
+        start = time.time()
         if self.count_vectorizer is None:
             self.count_vectorizer_ = CountVectorizer().fit(X)
         else:
@@ -77,6 +82,8 @@ class BM25Retriever(BaseEstimator):
         denominator = n_documents_by_term + 0.5
         self.idf_ = np.log(numerator / denominator + 1)
         self.idf_[self.idf_ < 0] = 0.25 * np.mean(self.idf_)
+
+        logger.info(f"BM25Retriever fitted in {time.time() - start:.2f}s")
         return self
 
     def query(self, query):
@@ -95,6 +102,7 @@ class BM25Retriever(BaseEstimator):
         check_is_fitted(self, "X_fit_")
         if not isinstance(query, str):
             raise TypeError(f"query should be a string, got {type(query)}.")
+        start = time.time()
         query_terms_indices = self.count_vectorizer_.transform([query]).indices
         counts_query_in_X_fit = self.X_counts_[:, query_terms_indices].toarray()
         idf = self.idf_[query_terms_indices]
@@ -110,6 +118,7 @@ class BM25Retriever(BaseEstimator):
         )
         scores = (idf * numerator / denominator).sum(axis=1)
         indices = scores.argsort()[::-1][: self.top_k]
+        logger.info(f"BM25Retriever queried in {time.time() - start:.2f}s")
         if isinstance(self.X_fit_[0], dict):
             return [
                 {

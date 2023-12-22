@@ -1,6 +1,11 @@
 """SentenceTransformer with a scikit-learn API."""
+import logging
+import time
+
 from sentence_transformers import SentenceTransformer as SentenceTransformerBase
 from sklearn.base import BaseEstimator, TransformerMixin
+
+logger = logging.getLogger(__name__)
 
 
 class SentenceTransformer(BaseEstimator, TransformerMixin):
@@ -114,10 +119,13 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
             X = [X]
         elif isinstance(X[0], dict):
             X = [chunk["text"] for chunk in X]
-        return self._embedding.encode(
+        start = time.time()
+        embedding = self._embedding.encode(
             X,
             batch_size=self.batch_size,
             show_progress_bar=self.show_progress_bar,
             # L2-normalize to use dot-product as similarity measure
             normalize_embeddings=True,
         )
+        logger.info(f"Embedding done in {time.time() - start:.2f}s")
+        return embedding
