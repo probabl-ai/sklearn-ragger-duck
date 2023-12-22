@@ -77,7 +77,7 @@ Prompting
 Prompting for API documentation
 -------------------------------
 
-:class:`~ragger_duck.prompt.APIPromptStrategy` implements a prompting strategy
-to answer API documentation questions. We get context by reranking the search
-from a lexical and semantical retrievers. Once the context is retrieved, we
-request a Large Language Model (LLM) to answer the question.
+:class:`~ragger_duck.prompt.APIPromptingStrategy` implements a prompting
+strategy to answer API documentation questions. We get context by reranking the
+search from a lexical and semantical retrievers. Once the context is retrieved,
+we request a Large Language Model (LLM) to answer the question.

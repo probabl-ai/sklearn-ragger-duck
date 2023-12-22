@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RetrieverReranker &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
+    <title>APIPromptingStrategy &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
   
   
   
@@ -40,13 +40,13 @@
     <script src="../../_static/documentation_options.js?v=75d19225"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/ragger_duck.retrieval.RetrieverReranker';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/generated/ragger_duck.prompt.APIPromptingStrategy';</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SemanticRetriever" href="ragger_duck.retrieval.SemanticRetriever.html" />
-    <link rel="prev" title="BM25Retriever" href="ragger_duck.retrieval.BM25Retriever.html" />
+    <link rel="next" title="Examples" href="../../auto_examples/index.html" />
+    <link rel="prev" title="Prompt" href="../prompt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -401,14 +401,14 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ragger_duck.embedding.SentenceTransformer.html">SentenceTransformer</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../retrieval.html">Retrieval</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="ragger_duck.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">RetrieverReranker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ragger_duck.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ragger_duck.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="ragger_duck.prompt.APIPromptingStrategy.html">APIPromptingStrategy</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../prompt.html">Prompt</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">APIPromptingStrategy</a></li>
 </ul>
 </li>
 </ul>
@@ -452,9 +452,9 @@ document.write(`
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API reference</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../retrieval.html" class="nav-link">Retrieval</a></li>
+    <li class="breadcrumb-item"><a href="../prompt.html" class="nav-link">Prompt</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">RetrieverReranker</li>
+    <li class="breadcrumb-item active" aria-current="page">APIPromptingStrategy</li>
   </ul>
 </nav>
 </div>
@@ -471,32 +471,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="retrieverreranker">
-<h1>RetrieverReranker<a class="headerlink" href="#retrieverreranker" title="Link to this heading">#</a></h1>
+  <section id="apipromptingstrategy">
+<h1>APIPromptingStrategy<a class="headerlink" href="#apipromptingstrategy" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.retrieval.</span></span><span class="sig-name descname"><span class="pre">RetrieverReranker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker" title="Link to this definition">#</a></dt>
-<dd><p>Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.</p>
-<dl class="field-list">
+<dt class="sig sig-object py" id="ragger_duck.prompt.APIPromptingStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.prompt.</span></span><span class="sig-name descname"><span class="pre">APIPromptingStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_retriever</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.APIPromptingStrategy" title="Link to this definition">#</a></dt>
+<dd><p>Prompting strategy for answering API-related query.</p>
+<p>We use the following prompting strategy:</p>
+<ul class="simple">
+<li><p>If the retriever support a lexical query, we first extract the keywords from
+the query and use them specifically for the lexical search. Use the full query
+for the semantic search.</p></li>
+<li><p>If the retriever does not support a lexical query, we use the full query as-is.</p></li>
+</ul>
+<p>Once we retrieve the API-related context, we request to answer the query using the
+context.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>semantic_retriever</strong><span class="classifier">semantic retriever or None</span></dt><dd><p>Semantic retriever used to retrieve the context.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>llm</strong><span class="classifier">llm instance</span></dt><dd><p>The language model to use for the prompting. We expect the model to implement
+a <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method that takes a prompt and returns a response. It should be an
+“Instruct”-based model.</p>
 </dd>
-<dt><strong>lexical_retriever</strong><span class="classifier">lexical retriever or None</span></dt><dd><p>Lexical retriever used to retrieve the context.</p>
-</dd>
-<dt><strong>cross_encoder</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sentence_transformers.CrossEncoder</span></code></span></dt><dd><p>Cross-encoder used to rerank the results of the hybrid retriever.</p>
-</dd>
-<dt><strong>min_top_k</strong><span class="classifier">int, default=None</span></dt><dd><p>Minimum number of document to retrieve. If None, it is possible to return
-less than <code class="docutils literal notranslate"><span class="pre">min_top_k</span></code> documents.</p>
-</dd>
-<dt><strong>max_top_k</strong><span class="classifier">int, default=None</span></dt><dd><p>Maximum number of document to retrieve. If None, all the documents are
-retrieved.</p>
-</dd>
-<dt><strong>threshold</strong><span class="classifier">float, default=None</span></dt><dd><p>Threshold to filter the scores of the <code class="docutils literal notranslate"><span class="pre">cross_encoder</span></code>. If None, the
-scores are note filtered based on a threshold.</p>
-</dd>
-<dt><strong>drop_duplicates</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to drop duplicates from the retrieved documents. This step is done
-right after the retrieval step.</p>
+<dt><strong>api_retriever</strong><span class="classifier">retriever instance</span></dt><dd><p>The API retriever to use for retrieving the API-related context. We expect the
+retriever to implement a <code class="docutils literal notranslate"><span class="pre">query</span></code> method.</p>
 </dd>
 </dl>
 </dd>
@@ -504,48 +502,20 @@ right after the retrieval step.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.fit" title="ragger_duck.retrieval.RetrieverReranker.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
-<td><p>Compute the vocabulary and the idf.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.get_metadata_routing" title="ragger_duck.retrieval.RetrieverReranker.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.APIPromptingStrategy.get_metadata_routing" title="ragger_duck.prompt.APIPromptingStrategy.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.get_params" title="ragger_duck.retrieval.RetrieverReranker.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.prompt.APIPromptingStrategy.get_params" title="ragger_duck.prompt.APIPromptingStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.query" title="ragger_duck.retrieval.RetrieverReranker.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query, *[, lexical_query, semantic_query])</p></td>
-<td><p>Retrieve the most relevant documents for the query.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.set_params" title="ragger_duck.retrieval.RetrieverReranker.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.APIPromptingStrategy.set_params" title="ragger_duck.prompt.APIPromptingStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.fit" title="Link to this definition">#</a></dt>
-<dd><p>Compute the vocabulary and the idf.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
-</dd>
-<dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>self</dt><dd><p>The fitted estimator.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.get_metadata_routing">
-<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ragger_duck.prompt.APIPromptingStrategy.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.APIPromptingStrategy.get_metadata_routing" title="Link to this definition">#</a></dt>
 <dd><p>Get metadata routing of this object.</p>
 <p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
 mechanism works.</p>
@@ -561,8 +531,8 @@ routing information.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.get_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ragger_duck.prompt.APIPromptingStrategy.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.APIPromptingStrategy.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -582,34 +552,8 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.query" title="Link to this definition">#</a></dt>
-<dd><p>Retrieve the most relevant documents for the query.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The user query.</p>
-</dd>
-<dt><strong>lexical_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the lexical search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
-</dd>
-<dt><strong>semantic_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the semantic search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>list of str or dict</dt><dd><p>The list of the most relevant document from the training set.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.set_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ragger_duck.prompt.APIPromptingStrategy.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.APIPromptingStrategy.set_params" title="Link to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -646,20 +590,20 @@ possible to update each component of a nested object.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ragger_duck.retrieval.BM25Retriever.html"
+       href="../prompt.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">BM25Retriever</p>
+        <p class="prev-next-title">Prompt</p>
       </div>
     </a>
     <a class="right-next"
-       href="ragger_duck.retrieval.SemanticRetriever.html"
+       href="../../auto_examples/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SemanticRetriever</p>
+        <p class="prev-next-title">Examples</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -679,12 +623,10 @@ possible to update each component of a nested object.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker.fit"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.get_metadata_routing()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker.get_params"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker.query"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.query()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.retrieval.RetrieverReranker.set_params"><code class="docutils literal notranslate"><span class="pre">RetrieverReranker.set_params()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.APIPromptingStrategy"><code class="docutils literal notranslate"><span class="pre">APIPromptingStrategy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.APIPromptingStrategy.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">APIPromptingStrategy.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.APIPromptingStrategy.get_params"><code class="docutils literal notranslate"><span class="pre">APIPromptingStrategy.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.APIPromptingStrategy.set_params"><code class="docutils literal notranslate"><span class="pre">APIPromptingStrategy.set_params()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -694,7 +636,7 @@ possible to update each component of a nested object.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/references/generated/ragger_duck.retrieval.RetrieverReranker.rst">
+    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/references/generated/ragger_duck.prompt.APIPromptingStrategy.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -709,7 +651,7 @@ possible to update each component of a nested object.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/references/generated/ragger_duck.retrieval.RetrieverReranker.rst.txt">
+    <a href="../../_sources/references/generated/ragger_duck.prompt.APIPromptingStrategy.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
