@@ -13,4 +13,4 @@ Prompt
    :toctree: generated/
    :template: class.rst
 
-    QueryAgent
+    APIPromptingStrategy
