@@ -29,6 +29,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 config_module = (
     os.getenv("CONFIGURATION") if os.getenv("CONFIGURATION") is not None else "default"
