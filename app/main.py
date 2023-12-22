@@ -28,13 +28,12 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 config_module = (
     os.getenv("CONFIGURATION") if os.getenv("CONFIGURATION") is not None else "default"
 )
-logger.info(f"Configuration: {config_module} ")
+logging.info(f"Configuration: {config_module}")
 conf = import_module(f"configuration.{config_module}")
 
 

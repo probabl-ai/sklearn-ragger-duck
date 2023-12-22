@@ -45,7 +45,10 @@ class APIPromptingStrategy(BaseEstimator):
         logger.info(f"Query: {query}")
         signature_retriever = inspect.signature(self.api_retriever.query)
         if "lexical_query" in signature_retriever.parameters:
-            logger.info(f"Retriever {self.api_retriever} supports lexical queries")
+            logger.info(
+                f"Retriever {self.api_retriever.__class__.__name} supports lexical"
+                " queries"
+            )
             prompt = (
                 "[INST] Summarize the query provided by extracting keywords from it. "
                 "Only list the keywords only separated by a comma. \n"
@@ -64,7 +67,8 @@ class APIPromptingStrategy(BaseEstimator):
             )
         else:
             logger.info(
-                f"Retriever {self.api_retriever} does not support lexical queries"
+                f"Retriever {self.api_retriever.__class__.__name__} does not support"
+                " lexical queries"
             )
             context = self.api_retriever.query(query=query)
         sources = set([api["source"] for api in context])
@@ -74,13 +78,13 @@ class APIPromptingStrategy(BaseEstimator):
 
         prompt = (
             "[INST] You are a scikit-learn expert that should be able to answer "
-            "machine-learning question.\n\n "
-            "Answer to the query below using the additional provided content."
+            "machine-learning question.\n\n"
+            "Answer to the query below using the additional provided content. "
             "The additional content is composed of the HTML link to the source and the "
             "extracted text to be used.\n\n"
             "Be succinct.\n\n"
-            f"query: {query}\n"
-            f"content: {context_query} [/INST]."
+            f"query: {query}\n\n"
+            f"{context_query} [/INST]."
         )
         logger.info(f"The final prompt is:\n{prompt}")
         return self.llm(prompt, **prompt_kwargs), sources
