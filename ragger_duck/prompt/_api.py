@@ -46,12 +46,13 @@ class APIPromptingStrategy(BaseEstimator):
         signature_retriever = inspect.signature(self.api_retriever.query)
         if "lexical_query" in signature_retriever.parameters:
             logger.info(
-                f"Retriever {self.api_retriever.__class__.__name} supports lexical"
+                f"Retriever {self.api_retriever.__class__.__name__} supports lexical"
                 " queries"
             )
             prompt = (
-                "[INST] Summarize the query provided by extracting keywords from it. "
-                "Only list the keywords only separated by a comma. \n"
+                "[INST] Rephrase the query to have correct wording in a context of "
+                "machine-learning. Make sure to have the right spelling. Finally, only "
+                "provide a list of keywords separated by commas.\n\n"
                 f"query: {query}[/INST]"
             )
 
@@ -81,7 +82,7 @@ class APIPromptingStrategy(BaseEstimator):
             "machine-learning question.\n\n"
             "Answer to the query below using the additional provided content. "
             "The additional content is composed of the HTML link to the source and the "
-            "extracted text to be used.\n\n"
+            "extracted contextual information.\n\n"
             "Be succinct.\n\n"
             f"query: {query}\n\n"
             f"{context_query} [/INST]."

@@ -51,8 +51,8 @@ async def startup_event():
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=conf.DEVICE)
     api_retriever = RetrieverReranker(
         cross_encoder=cross_encoder,
-        semantic_retriever=api_semantic_retriever,
-        lexical_retriever=api_lexical_retriever,
+        semantic_retriever=api_semantic_retriever.set_params(top_k=conf.SEMANTIC_TOP_K),
+        lexical_retriever=api_lexical_retriever.set_params(top_k=conf.LEXICAL_TOP_K),
         threshold=conf.CROSS_ENCODER_THRESHOLD,
         min_top_k=conf.CROSS_ENCODER_MIN_TOP_K,
         max_top_k=conf.CROSS_ENCODER_MAX_TOP_K,
