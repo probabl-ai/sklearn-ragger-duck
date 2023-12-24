@@ -15,10 +15,7 @@ from numpydoc.docscrape import NumpyDocString
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils._param_validation import Interval
 
-from ._shared import (
-    _chunk_document,
-    _extract_text_from_section,
-)
+from ._shared import _chunk_document, _extract_text_from_section
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
 
