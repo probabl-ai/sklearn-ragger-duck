@@ -15,7 +15,10 @@ from numpydoc.docscrape import NumpyDocString
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils._param_validation import Interval
 
-from ._shared import _extract_text_from_section
+from ._shared import (
+    _chunk_document,
+    _extract_text_from_section,
+)
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
 
@@ -96,34 +99,6 @@ def extract_api_doc(api_doc_folder, *, n_jobs=None):
         delayed(extract_api_doc_from_single_file)(api_html_file)
         for api_html_file in api_doc_folder.glob("*.html")
     )
-
-
-def _chunk_document(text_splitter, document):
-    """Chunk a document into smaller pieces.
-
-    Parameters
-    ----------
-    text_splitter : :class:`langchain.text_splitter.RecursiveCharacterTextSplitter`
-        The text splitter to use to chunk the document.
-
-    document : dict
-        A dictionary containing two keys: `text` and `source`. The value associated
-        to the `text` key is the text to chunk. The source is propagated to the
-        chunks.
-
-    Returns
-    -------
-    list of dict
-        List of dictionary containing the `document` chunked into smaller pieces.
-    """
-    chunks = text_splitter.create_documents(
-        texts=[document["text"]],
-        metadatas=[{"source": document["source"]}],
-    )
-    return [
-        {"text": chunk.page_content, "source": chunk.metadata["source"]}
-        for chunk in chunks
-    ]
 
 
 def _extract_function_doc_numpydoc(function, import_name, html_source):

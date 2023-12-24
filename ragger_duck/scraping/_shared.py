@@ -28,14 +28,42 @@ def _extract_text_from_section(section):
     texts = []
     for elem in section.children:
         if isinstance(elem, NavigableString):
-            if elem.strip():
-                texts.append(elem.strip())
-        elif elem.name == "section":
-            continue
+            text = elem.strip()
         else:
-            # Remove the duplicated line breaks on the fly
-            text = re.sub(r"\n\s+", "\n", elem.get_text(" "))
-            # Remove the duplicated spaces on the fly
-            text = re.sub(r" \s+", " ", text)
-            texts.append(text.strip())
-    return "\n".join(texts)
+            text = elem.get_text(" ")
+        # Remove line breaks within a paragraph
+        newline = re.compile(r"\n+")
+        text = newline.sub(" ", text)
+        # Remove the duplicated spaces on the fly
+        multiple_spaces = re.compile(r"\s+")
+        text = multiple_spaces.sub(" ", text)
+        texts.append(text)
+    return " ".join(texts).replace("¶", "\n")
+
+
+def _chunk_document(text_splitter, document):
+    """Chunk a document into smaller pieces.
+
+    Parameters
+    ----------
+    text_splitter : :class:`langchain.text_splitter.RecursiveCharacterTextSplitter`
+        The text splitter to use to chunk the document.
+
+    document : dict
+        A dictionary containing two keys: `text` and `source`. The value associated
+        to the `text` key is the text to chunk. The source is propagated to the
+        chunks.
+
+    Returns
+    -------
+    list of dict
+        List of dictionary containing the `document` chunked into smaller pieces.
+    """
+    chunks = text_splitter.create_documents(
+        texts=[document["text"]],
+        metadatas=[{"source": document["source"]}],
+    )
+    return [
+        {"text": chunk.page_content, "source": chunk.metadata["source"]}
+        for chunk in chunks
+    ]
