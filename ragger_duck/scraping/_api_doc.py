@@ -8,46 +8,16 @@ from itertools import chain
 from numbers import Integral
 from pathlib import Path
 
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup
 from joblib import Parallel, delayed
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from numpydoc.docscrape import NumpyDocString
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils._param_validation import Interval
 
+from ._shared import _extract_text_from_section
+
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
-
-
-def _extract_text_from_section(section):
-    """Extract the text from an HTML section.
-
-    Parameters
-    ----------
-    section : :class:`bs4.element.Tag`
-        The HTML section from which to extract the text.
-
-    Returns
-    -------
-    str
-        The text extracted from the section.
-
-    Notes
-    -----
-    This function was copied from:
-    https://github.com/ray-project/llm-applications/blob/main/rag/data.py
-    (under CC BY 4.0 license)
-    """
-    texts = []
-    for elem in section.children:
-        if isinstance(elem, NavigableString):
-            if elem.strip():
-                texts.append(elem.strip())
-        elif elem.name == "section":
-            continue
-        else:
-            # Remove the duplicated line breaks on the fly
-            texts.append(re.sub(r"\n\s+", "\n", elem.get_text(" ")))
-    return "\n".join(texts)
 
 
 def _api_path_to_api_url(path):
