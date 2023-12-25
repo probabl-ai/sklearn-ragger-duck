@@ -1,4 +1,5 @@
 """Utilities to scrape User Guide documentation."""
+import logging
 from itertools import chain
 from numbers import Integral
 from pathlib import Path
@@ -12,6 +13,7 @@ from sklearn.utils._param_validation import Interval
 from ._shared import _chunk_document, _extract_text_from_section
 
 SKLEARN_USER_GUIDE_URL = "https://scikit-learn.org/stable/modules/"
+loogger = logging.getLogger(__name__)
 
 
 def _user_guide_path_to_user_guide_url(path):
@@ -42,8 +44,10 @@ def extract_user_guide_doc_from_single_file(html_file):
 
     Returns
     -------
-    str
-        The text extracted from the API documentation.
+    list of dict
+        Extract all sections from the HTML file and store it in a list of
+        dictionaries containing the source and text of the User Guide. If there
+        is no section, an empty list is returned.
     """
     if not isinstance(html_file, Path):
         raise ValueError(
@@ -56,12 +60,16 @@ def extract_user_guide_doc_from_single_file(html_file):
         )
     with open(html_file, "r") as file:
         soup = BeautifulSoup(file, "html.parser")
+
+    all_sections = soup.find_all("section")
+    if all_sections is None:
+        return []
     return [
         {
             "source": _user_guide_path_to_user_guide_url(html_file),
             "text": _extract_text_from_section(section),
         }
-        for section in soup.section
+        for section in all_sections
     ]
 
 
@@ -91,6 +99,8 @@ def _extract_user_guide_doc(user_guide_doc_folder, *, n_jobs=None):
     output = []
     for html_file in user_guide_doc_folder.glob("*.html"):
         texts = extract_user_guide_doc_from_single_file(html_file)
+        if texts:
+            loogger.info(f"Extracted {len(texts)} sections from {html_file.name}.")
         for text in texts:
             if text["text"] is None or text["text"] == "":
                 continue

@@ -7,6 +7,7 @@
 # directly from the source code.
 
 # %%
+import logging
 import sys
 from pathlib import Path
 
@@ -15,6 +16,9 @@ import joblib
 
 sys.path.append(str(Path(__file__).parent.parent))
 API_DOC = Path(config.API_DOC_PATH)
+USER_GUIDE_DOC = Path(config.USER_GUIDE_DOC_PATH)
+
+logging.basicConfig(level=logging.INFO)
 
 # %% [markdown]
 # Define the training pipeline that extract the text chunks from the API documentation
@@ -46,7 +50,9 @@ pipeline
 # Save the semantic retriever to be used in the inference time.
 
 # %%
-joblib.dump(pipeline.named_steps["semantic_retriever"], config.SEMANTIC_RETRIEVER_PATH)
+joblib.dump(
+    pipeline.named_steps["semantic_retriever"], config.API_SEMANTIC_RETRIEVER_PATH
+)
 
 # %% [markdown]
 # Create a lexical retriever to match some keywords. We take a very long chunk to be
@@ -73,4 +79,54 @@ pipeline
 # Save the lexical retriever to be used in the inference time.
 
 # %%
-joblib.dump(pipeline.named_steps["lexical_retriever"], config.LEXICAL_RETRIEVER_PATH)
+joblib.dump(
+    pipeline.named_steps["lexical_retriever"], config.API_LEXICAL_RETRIEVER_PATH
+)
+
+# %%
+from ragger_duck.scraping import UserGuideDocExtractor
+
+embedding = SentenceTransformer(
+    model_name_or_path="thenlper/gte-large",
+    cache_folder=config.CACHE_PATH,
+    device=config.DEVICE,
+)
+user_guide_scraper = UserGuideDocExtractor(chunk_size=500, chunk_overlap=100, n_jobs=-1)
+pipeline = Pipeline(
+    steps=[
+        ("extractor", user_guide_scraper),
+        ("semantic_retriever", SemanticRetriever(embedding=embedding, top_k=15)),
+    ]
+)
+pipeline.fit(USER_GUIDE_DOC)
+pipeline
+
+# %%
+joblib.dump(
+    pipeline.named_steps["semantic_retriever"],
+    config.USER_GUIDE_SEMANTIC_RETRIEVER_PATH,
+)
+
+# %%
+from sklearn.feature_extraction.text import CountVectorizer
+
+from ragger_duck.retrieval import BM25Retriever
+
+count_vectorizer = CountVectorizer(ngram_range=(1, 5))
+pipeline = Pipeline(
+    steps=[
+        ("extractor", user_guide_scraper),
+        (
+            "lexical_retriever",
+            BM25Retriever(count_vectorizer=count_vectorizer, top_k=15),
+        ),
+    ]
+).fit(USER_GUIDE_DOC)
+pipeline
+
+# %%
+joblib.dump(
+    pipeline.named_steps["lexical_retriever"], config.USER_GUIDE_LEXICAL_RETRIEVER_PATH
+)
+
+# %%
