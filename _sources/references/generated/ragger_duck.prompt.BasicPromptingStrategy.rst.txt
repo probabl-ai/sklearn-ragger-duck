@@ -1,0 +1,32 @@
+﻿BasicPromptingStrategy
+=======================================================
+
+.. currentmodule:: ragger_duck.prompt
+
+.. autoclass:: BasicPromptingStrategy
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~BasicPromptingStrategy.get_metadata_routing
+      
+      
+        ~BasicPromptingStrategy.get_params
+      
+      
+        ~BasicPromptingStrategy.set_params
+      
+   
+   
+
+.. include:: ragger_duck.prompt.BasicPromptingStrategy.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>
