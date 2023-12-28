@@ -475,14 +475,15 @@ document.write(`
 <h1>RetrieverReranker<a class="headerlink" href="#retrieverreranker" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.retrieval.</span></span><span class="sig-name descname"><span class="pre">RetrieverReranker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.retrieval.</span></span><span class="sig-name descname"><span class="pre">RetrieverReranker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retrievers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker" title="Link to this definition">#</a></dt>
 <dd><p>Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.</p>
+<p>We can accept several retrievers in case you want to rerank the results of
+several retrievers.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>semantic_retriever</strong><span class="classifier">semantic retriever or None</span></dt><dd><p>Semantic retriever used to retrieve the context.</p>
-</dd>
-<dt><strong>lexical_retriever</strong><span class="classifier">lexical retriever or None</span></dt><dd><p>Lexical retriever used to retrieve the context.</p>
+<dt><strong>retrievers</strong><span class="classifier">list of retriever instances</span></dt><dd><p>The retrievers to use for retrieving the context. We expect the retrievers to
+implement a <code class="docutils literal notranslate"><span class="pre">query</span></code> method.</p>
 </dd>
 <dt><strong>cross_encoder</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sentence_transformers.CrossEncoder</span></code></span></dt><dd><p>Cross-encoder used to rerank the results of the hybrid retriever.</p>
 </dd>
@@ -513,7 +514,7 @@ right after the retrieval step.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.get_params" title="ragger_duck.retrieval.RetrieverReranker.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.query" title="ragger_duck.retrieval.RetrieverReranker.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query, *[, lexical_query, semantic_query])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.query" title="ragger_duck.retrieval.RetrieverReranker.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query)</p></td>
 <td><p>Retrieve the most relevant documents for the query.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.retrieval.RetrieverReranker.set_params" title="ragger_duck.retrieval.RetrieverReranker.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
@@ -583,18 +584,12 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ragger_duck.retrieval.RetrieverReranker.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexical_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.query" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.retrieval.RetrieverReranker.query" title="Link to this definition">#</a></dt>
 <dd><p>Retrieve the most relevant documents for the query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>The user query.</p>
-</dd>
-<dt><strong>lexical_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the lexical search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
-</dd>
-<dt><strong>semantic_query</strong><span class="classifier">str, default=None</span></dt><dd><p>A specific query to retrieve the context of the semantic search. If None,
-<code class="docutils literal notranslate"><span class="pre">query</span></code> is used.</p>
 </dd>
 </dl>
 </dd>
