@@ -46,13 +46,17 @@ async def send(ws, msg: str, type: str):
 async def startup_event():
     global agent
 
-    api_semantic_retriever = joblib.load(conf.SEMANTIC_RETRIEVER_PATH)
-    api_lexical_retriever = joblib.load(conf.LEXICAL_RETRIEVER_PATH)
+    api_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
+    api_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=conf.DEVICE)
     api_retriever = RetrieverReranker(
         cross_encoder=cross_encoder,
-        semantic_retriever=api_semantic_retriever.set_params(top_k=conf.SEMANTIC_TOP_K),
-        lexical_retriever=api_lexical_retriever.set_params(top_k=conf.LEXICAL_TOP_K),
+        semantic_retriever=api_semantic_retriever.set_params(
+            top_k=conf.API_SEMANTIC_TOP_K
+        ),
+        lexical_retriever=api_lexical_retriever.set_params(
+            top_k=conf.API_LEXICAL_TOP_K
+        ),
         threshold=conf.CROSS_ENCODER_THRESHOLD,
         min_top_k=conf.CROSS_ENCODER_MIN_TOP_K,
         max_top_k=conf.CROSS_ENCODER_MAX_TOP_K,
