@@ -13,5 +13,5 @@ Scraping the documentation
    :toctree: generated/
    :template: class.rst
 
-   APIDocExtractor
    APINumPyDocExtractor
+   UserGuideDocExtractor

@@ -441,10 +441,8 @@ document.write(`
 <h2>Scraping<a class="headerlink" href="#scraping" title="Link to this heading">#</a></h2>
 <p>The scraping module provides some simple estimator that extract meaningful
 documentation from the documentation website.</p>
-<p><a class="reference internal" href="references/generated/ragger_duck.scraping.APIDocExtractor.html#ragger_duck.scraping.APIDocExtractor" title="ragger_duck.scraping.APIDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a> is a scraper that loads the
-HTML pages and extract the documentation from the main API section. One can
-provide a <code class="docutils literal notranslate"><span class="pre">chunk_size</span></code> and <code class="docutils literal notranslate"><span class="pre">chunk_overlap</span></code> to further split the documentation
-sections into smaller chunks.</p>
+<section id="api-documentation">
+<h3>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is a more advanced scraper
 that uses <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> and it scraper to extract the documentation. Indeed, the
 <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> scraper will parse the different sections and we build meaningful
@@ -452,10 +450,14 @@ chunks of documentation from the parsed sections. While, we don’t control for
 the chunk size, the chunks are build such that they contain information only
 of a specific parameter and always refer to the class or function. We hope that
 scraping in such way can remove ambiguity that could exist when building chunks
-without any control. Since we rely on <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> for the parsing that expect
-a specific formatting, then
-<a class="reference internal" href="references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is much faster than
-<a class="reference internal" href="references/generated/ragger_duck.scraping.APIDocExtractor.html#ragger_duck.scraping.APIDocExtractor" title="ragger_duck.scraping.APIDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIDocExtractor</span></code></a>.</p>
+without any control.</p>
+</section>
+<section id="user-guide-documentation">
+<h3>User Guide documentation<a class="headerlink" href="#user-guide-documentation" title="Link to this heading">#</a></h3>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideExtractor</span></code> is a scraper that extract
+documentation from the user guide. It is a simple scraper that extract
+text information from the webpage. Additionally, this text can be chunked.</p>
+</section>
 </section>
 <section id="retriever">
 <h2>Retriever<a class="headerlink" href="#retriever" title="Link to this heading">#</a></h2>
@@ -548,7 +550,11 @@ we request a Large Language Model (LLM) to answer the question.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraping">Scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraping">Scraping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation">API documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation">User Guide documentation</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retriever">Retriever</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-retrievers">Lexical retrievers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semantical-retrievers">Semantical retrievers</a></li>

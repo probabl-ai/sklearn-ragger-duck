@@ -1,0 +1,44 @@
+﻿UserGuideDocExtractor
+========================================================
+
+.. currentmodule:: ragger_duck.scraping
+
+.. autoclass:: UserGuideDocExtractor
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~UserGuideDocExtractor.fit
+      
+      
+        ~UserGuideDocExtractor.fit_transform
+      
+      
+        ~UserGuideDocExtractor.get_metadata_routing
+      
+      
+        ~UserGuideDocExtractor.get_params
+      
+      
+        ~UserGuideDocExtractor.set_output
+      
+      
+        ~UserGuideDocExtractor.set_params
+      
+      
+        ~UserGuideDocExtractor.transform
+      
+   
+   
+
+.. include:: ragger_duck.scraping.UserGuideDocExtractor.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>
