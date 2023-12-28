@@ -1,4 +1,3 @@
-from ._api import APIPromptingStrategy
-from ._merge import CombinePromptingStrategy
+from ._basic import BasicPromptingStrategy
 
-__all__ = ["APIPromptingStrategy", "CombinePromptingStrategy"]
+__all__ = ["BasicPromptingStrategy"]

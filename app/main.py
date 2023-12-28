@@ -19,7 +19,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 import resources as res
 from schemas import WSMessage
 
-from ragger_duck.prompt import CombinePromptingStrategy
+from ragger_duck.prompt import BasicPromptingStrategy
 from ragger_duck.retrieval import RetrieverReranker
 
 DEFAULT_PORT = 8123
@@ -75,7 +75,7 @@ async def startup_event():
         n_threads=conf.N_THREADS,
         n_ctx=conf.CONTEXT_TOKENS,
     )
-    agent = CombinePromptingStrategy(llm=llm, retriever=retriever)
+    agent = BasicPromptingStrategy(llm=llm, retriever=retriever)
     logging.info("Server started")
 
 
