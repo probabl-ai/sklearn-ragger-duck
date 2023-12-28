@@ -51,7 +51,8 @@ class APIPromptingStrategy(BaseEstimator):
             )
             prompt = (
                 "[INST] Extract a list of keywords from the query below for a context"
-                " of machine-learning using scikit-learn.\n\n"
+                " of machine-learning using scikit-learn. Only provide the keywords"
+                "separated by commas.\n\n"
                 f"query: {query}[/INST]"
             )
 
