@@ -27,7 +27,7 @@ without any control.
 User Guide documentation
 ------------------------
 
-:class:`~ragger_duck.scraping.UserGuideExtractor` is a scraper that extract
+:class:`~ragger_duck.scraping.UserGuideDocExtractor` is a scraper that extract
 documentation from the user guide. It is a simple scraper that extract
 text information from the webpage. Additionally, this text can be chunked.
 
