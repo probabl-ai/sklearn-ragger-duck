@@ -19,7 +19,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 import resources as res
 from schemas import WSMessage
 
-from ragger_duck.prompt import APIPromptingStrategy
+from ragger_duck.prompt import CombinePromptingStrategy
 from ragger_duck.retrieval import RetrieverReranker
 
 DEFAULT_PORT = 8123
@@ -48,15 +48,21 @@ async def startup_event():
 
     api_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
     api_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
+    user_guide_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
+    user_guide_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=conf.DEVICE)
-    api_retriever = RetrieverReranker(
+    retriever = RetrieverReranker(
+        retrievers=[
+            api_semantic_retriever.set_params(top_k=conf.API_SEMANTIC_TOP_K),
+            api_lexical_retriever.set_params(top_k=conf.API_LEXICAL_TOP_K),
+            user_guide_semantic_retriever.set_params(
+                top_k=conf.USER_GUIDE_SEMANTIC_TOP_K
+            ),
+            user_guide_lexical_retriever.set_params(
+                top_k=conf.USER_GUIDE_LEXICAL_TOP_K
+            ),
+        ],
         cross_encoder=cross_encoder,
-        semantic_retriever=api_semantic_retriever.set_params(
-            top_k=conf.API_SEMANTIC_TOP_K
-        ),
-        lexical_retriever=api_lexical_retriever.set_params(
-            top_k=conf.API_LEXICAL_TOP_K
-        ),
         threshold=conf.CROSS_ENCODER_THRESHOLD,
         min_top_k=conf.CROSS_ENCODER_MIN_TOP_K,
         max_top_k=conf.CROSS_ENCODER_MAX_TOP_K,
@@ -69,7 +75,7 @@ async def startup_event():
         n_threads=conf.N_THREADS,
         n_ctx=conf.CONTEXT_TOKENS,
     )
-    agent = APIPromptingStrategy(llm=llm, api_retriever=api_retriever)
+    agent = CombinePromptingStrategy(llm=llm, retriever=retriever)
     logging.info("Server started")
 
 

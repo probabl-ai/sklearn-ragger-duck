@@ -7,13 +7,14 @@ from sklearn.utils._param_validation import HasMethods, Interval
 class RetrieverReranker(BaseEstimator):
     """Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.
 
+    We can accept several retrievers in case you want to rerank the results of
+    several retrievers.
+
     Parameters
     ----------
-    semantic_retriever : semantic retriever or None
-        Semantic retriever used to retrieve the context.
-
-    lexical_retriever : lexical retriever or None
-        Lexical retriever used to retrieve the context.
+    retrievers : list of retriever instances
+        The retrievers to use for retrieving the context. We expect the retrievers to
+        implement a `query` method.
 
     cross_encoder : :obj:`sentence_transformers.CrossEncoder`
         Cross-encoder used to rerank the results of the hybrid retriever.
@@ -36,8 +37,7 @@ class RetrieverReranker(BaseEstimator):
     """
 
     _parameter_constraints = {
-        "semantic_retriever": [HasMethods(["fit", "query"]), None],
-        "lexical_retriever": [HasMethods(["fit", "query"]), None],
+        "retrievers": [list],
         "cross_encoder": [HasMethods(["predict"])],
         "min_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
         "max_top_k": [Interval(Integral, left=0, right=None, closed="left"), None],
@@ -48,16 +48,14 @@ class RetrieverReranker(BaseEstimator):
     def __init__(
         self,
         *,
-        semantic_retriever,
-        lexical_retriever,
+        retrievers,
         cross_encoder,
         min_top_k=None,
         max_top_k=None,
         threshold=None,
         drop_duplicates=True,
     ):
-        self.semantic_retriever = semantic_retriever
-        self.lexical_retriever = lexical_retriever
+        self.retrievers = retrievers
         self.cross_encoder = cross_encoder
         self.min_top_k = min_top_k
         self.max_top_k = max_top_k
@@ -89,13 +87,7 @@ class RetrieverReranker(BaseEstimator):
             return search["text"]
         return search
 
-    def query(
-        self,
-        query,
-        *,
-        lexical_query=None,
-        semantic_query=None,
-    ):
+    def query(self, query):
         """Retrieve the most relevant documents for the query.
 
         Parameters
@@ -103,35 +95,15 @@ class RetrieverReranker(BaseEstimator):
         query : str
             The user query.
 
-        lexical_query : str, default=None
-            A specific query to retrieve the context of the lexical search. If None,
-            `query` is used.
-
-        semantic_query : str, default=None
-            A specific query to retrieve the context of the semantic search. If None,
-            `query` is used.
-
         Returns
         -------
         list of str or dict
             The list of the most relevant document from the training set.
         """
-        if lexical_query is None:
-            lexical_query = query
-        if semantic_query is None:
-            semantic_query = query
+        unranked_search = []
+        for retriever in self.retrievers:
+            unranked_search += retriever.query(query)
 
-        if self.lexical_retriever is not None:
-            lexical_search = self.lexical_retriever.query(lexical_query)
-        else:
-            lexical_search = []
-
-        if self.semantic_retriever is not None:
-            semantic_search = self.semantic_retriever.query(semantic_query)
-        else:
-            semantic_search = []
-
-        unranked_search = lexical_search + semantic_search
         if not unranked_search:
             return []
 
