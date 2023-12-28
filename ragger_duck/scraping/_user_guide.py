@@ -1,5 +1,6 @@
 """Utilities to scrape User Guide documentation."""
 import logging
+import re
 from itertools import chain
 from numbers import Integral
 from pathlib import Path
@@ -10,7 +11,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils._param_validation import Interval
 
-from ._shared import _chunk_document, _extract_text_from_section
+from ._shared import _chunk_document
 
 SKLEARN_USER_GUIDE_URL = "https://scikit-learn.org/stable/modules/"
 loogger = logging.getLogger(__name__)
@@ -44,10 +45,8 @@ def extract_user_guide_doc_from_single_file(html_file):
 
     Returns
     -------
-    list of dict
-        Extract all sections from the HTML file and store it in a list of
-        dictionaries containing the source and text of the User Guide. If there
-        is no section, an empty list is returned.
+    dict
+        A dictionary containing the source and text of the User Guide documentation.
     """
     if not isinstance(html_file, Path):
         raise ValueError(
@@ -61,19 +60,21 @@ def extract_user_guide_doc_from_single_file(html_file):
     with open(html_file, "r") as file:
         soup = BeautifulSoup(file, "html.parser")
 
-    all_sections = soup.find_all("section")
-    if all_sections is None:
-        return []
-    return [
-        {
-            "source": _user_guide_path_to_user_guide_url(html_file),
-            "text": _extract_text_from_section(section),
-        }
-        for section in all_sections
-    ]
+    text = soup.get_text("")
+    # Remove line breaks within a paragraph
+    newline = re.compile(r"\n\s*")
+    text = newline.sub(r"\n", text)
+    # Remove the duplicated spaces on the fly
+    multiple_spaces = re.compile(" +")
+    text = multiple_spaces.sub(" ", text)
+
+    return {
+        "source": _user_guide_path_to_user_guide_url(html_file),
+        "text": text,
+    }
 
 
-def _extract_user_guide_doc(user_guide_doc_folder, *, n_jobs=None):
+def _extract_user_guide_doc(user_guide_doc_folder):
     """Extract text from each HTML User Guide files from a folder
 
     Parameters
@@ -81,13 +82,9 @@ def _extract_user_guide_doc(user_guide_doc_folder, *, n_jobs=None):
     user_guide_doc_folder : :class:`pathlib.Path`
         The path to the User Guide documentation folder.
 
-    n_jobs : int, default=None
-        The number of jobs to run in parallel. If None, then the number of jobs is set
-        to the number of CPU cores.
-
     Returns
     -------
-    list
+    list of dict
         A list of dictionaries containing the source and text of the API
         documentation.
     """
@@ -96,16 +93,10 @@ def _extract_user_guide_doc(user_guide_doc_folder, *, n_jobs=None):
             "The User Guide documentation folder should be a pathlib.Path object. Got "
             f"{user_guide_doc_folder!r}."
         )
-    output = []
-    for html_file in user_guide_doc_folder.glob("*.html"):
-        texts = extract_user_guide_doc_from_single_file(html_file)
-        if texts:
-            loogger.info(f"Extracted {len(texts)} sections from {html_file.name}.")
-        for text in texts:
-            if text["text"] is None or text["text"] == "":
-                continue
-            output.append(text)
-    return output
+    return [
+        extract_user_guide_doc_from_single_file(html_file)
+        for html_file in user_guide_doc_folder.glob("*.html")
+    ]
 
 
 class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
@@ -186,13 +177,13 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
             documentation.
         """
         if self.chunk_size is None:
-            output = _extract_user_guide_doc(X, n_jobs=self.n_jobs)
+            output = _extract_user_guide_doc(X)
         else:
             output = list(
                 chain.from_iterable(
                     Parallel(n_jobs=self.n_jobs, return_as="generator")(
                         delayed(_chunk_document)(self.text_splitter_, document)
-                        for document in _extract_user_guide_doc(X, n_jobs=self.n_jobs)
+                        for document in _extract_user_guide_doc(X)
                     )
                 )
             )

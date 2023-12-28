@@ -91,7 +91,7 @@ embedding = SentenceTransformer(
     cache_folder=config.CACHE_PATH,
     device=config.DEVICE,
 )
-user_guide_scraper = UserGuideDocExtractor(chunk_size=500, chunk_overlap=100, n_jobs=-1)
+user_guide_scraper = UserGuideDocExtractor(chunk_size=700, chunk_overlap=10, n_jobs=-1)
 pipeline = Pipeline(
     steps=[
         ("extractor", user_guide_scraper),
@@ -113,6 +113,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from ragger_duck.retrieval import BM25Retriever
 
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
+user_guide_scraper = UserGuideDocExtractor(chunk_size=700, chunk_overlap=10, n_jobs=-1)
 pipeline = Pipeline(
     steps=[
         ("extractor", user_guide_scraper),

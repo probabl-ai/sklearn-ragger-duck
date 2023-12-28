@@ -12,10 +12,8 @@ Scraping
 The scraping module provides some simple estimator that extract meaningful
 documentation from the documentation website.
 
-:class:`~ragger_duck.scraping.APIDocExtractor` is a scraper that loads the
-HTML pages and extract the documentation from the main API section. One can
-provide a `chunk_size` and `chunk_overlap` to further split the documentation
-sections into smaller chunks.
+API documentation
+-----------------
 
 :class:`~ragger_duck.scraping.APINumPyDocExtractor` is a more advanced scraper
 that uses `numpydoc` and it scraper to extract the documentation. Indeed, the
@@ -24,10 +22,14 @@ chunks of documentation from the parsed sections. While, we don't control for
 the chunk size, the chunks are build such that they contain information only
 of a specific parameter and always refer to the class or function. We hope that
 scraping in such way can remove ambiguity that could exist when building chunks
-without any control. Since we rely on `numpydoc` for the parsing that expect
-a specific formatting, then
-:class:`~ragger_duck.scraping.APINumPyDocExtractor` is much faster than
-:class:`~ragger_duck.scraping.APIDocExtractor`.
+without any control.
+
+User Guide documentation
+------------------------
+
+:class:`~ragger_duck.scraping.UserGuideExtractor` is a scraper that extract
+documentation from the user guide. It is a simple scraper that extract
+text information from the webpage. Additionally, this text can be chunked.
 
 Retriever
 =========

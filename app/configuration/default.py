@@ -1,7 +1,7 @@
 # Retriever parameters
-SEMANTIC_RETRIEVER_PATH = "../models/api_semantic_retrieval.joblib"
+SEMANTIC_RETRIEVER_PATH = "../models/user_guide_semantic_retrieval.joblib"
 SEMANTIC_TOP_K = 5
-LEXICAL_RETRIEVER_PATH = "../models/api_lexical_retrieval.joblib"
+LEXICAL_RETRIEVER_PATH = "../models/user_guide_lexical_retrieval.joblib"
 LEXICAL_TOP_K = 5
 CROSS_ENCODER_PATH = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 CROSS_ENCODER_THRESHOLD = 2.0

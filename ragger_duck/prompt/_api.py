@@ -50,16 +50,15 @@ class APIPromptingStrategy(BaseEstimator):
                 " queries"
             )
             prompt = (
-                "[INST] Rephrase the query to have correct wording in a context of "
-                "machine-learning. Make sure to have the right spelling. Finally, only "
-                "provide a list of keywords separated by commas.\n\n"
+                "[INST] Extract a list of keywords from the query below for a context"
+                " of machine-learning using scikit-learn.\n\n"
                 f"query: {query}[/INST]"
             )
 
             # do not create a stream generator
             local_prompt_kwargs = prompt_kwargs.copy()
             local_prompt_kwargs["stream"] = False
-            logger.info("Prompting to get keywords from the query")
+            logger.info(f"Prompting to get keywords from the query:\n{prompt}")
             response = self.llm(prompt, **local_prompt_kwargs)
             keywords = response["choices"][0]["text"].strip()
             logger.info(f"Keywords: {keywords}")
