@@ -1,4 +1,3 @@
-import inspect
 import logging
 
 from sklearn.base import BaseEstimator
@@ -9,13 +8,6 @@ logger = logging.getLogger(__name__)
 
 class APIPromptingStrategy(BaseEstimator):
     """Prompting strategy for answering API-related query.
-
-    We use the following prompting strategy:
-
-    - If the retriever support a lexical query, we first extract the keywords from
-      the query and use them specifically for the lexical search. Use the full query
-      for the semantic search.
-    - If the retriever does not support a lexical query, we use the full query as-is.
 
     Once we retrieve the API-related context, we request to answer the query using the
     context.
@@ -43,35 +35,11 @@ class APIPromptingStrategy(BaseEstimator):
 
     def __call__(self, query, **prompt_kwargs):
         logger.info(f"Query: {query}")
-        signature_retriever = inspect.signature(self.api_retriever.query)
-        if "lexical_query" in signature_retriever.parameters:
-            logger.info(
-                f"Retriever {self.api_retriever.__class__.__name__} supports lexical"
-                " queries"
-            )
-            prompt = (
-                "[INST] Extract a list of keywords from the query below for a context"
-                " of machine-learning using scikit-learn. Only provide the keywords"
-                "separated by commas.\n\n"
-                f"query: {query}[/INST]"
-            )
-
-            # do not create a stream generator
-            local_prompt_kwargs = prompt_kwargs.copy()
-            local_prompt_kwargs["stream"] = False
-            logger.info(f"Prompting to get keywords from the query:\n{prompt}")
-            response = self.llm(prompt, **local_prompt_kwargs)
-            keywords = response["choices"][0]["text"].strip()
-            logger.info(f"Keywords: {keywords}")
-            context = self.api_retriever.query(
-                query=query, lexical_query=keywords, semantic_query=None
-            )
-        else:
-            logger.info(
-                f"Retriever {self.api_retriever.__class__.__name__} does not support"
-                " lexical queries"
-            )
-            context = self.api_retriever.query(query=query)
+        logger.info(
+            f"Retriever {self.api_retriever.__class__.__name__} does not support"
+            " lexical queries"
+        )
+        context = self.api_retriever.query(query=query)
         sources = set([api["source"] for api in context])
         context_query = "\n".join(
             f"source: {api['source']}\ncontent: {api['text']}\n" for api in context
