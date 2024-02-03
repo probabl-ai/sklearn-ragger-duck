@@ -27,6 +27,22 @@ def _api_path_to_api_url(path):
     return SKLEARN_API_URL + path.name
 
 
+def _merge_docstring(docstring):
+    merged_docstring = ""
+    for doc in docstring:
+        if doc.strip() == "":
+            merged_docstring += "\n"
+        else:
+            should_not_start_with_space = merged_docstring == "" or (
+                merged_docstring and merged_docstring[-1] == "\n"
+            )
+            if should_not_start_with_space:
+                merged_docstring += doc.strip()
+            else:
+                merged_docstring += f" {doc.strip()}"
+    return merged_docstring
+
+
 def _extract_function_doc_numpydoc(function, import_name, html_source):
     """Extract documentation from a function using `numpydoc`.
 
@@ -64,28 +80,31 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
         return
     extracted_doc = []
     if len(params) > 0:
+        # We merge both the parameters and the function signature since it leads to
+        # not a huge amount of text.
+        # chunk about the parameters of the class or function
         chunk_doc = (
             f"{import_name}\n"
             + f"The parameters of {function.__name__} with their default "
-            "values when known are:\n"
+            "values when known are: "
         )
         for param_name, param in params.items():
             if param.default is not param.empty:
-                chunk_doc += f"- {param_name} (default={param.default})\n"
+                chunk_doc += f"{param_name} (default={param.default}), "
             else:
-                chunk_doc += f"- {param_name}\n"
-        extracted_doc.append({"source": html_source, "text": chunk_doc})
+                chunk_doc += f"{param_name}, "
+        chunk_doc = chunk_doc[:-2] + ".\n"  # remove the last comma
+    else:
+        # only the header
+        chunk_doc = f"{import_name}\n"
     # chunk about the summary of the class or function
     if docstring["Summary"] or docstring["Extended Summary"]:
-        chunk_doc = (
-            f"{import_name}\n"
-            + f"The description of the {function.__name__} is as follow.\n"
-        )
+        chunk_doc += f"The description of the {function.__name__} is as follow.\n"
         if docstring["Summary"]:
-            summary = "\n".join(docstring["Summary"])
+            summary = _merge_docstring(docstring["Summary"])
             chunk_doc += f"{summary}\n"
         if docstring["Extended Summary"]:
-            summary = "\n".join(docstring["Extended Summary"])
+            summary = _merge_docstring(docstring["Extended Summary"])
             chunk_doc += f"{summary}"
         extracted_doc.append({"source": html_source, "text": chunk_doc})
     # chunks about the parameters of the class or function
@@ -94,11 +113,9 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
             types = re.sub(" +", " ", param_type)
             desc = "\n".join(param_desc)
             chunk_doc = (
-                f"{import_name}\n"
-                + f"{param_name} is a parameter of the class "
-                + f"{function.__name__}\n"
-                + f"types: {types}\n"
-                + f"description: {desc}"
+                f"Parameter {param_name} of {import_name}.\n"
+                + f"{param_name} is described as '{desc}' and has the following "
+                + f"type(s): {types}"
             )
             extracted_doc.append({"source": html_source, "text": chunk_doc})
     # chunks about the attributes if we have a class
@@ -107,11 +124,9 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
             types = re.sub(" +", " ", param_type)
             desc = "\n".join(param_desc)
             chunk_doc = (
-                f"{import_name}\n"
-                + f"{param_name} is an attribute of the class "
-                + f"{function.__name__}\n"
-                + f"types: {types}\n"
-                + f"description: {desc}"
+                f"Attribute {param_name} of {import_name}.\n"
+                + f"{param_name} is described as '{desc}' and has the following "
+                + f"type(s): {types}"
             )
             extracted_doc.append({"source": html_source, "text": chunk_doc})
     # chunks about the returns or yields if we have a function
@@ -121,11 +136,9 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
             types = re.sub(" +", " ", param_type)
             desc = "\n".join(param_desc)
             chunk_doc = (
-                f"{import_name}\n"
-                + f"{param_name} is returned by the function "
-                + f"{function.__name__}\n"
-                + f"types: {types}\n"
-                + f"description: {desc}"
+                f"{param_name} is returned by {import_name}.\n"
+                + f"{param_name} is described as '{desc}' and has the following "
+                + f"type(s): {types}"
             )
             extracted_doc.append({"source": html_source, "text": chunk_doc})
     # chunks about the see also
