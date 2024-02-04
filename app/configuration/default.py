@@ -12,9 +12,6 @@ CROSS_ENCODER_THRESHOLD = 2.0
 CROSS_ENCODER_MIN_TOP_K = 3
 CROSS_ENCODER_MAX_TOP_K = 20
 
-# Device parameters
-DEVICE = "mps"
-
 # LLM parameters
 LLM_PATH = "../models/mistral-7b-instruct-v0.1.Q6_K.gguf"
 TEMPERATURE = 0.1

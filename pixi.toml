@@ -10,31 +10,40 @@ homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
 readme = "README.md"
 
 [tasks]
-start-ragger-duck = { cmd = "uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
-train-retrievers = { cmd = "python train_retrievers.py", cwd = "scripts" }
 build-doc = { cmd = "make html", cwd = "doc" }
 test = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
 
 [dependencies]
 # Dependencies for training retrievers and inference with models
 beautifulsoup4 = "*"
-faiss-cpu = "*"
 joblib = "*"
 langchain = "*"
-llama-cpp-python = "*"
-pytorch = "*"
-scikit-learn = "*"
-sentence-transformers = "*"
+numpydoc = "*"
+scikit-learn = "1.3.2"
 # Dependencies for the web app
 fastapi = "*"
 uvicorn = "*"
 websockets = "*"
 # Dependencies for the documentation
-numpydoc = "*"
 pydata-sphinx-theme = "*"
 sphinx = "*"
 # Dependencies for testing
 pytest = "*"
 pytest-cov = "*"
 
-[pypi-dependencies]
+[feature.mps]
+platforms = ["osx-arm64"]
+channels = ["pytorch", "huggingface", "conda-forge"]
+
+[feature.mps.dependencies]
+faiss-cpu = "1.7.4"
+llama-cpp-python = "0.2.20"
+pytorch = "2.2.0"
+sentence-transformers = "2.3.1"
+
+[feature.mps.tasks]
+start-ragger-duck = { cmd = "DEVICE=mps uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
+
+[environments]
+mps = ["mps"]

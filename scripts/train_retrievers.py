@@ -8,6 +8,7 @@
 
 # %%
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -17,6 +18,7 @@ import joblib
 sys.path.append(str(Path(__file__).parent.parent))
 API_DOC = Path(config.API_DOC_PATH)
 USER_GUIDE_DOC = Path(config.USER_GUIDE_DOC_PATH)
+DEVICE = os.getenv("DEVICE", "cpu")
 
 logging.basicConfig(level=logging.INFO)
 
@@ -34,7 +36,7 @@ from ragger_duck.scraping import APINumPyDocExtractor
 embedding = SentenceTransformer(
     model_name_or_path="thenlper/gte-large",
     cache_folder=config.CACHE_PATH,
-    device=config.DEVICE,
+    device=DEVICE,
 )
 api_scraper = APINumPyDocExtractor()
 pipeline = Pipeline(
@@ -89,7 +91,7 @@ from ragger_duck.scraping import UserGuideDocExtractor
 embedding = SentenceTransformer(
     model_name_or_path="thenlper/gte-large",
     cache_folder=config.CACHE_PATH,
-    device=config.DEVICE,
+    device=DEVICE,
 )
 user_guide_scraper = UserGuideDocExtractor(chunk_size=700, chunk_overlap=10, n_jobs=-1)
 pipeline = Pipeline(

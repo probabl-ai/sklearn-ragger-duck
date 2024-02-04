@@ -1,6 +1,3 @@
-# Device on which the semantic retriever is trained
-DEVICE = "mps"  # {"cpu", "cuda", "mps"}
-
 # Path to the HTML API documentation
 API_DOC_PATH = (
     "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"

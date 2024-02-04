@@ -22,8 +22,6 @@ from schemas import WSMessage
 from ragger_duck.prompt import BasicPromptingStrategy
 from ragger_duck.retrieval import RetrieverReranker
 
-DEFAULT_PORT = 8123
-
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -35,6 +33,8 @@ config_module = (
 )
 logging.info(f"Configuration: {config_module}")
 conf = import_module(f"configuration.{config_module}")
+DEVICE = os.getenv("DEVICE", "cpu")
+logging.info(f"Device intended to be used: {DEVICE}")
 
 
 async def send(ws, msg: str, type: str):
@@ -50,7 +50,7 @@ async def startup_event():
     api_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
     user_guide_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
     user_guide_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
-    cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=conf.DEVICE)
+    cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=DEVICE)
     retriever = RetrieverReranker(
         retrievers=[
             api_semantic_retriever.set_params(top_k=conf.API_SEMANTIC_TOP_K),
@@ -70,7 +70,7 @@ async def startup_event():
 
     llm = Llama(
         model_path=conf.LLM_PATH,
-        device=conf.DEVICE,
+        device=DEVICE,
         n_gpu_layers=conf.GPU_LAYERS,
         n_threads=conf.N_THREADS,
         n_ctx=conf.CONTEXT_TOKENS,
@@ -116,6 +116,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
             prompt = payload["query"]
             start_type = "start"
+            logging.info(f"Getting info from websocket: {payload}")
 
             await send(websocket, "Analyzing prompt...", "info")
             agent.set_params(
@@ -145,9 +146,3 @@ async def websocket_endpoint(websocket: WebSocket):
         except Exception as e:
             logging.error(e)
             await send(websocket, "Sorry, something went wrong. Try again.", "error")
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=DEFAULT_PORT)
