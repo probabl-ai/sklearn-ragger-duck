@@ -123,7 +123,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 echo=False,
                 stream=True,
                 max_tokens=conf.MAX_RESPONSE_TOKENS,
-                temperature=conf.TEMPERATURE,
+                temperature=payload["temperature"],
             )
             for i in stream:
                 response_text = i.get("choices", [])[0].get("text", "")
