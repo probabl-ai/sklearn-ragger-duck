@@ -118,6 +118,10 @@ async def websocket_endpoint(websocket: WebSocket):
             start_type = "start"
 
             await send(websocket, "Analyzing prompt...", "info")
+            agent.set_params(
+                retriever__threshold=payload["cutoff"],
+                retriever__min_top_k=payload["min_top_k"],
+            )
             stream, sources = agent(
                 prompt,
                 echo=False,

@@ -40,6 +40,16 @@
                             <div id="tempValue">{{ conf.TEMPERATURE }}</div>&nbsp;&nbsp;<input type="range" min="0.0"
                                 max="2.0" step="0.05" value="{{ conf.TEMPERATURE }}" id="tempSlider">
                         </div>
+                        <div class="float-start" style="padding-top: 5px">
+                            <span id="cutoffLabel">Relevance search cut-off:&nbsp;</span>
+                            <div id="cutoffValue">{{ conf.CROSS_ENCODER_THRESHOLD }}</div>&nbsp;&nbsp;<input type="range" min="0.0"
+                                max="5.0" step="0.05" value="{{ conf.CROSS_ENCODER_THRESHOLD }}" id="cutoffSlider">
+                        </div>
+                        <div class="float-start" style="padding-top: 5px">
+                            <span id="minTopKLabel">Minimum Top K:&nbsp;</span>
+                            <div id="minTopKValue">{{ conf.CROSS_ENCODER_MIN_TOP_K }}</div>&nbsp;&nbsp;<input type="range" min="1"
+                                max="20" step="1" value="{{ conf.CROSS_ENCODER_MIN_TOP_K }}" id="minTopKSlider">
+                        </div>
                         <div class="float-end">
                             <button title="Send" id="send" type="submit" class="btn btn-primary" disabled>{{
                                 res.BUTTON_WAIT }}</button>

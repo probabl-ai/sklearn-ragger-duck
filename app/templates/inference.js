@@ -51,12 +51,17 @@ function sendQuery() {
     conversationStarted = true;
     var message = document.getElementById('messageText').value;
     var temp = document.getElementById('tempValue').innerHTML;
+    var cutoff = document.getElementById('cutoffValue').innerHTML;
+    var min_top_k = document.getElementById('minTopKValue').innerHTML;
+
     if (message === "") {
         return;
     }
     payload = {
         query: message,
-        temperature: parseFloat(temp)
+        temperature: parseFloat(temp),
+        cutoff: parseFloat(cutoff),
+        min_top_k: parseInt(min_top_k),
     }
     ws.send(JSON.stringify(payload));
     setButton("{{ res.BUTTON_PROCESSING }}", true)
@@ -223,10 +228,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
 
-    const slider = document.getElementById("tempSlider");
-    const label = document.getElementById("tempValue");
-    slider.addEventListener("input", () => {
-        label.innerText=slider.value;
+    const temperature_slider = document.getElementById("tempSlider");
+    const temperature_label = document.getElementById("tempValue");
+    temperature_slider.addEventListener("input", () => {
+        temperature_label.innerText=temperature_slider.value;
+    });
+    const cutoff_slider = document.getElementById("cutoffSlider");
+    const cutoff_label = document.getElementById("cutoffValue");
+    cutoff_slider.addEventListener("input", () => {
+        cutoff_label.innerText=cutoff_slider.value;
+    });
+    const min_top_k_slider = document.getElementById("minTopKSlider");
+    const min_top_k_label = document.getElementById("minTopKValue");
+    min_top_k_slider.addEventListener("input", () => {
+        min_top_k_label.innerText=min_top_k_slider.value;
     });
 
     const button = document.getElementById('send');
