@@ -4,21 +4,15 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-
+        environment: [py311, py312]
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - uses: prefix-dev/setup-pixi@v0.5.1
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pixi-version: v0.13.0
+          environments: ${{ matrix.environment }}
       - name: Run tests
-        run: pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck
+        run: pixi run test
