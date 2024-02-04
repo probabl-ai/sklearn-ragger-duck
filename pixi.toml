@@ -60,11 +60,6 @@ sentence-transformers = "2.3.1"
 start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
 
-[feature.py39.dependencies]
-python = "3.9.*"
-mkl = "2021"
-
 [environments]
 cpu = ["cpu"]
 mps = ["mps"]
-py39 = ["py39", "cpu"]
