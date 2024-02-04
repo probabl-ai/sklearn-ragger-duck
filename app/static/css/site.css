@@ -69,10 +69,17 @@ hr {
         display: inline-block !important;
         min-width: 30px;
     }
+    #maxTopKLabel {
+        display: inline;
+    }
+    #maxTopKValue {
+        display: inline-block !important;
+        min-width: 30px;
+    }
 }
 
 .control-slider-form {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -113,6 +120,19 @@ hr {
 }
 
 #minTopKLabel {
+    display: none;
+}
+
+#maxTopKSlider {
+    vertical-align: middle;
+    width:150px
+}
+
+#maxTopKValue {
+    display: none;
+}
+
+#maxTopKLabel {
     display: none;
 }
 

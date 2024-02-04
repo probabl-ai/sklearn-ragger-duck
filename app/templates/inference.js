@@ -53,6 +53,7 @@ function sendQuery() {
     var temp = document.getElementById('tempValue').innerHTML;
     var cutoff = document.getElementById('cutoffValue').innerHTML;
     var min_top_k = document.getElementById('minTopKValue').innerHTML;
+    var max_top_k = document.getElementById('maxTopKValue').innerHTML;
 
     if (message === "") {
         return;
@@ -62,6 +63,7 @@ function sendQuery() {
         temperature: parseFloat(temp),
         cutoff: parseFloat(cutoff),
         min_top_k: parseInt(min_top_k),
+        max_top_k: parseInt(max_top_k),
     }
     ws.send(JSON.stringify(payload));
     setButton("{{ res.BUTTON_PROCESSING }}", true)
@@ -242,6 +244,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const min_top_k_label = document.getElementById("minTopKValue");
     min_top_k_slider.addEventListener("input", () => {
         min_top_k_label.innerText=min_top_k_slider.value;
+    });
+    const max_top_k_slider = document.getElementById("maxTopKSlider");
+    const max_top_k_label = document.getElementById("maxTopKValue");
+    max_top_k_slider.addEventListener("input", () => {
+        max_top_k_label.innerText=max_top_k_slider.value;
     });
 
     const button = document.getElementById('send');

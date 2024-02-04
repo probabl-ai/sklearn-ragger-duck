@@ -122,6 +122,7 @@ async def websocket_endpoint(websocket: WebSocket):
             agent.set_params(
                 retriever__threshold=payload["cutoff"],
                 retriever__min_top_k=payload["min_top_k"],
+                retriever__max_top_k=payload["max_top_k"],
             )
             stream, sources = agent(
                 prompt,
