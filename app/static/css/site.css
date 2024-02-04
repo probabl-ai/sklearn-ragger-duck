@@ -13,11 +13,6 @@ hr {
     margin-top: 20px;
 }
 
-
-#tempLabel {
-    display: none;
-}
-
 .token-count {
     position: absolute;
     bottom: 2px;
@@ -60,6 +55,26 @@ hr {
         display: inline-block !important;
         min-width: 30px;
     }
+    #cutoffLabel {
+        display: inline;
+    }
+    #cutoffValue {
+        display: inline-block !important;
+        min-width: 30px;
+    }
+    #minTopKLabel {
+        display: inline;
+    }
+    #minTopKValue {
+        display: inline-block !important;
+        min-width: 30px;
+    }
+}
+
+.control-slider-form {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 #tempSlider {
@@ -68,6 +83,36 @@ hr {
 }
 
 #tempValue {
+    display: none;
+}
+
+#tempLabel {
+    display: none;
+}
+
+#cutoffSlider {
+    vertical-align: middle;
+    width:150px
+}
+
+#cutoffValue {
+    display: none;
+}
+
+#cutoffLabel {
+    display: none;
+}
+
+#minTopKSlider {
+    vertical-align: middle;
+    width:150px
+}
+
+#minTopKValue {
+    display: none;
+}
+
+#minTopKLabel {
     display: none;
 }
 
