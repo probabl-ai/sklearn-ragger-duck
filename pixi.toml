@@ -81,7 +81,10 @@ train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scrip
 [feature.margaret]
 platforms = ["linux-64"]
 channels = ["nvidia", {channel = "pytorch", priority = -1}]
-system-requirements = { cuda = "11.7" }
+
+[feature.margaret.system-requirements]
+linux = "4.18"
+cuda = "11.7"
 
 [feature.margaret.activation]
 # set environment variable for building llmama-cpp via pip
