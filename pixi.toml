@@ -54,5 +54,29 @@ llama-cpp-python = "==0.2.24"
 start-ragger-duck = { cmd = "DEVICE=mps uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
 
+# CPU-specfic configuration
+[feature.cpu]
+platforms = ["linux-64"]
+
+[feature.cpu.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/linux-cpu-activate.sh"]
+
+[feature.cpu.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+cpuonly = { version = "*", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+sentence-transformers = "2.6.0"
+
+[feature.cpu.pypi-dependencies]
+llama-cpp-python = "*"
+
+[feature.cpu.tasks]
+start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
+
 [environments]
 mps = ["mps"]
+cpu = ["cpu"]
