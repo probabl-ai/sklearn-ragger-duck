@@ -32,6 +32,9 @@ sphinx = "*"
 pytest = "*"
 pytest-cov = "*"
 
+[system-requirements]
+linux = "4.18"
+
 # MPS-specfic configuration
 [feature.mps]
 platforms = ["osx-arm64"]
@@ -47,8 +50,8 @@ pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-[feature.mps.pypi-dependencies]
-llama-cpp-python = "*"
+# [feature.mps.pypi-dependencies]
+# llama-cpp-python = "*"
 
 [feature.mps.tasks]
 start-ragger-duck = { cmd = "DEVICE=mps uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
@@ -80,11 +83,8 @@ train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scrip
 # margaret-specfic configuration for CUDA 11.7
 [feature.margaret]
 platforms = ["linux-64"]
+system-requirements = { cuda = "11.7" }
 channels = ["nvidia", {channel = "pytorch", priority = -1}]
-
-[feature.margaret.system-requirements]
-linux = "4.18"
-cuda = "11.7"
 
 [feature.margaret.activation]
 # set environment variable for building llmama-cpp via pip
@@ -93,13 +93,16 @@ scripts = ["build_scripts/margaret-activate.sh"]
 [feature.margaret.dependencies]
 faiss-cpu = { version = "1.8.0", channel = "pytorch" }
 libfaiss = { version = "1.8.0", channel = "pytorch" }
+cuda-nvcc = { version = "11.7.*", channel = "nvidia" }
+cuda-toolkit = { version = "11.4.*", channel = "nvidia" }
+cuda-runtime = { version = "11.7.*", channel = "nvidia" }
 pytorch = { version = "2.0.1", channel = "pytorch" }
 pytorch-cuda = { version = "11.7.*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-# [feature.margaret.pypi-dependencies]
-# llama-cpp-python = "*"
+[feature.margaret.pypi-dependencies]
+llama-cpp-python = "*"
 
 [feature.margaret.tasks]
 start-ragger-duck = { cmd = "DEVICE=cuda uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
