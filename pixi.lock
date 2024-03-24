@@ -36,7 +36,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/diskcache-5.6.3-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/docutils-0.20.1-py39hf3d152e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.2.0-pyhd8ed1ab_2.conda
-      - conda: https://conda.anaconda.org/pytorch/linux-64/faiss-cpu-1.7.4-py3.9_h8c27c75_0_cpu.tar.bz2
+      - conda: https://conda.anaconda.org/pytorch/linux-64/faiss-cpu-1.8.0-py3.9_h9d89a2e_0_cpu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/fastapi-0.110.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/pytorch/linux-64/ffmpeg-4.3-hf484d3e_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/filelock-3.13.1-pyhd8ed1ab_0.conda
@@ -72,7 +72,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-1_h86c2bf4_netlib.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-5_h92ddd45_netlib.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.17-h0b41bf4_0.conda
-      - conda: https://conda.anaconda.org/pytorch/linux-64/libfaiss-1.7.4-h2bc3f7f_0_cpu.tar.bz2
+      - conda: https://conda.anaconda.org/pytorch/linux-64/libfaiss-1.8.0-hf65b397_0_cpu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.4.2-h7f98852_5.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_5.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_5.conda
@@ -604,7 +604,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/diskcache-5.6.3-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/docutils-0.20.1-py39h2804cbe_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.2.0-pyhd8ed1ab_2.conda
-      - conda: https://conda.anaconda.org/pytorch/osx-arm64/faiss-cpu-1.7.4-py3.9_h34215f8_0_cpu.tar.bz2
+      - conda: https://conda.anaconda.org/pytorch/osx-arm64/faiss-cpu-1.8.0-py3.9_hbe593ad_0_cpu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/fastapi-0.110.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/filelock-3.13.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/freetype-2.12.1-hadb7bae_2.conda
@@ -635,7 +635,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libcblas-3.9.0-21_osxarm64_openblas.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libcxx-16.0.6-h4653b0c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libdeflate-1.20-h93a5062_0.conda
-      - conda: https://conda.anaconda.org/pytorch/osx-arm64/libfaiss-1.7.4-hcb8d3e5_0_cpu.tar.bz2
+      - conda: https://conda.anaconda.org/pytorch/osx-arm64/libfaiss-1.8.0-hcb8d3e5_0_cpu.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.4.2-h3422bc3_5.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libgfortran-5.0.0-13_2_0_hd922786_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libgfortran5-13.2.0-hf226fd6_3.conda
@@ -666,6 +666,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/numpy-1.26.4-py39h7aa2656_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/numpydoc-1.6.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/openapi-schema-pydantic-1.2.4-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openblas-0.3.26-openmp_h55c453e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openjpeg-2.5.2-h9f1df11_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.2.1-h0d3ecfb_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/orjson-3.9.15-py39h8fec3ad_0.conda
@@ -1569,40 +1570,42 @@ packages:
   timestamp: 1704921321122
 - kind: conda
   name: faiss-cpu
-  version: 1.7.4
-  build: py3.9_h34215f8_0_cpu
-  subdir: osx-arm64
-  url: https://conda.anaconda.org/pytorch/osx-arm64/faiss-cpu-1.7.4-py3.9_h34215f8_0_cpu.tar.bz2
-  sha256: 2fe4545643df50784a6faab4d4aa786447d689f5272b6782a20945afa4902081
-  md5: 98a696d548992dddf99053cd6955bcb3
-  depends:
-  - libcxx >=14.0.6
-  - libfaiss 1.7.4 hcb8d3e5_0_cpu
-  - numpy >=1.16,<2
-  - python >=3.9,<3.10.0a0
-  license: MIT
-  license_family: MIT
-  size: 1263330
-  timestamp: 1681998279053
-- kind: conda
-  name: faiss-cpu
-  version: 1.7.4
-  build: py3.9_h8c27c75_0_cpu
+  version: 1.8.0
+  build: py3.9_h9d89a2e_0_cpu
   subdir: linux-64
-  url: https://conda.anaconda.org/pytorch/linux-64/faiss-cpu-1.7.4-py3.9_h8c27c75_0_cpu.tar.bz2
-  sha256: c21edb516dee9166094d556a9c9c6e3a719787a231499474643929c30a53cdd0
-  md5: 186afb4ac7768e49032572b087b5bfbb
+  url: https://conda.anaconda.org/pytorch/linux-64/faiss-cpu-1.8.0-py3.9_h9d89a2e_0_cpu.tar.bz2
+  sha256: 8e0601ec6bc8dd0c9ea3d7da6735f74ddd9eaebe86380eb9781acab630445fb8
+  md5: d815fd966f005adbe932b4f251fde3e3
   depends:
   - __glibc >=2.17,<3.0.a0
-  - libfaiss 1.7.4 h2bc3f7f_0_cpu
+  - libfaiss 1.8.0 hf65b397_0_cpu
   - libgcc-ng >=11.2.0
   - libstdcxx-ng >=11.2.0
-  - numpy >=1.16,<2
+  - numpy >=1.19,<2
+  - packaging
   - python >=3.9,<3.10.0a0
   license: MIT
   license_family: MIT
-  size: 2895334
-  timestamp: 1681999470004
+  size: 4584601
+  timestamp: 1709245027856
+- kind: conda
+  name: faiss-cpu
+  version: 1.8.0
+  build: py3.9_hbe593ad_0_cpu
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/pytorch/osx-arm64/faiss-cpu-1.8.0-py3.9_hbe593ad_0_cpu.tar.bz2
+  sha256: 3c249979084e9d390829fd1e7f23515ea0371cc93c2bee9cb6d9134ce8419151
+  md5: 6adede44490598360f0004aa5aa635ed
+  depends:
+  - libcxx >=14.0.6
+  - libfaiss 1.8.0 hcb8d3e5_0_cpu
+  - numpy >=1.19,<2
+  - packaging
+  - python >=3.9,<3.10.0a0
+  license: MIT
+  license_family: MIT
+  size: 1381250
+  timestamp: 1709244576409
 - kind: conda
   name: fastapi
   version: 0.110.0
@@ -2924,35 +2927,37 @@ packages:
   timestamp: 1711196723486
 - kind: conda
   name: libfaiss
-  version: 1.7.4
-  build: h2bc3f7f_0_cpu
+  version: 1.8.0
+  build: hcb8d3e5_0_cpu
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/pytorch/osx-arm64/libfaiss-1.8.0-hcb8d3e5_0_cpu.tar.bz2
+  sha256: da8275589171cfde6f5d3ce6e6c87603402119cae54c622a4ac6515f36303266
+  md5: efaad9a9f14b6e8f1ee88d4fb28aee1c
+  depends:
+  - libcxx >=14.0.6
+  - llvm-openmp >=14.0.6
+  - openblas
+  license: MIT
+  license_family: MIT
+  size: 1487184
+  timestamp: 1709244427545
+- kind: conda
+  name: libfaiss
+  version: 1.8.0
+  build: hf65b397_0_cpu
   subdir: linux-64
-  url: https://conda.anaconda.org/pytorch/linux-64/libfaiss-1.7.4-h2bc3f7f_0_cpu.tar.bz2
-  sha256: 5d0bcdaffb6cc1522cd208faa036f3b8711f2519943d875ea225bfb03c69a0c3
-  md5: ce16eae7ef81e12a8d21ccf50682e0ec
+  url: https://conda.anaconda.org/pytorch/linux-64/libfaiss-1.8.0-hf65b397_0_cpu.tar.bz2
+  sha256: 54f18d732998ff35e4499e65656f323c33a7f05ecdd6022dc31a845a92c89823
+  md5: e1346e7eabe39b6cdd57571c1a439415
   depends:
   - __glibc >=2.17,<3.0.a0
   - libgcc-ng >=11.2.0
   - libstdcxx-ng >=11.2.0
+  - mkl 2023.*
   license: MIT
   license_family: MIT
-  size: 3197526
-  timestamp: 1681998943845
-- kind: conda
-  name: libfaiss
-  version: 1.7.4
-  build: hcb8d3e5_0_cpu
-  subdir: osx-arm64
-  url: https://conda.anaconda.org/pytorch/osx-arm64/libfaiss-1.7.4-hcb8d3e5_0_cpu.tar.bz2
-  sha256: 17be33b6884391d49c0ee9c12d31ad77550d28a6da3a3079cae70ea1cc2e4120
-  md5: d1e2ae7a5058b7d34736c47b2cc66ee6
-  depends:
-  - libcxx >=14.0.6
-  - llvm-openmp >=14.0.6
-  license: MIT
-  license_family: MIT
-  size: 1297487
-  timestamp: 1681998197218
+  size: 5406333
+  timestamp: 1709244688895
 - kind: conda
   name: libffi
   version: 3.4.2
@@ -4276,6 +4281,23 @@ packages:
   license: Apache-2.0 AND MIT
   size: 41555
   timestamp: 1681131031579
+- kind: conda
+  name: openblas
+  version: 0.3.26
+  build: openmp_h55c453e_0
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/openblas-0.3.26-openmp_h55c453e_0.conda
+  sha256: 661037c7aadaad986094fe34a3f98bdfcb8aefd7a34073513044175d55c58782
+  md5: f8d295e1f77375dfa95b437655ee5860
+  depends:
+  - libgfortran 5.*
+  - libgfortran5 >=12.3.0
+  - libopenblas 0.3.26 openmp_h6c19121_0
+  - llvm-openmp >=16.0.6
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 5948852
+  timestamp: 1704950259316
 - kind: conda
   name: openh264
   version: 2.1.1
