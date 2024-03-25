@@ -1227,7 +1227,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.5-h4f39d0f_0.conda
       - pypi: https://files.pythonhosted.org/packages/3f/27/4570e78fc0bf5ea0ca45eb1de3818a23787af9b390c0b0a0033a1b8236f9/diskcache-5.6.3-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/a9/83/e3b7405f36b2f3dd4ae76c32e9331232c5692078deda7f84c1f0ede071ab/llama_cpp_python-0.2.27.tar.gz
+      - pypi: https://files.pythonhosted.org/packages/8e/ae/551f28037d9a49693f7b09b0e22912be4e839b1af5f4ae6ab721162a37a4/llama_cpp_python-0.2.57.tar.gz
 packages:
 - kind: conda
   name: _libgcc_mutex
@@ -6273,6 +6273,7 @@ packages:
   sha256: 6d16cccb141b6bb05c38107b335089046664ea1d6611601d3f6e7e4227a99925
   md5: 97efeaeba2a9a82bdf46fc6d025e3a57
   license: MIT
+  license_family: MIT
   size: 54481
   timestamp: 1711196723486
 - kind: conda
@@ -6286,6 +6287,7 @@ packages:
   depends:
   - libgcc-ng >=12
   license: MIT
+  license_family: MIT
   size: 71500
   timestamp: 1711196523408
 - kind: conda
@@ -8129,13 +8131,14 @@ packages:
   timestamp: 1686575217516
 - kind: pypi
   name: llama-cpp-python
-  version: 0.2.27
-  url: https://files.pythonhosted.org/packages/a9/83/e3b7405f36b2f3dd4ae76c32e9331232c5692078deda7f84c1f0ede071ab/llama_cpp_python-0.2.27.tar.gz
-  sha256: 4f7228c38d0618ec80a76130ab4720693ea09efd5cd46920e075cadf00e6d060
+  version: 0.2.57
+  url: https://files.pythonhosted.org/packages/8e/ae/551f28037d9a49693f7b09b0e22912be4e839b1af5f4ae6ab721162a37a4/llama_cpp_python-0.2.57.tar.gz
+  sha256: bd81dbc4bc03b7deca3be0496330705d4c53bba726f7c3a47d556c7ec2452304
   requires_dist:
   - typing-extensions >=4.5.0
   - numpy >=1.20.0
   - diskcache >=5.6.1
+  - jinja2 >=2.11.3
   - uvicorn >=0.22.0 ; extra == 'server'
   - fastapi >=0.100.0 ; extra == 'server'
   - pydantic-settings >=2.0.1 ; extra == 'server'
@@ -12024,6 +12027,7 @@ packages:
   - python_abi 3.11.* *_cp311
   - typing-extensions >=4.6.0
   license: MIT
+  license_family: MIT
   size: 3514885
   timestamp: 1711289942068
 - kind: conda
@@ -12040,6 +12044,7 @@ packages:
   - python_abi 3.12.* *_cp312
   - typing-extensions >=4.6.0
   license: MIT
+  license_family: MIT
   size: 3431577
   timestamp: 1711290101189
 - kind: conda
@@ -12057,6 +12062,7 @@ packages:
   - python_abi 3.12.* *_cp312
   - typing-extensions >=4.6.0
   license: MIT
+  license_family: MIT
   size: 3445055
   timestamp: 1711289941043
 - kind: conda
@@ -12074,6 +12080,7 @@ packages:
   - python_abi 3.12.* *_cp312
   - typing-extensions >=4.6.0
   license: MIT
+  license_family: MIT
   size: 3459400
   timestamp: 1711290154212
 - kind: conda
@@ -12091,6 +12098,7 @@ packages:
   - python_abi 3.12.* *_cp312
   - typing-extensions >=4.6.0
   license: MIT
+  license_family: MIT
   purls:
   - pkg:pypi/sqlalchemy
   size: 3459400

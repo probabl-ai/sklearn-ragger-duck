@@ -53,7 +53,7 @@ sentence-transformers = "2.6.0"
 [feature.mps.pypi-dependencies]
 # the latest version requires xcode 15.2
 # xcode 15.3 that is the latest release is buggy
-llama-cpp-python = "==0.2.27"
+llama-cpp-python = "*"
 
 [feature.mps.tasks]
 start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
