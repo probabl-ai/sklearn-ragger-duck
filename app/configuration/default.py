@@ -1,3 +1,5 @@
+import os
+
 # Retriever parameters
 API_SEMANTIC_RETRIEVER_PATH = "../models/api_semantic_retrieval.joblib"
 API_SEMANTIC_TOP_K = 5
@@ -21,4 +23,4 @@ REPETATION_PENALTY = 1.176
 CONTEXT_TOKENS = 8192
 MAX_RESPONSE_TOKENS = 8192
 N_THREADS = 6
-GPU_LAYERS = 1
+GPU_LAYERS = int(os.getenv("GPU_LAYERS", 1))

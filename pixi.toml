@@ -50,11 +50,13 @@ pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-# [feature.mps.pypi-dependencies]
-# llama-cpp-python = "*"
+[feature.mps.pypi-dependencies]
+# the latest version requires xcode 15.2
+# xcode 15.3 that is the latest release is buggy
+llama-cpp-python = "==0.2.27"
 
 [feature.mps.tasks]
-start-ragger-duck = { cmd = "DEVICE=mps uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
 
 # CPU-specfic configuration
@@ -101,11 +103,11 @@ pytorch-cuda = { version = "11.7.*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-[feature.margaret.pypi-dependencies]
-llama-cpp-python = "*"
+# [feature.margaret.pypi-dependencies]
+# llama-cpp-python = "*"
 
 [feature.margaret.tasks]
-start-ragger-duck = { cmd = "DEVICE=cuda uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+start-ragger-duck = { cmd = "DEVICE=cuda GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cuda python train_retrievers.py", cwd = "scripts" }
 
 [environments]
