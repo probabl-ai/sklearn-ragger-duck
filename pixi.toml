@@ -55,10 +55,6 @@ sentence-transformers = "2.6.0"
 # xcode 15.3 that is the latest release is buggy
 llama-cpp-python = "*"
 
-[feature.mps.tasks]
-start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
-train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
-
 # CPU-specfic configuration
 [feature.cpu]
 platforms = ["linux-64"]
@@ -77,10 +73,6 @@ sentence-transformers = "2.6.0"
 
 # [feature.cpu.pypi-dependencies]
 # llama-cpp-python = "*"
-
-[feature.cpu.tasks]
-start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
-train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
 
 # margaret-specfic configuration for CUDA 11.7
 [feature.margaret]
@@ -106,11 +98,46 @@ sentence-transformers = "2.6.0"
 # [feature.margaret.pypi-dependencies]
 # llama-cpp-python = "*"
 
-[feature.margaret.tasks]
+# scaleway-specfic configuration for CUDA 12.4
+[feature.scaleway]
+platforms = ["linux-64"]
+system-requirements = { cuda = "12.1" }
+channels = ["nvidia", {channel = "pytorch", priority = -1}]
+
+[feature.scaleway.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/margaret-activate.sh"]
+
+[feature.scaleway.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+cuda-nvcc = { version = "12.1.*", channel = "nvidia" }
+cuda-toolkit = { version = "12.1.*", channel = "nvidia" }
+cuda-runtime = { version = "12.1.*", channel = "nvidia" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+pytorch-cuda = { version = "12.1.*", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+sentence-transformers = "2.6.0"
+
+# [feature.scaleway.pypi-dependencies]
+# llama-cpp-python = "*"
+
+# tasks per type of hardware
+
+[feature.cpu.tasks]
+start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
+
+[feature.mps.tasks]
+start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
+
+[feature.cuda.tasks]
 start-ragger-duck = { cmd = "DEVICE=cuda GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cuda python train_retrievers.py", cwd = "scripts" }
 
 [environments]
 mps = ["mps"]
 cpu = ["cpu"]
-margaret = ["margaret"]
+margaret = ["margaret", "cuda"]
+scaleway = ["scaleway", "cuda"]
