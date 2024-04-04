@@ -1,4 +1,5 @@
 """Utilities to scrape User Guide documentation."""
+
 import logging
 import re
 from itertools import chain
@@ -74,13 +75,16 @@ def extract_user_guide_doc_from_single_file(html_file):
     }
 
 
-def _extract_user_guide_doc(user_guide_doc_folder):
+def _extract_user_guide_doc(user_guide_doc_folder, black_listed_folders):
     """Extract text from each HTML User Guide files from a folder
 
     Parameters
     ----------
     user_guide_doc_folder : :class:`pathlib.Path`
         The path to the User Guide documentation folder.
+
+    black_listed_folders : None or list of str
+        A list of folders to exclude from the HTML pages to process.
 
     Returns
     -------
@@ -93,10 +97,15 @@ def _extract_user_guide_doc(user_guide_doc_folder):
             "The User Guide documentation folder should be a pathlib.Path object. Got "
             f"{user_guide_doc_folder!r}."
         )
-    return [
-        extract_user_guide_doc_from_single_file(html_file)
-        for html_file in user_guide_doc_folder.glob("*.html")
-    ]
+
+    result = []
+    for html_file in user_guide_doc_folder.rglob("*.html"):
+        if black_listed_folders is not None:
+            if any(folder in str(html_file) for folder in black_listed_folders):
+                continue
+        result.append(extract_user_guide_doc_from_single_file(html_file))
+
+    return result
 
 
 class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
@@ -106,6 +115,10 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
 
     Parameters
     ----------
+    folders_to_exclude : list of str, default=None
+        A list of strings corresponding to folders name to exclude from the HTML pages
+        to process.
+
     chunk_size : int or None, default=300
         The size of the chunks to split the text into. If None, the text is not chunked.
 
@@ -124,12 +137,16 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
     """
 
     _parameter_constraints = {
+        "folders_to_exclude": [None, list],
         "chunk_size": [Interval(Integral, left=1, right=None, closed="left"), None],
         "chunk_overlap": [Interval(Integral, left=0, right=None, closed="left")],
         "n_jobs": [Integral, None],
     }
 
-    def __init__(self, *, chunk_size=300, chunk_overlap=50, n_jobs=None):
+    def __init__(
+        self, *, folders_to_exclude=None, chunk_size=300, chunk_overlap=50, n_jobs=None
+    ):
+        self.folders_to_exclude = folders_to_exclude
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.n_jobs = n_jobs
@@ -183,7 +200,9 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
                 chain.from_iterable(
                     Parallel(n_jobs=self.n_jobs, return_as="generator")(
                         delayed(_chunk_document)(self.text_splitter_, document)
-                        for document in _extract_user_guide_doc(X)
+                        for document in _extract_user_guide_doc(
+                            X, self.folders_to_exclude
+                        )
                     )
                 )
             )

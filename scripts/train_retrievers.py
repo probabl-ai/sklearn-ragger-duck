@@ -18,6 +18,7 @@ import joblib
 sys.path.append(str(Path(__file__).parent.parent))
 API_DOC = Path(config.API_DOC_PATH)
 USER_GUIDE_DOC = Path(config.USER_GUIDE_DOC_PATH)
+USER_GUIDE_EXCLUDE_FOLDERS = config.USER_GUIDE_EXCLUDE_FOLDERS
 DEVICE = os.getenv("DEVICE", "cpu")
 
 logging.basicConfig(level=logging.INFO)
@@ -93,7 +94,12 @@ embedding = SentenceTransformer(
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )
-user_guide_scraper = UserGuideDocExtractor(chunk_size=700, chunk_overlap=10, n_jobs=-1)
+user_guide_scraper = UserGuideDocExtractor(
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
+    chunk_size=700,
+    chunk_overlap=10,
+    n_jobs=-1,
+)
 pipeline = Pipeline(
     steps=[
         ("extractor", user_guide_scraper),
@@ -115,7 +121,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 from ragger_duck.retrieval import BM25Retriever
 
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
-user_guide_scraper = UserGuideDocExtractor(chunk_size=700, chunk_overlap=10, n_jobs=-1)
+user_guide_scraper = UserGuideDocExtractor(
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
+    chunk_size=700,
+    chunk_overlap=10,
+    n_jobs=-1,
+)
 pipeline = Pipeline(
     steps=[
         ("extractor", user_guide_scraper),
