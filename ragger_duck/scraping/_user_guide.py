@@ -61,8 +61,10 @@ def extract_user_guide_doc_from_single_file(html_file):
     with open(html_file, "r") as file:
         soup = BeautifulSoup(file, "html.parser")
 
-    # The documentation in the user guide is within a "section" tag.
-    text = soup.find("section").get_text("")
+    if soup.find("section") is None:
+        text = soup.get_text("")
+    else:
+        text = soup.find("section").get_text("")
     # Remove line breaks within a paragraph
     newline = re.compile(r"\n\s*")
     text = newline.sub(r"\n", text)
