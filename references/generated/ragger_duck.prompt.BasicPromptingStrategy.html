@@ -465,9 +465,10 @@ document.write(`
 <h1>BasicPromptingStrategy<a class="headerlink" href="#basicpromptingstrategy" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ragger_duck.prompt.BasicPromptingStrategy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.prompt.</span></span><span class="sig-name descname"><span class="pre">BasicPromptingStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retriever</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.BasicPromptingStrategy" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ragger_duck.prompt.</span></span><span class="sig-name descname"><span class="pre">BasicPromptingStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_retrieved_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.BasicPromptingStrategy" title="Link to this definition">#</a></dt>
 <dd><p>Prompting strategy for answering a query.</p>
-<p>Once we retrieve the context, we request to answer the query using the context.</p>
+<p>Once we retrieve the context, we request to answer the query using the context.
+We allow to not use the retrieved context to answer the query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -477,6 +478,8 @@ a <code class="docutils literal notranslate"><span class="pre">__call__</span></
 </dd>
 <dt><strong>retriever</strong><span class="classifier">retriever instance</span></dt><dd><p>The retriever to use for retrieving the context. We expect the retriever to
 implement a <code class="docutils literal notranslate"><span class="pre">query</span></code> method.</p>
+</dd>
+<dt><strong>use_retrieved_context</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to use the retriever to retrieve the context before prompting.</p>
 </dd>
 </dl>
 </dd>
