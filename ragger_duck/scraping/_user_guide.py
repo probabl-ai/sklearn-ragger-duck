@@ -14,7 +14,11 @@ from sklearn.utils._param_validation import Interval
 
 from ._shared import _chunk_document
 
-SKLEARN_USER_GUIDE_URL = "https://scikit-learn.org/stable/modules/"
+SKLEARN_USER_GUIDE_URL = {
+    "default": "https://scikit-learn.org/stable/",
+    "computing.html": "https://scikit-learn.org/stable/computing/",
+    "datasets.html": "https://scikit-learn.org/stable/datasets/",
+}
 loogger = logging.getLogger(__name__)
 
 
@@ -31,7 +35,9 @@ def _user_guide_path_to_user_guide_url(path):
     str
         The User Guide URL.
     """
-    return SKLEARN_USER_GUIDE_URL + path.name
+    if path.name in SKLEARN_USER_GUIDE_URL:
+        return SKLEARN_USER_GUIDE_URL[path.name]
+    return SKLEARN_USER_GUIDE_URL["default"] + path.name
 
 
 def extract_user_guide_doc_from_single_file(html_file):
@@ -64,8 +70,9 @@ def extract_user_guide_doc_from_single_file(html_file):
     with open(html_file, "r") as file:
         soup = BeautifulSoup(file, "html.parser")
 
-    if soup.find("section") is not None:
-        text = soup.find("section").get_text("")
+    text = soup.find("section")
+    if text is not None:
+        text = text.get_text("")
     else:
         return {}
     # Remove line breaks within a paragraph

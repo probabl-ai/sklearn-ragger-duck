@@ -7,7 +7,19 @@ API_DOC_PATH = (
 USER_GUIDE_DOC_PATH = (
     "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable"
 )
-USER_GUIDE_EXCLUDE_FOLDERS = ["modules/generated", "auto_examples/", "tutorial/"]
+USER_GUIDE_EXCLUDE_FOLDERS = [
+    "_downloads/",
+    "_images/",
+    "_sources/",
+    "_static/",
+    "auto_examples/",
+    "binder/",
+    "modules/generated",
+    "notebooks/",
+    "sg_execution_times",
+    "testimonials/",
+    "tutorial/",
+]
 
 # Path to cache the embedding and models
 CACHE_PATH = "../models"
