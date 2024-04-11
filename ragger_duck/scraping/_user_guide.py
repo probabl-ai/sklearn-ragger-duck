@@ -48,6 +48,9 @@ def extract_user_guide_doc_from_single_file(html_file):
     -------
     dict
         A dictionary containing the source and text of the User Guide documentation.
+        The dictionary is an empty dictionary if no section was found in the HTML file
+        meaning that it does not follow the template from a scikit-learn user guide
+        page.
     """
     if not isinstance(html_file, Path):
         raise ValueError(
@@ -61,10 +64,10 @@ def extract_user_guide_doc_from_single_file(html_file):
     with open(html_file, "r") as file:
         soup = BeautifulSoup(file, "html.parser")
 
-    if soup.find("section") is None:
+    if soup.find("section") is not None:
         text = soup.get_text("")
     else:
-        text = soup.find("section").get_text("")
+        return {}
     # Remove line breaks within a paragraph
     newline = re.compile(r"\n\s*")
     text = newline.sub(r"\n", text)
@@ -106,7 +109,10 @@ def _extract_user_guide_doc(user_guide_doc_folder, black_listed_folders):
         if black_listed_folders is not None:
             if any(folder in str(html_file) for folder in black_listed_folders):
                 continue
-        result.append(extract_user_guide_doc_from_single_file(html_file))
+        extracted_info = extract_user_guide_doc_from_single_file(html_file)
+        if extracted_info:
+            # empty dictionary if the extraction failed to find a section tag
+            result.append(extracted_info)
 
     return result
 
