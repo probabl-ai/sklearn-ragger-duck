@@ -48,8 +48,8 @@ async def startup_event():
 
     api_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
     api_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
-    user_guide_semantic_retriever = joblib.load(conf.API_SEMANTIC_RETRIEVER_PATH)
-    user_guide_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
+    user_guide_semantic_retriever = joblib.load(conf.USER_GUIDE_SEMANTIC_RETRIEVER_PATH)
+    user_guide_lexical_retriever = joblib.load(conf.USER_GUIDE_LEXICAL_RETRIEVER_PATH)
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=DEVICE)
     retriever = RetrieverReranker(
         retrievers=[
@@ -136,8 +136,10 @@ async def websocket_endpoint(websocket: WebSocket):
                 answer_type = start_type if response_complete == "" else "stream"
                 response_complete += response_text
                 await send(websocket, response_text, answer_type)
-            contextual_sources = "\n".join([f"<{src}>" for src in sources])
-            response_complete += "\n\nContextual source(s):\n" + contextual_sources
+            contextual_sources = "<br/>".join([f"<{src}>" for src in sources])
+            response_complete += (
+                "<br/><br/>Contextual source(s):<br/>" + contextual_sources
+            )
             await send(websocket, response_complete, start_type)
 
             await send(websocket, "", "end")
