@@ -49,6 +49,7 @@ function sendQuery() {
     if (localCommandExecuted()) return;
     if (!ws) return;
     conversationStarted = true;
+    var with_rag = document.getElementById('withRag').checked;
     var message = document.getElementById('messageText').value;
     var temp = document.getElementById('tempValue').innerHTML;
     var cutoff = document.getElementById('cutoffValue').innerHTML;
@@ -64,6 +65,7 @@ function sendQuery() {
         cutoff: parseFloat(cutoff),
         min_top_k: parseInt(min_top_k),
         max_top_k: parseInt(max_top_k),
+        with_rag: with_rag,
     }
     ws.send(JSON.stringify(payload));
     setButton("{{ res.BUTTON_PROCESSING }}", true)

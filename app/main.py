@@ -120,6 +120,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
             await send(websocket, "Analyzing prompt...", "info")
             agent.set_params(
+                use_retrieved_context=payload["with_rag"],
                 retriever__threshold=payload["cutoff"],
                 retriever__min_top_k=payload["min_top_k"],
                 retriever__max_top_k=payload["max_top_k"],
@@ -136,10 +137,11 @@ async def websocket_endpoint(websocket: WebSocket):
                 answer_type = start_type if response_complete == "" else "stream"
                 response_complete += response_text
                 await send(websocket, response_text, answer_type)
-            contextual_sources = "<br/>".join([f"<{src}>" for src in sources])
-            response_complete += (
-                "<br/><br/>Contextual source(s):<br/>" + contextual_sources
-            )
+            if sources is not None:
+                contextual_sources = "<br/>".join([f"<{src}>" for src in sources])
+                response_complete += (
+                    "<br/><br/>Contextual source(s):<br/>" + contextual_sources
+                )
             await send(websocket, response_complete, start_type)
 
             await send(websocket, "", "end")
