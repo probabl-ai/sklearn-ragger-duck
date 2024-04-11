@@ -16,8 +16,25 @@ from ._shared import _chunk_document
 
 SKLEARN_USER_GUIDE_URL = {
     "default": "https://scikit-learn.org/stable/",
-    "computing.html": "https://scikit-learn.org/stable/computing/",
-    "datasets.html": "https://scikit-learn.org/stable/datasets/",
+    "computational_performance.html": "https://scikit-learn.org/stable/computing/",
+    "parallelism.html": "https://scikit-learn.org/stable/computing/",
+    "scaling_strategies.html": "https://scikit-learn.org/stable/computing/",
+    "loading_other_datasets.html real_world.html": (
+        "https://scikit-learn.org/stable/datasets/"
+    ),
+    "sample_generators.html": "https://scikit-learn.org/stable/datasets/",
+    "toy_dataset.html": "https://scikit-learn.org/stable/datasets/",
+    "advanced_installation.html": "https://scikit-learn.org/stable/developers/",
+    "cython.html": "https://scikit-learn.org/stable/developers/",
+    "maintainer.html": "https://scikit-learn.org/stable/developers/",
+    "plotting.html": "https://scikit-learn.org/stable/developers/",
+    "bug_triaging.html": "https://scikit-learn.org/stable/developers/",
+    "develop.html": "https://scikit-learn.org/stable/developers/",
+    "minimal_reproducer.html ": "https://scikit-learn.org/stable/developers/",
+    "tips.html": "https://scikit-learn.org/stable/developers/",
+    "contributing.html": "https://scikit-learn.org/stable/developers/",
+    "performance.html": "https://scikit-learn.org/stable/developers/",
+    "utilities.html": "https://scikit-learn.org/stable/developers/",
 }
 loogger = logging.getLogger(__name__)
 

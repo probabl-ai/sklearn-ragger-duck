@@ -14,11 +14,13 @@ USER_GUIDE_EXCLUDE_FOLDERS = [
     "_static/",
     "auto_examples/",
     "binder/",
+    "developers/index.html",
     "modules/generated",
     "notebooks/",
     "sg_execution_times",
     "testimonials/",
     "tutorial/",
+    "_contributors.",
 ]
 
 # Path to cache the embedding and models
