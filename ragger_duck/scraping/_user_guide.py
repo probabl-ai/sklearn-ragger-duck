@@ -53,7 +53,7 @@ def _user_guide_path_to_user_guide_url(path):
         The User Guide URL.
     """
     if path.name in SKLEARN_USER_GUIDE_URL:
-        return SKLEARN_USER_GUIDE_URL[path.name]
+        return SKLEARN_USER_GUIDE_URL[path.name] + path.name
     return SKLEARN_USER_GUIDE_URL["default"] + path.name
 
 
