@@ -65,7 +65,7 @@ def extract_user_guide_doc_from_single_file(html_file):
         soup = BeautifulSoup(file, "html.parser")
 
     if soup.find("section") is not None:
-        text = soup.get_text("")
+        text = soup.find("section").get_text("")
     else:
         return {}
     # Remove line breaks within a paragraph
