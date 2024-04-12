@@ -14,28 +14,7 @@ from sklearn.utils._param_validation import Interval
 
 from ._shared import _chunk_document
 
-SKLEARN_USER_GUIDE_URL = {
-    "default": "https://scikit-learn.org/stable/",
-    "computational_performance.html": "https://scikit-learn.org/stable/computing/",
-    "parallelism.html": "https://scikit-learn.org/stable/computing/",
-    "scaling_strategies.html": "https://scikit-learn.org/stable/computing/",
-    "loading_other_datasets.html real_world.html": (
-        "https://scikit-learn.org/stable/datasets/"
-    ),
-    "sample_generators.html": "https://scikit-learn.org/stable/datasets/",
-    "toy_dataset.html": "https://scikit-learn.org/stable/datasets/",
-    "advanced_installation.html": "https://scikit-learn.org/stable/developers/",
-    "cython.html": "https://scikit-learn.org/stable/developers/",
-    "maintainer.html": "https://scikit-learn.org/stable/developers/",
-    "plotting.html": "https://scikit-learn.org/stable/developers/",
-    "bug_triaging.html": "https://scikit-learn.org/stable/developers/",
-    "develop.html": "https://scikit-learn.org/stable/developers/",
-    "minimal_reproducer.html ": "https://scikit-learn.org/stable/developers/",
-    "tips.html": "https://scikit-learn.org/stable/developers/",
-    "contributing.html": "https://scikit-learn.org/stable/developers/",
-    "performance.html": "https://scikit-learn.org/stable/developers/",
-    "utilities.html": "https://scikit-learn.org/stable/developers/",
-}
+SKLEARN_USER_GUIDE_URL = "https://scikit-learn.org/stable/"
 loogger = logging.getLogger(__name__)
 
 
@@ -52,9 +31,12 @@ def _user_guide_path_to_user_guide_url(path):
     str
         The User Guide URL.
     """
-    if path.name in SKLEARN_USER_GUIDE_URL:
-        return SKLEARN_USER_GUIDE_URL[path.name] + path.name
-    return SKLEARN_USER_GUIDE_URL["default"] + path.name
+    # Find the stable folder to reconstruct the URL from this point
+    for parent in path.parents:
+        if parent.name == "stable":
+            break
+    print(SKLEARN_USER_GUIDE_URL + str(path.relative_to(parent)))
+    return SKLEARN_USER_GUIDE_URL + str(path.relative_to(parent))
 
 
 def extract_user_guide_doc_from_single_file(html_file):
@@ -227,7 +209,7 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
             documentation.
         """
         if self.chunk_size is None:
-            output = _extract_user_guide_doc(X)
+            output = _extract_user_guide_doc(X, self.folders_to_exclude)
         else:
             output = list(
                 chain.from_iterable(
