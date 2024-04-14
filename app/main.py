@@ -50,6 +50,8 @@ async def startup_event():
     api_lexical_retriever = joblib.load(conf.API_LEXICAL_RETRIEVER_PATH)
     user_guide_semantic_retriever = joblib.load(conf.USER_GUIDE_SEMANTIC_RETRIEVER_PATH)
     user_guide_lexical_retriever = joblib.load(conf.USER_GUIDE_LEXICAL_RETRIEVER_PATH)
+    gallery_semantic_retriever = joblib.load(conf.GALLERY_SEMANTIC_RETRIEVER_PATH)
+    gallery_lexical_retriever = joblib.load(conf.GALLERY_LEXICAL_RETRIEVER_PATH)
     cross_encoder = CrossEncoder(model_name=conf.CROSS_ENCODER_PATH, device=DEVICE)
     retriever = RetrieverReranker(
         retrievers=[
@@ -61,6 +63,8 @@ async def startup_event():
             user_guide_lexical_retriever.set_params(
                 top_k=conf.USER_GUIDE_LEXICAL_TOP_K
             ),
+            gallery_semantic_retriever.set_params(top_k=conf.GALLERY_SEMANTIC_TOP_K),
+            gallery_lexical_retriever.set_params(top_k=conf.GALLERY_LEXICAL_TOP_K),
         ],
         cross_encoder=cross_encoder,
         threshold=conf.CROSS_ENCODER_THRESHOLD,

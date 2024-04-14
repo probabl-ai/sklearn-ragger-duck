@@ -15,7 +15,7 @@ from sklearn.utils._param_validation import Interval
 from ._shared import _chunk_document
 
 SKLEARN_USER_GUIDE_URL = "https://scikit-learn.org/stable/"
-loogger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def _user_guide_path_to_user_guide_url(path):
@@ -36,6 +36,7 @@ def _user_guide_path_to_user_guide_url(path):
         if parent.name == "stable":
             break
     return SKLEARN_USER_GUIDE_URL + str(path.relative_to(parent))
+
 
 
 def extract_user_guide_doc_from_single_file(html_file):

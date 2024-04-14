@@ -22,6 +22,10 @@ USER_GUIDE_EXCLUDE_FOLDERS = [
     "tutorial/",
     "_contributors.",
 ]
+# Path to the sphinx-gallery python examples
+GALLERY_EXAMPLES_PATH = (
+    "/Users/glemaitre/Documents/packages/scikit-learn/examples"
+)
 
 # Path to cache the embedding and models
 CACHE_PATH = "../models"
@@ -31,3 +35,5 @@ API_SEMANTIC_RETRIEVER_PATH = "../models/api_semantic_retrieval.joblib"
 API_LEXICAL_RETRIEVER_PATH = "../models/api_lexical_retrieval.joblib"
 USER_GUIDE_SEMANTIC_RETRIEVER_PATH = "../models/user_guide_semantic_retrieval.joblib"
 USER_GUIDE_LEXICAL_RETRIEVER_PATH = "../models/user_guide_lexical_retrieval.joblib"
+GALLERY_SEMANTIC_RETRIEVER_PATH = "../models/gallery_semantic_retrieval.joblib"
+GALLERY_LEXICAL_RETRIEVER_PATH = "../models/gallery_lexical_retrieval.joblib"

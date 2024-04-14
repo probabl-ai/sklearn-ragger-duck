@@ -19,6 +19,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 API_DOC = Path(config.API_DOC_PATH)
 USER_GUIDE_DOC = Path(config.USER_GUIDE_DOC_PATH)
 USER_GUIDE_EXCLUDE_FOLDERS = config.USER_GUIDE_EXCLUDE_FOLDERS
+GALLERY_EXAMPLES = Path(config.GALLERY_EXAMPLES_PATH)
 DEVICE = os.getenv("DEVICE", "cpu")
 
 logging.basicConfig(level=logging.INFO)
@@ -144,3 +145,53 @@ joblib.dump(
 )
 
 # %%
+from ragger_duck.scraping import GalleryExampleExtractor
+
+gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
+embedding = SentenceTransformer(
+    model_name_or_path="thenlper/gte-large",
+    cache_folder=config.CACHE_PATH,
+    device=DEVICE,
+)
+gallery_scraper = gallery_scraper(
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
+    chunk_size=1_500,
+    chunk_overlap=10
+)
+pipeline = Pipeline(
+    steps=[
+        ("extractor", gallery_scraper),
+        ("semantic_retriever", SemanticRetriever(embedding=embedding, top_k=15)),
+    ]
+)
+pipeline.fit(GALLERY_EXAMPLES)
+pipeline
+
+# %%
+joblib.dump(
+    pipeline.named_steps["semantic_retriever"],
+    config.GALLERY_SEMANTIC_RETRIEVER_PATH,
+)
+
+# %%
+count_vectorizer = CountVectorizer(ngram_range=(1, 5))
+gallery_scraper = gallery_scraper(
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
+    chunk_size=1_500,
+    chunk_overlap=10
+)
+pipeline = Pipeline(
+    steps=[
+        ("extractor", gallery_scraper),
+        (
+            "lexical_retriever",
+            BM25Retriever(count_vectorizer=count_vectorizer, top_k=15),
+        ),
+    ]
+).fit(GALLERY_EXAMPLES)
+pipeline
+
+# %%
+joblib.dump(
+    pipeline.named_steps["lexical_retriever"], config.GALLERY_LEXICAL_RETRIEVER_PATH
+)
