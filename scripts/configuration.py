@@ -23,9 +23,7 @@ USER_GUIDE_EXCLUDE_FOLDERS = [
     "_contributors.",
 ]
 # Path to the sphinx-gallery python examples
-GALLERY_EXAMPLES_PATH = (
-    "/Users/glemaitre/Documents/packages/scikit-learn/examples"
-)
+GALLERY_EXAMPLES_PATH = "/Users/glemaitre/Documents/packages/scikit-learn/examples"
 
 # Path to cache the embedding and models
 CACHE_PATH = "../models"

@@ -13,7 +13,6 @@ from sphinx_gallery.py_source_parser import split_code_and_text_blocks
 
 from ._shared import _chunk_document
 
-
 SKLEARN_EXAMPLES_URL = "https://scikit-learn.org/stable/auto_examples/"
 logger = logging.getLogger(__name__)
 
@@ -115,7 +114,6 @@ def _extract_single_example(file_path):
 
 
 class GalleryExampleExtractor(BaseEstimator, TransformerMixin):
-
     _parameter_constraints = {
         "chunk_size": [Interval(Integral, left=1, right=None, closed="left"), None],
         "chunk_overlap": [Interval(Integral, left=0, right=None, closed="left")],

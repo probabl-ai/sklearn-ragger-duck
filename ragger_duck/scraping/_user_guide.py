@@ -38,7 +38,6 @@ def _user_guide_path_to_user_guide_url(path):
     return SKLEARN_USER_GUIDE_URL + str(path.relative_to(parent))
 
 
-
 def extract_user_guide_doc_from_single_file(html_file):
     """Extract the text from the User Guide documentation.
 

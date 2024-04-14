@@ -154,9 +154,7 @@ embedding = SentenceTransformer(
     device=DEVICE,
 )
 gallery_scraper = gallery_scraper(
-    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
-    chunk_size=1_500,
-    chunk_overlap=10
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS, chunk_size=1_500, chunk_overlap=10
 )
 pipeline = Pipeline(
     steps=[
@@ -176,9 +174,7 @@ joblib.dump(
 # %%
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 gallery_scraper = gallery_scraper(
-    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
-    chunk_size=1_500,
-    chunk_overlap=10
+    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS, chunk_size=1_500, chunk_overlap=10
 )
 pipeline = Pipeline(
     steps=[
