@@ -147,15 +147,12 @@ joblib.dump(
 # %%
 from ragger_duck.scraping import GalleryExampleExtractor
 
-gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
 embedding = SentenceTransformer(
     model_name_or_path="thenlper/gte-large",
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )
-gallery_scraper = gallery_scraper(
-    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS, chunk_size=1_500, chunk_overlap=10
-)
+gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
 pipeline = Pipeline(
     steps=[
         ("extractor", gallery_scraper),
@@ -173,9 +170,7 @@ joblib.dump(
 
 # %%
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
-gallery_scraper = gallery_scraper(
-    folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS, chunk_size=1_500, chunk_overlap=10
-)
+gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
 pipeline = Pipeline(
     steps=[
         ("extractor", gallery_scraper),
