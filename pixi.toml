@@ -21,6 +21,7 @@ joblib = "*"
 langchain = "*"
 numpydoc = "*"
 scikit-learn = "*"
+spinx-gallery = "*"
 # Dependencies for the web app
 fastapi = "*"
 uvicorn = "*"
