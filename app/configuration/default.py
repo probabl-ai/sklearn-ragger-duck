@@ -19,7 +19,7 @@ CROSS_ENCODER_MIN_TOP_K = 3
 CROSS_ENCODER_MAX_TOP_K = 20
 
 # LLM parameters
-LLM_PATH = "../models/mistral-7b-instruct-v0.1.Q6_K.gguf"
+LLM_PATH = "../models/mistral-7b-instruct-v0.2.Q6_K.gguf"
 TEMPERATURE = 0.1
 TOP_P = 0.6
 TOP_K = 40
