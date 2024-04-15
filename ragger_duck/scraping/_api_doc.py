@@ -256,7 +256,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
                 from sklearn.experimental import enable_halving_search_cv  # noqa
                 from sklearn.experimental import enable_iterative_imputer  # noqa
             module = importlib.import_module(module_name)
-            if not hasattr(module, class_or_function_name):
+            if not hasattr(module, class_or_function_name):  # pragma: no cover
                 warnings.warn(
                     f"Fail to find the class or function {class_or_function_name}. "
                     "It could be a module. Skipping it."
