@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from ragger_duck.scraping import UserGuideDocExtractor
+from ragger_duck.scraping._user_guide import extract_user_guide_doc_from_single_file
 
 USER_GUIDE_TEST_FOLDER = Path(__file__).parent / "data" / "user_guide_doc"
 HTML_TEST_FILES = ["calibration.html", "clustering.html"]
@@ -23,3 +24,15 @@ def test_user_guide_doc_extractor(chunk_size, n_jobs):
         if chunk_size is not None:
             assert len(chunk["text"]) <= chunk_size
         assert chunk["source"] in possible_source
+
+
+def test_extract_user_guide_doc_from_single_file_error():
+    """Check that we raise the proper error message when the input is not as
+    expected."""
+    err_msg = "The User Guide HTML file should be a pathlib.Path object."
+    with pytest.raises(ValueError, match=err_msg):
+        extract_user_guide_doc_from_single_file("not_a_pathlib.Path")
+
+    err_msg = "is not an HTML file. Please provide an HTML file."
+    with pytest.raises(ValueError, match=err_msg):
+        extract_user_guide_doc_from_single_file(Path(__file__))

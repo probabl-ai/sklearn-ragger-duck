@@ -3,6 +3,8 @@
 import importlib
 from pathlib import Path
 
+import pytest
+
 from ragger_duck.scraping import APINumPyDocExtractor
 from ragger_duck.scraping._api_doc import _extract_function_doc_numpydoc
 
@@ -84,3 +86,16 @@ def test__extract_function_doc_numpydoc_class():
     for doc in extracted_doc:
         assert isinstance(doc, dict)
         assert doc["source"] == url_source
+
+
+def test__extract_function_doc_numpydoc_type_error():
+    """Check that we bypass the TypeError when the class or function
+    does not have a __doc__ attribute."""
+
+    class Dummy:
+        pass
+
+    match = "Fail to parse the docstring"
+    with pytest.warns(UserWarning, match=match):
+        extracted_doc = _extract_function_doc_numpydoc(Dummy, "dummy", "dummy")
+    assert extracted_doc is None

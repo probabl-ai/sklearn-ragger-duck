@@ -52,7 +52,7 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
         The function to extract the documentation from.
 
     import_name : str
-        The importh path of the function.
+        The import path of the function.
 
     html_source : str
         The link to the HTML source of the function.
@@ -66,14 +66,15 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
     try:
         docstring = NumpyDocString(function.__doc__)
     except TypeError as exc:
-        # FIXME: it should be fixed upstream in scikit-learn
+        # Case where `function.__doc__` is `None`
         warnings.warn(
             f"Fail to parse the docstring of {function.__name__}. Error message: {exc}"
         )
         return
     try:
         params = inspect.signature(function).parameters
-    except ValueError as exc:
+    except ValueError as exc:  # pragma: no cover
+        # Case where the function is a Cython function
         warnings.warn(
             f"Fail to find the signature of {function.__name__}. Error message: {exc}"
         )
@@ -153,7 +154,8 @@ def _extract_function_doc_numpydoc(function, import_name, html_source):
             if desc:
                 description = "\n".join(desc)
                 chunk_doc += f": {description}\n"
-            else:
+            else:  # pragma: no cover
+                # When no description are given
                 chunk_doc += "\n"
         extracted_doc.append({"source": html_source, "text": chunk_doc})
     # chunks about the notes
@@ -230,7 +232,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
             full_name = document.stem
             try:
                 module_name, class_or_function_name = full_name.rsplit(".", maxsplit=1)
-            except ValueError as exc:
+            except ValueError as exc:  # pragma: no cover
                 # FIXME: specific scikit-learn hack
                 if full_name == "dbscan-function":
                     module_name = "sklearn.cluster"
@@ -245,10 +247,10 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
                     raise ValueError(
                         f"Fail to split the full name {full_name}. Error message: {exc}"
                     )
-            if module_name == "sklearn.experimental":
+            if module_name == "sklearn.experimental":  # pragma: no cover
                 # FIXME: Only module are available in experimental
                 continue
-            elif "sklearn." in module_name:
+            elif "sklearn." in module_name:  # pragma: no cover
                 # FIXME: this is a hack to import the experimental modules
                 # specifically for scikit-learn
                 from sklearn.experimental import enable_halving_search_cv  # noqa
@@ -265,7 +267,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
             extracted_doc = _extract_function_doc_numpydoc(
                 class_or_function, full_name, html_source
             )
-            if extracted_doc is None:
+            if extracted_doc is None:  # pragma: no cover
                 continue
             output += extracted_doc
 
@@ -277,7 +279,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
                         # private methods
                         continue
                     method = getattr(class_or_function, method_name)
-                    if not inspect.isfunction(method):
+                    if not inspect.isfunction(method):  # pragma: no cover
                         continue
                     extracted_doc = _extract_function_doc_numpydoc(
                         method, f"{full_name}.{method_name}", html_source
