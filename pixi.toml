@@ -21,7 +21,8 @@ beautifulsoup4 = "*"
 joblib = "*"
 langchain = "*"
 numpydoc = "*"
-scikit-learn = "*"
+# align the version of scikit-learn with the submodule one to avoid rebuilding it
+scikit-learn = "1.4.1.post1"
 sphinx-gallery = "*"
 # Dependencies for the web app
 fastapi = "*"
