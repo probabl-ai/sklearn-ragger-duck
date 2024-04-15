@@ -15,4 +15,4 @@ jobs:
           pixi-version: v0.19.1
           environments: ${{ matrix.environment }}
       - name: Run tests
-        run: pixi run -e ${{ matrix.environment }} test
+        run: PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 pixi run -e ${{ matrix.environment }} test
