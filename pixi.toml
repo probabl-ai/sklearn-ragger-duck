@@ -67,10 +67,10 @@ pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-[feature.mps.pypi-dependencies]
+# [feature.mps.pypi-dependencies]
 # the latest version requires xcode 15.2
 # xcode 15.3 that is the latest release is buggy
-llama-cpp-python = "*"
+# llama-cpp-python = "*"
 
 # CPU-specfic configuration
 [feature.cpu]
@@ -88,8 +88,8 @@ cpuonly = { version = "*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-# [feature.cpu.pypi-dependencies]
-# llama-cpp-python = "*"
+[feature.cpu.pypi-dependencies]
+llama-cpp-python = "*"
 
 # margaret-specfic configuration for CUDA 11.7
 [feature.margaret]
