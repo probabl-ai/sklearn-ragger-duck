@@ -23,7 +23,7 @@ jobs:
         frozen: true
 
     - name: Build documentation
-      run: pixi run -e cpu build-doc
+      run: pixi run -e cpu build-doc-ragger-duck
 
     - name: Update the main gh-page website
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

@@ -16,4 +16,4 @@ jobs:
           environments: ${{ matrix.environment }}
           frozen: true
       - name: Run tests
-        run: pixi run -e ${{ matrix.environment }} test
+        run: pixi run -e ${{ matrix.environment }} test-ragger-duck
