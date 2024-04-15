@@ -1,12 +1,7 @@
 # Path to the HTML API documentation
-API_DOC_PATH = (
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable/"
-    "modules/generated"
-)
+API_DOC_PATH = "../local_sklearn/scikit-learn/doc/_build/html/stable/modules/generated"
 # Path to the HTML User Guide documentation
-USER_GUIDE_DOC_PATH = (
-    "/Users/glemaitre/Documents/packages/scikit-learn/doc/_build/html/stable"
-)
+USER_GUIDE_DOC_PATH = "../local_sklearn/scikit-learn/doc/_build/html/stable"
 USER_GUIDE_EXCLUDE_FOLDERS = [
     "_downloads/",
     "_images/",
@@ -23,7 +18,7 @@ USER_GUIDE_EXCLUDE_FOLDERS = [
     "_contributors.",
 ]
 # Path to the sphinx-gallery python examples
-GALLERY_EXAMPLES_PATH = "/Users/glemaitre/Documents/packages/scikit-learn/examples"
+GALLERY_EXAMPLES_PATH = "../local_sklearn/scikit-learn/examples"
 
 # Path to cache the embedding and models
 CACHE_PATH = "../models"
