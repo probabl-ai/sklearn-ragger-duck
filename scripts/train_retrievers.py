@@ -97,8 +97,8 @@ embedding = SentenceTransformer(
 )
 user_guide_scraper = UserGuideDocExtractor(
     folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
-    chunk_size=700,
-    chunk_overlap=10,
+    chunk_size=config.CHUNK_SIZE,
+    chunk_overlap=config.CHUNK_OVERLAP,
     n_jobs=-1,
 )
 pipeline = Pipeline(
@@ -124,8 +124,8 @@ from ragger_duck.retrieval import BM25Retriever
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
 user_guide_scraper = UserGuideDocExtractor(
     folders_to_exclude=USER_GUIDE_EXCLUDE_FOLDERS,
-    chunk_size=700,
-    chunk_overlap=10,
+    chunk_size=config.CHUNK_SIZE,
+    chunk_overlap=config.CHUNK_OVERLAP,
     n_jobs=-1,
 )
 pipeline = Pipeline(
@@ -152,7 +152,9 @@ embedding = SentenceTransformer(
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )
-gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
+gallery_scraper = GalleryExampleExtractor(
+    chunk_size=config.CHUNK_SIZE, chunk_overlap=config.CHUNK_OVERLAP
+)
 pipeline = Pipeline(
     steps=[
         ("extractor", gallery_scraper),
@@ -170,7 +172,9 @@ joblib.dump(
 
 # %%
 count_vectorizer = CountVectorizer(ngram_range=(1, 5))
-gallery_scraper = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
+gallery_scraper = GalleryExampleExtractor(
+    chunk_size=config.CHUNK_SIZE, chunk_overlap=config.CHUNK_OVERLAP
+)
 pipeline = Pipeline(
     steps=[
         ("extractor", gallery_scraper),
