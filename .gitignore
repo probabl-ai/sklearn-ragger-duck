@@ -192,3 +192,8 @@ doc/references/generated/
 doc/_build
 
 .pixi
+
+models/.locks/*
+models/*.joblib
+models/*/*
+models/*.gguf
