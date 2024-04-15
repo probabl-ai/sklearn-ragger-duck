@@ -14,5 +14,6 @@ jobs:
         with:
           pixi-version: v0.19.1
           environments: ${{ matrix.environment }}
+          frozen: true
       - name: Run tests
         run: pixi run -e ${{ matrix.environment }} test
