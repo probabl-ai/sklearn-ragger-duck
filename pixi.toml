@@ -11,6 +11,7 @@ readme = "README.md"
 
 [tasks]
 build-doc = { cmd = "make html", cwd = "doc" }
+build-local-sklearn-doc = { cmd = "make html", cwd = "local_sklearn/scikit-learn/doc" }
 test = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
 fetch-mistral = { cmd = "wget -O 'mistral-7b-instruct-v0.2.Q6_K.gguf' 'https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q6_K.gguf?download=true'", cwd = "models" }
 
