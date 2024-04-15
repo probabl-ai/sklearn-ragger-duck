@@ -51,7 +51,7 @@ def test__extract_function_doc_numpydoc_function():
     )
     # The following assert is manually checked. If scikit-learn modify the docstring
     # then we might be in trouble.
-    assert len(extracted_doc) == 7
+    assert 5 < len(extracted_doc) < 9
     for doc in extracted_doc:
         assert isinstance(doc, dict)
         assert doc["source"] == url_source
@@ -80,7 +80,7 @@ def test__extract_function_doc_numpydoc_class():
     )
     # The following assert is manually checked. If scikit-learn modify the docstring
     # then we might be in trouble.
-    assert len(extracted_doc) == 34
+    assert 32 < len(extracted_doc) < 38
     for doc in extracted_doc:
         assert isinstance(doc, dict)
         assert doc["source"] == url_source

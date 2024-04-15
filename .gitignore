@@ -197,3 +197,5 @@ models/.locks/*
 models/*.joblib
 models/*/*
 models/*.gguf
+ragger_duck/embedding/tests/data/.locks/*
+ragger_duck/embedding/tests/data/models--sentence-transformers--paraphrase-albert-small-v2/*
