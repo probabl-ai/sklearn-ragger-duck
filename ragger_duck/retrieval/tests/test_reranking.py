@@ -105,8 +105,41 @@ def test_retriever_reranker_drop_duplicate(
     assert len(context) == n_retrieved_documents
 
 
+def test_retriever_reranker_no_query_results():
+    """Check the results when no query results are found."""
+    input_text = [
+        {"source": "source 1", "text": "xxx"},
+        {"source": "source 2", "text": "yyy"},
+        {"source": "source 3", "text": "zzz"},
+        {"source": "source 4", "text": "aaa"},
+    ]
+    bm25 = BM25Retriever(top_k=10).fit(input_text)
+    cache_folder_path = (
+        Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
+    )
+    model_name_or_path = "sentence-transformers/paraphrase-albert-small-v2"
+    embedder = SentenceTransformer(
+        model_name_or_path=model_name_or_path,
+        cache_folder=str(cache_folder_path),
+        show_progress_bar=False,
+    )
+    faiss = SemanticRetriever(embedding=embedder, top_k=10).fit(input_text)
+
+    model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    cross_encoder = CrossEncoder(model_name=model_name)
+    # set top-k to the minimum and a high threshold to avoid any match
+    retriever_reranker = RetrieverReranker(
+        retrievers=[bm25, faiss],
+        cross_encoder=cross_encoder,
+        min_top_k=None,
+        threshold=5.0,
+    )
+    retriever_reranker.fit()
+    assert not len(retriever_reranker.query("no match"))
+
+
 def test_retriever_reranker_tags():
-    """Check the default tags of the retriever reranker."""
+    """Check the stateless parameter of the reranker retriever."""
     bm25 = BM25Retriever(top_k=10)
     cache_folder_path = (
         Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
@@ -124,4 +157,4 @@ def test_retriever_reranker_tags():
     retriever_reranker = RetrieverReranker(
         retrievers=[bm25, faiss], cross_encoder=cross_encoder
     )
-    print(retriever_reranker._get_tags())
+    assert retriever_reranker._get_tags()["stateless"]
