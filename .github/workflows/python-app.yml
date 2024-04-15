@@ -7,7 +7,7 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        environment: [mps]
+        environment: [cpu]
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.5.2
@@ -15,4 +15,4 @@ jobs:
           pixi-version: v0.19.1
           environments: ${{ matrix.environment }}
       - name: Run tests
-        run: PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 pixi run -e ${{ matrix.environment }} test
+        run: pixi run -e ${{ matrix.environment }} test
