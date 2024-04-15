@@ -72,7 +72,9 @@ def extract_user_guide_doc_from_single_file(html_file):
     if text is not None:
         text = text.get_text("")
     else:
-        return {}
+        # Case we don't find a section tag. Let's not parse the file it should be
+        # something else than a User Guide page.
+        return {}  # pragma: no cover
     # Remove line breaks within a paragraph
     newline = re.compile(r"\n\s*")
     text = newline.sub(r"\n", text)
@@ -220,7 +222,7 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
                     )
                 )
             )
-        if not output:
+        if not output:  # pragma: no cover
             raise ValueError(
                 "No User Guide documentation was extracted. Please check the "
                 "input folder."
