@@ -1,0 +1,3 @@
+[run]
+omit =
+    ragger_duck/scraping/tests/data/gallery/stable/*.py
