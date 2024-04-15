@@ -103,3 +103,25 @@ def test_retriever_reranker_drop_duplicate(
     retriever_reranker.fit()
     context = retriever_reranker.query("xxx")
     assert len(context) == n_retrieved_documents
+
+
+def test_retriever_reranker_tags():
+    """Check the default tags of the retriever reranker."""
+    bm25 = BM25Retriever(top_k=10)
+    cache_folder_path = (
+        Path(__file__).parent.parent.parent / "embedding" / "tests" / "data"
+    )
+    model_name_or_path = "sentence-transformers/paraphrase-albert-small-v2"
+    embedder = SentenceTransformer(
+        model_name_or_path=model_name_or_path,
+        cache_folder=str(cache_folder_path),
+        show_progress_bar=False,
+    )
+    faiss = SemanticRetriever(embedding=embedder, top_k=10)
+
+    model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    cross_encoder = CrossEncoder(model_name=model_name)
+    retriever_reranker = RetrieverReranker(
+        retrievers=[bm25, faiss], cross_encoder=cross_encoder
+    )
+    print(retriever_reranker._get_tags())
