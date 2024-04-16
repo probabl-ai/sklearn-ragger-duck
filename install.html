@@ -449,51 +449,75 @@ package. An easy and dirty way is to add the package into your path for the mome
 <p>You can check the file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for the required packages. We don’t yet
 provide an easy way to install GPU-enabled packages.</p>
 </section>
-<section id="deploy-ragger-duck-web-console">
-<h2>Deploy Ragger Duck Web Console<a class="headerlink" href="#deploy-ragger-duck-web-console" title="Link to this heading">#</a></h2>
+<section id="deploy-ragger-duck">
+<h2>Deploy Ragger Duck<a class="headerlink" href="#deploy-ragger-duck" title="Link to this heading">#</a></h2>
 <p>To ease the deployment, we rely on <code class="docutils literal notranslate"><span class="pre">pixi</span></code>. Refer to following
 <a class="reference external" href="https://pixi.sh/#installation">link</a> for installing <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.</p>
-<p>In the latest stage, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> will be in charge to create the Python environment to
-deploy the Web Console. Then, follow the following steps to deploy the Ragger Duck Web
-Console. Currently, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> only supports a single environment for the moment. So,
-the environment is <strong>CPU-only</strong>. If you want GPU support, you need to install the
-required packages by yourself.</p>
+<p>In the latest stage, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> will be in charge to create the Python environments to
+build the scikit-learn documentation, train the retrievers, and launch the Web Console.
+We already setup several environments for you depending on the platform and hardware
+at your disposal:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpu</span></code>: this is a cross-platform environments (i.e. linux and MacOS on x86_64 and
+arm64);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mps</span></code>: this is an environment for MacOS on M1/M2/M3 chips;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scaleway</span></code>: this is an environment for linux on x86_64 machine with GPU support.
+We used it to make experiment on Scaleway instance providing an L4 GPU.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">margaret</span></code>: similar to <code class="docutils literal notranslate"><span class="pre">scaleway</span></code> but relying on cuda-toolkit 11.4 instead of 12.1.</p></li>
+</ul>
+<p>Note that you can modify the <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> to create your own environments since the
+cuda-toolkit version used in the <code class="docutils literal notranslate"><span class="pre">scaleway</span></code> environment might not be the one you have.</p>
+<section id="cloning-the-project">
+<h3>Cloning the project<a class="headerlink" href="#cloning-the-project" title="Link to this heading">#</a></h3>
+<p>The GitHub repository self-contained all the necessary source files for building the
+RAG. You need to clone the repository in a recursive way to get the scikit-learn
+source files as a submodule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">glemaitre</span><span class="o">/</span><span class="n">sklearn</span><span class="o">-</span><span class="n">ragger</span><span class="o">-</span><span class="n">duck</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
 <section id="build-the-scikit-learn-documentation">
 <h3>Build the scikit-learn documentation<a class="headerlink" href="#build-the-scikit-learn-documentation" title="Link to this heading">#</a></h3>
-<p>First, we need to have the HTML source file of the API documentation of scikit-learn.
-You can clone the scikit-learn repository and build the documentation. Refer to the
-following <a class="reference external" href="https://scikit-learn.org/dev/developers/contributing.html#building-the-documentation">link</a>
-for building the documentation of scikit-learn:</p>
-<p>The API documentation will be located in the folder
-<code class="docutils literal notranslate"><span class="pre">doc/_build/html/stable/modules/generated</span></code>.</p>
+<p>First, we need to build the scikit-learn documentation since some of the retrievers
+will rely on the HTML generated pages. You can build the documentation by running the
+following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="o">--</span><span class="n">frozen</span> <span class="n">build</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">sklearn</span>
+</pre></div>
+</div>
 </section>
 <section id="train-the-semantic-and-lexical-retrievers">
 <h3>Train the semantic and lexical retrievers<a class="headerlink" href="#train-the-semantic-and-lexical-retrievers" title="Link to this heading">#</a></h3>
-<p>You need to train the retrievers that will search for the context. You need to modify
-the file <code class="docutils literal notranslate"><span class="pre">scripts/configuration.py</span></code> to specify the path to the API documentation.
-For the moment, you can let the other variables as-is.</p>
-<p>Then, Train the retrievers by running the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="n">train</span><span class="o">-</span><span class="n">retrievers</span>
+<p>We need to train a set of lexical and semantic retrievers on the API documentation,
+the user guide, and the gallery of examples. We will have different retrievers
+for each of these type of documentation. You can refer <a class="reference internal" href="user_guide.html#user-guide"><span class="std std-ref">User Guide</span></a> for more
+details on the strategy used to train the retrievers.</p>
+<p>You can launch the training of the retrievers by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="o">--</span><span class="n">frozen</span> <span class="n">train</span><span class="o">-</span><span class="n">retrievers</span>
 </pre></div>
 </div>
-<p>from the root folder of the project.</p>
+<p>Pixi might propose you to select a specific environment to make the training. You can
+also specify the environment by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="o">--</span><span class="n">frozen</span> <span class="o">-</span><span class="n">e</span> <span class="n">cpu</span> <span class="n">train</span><span class="o">-</span><span class="n">retrievers</span>
+</pre></div>
+</div>
 </section>
 <section id="download-the-large-language-model">
 <h3>Download the Large Language Model<a class="headerlink" href="#download-the-large-language-model" title="Link to this heading">#</a></h3>
 <p>You need to get a Large Language Model (LLM). For testing purpose, you can get the
-<a class="reference external" href="https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main">mistral-7b-instruct-v0.1.Q6_K.gguf `model that is available at this
-`link</a>.</p>
+Mistral 7b model by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="o">--</span><span class="n">frozen</span> <span class="n">fetch</span><span class="o">-</span><span class="n">mistral</span><span class="o">-</span><span class="mi">7</span><span class="n">b</span>
+</pre></div>
+</div>
 </section>
 <section id="launch-the-web-console">
 <h3>Launch the Web Console<a class="headerlink" href="#launch-the-web-console" title="Link to this heading">#</a></h3>
-<p>Before to launch the web console, you need to modify the file
-<code class="docutils literal notranslate"><span class="pre">app/configuration/default.py</span></code> to provide the links to the retriever models and the
-LLM.</p>
+<p>Now, you are all set to start the web console.</p>
 <p>Then, Launch the Web Console by running the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="n">start</span><span class="o">-</span><span class="n">ragger</span><span class="o">-</span><span class="n">duck</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">run</span> <span class="o">--</span><span class="n">frozen</span> <span class="n">start</span><span class="o">-</span><span class="n">ragger</span><span class="o">-</span><span class="n">duck</span>
 </pre></div>
 </div>
-<p>from the root folder of the project.</p>
+<p>You will also be required to select an environment depending on which hardware you want
+to offload the LLM.</p>
 <p>Then, you can access the Web Console at the following address:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8123</span>
 </pre></div>
@@ -549,7 +573,8 @@ LLM.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-ragger-duck-library">Use the Ragger Duck library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-ragger-duck-web-console">Deploy Ragger Duck Web Console</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-ragger-duck">Deploy Ragger Duck</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-project">Cloning the project</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-scikit-learn-documentation">Build the scikit-learn documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-semantic-and-lexical-retrievers">Train the semantic and lexical retrievers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-large-language-model">Download the Large Language Model</a></li>

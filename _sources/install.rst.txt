@@ -18,61 +18,81 @@ package. An easy and dirty way is to add the package into your path for the mome
 You can check the file `requirements.txt` for the required packages. We don't yet
 provide an easy way to install GPU-enabled packages.
 
-Deploy Ragger Duck Web Console
-==============================
+Deploy Ragger Duck
+==================
 
 To ease the deployment, we rely on `pixi`. Refer to following
 `link <https://pixi.sh/#installation>`_ for installing `pixi`.
 
-In the latest stage, `pixi` will be in charge to create the Python environment to
-deploy the Web Console. Then, follow the following steps to deploy the Ragger Duck Web
-Console. Currently, `pixi` only supports a single environment for the moment. So,
-the environment is **CPU-only**. If you want GPU support, you need to install the
-required packages by yourself.
+In the latest stage, `pixi` will be in charge to create the Python environments to
+build the scikit-learn documentation, train the retrievers, and launch the Web Console.
+We already setup several environments for you depending on the platform and hardware
+at your disposal:
+
+- `cpu`: this is a cross-platform environments (i.e. linux and MacOS on x86_64 and
+  arm64);
+- `mps`: this is an environment for MacOS on M1/M2/M3 chips;
+- `scaleway`: this is an environment for linux on x86_64 machine with GPU support.
+  We used it to make experiment on Scaleway instance providing an L4 GPU.
+- `margaret`: similar to `scaleway` but relying on cuda-toolkit 11.4 instead of 12.1.
+
+Note that you can modify the `pixi.toml` to create your own environments since the
+cuda-toolkit version used in the `scaleway` environment might not be the one you have.
+
+Cloning the project
+-------------------
+
+The GitHub repository self-contained all the necessary source files for building the
+RAG. You need to clone the repository in a recursive way to get the scikit-learn
+source files as a submodule::
+
+  git clone --recursive git@github.com:glemaitre/sklearn-ragger-duck.git
 
 Build the scikit-learn documentation
 ------------------------------------
 
-First, we need to have the HTML source file of the API documentation of scikit-learn.
-You can clone the scikit-learn repository and build the documentation. Refer to the
-following `link <https://scikit-learn.org/dev/developers/contributing.html#building-the-documentation>`_
-for building the documentation of scikit-learn:
+First, we need to build the scikit-learn documentation since some of the retrievers
+will rely on the HTML generated pages. You can build the documentation by running the
+following command::
 
-The API documentation will be located in the folder
-`doc/_build/html/stable/modules/generated`.
+  pixi run --frozen build-doc-sklearn
 
 Train the semantic and lexical retrievers
 -----------------------------------------
 
-You need to train the retrievers that will search for the context. You need to modify
-the file `scripts/configuration.py` to specify the path to the API documentation.
-For the moment, you can let the other variables as-is.
+We need to train a set of lexical and semantic retrievers on the API documentation,
+the user guide, and the gallery of examples. We will have different retrievers
+for each of these type of documentation. You can refer :ref:`user_guide` for more
+details on the strategy used to train the retrievers.
 
-Then, Train the retrievers by running the following command::
+You can launch the training of the retrievers by running the following command::
 
-  pixi run train-retrievers
+  pixi run --frozen train-retrievers
 
-from the root folder of the project.
+Pixi might propose you to select a specific environment to make the training. You can
+also specify the environment by running the following command::
+
+  pixi run --frozen -e cpu train-retrievers
 
 Download the Large Language Model
 ---------------------------------
 
 You need to get a Large Language Model (LLM). For testing purpose, you can get the
-`mistral-7b-instruct-v0.1.Q6_K.gguf `model that is available at this
-`link <https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main>`_.
+Mistral 7b model by running the following command::
+
+  pixi run --frozen fetch-mistral-7b
 
 Launch the Web Console
 ----------------------
 
-Before to launch the web console, you need to modify the file
-`app/configuration/default.py` to provide the links to the retriever models and the
-LLM.
+Now, you are all set to start the web console.
 
 Then, Launch the Web Console by running the following command::
 
-  pixi run start-ragger-duck
+  pixi run --frozen start-ragger-duck
 
-from the root folder of the project.
+You will also be required to select an environment depending on which hardware you want
+to offload the LLM.
 
 Then, you can access the Web Console at the following address::
 
