@@ -15,9 +15,6 @@ package. An easy and dirty way is to add the package into your path for the mome
   path_to_package = "/path/to/ragger_duck"
   sys.path.append(path_to_package)
 
-You can check the file `requirements.txt` for the required packages. We don't yet
-provide an easy way to install GPU-enabled packages.
-
 Deploy Ragger Duck
 ==================
 
