@@ -53,8 +53,10 @@ class BasicPromptingStrategy(BaseEstimator):
                 " machine-learning question.\n\nAnswer to the query below using the"
                 " additional provided content. The additional content is composed of"
                 " the HTML link to the source and the extracted contextual"
-                " information.\n\nBe succinct.\n\nquery:"
-                f" {query}\n\n{context_query} [/INST]."
+                " information.\n\nBe succinct.\n\n"
+                "Make sure to use backticks whenever you refer to class, function, "
+                "method, or name that contains underscores.\n\n"
+                f"query: {query}\n\n{context_query} [/INST]."
             )
         else:
             sources = None
@@ -63,6 +65,9 @@ class BasicPromptingStrategy(BaseEstimator):
                 "machine-learning question.\n\n"
                 "Answer to the following query.\n\n"
                 "Be succinct.\n\n"
+                " information.\n\nBe succinct.\n\n"
+                "Make sure to use backticks whenever you refer to class, function, "
+                "method, or name that contains underscores.\n\n"
                 f"query: {query} [/INST]."
             )
         logger.info(f"The final prompt is:\n{prompt}")
