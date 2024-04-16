@@ -211,11 +211,13 @@ class GalleryExampleExtractor(BaseEstimator, TransformerMixin):
             documentation.
         """
         if self.chunk_size is None:
-            output = [
-                _extract_single_example(example)
-                for example in X.rglob("*.py")
-                if not example.name.startswith("_")
-            ]
+            output = list(
+                chain.from_iterable(
+                    _extract_single_example(example)
+                    for example in X.rglob("*.py")
+                    if not example.name.startswith("_")
+                )
+            )
         else:
             output = list(
                 chain.from_iterable(

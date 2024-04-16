@@ -9,9 +9,13 @@ EXAMPLE_NAMES = ["plot_tree_regression", "plot_linear_model_coefficient_interpre
 SKLEARN_EXAMPLES_ROOT_URL = "https://scikit-learn.org/stable/auto_examples/"
 
 
-def test_gallery_example_extractor():
+@pytest.mark.parametrize("chunk_size", [None, 300])
+@pytest.mark.parametrize("n_jobs", [None, 1, 2])
+def test_gallery_example_extractor(chunk_size, n_jobs):
     """Check the behavior of the `GalleryExampleExtractor` class."""
-    extractor = GalleryExampleExtractor(chunk_size=1_500, chunk_overlap=10)
+    extractor = GalleryExampleExtractor(
+        chunk_size=chunk_size, chunk_overlap=10, n_jobs=n_jobs
+    )
     output_extract = extractor.fit_transform(EXAMPLES_TEST_FOLDER)
     expected_sources = [
         SKLEARN_EXAMPLES_ROOT_URL + example_name + ".html"
@@ -19,6 +23,14 @@ def test_gallery_example_extractor():
     ]
     for output in output_extract:
         assert output["source"] in expected_sources
+
+    if chunk_size is None:
+        # Without chunking, we should chunk at the section level
+        assert len(output_extract) == 14
+
+    tags = extractor._get_tags()
+    assert tags["X_types"] == ["string"]
+    assert tags["stateless"] is True
 
 
 def test_gallery_example_extractor_no_extraction_error():
