@@ -10,7 +10,6 @@ homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
 readme = "README.md"
 
 [tasks]
-build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 build-doc-sklearn = { cmd = "make html", cwd = "local_sklearn/scikit-learn/doc" }
 fetch-mistral-7b = { cmd = "wget -O 'mistral-7b-instruct-v0.2.Q6_K.gguf' 'https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q6_K.gguf?download=true'", cwd = "models" }
 
@@ -105,16 +104,16 @@ sentence-transformers = "2.6.0"
 llama-cpp-python = "*"
 
 # margaret-specfic configuration for CUDA 11.7
-[feature.margaret]
+[feature.cuda-11-7]
 platforms = ["linux-64"]
 system-requirements = { cuda = "11.7" }
 channels = ["nvidia", {channel = "pytorch", priority = -1}]
 
-[feature.margaret.activation]
+[feature.cuda-11-7.activation]
 # set environment variable for building llmama-cpp via pip
 scripts = ["build_scripts/margaret-activate.sh"]
 
-[feature.margaret.dependencies]
+[feature.cuda-11-7.dependencies]
 faiss-cpu = { version = "1.8.0", channel = "pytorch" }
 libfaiss = { version = "1.8.0", channel = "pytorch" }
 cuda-nvcc = { version = "11.7.*", channel = "nvidia" }
@@ -128,17 +127,17 @@ sentence-transformers = "2.6.0"
 # [feature.margaret.pypi-dependencies]
 # llama-cpp-python = "*"
 
-# scaleway-specfic configuration for CUDA 12.4
-[feature.scaleway]
+# GPU CUDA 12.1
+[feature.cuda-12-1]
 platforms = ["linux-64"]
 system-requirements = { cuda = "12.1" }
 channels = ["nvidia", {channel = "pytorch", priority = -1}]
 
-[feature.scaleway.activation]
+[feature.cuda-12-1.activation]
 # set environment variable for building llmama-cpp via pip
 scripts = ["build_scripts/margaret-activate.sh"]
 
-[feature.scaleway.dependencies]
+[feature.cuda-12-1.dependencies]
 faiss-cpu = { version = "1.8.0", channel = "pytorch" }
 libfaiss = { version = "1.8.0", channel = "pytorch" }
 cuda-nvcc = { version = "12.1.*", channel = "nvidia" }
@@ -149,7 +148,7 @@ pytorch-cuda = { version = "12.1.*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
-# [feature.scaleway.pypi-dependencies]
+# [feature.cuda-12-1.pypi-dependencies]
 # llama-cpp-python = "*"
 
 # tasks per type of hardware
@@ -158,19 +157,22 @@ sentence-transformers = "2.6.0"
 start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
 test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [feature.mps.tasks]
 start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
 test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [feature.cuda.tasks]
 start-ragger-duck = { cmd = "DEVICE=cuda GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cuda python train_retrievers.py", cwd = "scripts" }
 test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [environments]
 mps = ["mps"]
 cpu = ["cpu"]
-margaret = ["margaret", "cuda"]
-scaleway = ["scaleway", "cuda"]
+cuda-11-7 = ["cuda-11-7", "cuda"]
+cuda-12-1 = ["cuda-12-1", "cuda"]
