@@ -14,4 +14,5 @@ Scraping the documentation
    :template: class.rst
 
    APINumPyDocExtractor
+   GalleryExampleExtractor
    UserGuideDocExtractor

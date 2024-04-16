@@ -1,0 +1,44 @@
+﻿GalleryExampleExtractor
+==========================================================
+
+.. currentmodule:: ragger_duck.scraping
+
+.. autoclass:: GalleryExampleExtractor
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~GalleryExampleExtractor.fit
+      
+      
+        ~GalleryExampleExtractor.fit_transform
+      
+      
+        ~GalleryExampleExtractor.get_metadata_routing
+      
+      
+        ~GalleryExampleExtractor.get_params
+      
+      
+        ~GalleryExampleExtractor.set_output
+      
+      
+        ~GalleryExampleExtractor.set_params
+      
+      
+        ~GalleryExampleExtractor.transform
+      
+   
+   
+
+.. include:: ragger_duck.scraping.GalleryExampleExtractor.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>
