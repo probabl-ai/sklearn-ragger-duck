@@ -222,7 +222,7 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
                     )
                 )
             )
-        if not output:  # pragma: no cover
+        if not output:
             raise ValueError(
                 "No User Guide documentation was extracted. Please check the "
                 "input folder."

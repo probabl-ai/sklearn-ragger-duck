@@ -187,7 +187,7 @@ class GalleryExampleExtractor(BaseEstimator, TransformerMixin):
             )
         if not output:
             raise ValueError(
-                "No User Guide documentation was extracted. Please check the "
+                "No documentation from the examples was extracted. Please check the "
                 "input folder."
             )
         return output

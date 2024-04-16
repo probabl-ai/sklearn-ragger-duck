@@ -62,3 +62,11 @@ def test__extract_user_guide_doc_error():
     err_msg = "should be a pathlib.Path object."
     with pytest.raises(ValueError, match=err_msg):
         _extract_user_guide_doc("not_a_pathlib.Path", [])
+
+
+def test_user_guide_extractor_no_extraction_error():
+    """Check that we raise an error if we don't succeed to extract any text."""
+    extractor = UserGuideDocExtractor(chunk_size=None, n_jobs=1)
+    err_msg = "No User Guide documentation was extracted"
+    with pytest.raises(ValueError, match=err_msg):
+        extractor.fit_transform(Path(__file__).parent / "data" / "empty")
