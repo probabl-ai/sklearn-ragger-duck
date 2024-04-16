@@ -450,9 +450,9 @@ at your disposal:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cpu</span></code>: this is a cross-platform environments (i.e. linux and MacOS on x86_64 and
 arm64);</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mps</span></code>: this is an environment for MacOS on M1/M2/M3 chips;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scaleway</span></code>: this is an environment for linux on x86_64 machine with GPU support.
-We used it to make experiment on Scaleway instance providing an L4 GPU.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">margaret</span></code>: similar to <code class="docutils literal notranslate"><span class="pre">scaleway</span></code> but relying on cuda-toolkit 11.4 instead of 12.1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cuda-12-1</span></code>: this is an environment for linux on x86_64 machine with GPU support.
+We used it to make experiment on Scaleway instance that provides an L4 GPU.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cuda-11-7</span></code>: similar to <code class="docutils literal notranslate"><span class="pre">cuda-12-1</span></code> but relying on cuda 11.7 instead of 12.1.</p></li>
 </ul>
 <p>Note that you can modify the <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> to create your own environments since the
 cuda-toolkit version used in the <code class="docutils literal notranslate"><span class="pre">scaleway</span></code> environment might not be the one you have.</p>

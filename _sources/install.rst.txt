@@ -29,9 +29,9 @@ at your disposal:
 - `cpu`: this is a cross-platform environments (i.e. linux and MacOS on x86_64 and
   arm64);
 - `mps`: this is an environment for MacOS on M1/M2/M3 chips;
-- `scaleway`: this is an environment for linux on x86_64 machine with GPU support.
-  We used it to make experiment on Scaleway instance providing an L4 GPU.
-- `margaret`: similar to `scaleway` but relying on cuda-toolkit 11.4 instead of 12.1.
+- `cuda-12-1`: this is an environment for linux on x86_64 machine with GPU support.
+  We used it to make experiment on Scaleway instance that provides an L4 GPU.
+- `cuda-11-7`: similar to `cuda-12-1` but relying on cuda 11.7 instead of 12.1.
 
 Note that you can modify the `pixi.toml` to create your own environments since the
 cuda-toolkit version used in the `scaleway` environment might not be the one you have.
