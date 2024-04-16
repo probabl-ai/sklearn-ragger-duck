@@ -47,7 +47,11 @@ html_css_files = [
     "css/ragger_duck.css",
 ]
 html_sidebars = {
-    "changelog": [],
+    "install": [],
+    "user_guide": [],
+    "auto_examples/index": [],
+    "whats_new": [],
+    "about": [],
 }
 
 html_theme_options = {
