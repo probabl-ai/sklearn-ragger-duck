@@ -485,12 +485,42 @@ representation. Then, the most similar vectors are found in the database and the
 corresponding natural texts are returned. Those documents are then used as context for
 the LLM in the previous RAG framework.</p>
 </section>
-<section id="types-of-retrievers">
-<h3>Types of retrievers<a class="headerlink" href="#types-of-retrievers" title="Link to this heading">#</a></h3>
+<section id="details-regarding-the-retrievers">
+<h3>Details regarding the retrievers<a class="headerlink" href="#details-regarding-the-retrievers" title="Link to this heading">#</a></h3>
+<p>In this section, we provide a couple of details regarding the retrievers. However,
+our reader can refer to the following comprehensive review for more details <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p>Without going into the details, we can distinguish two types of retrievers: (i)
+lexical retrievers based on the Bag-of-Words (BoW) model and (ii) semantic retrievers
+based on neural networks.</p>
+<p>Lexical retrievers are based on word counts in documents and queries. They are simple
+but they lack the ability to capture the meaning of words. Several approaches have been
+proposed to improve the performance of these retrievers by expanding queries, documents
+or modeling topics. Those retrievers create a sparse representation that can be
+leveraged to find the most similar documents through inverted indexes.</p>
+<p>Semantic retrievers are based on neural networks and project the text into a continuous
+vector space. While they are better at capturing the meaning of words, they make the
+search more complex due to the dense representation. In this case, approximate nearest
+neighbors algorithms are used to find the most similar documents.</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>Guo, J., Cai, Y., Fan, Y., Sun, F., Zhang, R., &amp; Cheng, X. (2022).
+“Semantic models for the first-stage retrieval: A comprehensive review.”
+ACM Transactions on Information Systems (TOIS), 40(4), 1-42.
+<a class="reference external" href="https://arxiv.org/abs/2103.04831">https://arxiv.org/abs/2103.04831</a></p>
+</aside>
+</aside>
 </section>
 </section>
 <section id="implementation-details">
 <h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h2>
+<p>In the previous sections, we presented the general ideas behind the RAG framework.
+However, the devil is in the details. In the following sections, we present some
+implementation details regarding some inner steps of the RAG framework that are
+important if you want to get meaningful results.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="text_scraping.html">Text Scraping</a><ul>
@@ -562,7 +592,8 @@ the LLM in the previous RAG framework.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-retrieval-augmented-generation">What is Retrieval Augmented Generation?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-retrieval">Information retrieval</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-retrievers">Types of retrievers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#details-regarding-the-retrievers">Details regarding the retrievers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation details</a></li>
