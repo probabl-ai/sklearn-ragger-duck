@@ -101,7 +101,7 @@ about the scikit-learn library.
     :titlesonly:
 
     install
-    user_guide
+    user_guide/index
     references/index
     auto_examples/index
     whats_new

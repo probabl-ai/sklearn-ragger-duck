@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Version 0.1 &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
+    <title>Text Scraping &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
   
   
   
@@ -40,11 +40,13 @@
     <script src="../_static/documentation_options.js?v=75d19225"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'whats_new/v0.1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/text_scraping';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Retriever" href="information_retrieval.html" />
+    <link rel="prev" title="User Guide" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -144,8 +146,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
                         User Guide
                       </a>
                     </li>
@@ -271,9 +273,7 @@ document.write(`
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -293,8 +293,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
                         User Guide
                       </a>
                     </li>
@@ -376,6 +376,20 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Text Scraping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="information_retrieval.html">Retriever</a></li>
+<li class="toctree-l1"><a class="reference internal" href="large_language_model.html">Prompting</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -408,7 +422,10 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Version 0.1</li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Text Scraping</li>
   </ul>
 </nav>
 </div>
@@ -425,11 +442,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="version-0-1">
-<span id="changes-0-1"></span><h1>Version 0.1<a class="headerlink" href="#version-0-1" title="Link to this heading">#</a></h1>
-<p><strong>In Progress</strong></p>
-<section id="changelog">
-<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h2>
+  <section id="text-scraping">
+<span id="id1"></span><h1>Text Scraping<a class="headerlink" href="#text-scraping" title="Link to this heading">#</a></h1>
+<p>The scraping module provides some simple estimator that extract meaningful
+documentation from the documentation website.</p>
+<section id="api-documentation">
+<h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is a more advanced scraper
+that uses <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> and it scraper to extract the documentation. Indeed, the
+<code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> scraper will parse the different sections and we build meaningful
+chunks of documentation from the parsed sections. While, we don’t control for
+the chunk size, the chunks are build such that they contain information only
+of a specific parameter and always refer to the class or function. We hope that
+scraping in such way can remove ambiguity that could exist when building chunks
+without any control.</p>
+</section>
+<section id="user-guide-documentation">
+<h2>User Guide documentation<a class="headerlink" href="#user-guide-documentation" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideDocExtractor</span></code></a> is a scraper that extract
+documentation from the user guide. It is a simple scraper that extract
+text information from the webpage. Additionally, this text can be chunked.</p>
 </section>
 </section>
 
@@ -443,6 +475,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">User Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="information_retrieval.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Retriever</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -461,7 +511,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation">API documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation">User Guide documentation</a></li>
 </ul>
   </nav></div>
 
@@ -469,7 +520,7 @@ document.write(`
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/whats_new/v0.1.rst">
+    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/user_guide/text_scraping.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -484,7 +535,7 @@ document.write(`
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/whats_new/v0.1.rst.txt">
+    <a href="../_sources/user_guide/text_scraping.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
