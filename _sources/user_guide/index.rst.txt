@@ -6,7 +6,17 @@
 User Guide
 ==========
 
-Some info regarding RAG
+Before to go in depth into implementation details of the different components of our
+Retrieval Augmented Generation (RAG) framework, we provide a high-level overview of
+the main components.
+
+What is Retrieval Augmented Generation?
+=======================================
+
+.. image:: /_static/img/diagram/llm.png
+    :width: 100%
+    :align: center
+    :class: transparent-image
 
 Implementation details
 ======================

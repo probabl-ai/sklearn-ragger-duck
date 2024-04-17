@@ -10,6 +10,10 @@ table {
   /* Override fit-content which breaks Styler user guide ipynb */
 }
 
+.transparent-image {
+  background: none !important;
+}
+
 /* Main index page overview cards */
 
 .intro-card {
