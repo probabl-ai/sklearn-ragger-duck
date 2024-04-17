@@ -36,7 +36,7 @@ from ragger_duck.retrieval import SemanticRetriever
 from ragger_duck.scraping import APINumPyDocExtractor
 
 embedding = SentenceTransformer(
-    model_name_or_path="thenlper/gte-large",
+    model_name_or_path=config.SENTENCE_TRANSFORMER_MODEL,
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )
@@ -91,7 +91,7 @@ joblib.dump(
 from ragger_duck.scraping import UserGuideDocExtractor
 
 embedding = SentenceTransformer(
-    model_name_or_path="thenlper/gte-large",
+    model_name_or_path=config.SENTENCE_TRANSFORMER_MODEL,
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )
@@ -148,7 +148,7 @@ joblib.dump(
 from ragger_duck.scraping import GalleryExampleExtractor
 
 embedding = SentenceTransformer(
-    model_name_or_path="thenlper/gte-large",
+    model_name_or_path=config.SENTENCE_TRANSFORMER_MODEL,
     cache_folder=config.CACHE_PATH,
     device=DEVICE,
 )

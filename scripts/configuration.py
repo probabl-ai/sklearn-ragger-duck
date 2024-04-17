@@ -34,3 +34,6 @@ GALLERY_LEXICAL_RETRIEVER_PATH = "../models/gallery_lexical_retrieval.joblib"
 # Parameters for the scraper
 CHUNK_SIZE = 1_500
 CHUNK_OVERLAP = 10
+
+# Sentence transformer model
+SENTENCE_TRANSFORMER_MODEL = "thenlper/gte-large"
