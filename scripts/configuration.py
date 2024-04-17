@@ -32,7 +32,8 @@ GALLERY_SEMANTIC_RETRIEVER_PATH = "../models/gallery_semantic_retrieval.joblib"
 GALLERY_LEXICAL_RETRIEVER_PATH = "../models/gallery_lexical_retrieval.joblib"
 
 # Parameters for the scraper
-CHUNK_SIZE = 1_500
+# gte-large will truncate at 512 tokens so let's limit to 700 characters
+CHUNK_SIZE = 700
 CHUNK_OVERLAP = 10
 
 # Sentence transformer model
