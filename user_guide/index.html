@@ -29,8 +29,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=b3d6c257" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=b3d6c257" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -445,8 +445,43 @@ document.write(`
 Retrieval Augmented Generation (RAG) framework, we provide a high-level overview of
 the main components.</p>
 <section id="what-is-retrieval-augmented-generation">
-<h2>What is Retrieval Augmented Generation?<a class="headerlink" href="#what-is-retrieval-augmented-generation" title="Link to this heading">#</a></h2>
+<span id="intro-rag"></span><h2>What is Retrieval Augmented Generation?<a class="headerlink" href="#what-is-retrieval-augmented-generation" title="Link to this heading">#</a></h2>
+<p>Before to go in more details regarding Retrieval Augmented Generation (RAG), let’s
+first define the framework in which we will use a large language model (LLM). The
+graphic below represents the interaction between our user and the LLM.</p>
 <a class="transparent-image reference internal image-reference" href="../_images/llm.png"><img alt="../_images/llm.png" class="transparent-image align-center" src="../_images/llm.png" style="width: 100%;" /></a>
+<p>In this proof-of-concept (POC), we are interested in a “zero-shot” setting. It means
+that we expect our user to formulate a question in natural language and the LLM will
+generate an answer.</p>
+<p>The way to query the LLM can be done in two ways: (i) through an API such when using
+GPT-* from OpenAI or (ii) by locally running the model using open-weight models such
+as Mistral or LLama.</p>
+<p>Now, let’s introduce the RAG framework.</p>
+<a class="transparent-image reference internal image-reference" href="../_images/rag.png"><img alt="../_images/rag.png" class="transparent-image align-center" src="../_images/rag.png" style="width: 100%;" /></a>
+<p>The major difference with the previous framework is an additional step that consists
+in retrieving relevant information from a given source of information before answering
+the user’s query. The retrieved information is provided as a context to the LLM during
+prompting, and the LLM will therefore generate an answer conditioned on this context.</p>
+<p>It should be noted that information retrieval is not a new concept and has been
+extensively studied in the past and it is also related to the application of search
+engine. In the next section, we will go in more details into the information retrieval
+components when used for a RAG framework.</p>
+</section>
+<section id="concepts-behind-information-retrieval">
+<span id="intro-info-retrieval"></span><h2>Concepts behind information retrieval<a class="headerlink" href="#concepts-behind-information-retrieval" title="Link to this heading">#</a></h2>
+<p>Before to explain how a retriever is trained, we first show the main components of
+such retriever.</p>
+<a class="transparent-image reference internal image-reference" href="../_images/retrieval_phase.png"><img alt="../_images/retrieval_phase.png" class="transparent-image align-center" src="../_images/retrieval_phase.png" style="width: 100%;" /></a>
+<p>A retriever has two main components: (i) an algorithm to transform natural text into
+a mathematical vector representation and (ii) a database containing vectors and their
+corresponding natural text. This database is also capable of finding the most similar
+vectors to a given query vector.</p>
+<p>During the training phase, a source of information containing natural text is used to
+build a set of vector representations. These vectors are used to populate the database.</p>
+<p>During the retrieval phase, a user’s query is passed to the algorithm to create a vector
+representation. Then, the most similar vectors are found in the database and the
+corresponding natural texts are returned. Those documents are then used as context for
+the LLM in the previous RAG framework.</p>
 </section>
 <section id="implementation-details">
 <h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h2>
@@ -519,6 +554,7 @@ the main components.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-retrieval-augmented-generation">What is Retrieval Augmented Generation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-behind-information-retrieval">Concepts behind information retrieval</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation details</a></li>
 </ul>
   </nav></div>
