@@ -48,7 +48,6 @@ html_css_files = [
 ]
 html_sidebars = {
     "install": [],
-    "user_guide": [],
     "auto_examples/index": [],
     "whats_new": [],
     "about": [],

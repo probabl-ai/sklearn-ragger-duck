@@ -11,6 +11,8 @@ readme = "README.md"
 
 [tasks]
 build-doc-sklearn = { cmd = "make html", cwd = "local_sklearn/scikit-learn/doc" }
+clean-doc-sklearn = { cmd = "make clean", cwd = "local_sklearn/scikit-learn/doc" }
+clean-doc-ragger-duck = { cmd = "rm -rf _build", cwd = "doc" }
 fetch-mistral-7b = { cmd = "wget -O 'mistral-7b-instruct-v0.2.Q6_K.gguf' 'https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q6_K.gguf?download=true'", cwd = "models" }
 
 [dependencies]
