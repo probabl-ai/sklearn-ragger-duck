@@ -394,8 +394,8 @@ document.write(`
 </li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Retrieval</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated/ragger_duck.retrieval.BM25Retriever.html">BM25Retriever</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/ragger_duck.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/ragger_duck.retrieval.SemanticRetriever.html">SemanticRetriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/ragger_duck.retrieval.RetrieverReranker.html">RetrieverReranker</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="prompt.html">Prompt</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -466,11 +466,11 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/ragger_duck.retrieval.BM25Retriever.html#ragger_duck.retrieval.BM25Retriever" title="ragger_duck.retrieval.BM25Retriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a>(*[, count_vectorizer, top_k, ...])</p></td>
 <td><p>Retrieve the k-nearest neighbors using a lexical search based on BM25.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a>(*, retrievers, cross_encoder)</p></td>
-<td><p>Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/ragger_duck.retrieval.SemanticRetriever.html#ragger_duck.retrieval.SemanticRetriever" title="ragger_duck.retrieval.SemanticRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a>(*, embedding[, top_k])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/ragger_duck.retrieval.SemanticRetriever.html#ragger_duck.retrieval.SemanticRetriever" title="ragger_duck.retrieval.SemanticRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a>(*, embedding[, top_k])</p></td>
 <td><p>Retrieve the k-nearest neighbors using a semantic embedding.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a>(*, retrievers, cross_encoder)</p></td>
+<td><p>Hybrid retriever (lexical and semantic) followed by a cross-encoder reranker.</p></td>
 </tr>
 </tbody>
 </table>
