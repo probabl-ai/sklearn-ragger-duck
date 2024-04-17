@@ -19,7 +19,10 @@ Deploy Ragger Duck
 ==================
 
 To ease the deployment, we rely on `pixi`. Refer to following
-`link <https://pixi.sh/#installation>`_ for installing `pixi`.
+`link <https://pixi.sh/#installation>`_ for installing `pixi` but in short, for the
+currently supported platform, the following should be enough::
+
+  curl -fsSL https://pixi.sh/install.sh | bash
 
 In the latest stage, `pixi` will be in charge to create the Python environments to
 build the scikit-learn documentation, train the retrievers, and launch the Web Console.
@@ -36,6 +39,7 @@ at your disposal:
 Note that you can modify the `pixi.toml` to create your own environments since the
 cuda version used in the `cuda-12-1` or `cuda-11-7` environment might not suits your
 needs.
+
 
 Cloning the project
 -------------------

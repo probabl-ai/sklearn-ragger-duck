@@ -441,7 +441,11 @@ package. An easy and dirty way is to add the package into your path for the mome
 <section id="deploy-ragger-duck">
 <h2>Deploy Ragger Duck<a class="headerlink" href="#deploy-ragger-duck" title="Link to this heading">#</a></h2>
 <p>To ease the deployment, we rely on <code class="docutils literal notranslate"><span class="pre">pixi</span></code>. Refer to following
-<a class="reference external" href="https://pixi.sh/#installation">link</a> for installing <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.</p>
+<a class="reference external" href="https://pixi.sh/#installation">link</a> for installing <code class="docutils literal notranslate"><span class="pre">pixi</span></code> but in short, for the
+currently supported platform, the following should be enough:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pixi</span><span class="o">.</span><span class="n">sh</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
+</pre></div>
+</div>
 <p>In the latest stage, <code class="docutils literal notranslate"><span class="pre">pixi</span></code> will be in charge to create the Python environments to
 build the scikit-learn documentation, train the retrievers, and launch the Web Console.
 We already setup several environments for you depending on the platform and hardware
