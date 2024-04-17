@@ -12,6 +12,8 @@ table {
 
 .transparent-image {
   background: none !important;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /* Main index page overview cards */
