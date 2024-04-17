@@ -467,8 +467,10 @@ extensively studied in the past and it is also related to the application of sea
 engine. In the next section, we will go in more details into the information retrieval
 components when used for a RAG framework.</p>
 </section>
-<section id="concepts-behind-information-retrieval">
-<span id="intro-info-retrieval"></span><h2>Concepts behind information retrieval<a class="headerlink" href="#concepts-behind-information-retrieval" title="Link to this heading">#</a></h2>
+<section id="information-retrieval">
+<span id="intro-info-retrieval"></span><h2>Information retrieval<a class="headerlink" href="#information-retrieval" title="Link to this heading">#</a></h2>
+<section id="concepts">
+<h3>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h3>
 <p>Before to explain how a retriever is trained, we first show the main components of
 such retriever.</p>
 <a class="transparent-image reference internal image-reference" href="../_images/retrieval_phase.png"><img alt="../_images/retrieval_phase.png" class="transparent-image align-center" src="../_images/retrieval_phase.png" style="width: 100%;" /></a>
@@ -482,6 +484,10 @@ build a set of vector representations. These vectors are used to populate the da
 representation. Then, the most similar vectors are found in the database and the
 corresponding natural texts are returned. Those documents are then used as context for
 the LLM in the previous RAG framework.</p>
+</section>
+<section id="types-of-retrievers">
+<h3>Types of retrievers<a class="headerlink" href="#types-of-retrievers" title="Link to this heading">#</a></h3>
+</section>
 </section>
 <section id="implementation-details">
 <h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h2>
@@ -554,7 +560,11 @@ the LLM in the previous RAG framework.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-retrieval-augmented-generation">What is Retrieval Augmented Generation?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-behind-information-retrieval">Concepts behind information retrieval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-retrieval">Information retrieval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-retrievers">Types of retrievers</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation details</a></li>
 </ul>
   </nav></div>

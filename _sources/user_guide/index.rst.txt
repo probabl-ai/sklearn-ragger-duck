@@ -51,8 +51,11 @@ components when used for a RAG framework.
 
 .. _intro_info_retrieval:
 
-Concepts behind information retrieval
-=====================================
+Information retrieval
+=====================
+
+Concepts
+--------
 
 Before to explain how a retriever is trained, we first show the main components of
 such retriever.
@@ -74,6 +77,9 @@ During the retrieval phase, a user's query is passed to the algorithm to create 
 representation. Then, the most similar vectors are found in the database and the
 corresponding natural texts are returned. Those documents are then used as context for
 the LLM in the previous RAG framework.
+
+Types of retrievers
+-------------------
 
 Implementation details
 ======================
