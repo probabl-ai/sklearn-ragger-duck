@@ -78,11 +78,42 @@ representation. Then, the most similar vectors are found in the database and the
 corresponding natural texts are returned. Those documents are then used as context for
 the LLM in the previous RAG framework.
 
-Types of retrievers
--------------------
+Details regarding the retrievers
+--------------------------------
+
+In this section, we provide a couple of details regarding the retrievers. However,
+our reader can refer to the following comprehensive review for more details [1]_.
+
+Without going into the details, we can distinguish two types of retrievers: (i)
+lexical retrievers based on the Bag-of-Words (BoW) model and (ii) semantic retrievers
+based on neural networks.
+
+Lexical retrievers are based on word counts in documents and queries. They are simple
+but they lack the ability to capture the meaning of words. Several approaches have been
+proposed to improve the performance of these retrievers by expanding queries, documents
+or modeling topics. Those retrievers create a sparse representation that can be
+leveraged to find the most similar documents through inverted indexes.
+
+Semantic retrievers are based on neural networks and project the text into a continuous
+vector space. While they are better at capturing the meaning of words, they make the
+search more complex due to the dense representation. In this case, approximate nearest
+neighbors algorithms are used to find the most similar documents.
+
+References
+----------
+
+.. [1] Guo, J., Cai, Y., Fan, Y., Sun, F., Zhang, R., & Cheng, X. (2022).
+       "Semantic models for the first-stage retrieval: A comprehensive review."
+       ACM Transactions on Information Systems (TOIS), 40(4), 1-42.
+       https://arxiv.org/abs/2103.04831
 
 Implementation details
 ======================
+
+In the previous sections, we presented the general ideas behind the RAG framework.
+However, the devil is in the details. In the following sections, we present some
+implementation details regarding some inner steps of the RAG framework that are
+important if you want to get meaningful results.
 
 .. toctree::
     :maxdepth: 2
