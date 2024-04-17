@@ -34,7 +34,8 @@ at your disposal:
 - `cuda-11-7`: similar to `cuda-12-1` but relying on cuda 11.7 instead of 12.1.
 
 Note that you can modify the `pixi.toml` to create your own environments since the
-cuda-toolkit version used in the `scaleway` environment might not be the one you have.
+cuda version used in the `cuda-12-1` or `cuda-11-7` environment might not suits your
+needs.
 
 Cloning the project
 -------------------
