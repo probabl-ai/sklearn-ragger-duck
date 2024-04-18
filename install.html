@@ -509,14 +509,13 @@ to offload the LLM.</p>
 </section>
 <section id="use-the-ragger-duck-library">
 <h2>Use the Ragger Duck library<a class="headerlink" href="#use-the-ragger-duck-library" title="Link to this heading">#</a></h2>
-<p>Since this is a Sunday afternoon project, there is not yet a way to install the
-package. An easy and dirty way is to add the package into your path for the moment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="n">path_to_package</span> <span class="o">=</span> <span class="s2">&quot;/path/to/ragger_duck&quot;</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_to_package</span><span class="p">)</span>
+<p>When using <code class="docutils literal notranslate"><span class="pre">pixi</span></code> as discussed earlier, Ragger Duck is installed in editable mode in the
+environment. However, we also make Ragger Duck installable via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
+<p>However, we don’t install any of the dependencies since it is hardware dependent and
+can be better handled with <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.</p>
 </section>
 </section>
 
