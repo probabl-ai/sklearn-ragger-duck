@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest, macos-14-arm64]
         environment: [cpu]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.6.0
@@ -17,7 +18,7 @@ jobs:
           frozen: true
 
       - name: Install ragger-duck
-        run: pip install -e --no-deps .
+        run: pip install --no-deps -e .
         shell: pixi run bash -e {0}
 
       - name: Run tests
