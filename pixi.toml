@@ -90,8 +90,8 @@ torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
 
 [feature.cpu.target.osx-64.dependencies]
-faiss-cpu = { version = "1.7.4", channel = "pytorch" }
-libfaiss = { version = "1.7.4", channel = "pytorch" }
+faiss-cpu = { version = "1.7.3", channel = "pytorch" }
+libfaiss = { version = "1.7.3", channel = "pytorch" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
 sentence-transformers = "2.6.0"
