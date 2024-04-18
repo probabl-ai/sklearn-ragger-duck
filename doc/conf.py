@@ -10,11 +10,12 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+from ragger_duck import __version__
 
 project = "Ragger Duck"
 copyright = "2023, G. Lemaitre"
 author = "G. Lemaitre"
-release = "0.0.1.dev0"
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
