@@ -92,10 +92,10 @@ Then, you can access the Web Console at the following address::
 Use the Ragger Duck library
 ===========================
 
-Since this is a Sunday afternoon project, there is not yet a way to install the
-package. An easy and dirty way is to add the package into your path for the moment::
+When using `pixi` as discussed earlier, Ragger Duck is installed in editable mode in the
+environment. However, we also make Ragger Duck installable via `pip`::
 
-  import sys
+  pip install -e .
 
-  path_to_package = "/path/to/ragger_duck"
-  sys.path.append(path_to_package)
+However, we don't install any of the dependencies since it is hardware dependent and
+can be better handled with `pixi`.
