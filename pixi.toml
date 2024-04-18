@@ -17,6 +17,7 @@ fetch-mistral-7b = { cmd = "wget -O 'mistral-7b-instruct-v0.2.Q6_K.gguf' 'https:
 
 [dependencies]
 python = "*"
+wget = "*"
 # Dependencies for training retrievers and inference with models
 beautifulsoup4 = "*"
 joblib = "*"
