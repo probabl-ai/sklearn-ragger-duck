@@ -17,9 +17,5 @@ jobs:
           environments: ${{ matrix.environment }}
           frozen: true
 
-      - name: Install ragger-duck
-        run: pip install --no-deps -e .
-        shell: pixi run bash -e {0}
-
       - name: Run tests
         run: pixi run -e ${{ matrix.environment }} test-ragger-duck

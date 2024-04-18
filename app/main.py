@@ -3,21 +3,17 @@
 import json
 import logging
 import os
-import sys
 from importlib import import_module
-from pathlib import Path
 
 import joblib
+import resources as res
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from llama_cpp import Llama
-from sentence_transformers import CrossEncoder
-
-sys.path.append(str(Path(__file__).parent.parent))
-import resources as res
 from schemas import WSMessage
+from sentence_transformers import CrossEncoder
 
 from ragger_duck.prompt import BasicPromptingStrategy
 from ragger_duck.retrieval import RetrieverReranker

@@ -10,6 +10,7 @@ homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
 readme = "README.md"
 
 [tasks]
+install-ragger-duck ={ cmd = "pip install -e ." }
 build-doc-sklearn = { cmd = "make html-noplot", cwd = "local_sklearn/scikit-learn/doc" }
 clean-doc-sklearn = { cmd = "make clean", cwd = "local_sklearn/scikit-learn/doc" }
 clean-doc-ragger-duck = { cmd = "rm -rf _build", cwd = "doc" }
@@ -72,6 +73,7 @@ sentence-transformers = "2.6.0"
 # # the latest version requires xcode 15.2
 # # xcode 15.3 that is the latest release is buggy
 # lama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
 
 # CPU-specfic configuration
 [feature.cpu]
@@ -105,6 +107,7 @@ sentence-transformers = "2.6.0"
 
 [feature.cpu.pypi-dependencies]
 llama-cpp-python = "*"
+ragger_duck = { path=".", editable=true }
 
 # margaret-specfic configuration for CUDA 11.7
 [feature.cuda-11-7]
@@ -129,6 +132,7 @@ sentence-transformers = "2.6.0"
 
 # [feature.margaret.pypi-dependencies]
 # llama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
 
 # GPU CUDA 12.1
 [feature.cuda-12-1]
@@ -153,6 +157,7 @@ sentence-transformers = "2.6.0"
 
 # [feature.cuda-12-1.pypi-dependencies]
 # llama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
 
 # tasks per type of hardware
 

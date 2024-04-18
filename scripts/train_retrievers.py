@@ -9,13 +9,11 @@
 # %%
 import logging
 import os
-import sys
 from pathlib import Path
 
 import configuration as config
 import joblib
 
-sys.path.append(str(Path(__file__).parent.parent))
 API_DOC = Path(config.API_DOC_PATH)
 USER_GUIDE_DOC = Path(config.USER_GUIDE_DOC_PATH)
 USER_GUIDE_EXCLUDE_FOLDERS = config.USER_GUIDE_EXCLUDE_FOLDERS
