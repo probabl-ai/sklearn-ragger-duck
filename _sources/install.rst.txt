@@ -98,4 +98,4 @@ to offload the LLM.
 
 Then, you can access the Web Console at the following address::
 
-  http://localhost:8123
+  http://127.0.0.1:8123
