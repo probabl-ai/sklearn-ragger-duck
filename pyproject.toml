@@ -1,3 +1,32 @@
+[build-system]
+requires = ["flit_core>=3.4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ragger-duck"
+version = "0.0.1.dev0"
+authors = [
+  { name="Guillaume Lemaitre", email="g.lemaitre58@gmail.com" },
+]
+description = "Ragger Duck is a RAG for the scikit-learn documentation."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+]
+
+[project.urls]
+Homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
+Issues = "https://github.com/glemaitre/sklearn-ragger-duck/issues"
+
 [tool.black]
 line-length = 88
 target_version = ['py38', 'py39', 'py310']

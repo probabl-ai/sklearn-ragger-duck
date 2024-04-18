@@ -1,5 +1,5 @@
 [project]
-name = "sklearn-ragger-duck"
+name = "ragger-duck"
 version = "0.0.1.dev0"
 description = "Ragger Duck is a RAG for the scikit-learn documentation."
 authors = ["Guillaume Lemaitre <g.lemaite58@gmail.com>"]
