@@ -4,6 +4,17 @@
 Getting Started
 ###############
 
+Use the Ragger Duck library
+===========================
+
+Since this is a Sunday afternoon project, there is not yet a way to install the
+package. An easy and dirty way is to add the package into your path for the moment::
+
+  import sys
+
+  path_to_package = "/path/to/ragger_duck"
+  sys.path.append(path_to_package)
+
 Deploy Ragger Duck
 ==================
 
@@ -88,14 +99,3 @@ to offload the LLM.
 Then, you can access the Web Console at the following address::
 
   http://127.0.0.1:8123
-
-Use the Ragger Duck library
-===========================
-
-Since this is a Sunday afternoon project, there is not yet a way to install the
-package. An easy and dirty way is to add the package into your path for the moment::
-
-  import sys
-
-  path_to_package = "/path/to/ragger_duck"
-  sys.path.append(path_to_package)
