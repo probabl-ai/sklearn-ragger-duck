@@ -22,10 +22,6 @@ jobs:
         environments: cpu
         frozen: true
 
-    - name: Install ragger-duck
-      run: pip install -e --no-deps .
-      shell: pixi run bash -e {0}
-
     - name: Build documentation
       run: pixi run -e cpu build-doc-ragger-duck
 
