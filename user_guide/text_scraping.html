@@ -481,11 +481,12 @@ extraction. We could go forward with the naive approach described above. However
 will fall short to help the LLM answer the questions. Let’s go into an example to
 illustrate this point.</p>
 <p>Consider the second question above: “What are the values of the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter in
-a dummy classifier?” While our retrievers (<a class="reference internal" href="information_retrieval.html#information-retrieval"><span class="std std-ref">Retriever</span></a>) are able to get
-the association between the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> and the strategy parameter, the LLM will
-not be able to get this link if the chunk retrieved does not contain this relationship.
-Indeed, the naive approach will provide a chunk where strategy could be mentioned, but
-it might not belong to the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> class.</p>
+a dummy classifier?” While our retrievers (refer to the section
+<a class="reference internal" href="information_retrieval.html#information-retrieval"><span class="std std-ref">Retriever</span></a> of the documentation) are able to get the association
+between the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code> and the strategy parameter, the LLM
+will not be able to get this link if the chunk retrieved does not contain this
+relationship. Indeed, the naive approach will provide a chunk where strategy could be
+mentioned, but it might not belong to the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code> class.</p>
 <p>For instance, we could retrieve the following three chunks that are relatively relevant
 to the query:</p>
 <p><strong>Chunk #1</strong>:</p>
@@ -545,7 +546,8 @@ to the query:</p>
 </pre></div>
 </div>
 <p>Therefore, the chunks are relevant to the strategy parameter, but they are related to
-the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code>, and <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> classes.</p>
+the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyRegressor</span></code>, and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleImputer</span></code> classes.</p>
 <p>If we provide such information to a human who is not familiar with the scikit-learn API,
 they will not be able to determine which of the above chunks is relevant to answer the
 query. If they are experts, they might use their previous knowledge to select the
