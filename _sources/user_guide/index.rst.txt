@@ -28,7 +28,7 @@ In this proof-of-concept (POC), we are interested in a "zero-shot" setting. It m
 that we expect our user to formulate a question in natural language and the LLM will
 generate an answer.
 
-The way to query the LLM can be done in two ways: (i) through an API such when using
+The way to query the LLM can be done in two ways: (i) through an API such as when using
 GPT-* from OpenAI or (ii) by locally running the model using open-weight models such
 as Mistral or LLama.
 
