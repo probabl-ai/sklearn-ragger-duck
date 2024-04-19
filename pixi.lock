@@ -561,7 +561,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/scipy-1.13.0-py310hdfaad59_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/seaborn-0.13.2-hd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/seaborn-base-0.13.2-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/sentence-transformers-2.6.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/sentence-transformers-2.3.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sentencepiece-0.2.0-h2ec42d9_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sentencepiece-python-0.2.0-py310h9116391_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sentencepiece-spm-0.2.0-h102140d_1.conda
@@ -18011,6 +18011,34 @@ packages:
   - pkg:pypi/seaborn
   size: 234447
   timestamp: 1706341006780
+- kind: conda
+  name: sentence-transformers
+  version: 2.3.1
+  build: pyhd8ed1ab_0
+  subdir: noarch
+  noarch: python
+  url: https://conda.anaconda.org/conda-forge/noarch/sentence-transformers-2.3.1-pyhd8ed1ab_0.conda
+  sha256: c6dc944abdd1bff024e68e8fb3e7a5a1f95e1b0008568e54141074d0ec2c2459
+  md5: d6ba84d753a023d4f34ee73ae05644c1
+  depends:
+  - huggingface_hub >=0.8.1
+  - nltk
+  - numpy
+  - python >=3.6
+  - pytorch >=1.6.0
+  - scikit-learn
+  - scipy
+  - sentencepiece
+  - tokenizers >=0.10.3
+  - torchvision
+  - tqdm
+  - transformers >=4.6.0,<5.0.0
+  license: Apache-2.0
+  license_family: APACHE
+  purls:
+  - pkg:pypi/sentence-transformers
+  size: 90652
+  timestamp: 1706663726665
 - kind: conda
   name: sentence-transformers
   version: 2.6.0
