@@ -105,7 +105,6 @@ class BasicPromptingStrategy(BaseEstimator):
                 "machine-learning question.\n\n"
                 "Answer to the following query.\n\n"
                 "Be succinct.\n\n"
-                " information.\n\nBe succinct.\n\n"
                 "Make sure to use backticks whenever you refer to class, function, "
                 "method, or name that contains underscores.\n\n"
                 f"query: {query} [/INST]."
