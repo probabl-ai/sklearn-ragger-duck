@@ -34,7 +34,8 @@ In semantic retrievers, the idea is to have a more flexible match between the qu
 and the documentation. We use an embedding model to project a document into a vector
 space. During the training, these vectors are used to build a vector database. During
 the query, we project the query into the vector space and we retrieve the closest
-documents.
+documents. The semantic retrievers are more likely to make sense of words positioning
+and words similarity.
 
 :class:`~ragger_duck.retrieval.SemanticRetriever` are using a given embedding and an
 approximate nearest neighbor algorithm, namely `FAISS
@@ -50,3 +51,10 @@ If we use both lexical and semantic retrievers, we need to merge the results of 
 retrievers. :class:`~ragger_duck.retrieval.RetrieverReranker` makes such reranking by
 using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
 Bing query-document pairs and is available on HuggingFace.
+
+API of retrivers and Reranker
+=============================
+
+All retrievers and reranker adhere to the same API with a `fit` and `query` method.
+For the retrievers, the `fit` method is used to create the index while the `query`
+method is used to retrieve the top-k documents given a query.
