@@ -1,5 +1,7 @@
 # Ragger Duck
 
+![tests](https://github.com/glemaitre/sklearn-ragger-duck/actions/workflows/python-app.yml/badge.svg)
+
 A rubber duck that should answer to your scikit-learn questions. But this is just
 a rubber duck, so it will only be listening to your questions and wrongly answer until
 you find the solution by yourself.

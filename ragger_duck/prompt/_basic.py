@@ -103,8 +103,7 @@ class BasicPromptingStrategy(BaseEstimator):
             prompt = (
                 "[INST] You are a scikit-learn expert that should be able to answer "
                 "machine-learning question.\n\n"
-                "Answer to the following query.\n\n"
-                "Be succinct.\n\n"
+                "Answer to the following query. Be succinct.\n\n"
                 "Make sure to use backticks whenever you refer to class, function, "
                 "method, or name that contains underscores.\n\n"
                 f"query: {query} [/INST]."
