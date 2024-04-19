@@ -28,8 +28,20 @@ class BM25Retriever(BaseEstimator):
     X_fit_ : list of str or dict
         The input data.
 
-    X_embedded_ : ndarray of shape (n_sentences, n_features)
-        The embedded data.
+    X_counts_ : sparse matrix of shape (n_documents, n_features)
+        The count of terms in documents.
+
+    count_vectorizer_ : transformer
+        The count vectorizer used to compute the count of terms in documents.
+
+    n_terms_by_document_ : ndarray of shape (n_sentences,)
+        The number of terms by document.
+
+    averaged_document_length_ : float
+        The average number of terms by document.
+
+    idf_ : ndarray of shape (n_features,)
+        The inverse document frequency.
     """
 
     _parameter_constraints = {
