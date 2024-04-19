@@ -67,7 +67,8 @@ faiss-cpu = { version = "1.8.0", channel = "pytorch" }
 libfaiss = { version = "1.8.0", channel = "pytorch" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.6.0"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 # [feature.mps.pypi-dependencies]
 # # the latest version requires xcode 15.2
@@ -89,23 +90,24 @@ libfaiss = { version = "1.8.0", channel = "pytorch" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 cpuonly = { version = "*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.6.0"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 [feature.cpu.target.osx-64.dependencies]
-faiss-cpu = { version = "1.7.4", channel = "pytorch" }
-libfaiss = { version = "1.7.4", channel = "pytorch" }
-mkl = "2021.4.0"
-blas = "1.0=mkl"
+faiss-cpu = { version = "1.7.4", channel = "conda-forge" }
+libfaiss = { version = "1.7.4", channel = "conda-forge" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.3.1"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 [feature.cpu.target.osx-arm64.dependencies]
 faiss-cpu = { version = "1.8.0", channel = "pytorch" }
 libfaiss = { version = "1.8.0", channel = "pytorch" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.6.0"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 [feature.cpu.pypi-dependencies]
 llama-cpp-python = "*"
@@ -130,7 +132,8 @@ cuda-runtime = { version = "11.7.*", channel = "nvidia" }
 pytorch = { version = "2.0.1", channel = "pytorch" }
 pytorch-cuda = { version = "11.7.*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.6.0"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 # [feature.margaret.pypi-dependencies]
 # llama-cpp-python = "*"
@@ -155,7 +158,8 @@ cuda-runtime = { version = "12.1.*", channel = "nvidia" }
 pytorch = { version = "2.2.1", channel = "pytorch" }
 pytorch-cuda = { version = "12.1.*", channel = "pytorch" }
 torchvision = { version = "*", channel = "pytorch" }
-sentence-transformers = "2.6.0"
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
 
 # [feature.cuda-12-1.pypi-dependencies]
 # llama-cpp-python = "*"
