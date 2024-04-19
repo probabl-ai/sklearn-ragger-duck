@@ -30,6 +30,9 @@ class SemanticRetriever(BaseEstimator):
 
     X_embedded_ : ndarray of shape (n_sentences, n_features)
         The embedded data.
+
+    index_ : faiss index
+        The index to retrieve the k-nearest neighbors.
     """
 
     _parameter_constraints = {
