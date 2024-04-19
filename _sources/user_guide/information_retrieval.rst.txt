@@ -44,15 +44,15 @@ approximate nearest neighbor algorithm, namely `FAISS
 As embedding, we provide a :class:`~ragger_duck.embedding.SentenceTransformer` that
 download any pre-trained sentence transformers from HuggingFace.
 
-Reranker: merging lexical and semantic retrievers
-=================================================
+Reranker: merging lexical and semantic retrievers results
+=========================================================
 
 If we use both lexical and semantic retrievers, we need to merge the results of both
 retrievers. :class:`~ragger_duck.retrieval.RetrieverReranker` makes such reranking by
 using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
 Bing query-document pairs and is available on HuggingFace.
 
-API of retrivers and Reranker
+API of retrivers and reranker
 =============================
 
 All retrievers and reranker adhere to the same API with a `fit` and `query` method.

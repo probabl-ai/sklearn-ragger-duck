@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Prompting &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
+    <title>Large Language Model &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
   
   
   
@@ -384,7 +384,7 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="text_scraping.html">Text Scraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="information_retrieval.html">Retriever</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prompting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Large Language Model</a></li>
 </ul>
 </div>
 </nav></div>
@@ -425,7 +425,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Prompting</li>
+    <li class="breadcrumb-item active" aria-current="page">Large Language Model</li>
   </ul>
 </nav>
 </div>
@@ -442,15 +442,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="prompting">
-<span id="large-language-model"></span><h1>Prompting<a class="headerlink" href="#prompting" title="Link to this heading">#</a></h1>
-<section id="prompting-for-api-documentation">
-<h2>Prompting for API documentation<a class="headerlink" href="#prompting-for-api-documentation" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="../references/generated/ragger_duck.prompt.BasicPromptingStrategy.html#ragger_duck.prompt.BasicPromptingStrategy" title="ragger_duck.prompt.BasicPromptingStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasicPromptingStrategy</span></code></a> implements a prompting
-strategy to answer documentation questions. We get context by reranking the
-search from a lexical and semantic retrievers. Once the context is retrieved,
-we request a Large Language Model (LLM) to answer the question.</p>
-</section>
+  <section id="large-language-model">
+<span id="id1"></span><h1>Large Language Model<a class="headerlink" href="#large-language-model" title="Link to this heading">#</a></h1>
+<p>In the RAG framework, the Large Language Model (LLM) is the cherry on top. It is in
+charge of generating the answer to the query based on the context retrieved.</p>
+<p>A rather important part of the LLM is related to the prompt to trigger the generation.
+In this POC, we did not intend to optimize the prompt because we did not have the data
+at hand to make a proper evaluation.</p>
+<p><a class="reference internal" href="../references/generated/ragger_duck.prompt.BasicPromptingStrategy.html#ragger_duck.prompt.BasicPromptingStrategy" title="ragger_duck.prompt.BasicPromptingStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasicPromptingStrategy</span></code></a> allows to interface the LLM with
+the context found by the retriever. For prototyping purposes, we also allow the
+retrievers to be bypassed. The prompt provided to the LLM is the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;[INST] You are a scikit-learn expert that should be able to answer&quot;</span>
+    <span class="s2">&quot; machine-learning question.</span><span class="se">\n\n</span><span class="s2">Answer to the query below using the&quot;</span>
+    <span class="s2">&quot; additional provided content. The additional content is composed of&quot;</span>
+    <span class="s2">&quot; the HTML link to the source and the extracted contextual&quot;</span>
+    <span class="s2">&quot; information.</span><span class="se">\n\n</span><span class="s2">Be succinct.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;Make sure to use backticks whenever you refer to class, function, &quot;</span>
+    <span class="s2">&quot;method, or name that contains underscores.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">context_query</span><span class="si">}</span><span class="s2"> [/INST].&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>When bypassing the retrievers, we do not provide any context and the sentence related
+to this part.</p>
 </section>
 
 
@@ -490,18 +505,6 @@ we request a Large Language Model (LLM) to answer the question.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-for-api-documentation">Prompting for API documentation</a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

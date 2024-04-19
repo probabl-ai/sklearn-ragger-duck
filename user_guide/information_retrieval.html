@@ -45,7 +45,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Prompting" href="large_language_model.html" />
+    <link rel="next" title="Large Language Model" href="large_language_model.html" />
     <link rel="prev" title="Text Scraping" href="text_scraping.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -384,7 +384,7 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="text_scraping.html">Text Scraping</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Retriever</a></li>
-<li class="toctree-l1"><a class="reference internal" href="large_language_model.html">Prompting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="large_language_model.html">Large Language Model</a></li>
 </ul>
 </div>
 </nav></div>
@@ -475,15 +475,15 @@ approximate nearest neighbor algorithm, namely <a class="reference external" hre
 <p>As embedding, we provide a <a class="reference internal" href="../references/generated/ragger_duck.embedding.SentenceTransformer.html#ragger_duck.embedding.SentenceTransformer" title="ragger_duck.embedding.SentenceTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SentenceTransformer</span></code></a> that
 download any pre-trained sentence transformers from HuggingFace.</p>
 </section>
-<section id="reranker-merging-lexical-and-semantic-retrievers">
-<h2>Reranker: merging lexical and semantic retrievers<a class="headerlink" href="#reranker-merging-lexical-and-semantic-retrievers" title="Link to this heading">#</a></h2>
+<section id="reranker-merging-lexical-and-semantic-retrievers-results">
+<h2>Reranker: merging lexical and semantic retrievers results<a class="headerlink" href="#reranker-merging-lexical-and-semantic-retrievers-results" title="Link to this heading">#</a></h2>
 <p>If we use both lexical and semantic retrievers, we need to merge the results of both
 retrievers. <a class="reference internal" href="../references/generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a> makes such reranking by
 using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
 Bing query-document pairs and is available on HuggingFace.</p>
 </section>
 <section id="api-of-retrivers-and-reranker">
-<h2>API of retrivers and Reranker<a class="headerlink" href="#api-of-retrivers-and-reranker" title="Link to this heading">#</a></h2>
+<h2>API of retrivers and reranker<a class="headerlink" href="#api-of-retrivers-and-reranker" title="Link to this heading">#</a></h2>
 <p>All retrievers and reranker adhere to the same API with a <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">query</span></code> method.
 For the retrievers, the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used to create the index while the <code class="docutils literal notranslate"><span class="pre">query</span></code>
 method is used to retrieve the top-k documents given a query.</p>
@@ -514,7 +514,7 @@ method is used to retrieve the top-k documents given a query.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Prompting</p>
+        <p class="prev-next-title">Large Language Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -538,8 +538,8 @@ method is used to retrieve the top-k documents given a query.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-retrievers">Lexical retrievers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-retrievers">Semantic retrievers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reranker-merging-lexical-and-semantic-retrievers">Reranker: merging lexical and semantic retrievers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-of-retrivers-and-reranker">API of retrivers and Reranker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reranker-merging-lexical-and-semantic-retrievers-results">Reranker: merging lexical and semantic retrievers results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-of-retrivers-and-reranker">API of retrivers and reranker</a></li>
 </ul>
   </nav></div>
 
