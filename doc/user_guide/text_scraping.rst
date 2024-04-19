@@ -27,8 +27,8 @@ specifically designed for certain portions of the scikit-learn documentation.
 
 .. _api_doc_scraping:
 
-API documentation
-=================
+API documentation scraper
+=========================
 
 We refer to "API documentation" as the following documentation entry point:
 https://scikit-learn.org/stable/modules/classes.html.
@@ -294,8 +294,8 @@ provide an example of chunks extracted for the
          [[187 214 243]
           [188 215 244]]]
 
-User Guide documentation
-========================
+User Guide documentation scraper
+================================
 
 We refer to "User Guide documentation" to the narrative documentation that is
 handwritten and provides a detailed explanation of the concepts of machine learning
@@ -327,8 +327,8 @@ done in the future.
 The class also provides the parameter `folders_to_exclude` to exclude some files or
 folders that we don't want to incorporate into our index.
 
-Gallery of examples documentation
-=================================
+Example gallery scraper
+=======================
 
 The last type of documentation in scikit-learn is the gallery of examples. It
 corresponds to a set of python examples that show some usage cases or tutorial-like
@@ -360,3 +360,14 @@ an individual block an chunk separately the code block. In the second case, it w
 instead parse first the section of the example and create blocks for each section. Then,
 we will chunk each block separately. The idea behind this strategy is that a section
 of text is usually an introduction or a description of the code that follows it.
+
+Scraper API
+===========
+
+The different scraper classes have a common API that is the scikit-learn transformer
+API. They all implement the method `fit`, `transform`, and `fit_transform`. The
+scrappers are stateless and only parameter validation is done during `fit`. All the
+processing is happening when calling `transform`.
+
+This API allows to leverage the scikit-learn `Pipeline` and for instance to create A
+pipeline and a retriever with a unique Python instance.
