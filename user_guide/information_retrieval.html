@@ -444,37 +444,49 @@ document.write(`
                   
   <section id="retriever">
 <span id="information-retrieval"></span><h1>Retriever<a class="headerlink" href="#retriever" title="Link to this heading">#</a></h1>
-<p>We differentiate two types of context retrievers: lexical and semantical.</p>
+<p>We differentiate two types of context retrievers: lexical and semantic.</p>
 <section id="lexical-retrievers">
 <h2>Lexical retrievers<a class="headerlink" href="#lexical-retrievers" title="Link to this heading">#</a></h2>
-<p>In lexical retrievers, the idea is to have exact match between the query and
-the documentation.</p>
-<p>We implement <a class="reference internal" href="../references/generated/ragger_duck.retrieval.BM25Retriever.html#ragger_duck.retrieval.BM25Retriever" title="ragger_duck.retrieval.BM25Retriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a> that uses a
+<p>Lexical retrievers are based on the bag-of-words approach. The idea is to count the
+term frequency in documents and queries and based on a score, rank the documents. We
+could think that with this approach, documents with similar words distribution are
+likely to be similar.</p>
+<p>However, we can also infer a limitation: since this is based on term frequency, the
+retriever does not take into account the meaning of the words. For instance, this is not
+robust to synonyms or to the context of the words.</p>
+<p>Here, we implement the <a class="reference internal" href="../references/generated/ragger_duck.retrieval.BM25Retriever.html#ragger_duck.retrieval.BM25Retriever" title="ragger_duck.retrieval.BM25Retriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a> that uses a
 <code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code> to build the
 vocabulary. Then, we use a TF-IDF weighting scheme to weight the vocabulary.
 During the a query, we provide a similarity score between the query and the
 each documentation chunk seen during training.</p>
+<p>To have more details regarding the scoring used by the BM25 retriever, you can refer to
+this <a class="reference external" href="https://en.wikipedia.org/wiki/Okapi_BM25">Wikipedia page</a>.</p>
 </section>
-<section id="semantical-retrievers">
-<h2>Semantical retrievers<a class="headerlink" href="#semantical-retrievers" title="Link to this heading">#</a></h2>
-<p>In semantical retrievers, the idea is to have a more flexible match between the
-query and the documentation. We use an embedding model to project a document
-into a vector space. During the training, these vectors are used to build a
-vector database. During the query, we project the query into the vector space
-and we retrieve the closest documents.</p>
-<p><a class="reference internal" href="../references/generated/ragger_duck.retrieval.SemanticRetriever.html#ragger_duck.retrieval.SemanticRetriever" title="ragger_duck.retrieval.SemanticRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a> are using a given embedding
-and an approximate nearest neighbor algorithm, namely
-<a class="reference external" href="https://github.com/facebookresearch/faiss">FAISS</a>.</p>
-<p>As embedding, we provide a <a class="reference internal" href="../references/generated/ragger_duck.embedding.SentenceTransformer.html#ragger_duck.embedding.SentenceTransformer" title="ragger_duck.embedding.SentenceTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SentenceTransformer</span></code></a>
-that download any pre-trained sentence transformers from HuggingFace.</p>
+<section id="semantic-retrievers">
+<h2>Semantic retrievers<a class="headerlink" href="#semantic-retrievers" title="Link to this heading">#</a></h2>
+<p>In semantic retrievers, the idea is to have a more flexible match between the query
+and the documentation. We use an embedding model to project a document into a vector
+space. During the training, these vectors are used to build a vector database. During
+the query, we project the query into the vector space and we retrieve the closest
+documents. The semantic retrievers are more likely to make sense of words positioning
+and words similarity.</p>
+<p><a class="reference internal" href="../references/generated/ragger_duck.retrieval.SemanticRetriever.html#ragger_duck.retrieval.SemanticRetriever" title="ragger_duck.retrieval.SemanticRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a> are using a given embedding and an
+approximate nearest neighbor algorithm, namely <a class="reference external" href="https://github.com/facebookresearch/faiss">FAISS</a>.</p>
+<p>As embedding, we provide a <a class="reference internal" href="../references/generated/ragger_duck.embedding.SentenceTransformer.html#ragger_duck.embedding.SentenceTransformer" title="ragger_duck.embedding.SentenceTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SentenceTransformer</span></code></a> that
+download any pre-trained sentence transformers from HuggingFace.</p>
 </section>
-<section id="reranker-merging-lexical-and-semantical-retrievers">
-<h2>Reranker: merging lexical and semantical retrievers<a class="headerlink" href="#reranker-merging-lexical-and-semantical-retrievers" title="Link to this heading">#</a></h2>
-<p>If we use both lexical and semantical retrievers, we need to merge the results
-of both retrievers. <a class="reference internal" href="../references/generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a> makes
-such reranking by using a cross-encoder model. In our case, cross-encoder model
-is trained on Microsoft Bing query-document pairs and is available on
-HuggingFace.</p>
+<section id="reranker-merging-lexical-and-semantic-retrievers">
+<h2>Reranker: merging lexical and semantic retrievers<a class="headerlink" href="#reranker-merging-lexical-and-semantic-retrievers" title="Link to this heading">#</a></h2>
+<p>If we use both lexical and semantic retrievers, we need to merge the results of both
+retrievers. <a class="reference internal" href="../references/generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a> makes such reranking by
+using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
+Bing query-document pairs and is available on HuggingFace.</p>
+</section>
+<section id="api-of-retrivers-and-reranker">
+<h2>API of retrivers and Reranker<a class="headerlink" href="#api-of-retrivers-and-reranker" title="Link to this heading">#</a></h2>
+<p>All retrievers and reranker adhere to the same API with a <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">query</span></code> method.
+For the retrievers, the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used to create the index while the <code class="docutils literal notranslate"><span class="pre">query</span></code>
+method is used to retrieve the top-k documents given a query.</p>
 </section>
 </section>
 
@@ -525,8 +537,9 @@ HuggingFace.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-retrievers">Lexical retrievers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantical-retrievers">Semantical retrievers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reranker-merging-lexical-and-semantical-retrievers">Reranker: merging lexical and semantical retrievers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-retrievers">Semantic retrievers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reranker-merging-lexical-and-semantic-retrievers">Reranker: merging lexical and semantic retrievers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-of-retrivers-and-reranker">API of retrivers and Reranker</a></li>
 </ul>
   </nav></div>
 
