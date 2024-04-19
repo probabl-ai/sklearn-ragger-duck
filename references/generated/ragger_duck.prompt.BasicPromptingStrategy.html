@@ -488,17 +488,42 @@ implement a <code class="docutils literal notranslate"><span class="pre">query</
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing" title="ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.fit" title="ragger_duck.prompt.BasicPromptingStrategy.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([X, y])</p></td>
+<td><p>No-op operation, only validate parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing" title="ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.get_params" title="ragger_duck.prompt.BasicPromptingStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.get_params" title="ragger_duck.prompt.BasicPromptingStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.set_params" title="ragger_duck.prompt.BasicPromptingStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ragger_duck.prompt.BasicPromptingStrategy.set_params" title="ragger_duck.prompt.BasicPromptingStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="ragger_duck.prompt.BasicPromptingStrategy.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.BasicPromptingStrategy.fit" title="Link to this definition">#</a></dt>
+<dd><p>No-op operation, only validate parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>This parameter is ignored.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>self</dt><dd><p>The fitted estimator.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing">
 <span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing" title="Link to this definition">#</a></dt>
@@ -612,6 +637,7 @@ possible to update each component of a nested object.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.BasicPromptingStrategy"><code class="docutils literal notranslate"><span class="pre">BasicPromptingStrategy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.BasicPromptingStrategy.fit"><code class="docutils literal notranslate"><span class="pre">BasicPromptingStrategy.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.BasicPromptingStrategy.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">BasicPromptingStrategy.get_metadata_routing()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.BasicPromptingStrategy.get_params"><code class="docutils literal notranslate"><span class="pre">BasicPromptingStrategy.get_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragger_duck.prompt.BasicPromptingStrategy.set_params"><code class="docutils literal notranslate"><span class="pre">BasicPromptingStrategy.set_params()</span></code></a></li>
