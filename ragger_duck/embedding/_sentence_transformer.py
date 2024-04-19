@@ -3,7 +3,7 @@ import logging
 import time
 
 from sentence_transformers import SentenceTransformer as SentenceTransformerBase
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, _fit_context
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +71,7 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
         self.batch_size = batch_size
         self.show_progress_bar = show_progress_bar
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X=None, y=None):
         """No-op operation, only validate parameters.
 
@@ -87,7 +88,6 @@ class SentenceTransformer(BaseEstimator, TransformerMixin):
         self
             The fitted estimator.
         """
-        self._validate_params()
         self._embedding = SentenceTransformerBase(
             model_name_or_path=self.model_name_or_path,
             modules=self.modules,
