@@ -394,8 +394,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/attrs-23.2.0-pyh71513ae_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/babel-2.14.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/beautifulsoup4-4.12.3-pyha770c72_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/blas-2.120-mkl.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/blas-devel-3.9.0-20_osx64_mkl.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/blas-1.0-mkl.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/blosc-1.21.5-hafa3907_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/brotli-1.1.0-h0dc2134_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/brotli-bin-1.1.0-h0dc2134_1.conda
@@ -462,11 +461,11 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libasprintf-0.22.5-h5ff76d1_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libasprintf-devel-0.22.5-h5ff76d1_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libavif16-1.0.4-he6768c5_2.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/libblas-3.9.0-20_osx64_mkl.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/libblas-3.9.0-12_osx64_mkl.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libbrotlicommon-1.1.0-h0dc2134_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libbrotlidec-1.1.0-h0dc2134_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libbrotlienc-1.1.0-h0dc2134_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/libcblas-3.9.0-20_osx64_mkl.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/libcblas-3.9.0-12_osx64_mkl.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libcxx-16.0.6-hd57cbcb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libdeflate-1.20-h49d49c5_0.conda
       - conda: https://conda.anaconda.org/pytorch/osx-64/libfaiss-1.7.4-ha5a8b8e_0_cpu.tar.bz2
@@ -483,8 +482,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libintl-devel-0.22.5-h5ff76d1_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libjpeg-turbo-3.0.0-h0dc2134_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libjxl-0.10.1-hb3b1962_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/liblapack-3.9.0-20_osx64_mkl.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/liblapacke-3.9.0-20_osx64_mkl.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/liblapack-3.9.0-12_osx64_mkl.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libpng-1.6.43-h92b6c6a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libprotobuf-4.25.3-h4e4d658_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/libsentencepiece-0.2.0-h102140d_1.conda
@@ -502,9 +500,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/marshmallow-3.21.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/matplotlib-3.8.4-py310h2ec42d9_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/matplotlib-base-3.8.4-py310hec49e92_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/mkl-2023.2.0-h54c2260_50500.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/mkl-devel-2023.2.0-h694c41f_50500.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/mkl-include-2023.2.0-h6bab518_50500.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/mkl-2021.4.0-h89fa619_689.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/mpc-1.3.1-h81bd1dd_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/mpfr-4.2.1-h4f6b447_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mpmath-1.3.0-pyhd8ed1ab_0.conda
@@ -3708,6 +3704,22 @@ packages:
   size: 1381
 - kind: conda
   name: blas
+  version: '1.0'
+  build: mkl
+  subdir: osx-64
+  url: https://conda.anaconda.org/conda-forge/osx-64/blas-1.0-mkl.tar.bz2
+  sha256: df5c79af0758074c8983db21fc7b621a3f087ef107ae251ac257c750b5f65b9d
+  md5: d209421784932e3ec3ca90f92e159b21
+  depends:
+  - mkl
+  arch: x86_64
+  platform: osx
+  track_features:
+  - blas_mkl
+  license: BSD 3-clause
+  size: 1307
+- kind: conda
+  name: blas
   version: '2.120'
   build: mkl
   build_number: 20
@@ -3732,28 +3744,6 @@ packages:
   size: 14437
   timestamp: 1700568569382
 - kind: conda
-  name: blas
-  version: '2.120'
-  build: mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/blas-2.120-mkl.conda
-  sha256: 0859f0370bcf9bfcf12b2a19646a31a4dfb792b85a3fa33e24dd895c167d4e3e
-  md5: b041a7677a412f3d925d8208936cb1e2
-  depends:
-  - blas-devel 3.9.0 20_osx64_mkl
-  - libblas 3.9.0 20_osx64_mkl
-  - libcblas 3.9.0 20_osx64_mkl
-  - libgfortran 5.*
-  - libgfortran5 >=12.3.0
-  - libgfortran5 >=13.2.0
-  - liblapack 3.9.0 20_osx64_mkl
-  - liblapacke 3.9.0 20_osx64_mkl
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 14807
-  timestamp: 1700568891544
-- kind: conda
   name: blas-devel
   version: 3.9.0
   build: 20_linux64_mkl
@@ -3773,26 +3763,6 @@ packages:
   license_family: BSD
   size: 14235
   timestamp: 1700568448283
-- kind: conda
-  name: blas-devel
-  version: 3.9.0
-  build: 20_osx64_mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/blas-devel-3.9.0-20_osx64_mkl.conda
-  sha256: c045ffeb745c06593f3d39b4d2668a0d12270e0f9a3bf80248f031f115e9def0
-  md5: cc3260179093918b801e373c6e888e02
-  depends:
-  - libblas 3.9.0 20_osx64_mkl
-  - libcblas 3.9.0 20_osx64_mkl
-  - liblapack 3.9.0 20_osx64_mkl
-  - liblapacke 3.9.0 20_osx64_mkl
-  - mkl >=2023.2.0,<2024.0a0
-  - mkl-devel 2023.2.*
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 14457
-  timestamp: 1700568724421
 - kind: conda
   name: blosc
   version: 1.21.5
@@ -9379,6 +9349,28 @@ packages:
 - kind: conda
   name: libblas
   version: 3.9.0
+  build: 12_osx64_mkl
+  build_number: 12
+  subdir: osx-64
+  url: https://conda.anaconda.org/conda-forge/osx-64/libblas-3.9.0-12_osx64_mkl.tar.bz2
+  sha256: bcf7f88a45ab19712caf83305bf4ff19856418e7bd69e268803caaa924334a97
+  md5: c33f79f9618ad68007e9800b66baffdd
+  depends:
+  - mkl >=2021.4.0,<2022.0a0
+  constrains:
+  - liblapacke 3.9.0 12_osx64_mkl
+  - libcblas 3.9.0 12_osx64_mkl
+  - liblapack 3.9.0 12_osx64_mkl
+  - blas * mkl
+  track_features:
+  - blas_mkl
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 12075
+  timestamp: 1634286356778
+- kind: conda
+  name: libblas
+  version: 3.9.0
   build: 1_h86c2bf4_netlib
   build_number: 1
   subdir: linux-64
@@ -9417,28 +9409,6 @@ packages:
   license_family: BSD
   size: 14912
   timestamp: 1700568380170
-- kind: conda
-  name: libblas
-  version: 3.9.0
-  build: 20_osx64_mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/libblas-3.9.0-20_osx64_mkl.conda
-  sha256: 808742b95f44dcc7c546e5c3bb7ed378b08aeaef3ee451d31dfe26cdf76d109f
-  md5: 160fdc97a51d66d51dc782fb67d35205
-  depends:
-  - mkl >=2023.2.0,<2024.0a0
-  constrains:
-  - blas * mkl
-  - libcblas 3.9.0 20_osx64_mkl
-  - liblapack 3.9.0 20_osx64_mkl
-  - liblapacke 3.9.0 20_osx64_mkl
-  track_features:
-  - blas_mkl
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 15075
-  timestamp: 1700568635315
 - kind: conda
   name: libblas
   version: 3.9.0
@@ -9715,6 +9685,27 @@ packages:
 - kind: conda
   name: libcblas
   version: 3.9.0
+  build: 12_osx64_mkl
+  build_number: 12
+  subdir: osx-64
+  url: https://conda.anaconda.org/conda-forge/osx-64/libcblas-3.9.0-12_osx64_mkl.tar.bz2
+  sha256: 6d396726a99d7474793e5af0edd2fc357f3141233ad0c46ce2cb24a68ef65b6b
+  md5: b16da458017aecf31062579fc3c9ea97
+  depends:
+  - libblas 3.9.0 12_osx64_mkl
+  constrains:
+  - liblapacke 3.9.0 12_osx64_mkl
+  - liblapack 3.9.0 12_osx64_mkl
+  - blas * mkl
+  track_features:
+  - blas_mkl
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 11797
+  timestamp: 1634286378063
+- kind: conda
+  name: libcblas
+  version: 3.9.0
   build: 20_linux64_mkl
   build_number: 20
   subdir: linux-64
@@ -9733,27 +9724,6 @@ packages:
   license_family: BSD
   size: 14394
   timestamp: 1700568407268
-- kind: conda
-  name: libcblas
-  version: 3.9.0
-  build: 20_osx64_mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/libcblas-3.9.0-20_osx64_mkl.conda
-  sha256: a35e3c8f0efee2bee8926cbbf23dcb36c9cfe3100690af3b86f933bab26c4eeb
-  md5: 51089a4865eb4aec2bc5c7468bd07f9f
-  depends:
-  - libblas 3.9.0 20_osx64_mkl
-  constrains:
-  - blas * mkl
-  - liblapack 3.9.0 20_osx64_mkl
-  - liblapacke 3.9.0 20_osx64_mkl
-  track_features:
-  - blas_mkl
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 14694
-  timestamp: 1700568672081
 - kind: conda
   name: libcblas
   version: 3.9.0
@@ -11447,6 +11417,27 @@ packages:
 - kind: conda
   name: liblapack
   version: 3.9.0
+  build: 12_osx64_mkl
+  build_number: 12
+  subdir: osx-64
+  url: https://conda.anaconda.org/conda-forge/osx-64/liblapack-3.9.0-12_osx64_mkl.tar.bz2
+  sha256: 0aa689a4657bcac72e938da5105066496a2035d7eb6b661584b2622668bd59b1
+  md5: a87bb6f98f80437ca9c6515ccbfd20a6
+  depends:
+  - libblas 3.9.0 12_osx64_mkl
+  constrains:
+  - liblapacke 3.9.0 12_osx64_mkl
+  - libcblas 3.9.0 12_osx64_mkl
+  - blas * mkl
+  track_features:
+  - blas_mkl
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 11799
+  timestamp: 1634286399254
+- kind: conda
+  name: liblapack
+  version: 3.9.0
   build: 20_linux64_mkl
   build_number: 20
   subdir: linux-64
@@ -11465,27 +11456,6 @@ packages:
   license_family: BSD
   size: 14437
   timestamp: 1700568420776
-- kind: conda
-  name: liblapack
-  version: 3.9.0
-  build: 20_osx64_mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/liblapack-3.9.0-20_osx64_mkl.conda
-  sha256: fdccac604746f9620fefaee313707aa2f500f73e51f8e3a4b690d5d4c90ce3dc
-  md5: 58f08e12ad487fac4a08f90ff0b87aec
-  depends:
-  - libblas 3.9.0 20_osx64_mkl
-  constrains:
-  - blas * mkl
-  - libcblas 3.9.0 20_osx64_mkl
-  - liblapacke 3.9.0 20_osx64_mkl
-  track_features:
-  - blas_mkl
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 14699
-  timestamp: 1700568690313
 - kind: conda
   name: liblapack
   version: 3.9.0
@@ -11584,27 +11554,6 @@ packages:
   license_family: BSD
   size: 14402
   timestamp: 1700568434506
-- kind: conda
-  name: liblapacke
-  version: 3.9.0
-  build: 20_osx64_mkl
-  build_number: 20
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/liblapacke-3.9.0-20_osx64_mkl.conda
-  sha256: 58e3cd4d86b4399e104f7407fb2a3c8b502e1b7be8198f0e777e77ae7b1f1b78
-  md5: 124ae8e384268a8da66f1d64114a1eda
-  depends:
-  - libblas 3.9.0 20_osx64_mkl
-  - libcblas 3.9.0 20_osx64_mkl
-  - liblapack 3.9.0 20_osx64_mkl
-  constrains:
-  - blas * mkl
-  track_features:
-  - blas_mkl
-  license: BSD-3-Clause
-  license_family: BSD
-  size: 14695
-  timestamp: 1700568707184
 - kind: conda
   name: libllvm15
   version: 15.0.7
@@ -13825,6 +13774,22 @@ packages:
   timestamp: 1712606072243
 - kind: conda
   name: mkl
+  version: 2021.4.0
+  build: h89fa619_689
+  build_number: 689
+  subdir: osx-64
+  url: https://conda.anaconda.org/conda-forge/osx-64/mkl-2021.4.0-h89fa619_689.tar.bz2
+  sha256: 7969b4b613fc641fcf5d843bcf1bfd6ce5115d999adb23308948feb5f09f5b2b
+  md5: 3bb58f8eebc5ff2b7a81ba5b95ebbbb0
+  depends:
+  - llvm-openmp >=11.1.0
+  - tbb 2021.*
+  license: LicenseRef-ProprietaryIntel
+  license_family: Proprietary
+  size: 219148757
+  timestamp: 1634143882333
+- kind: conda
+  name: mkl
   version: 2023.0.0
   build: h84fe81f_26648
   build_number: 26648
@@ -13841,22 +13806,6 @@ packages:
   license_family: Proprietary
   size: 161440193
   timestamp: 1674673370494
-- kind: conda
-  name: mkl
-  version: 2023.2.0
-  build: h54c2260_50500
-  build_number: 50500
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/mkl-2023.2.0-h54c2260_50500.conda
-  sha256: de76dac5ab3bd22d4a73d50ce9fbe6a80d258c448ee71c5fa748010ca9331c39
-  md5: 0a342ccdc79e4fcd359245ac51941e7b
-  depends:
-  - llvm-openmp >=16.0.6
-  - tbb 2021.*
-  license: LicenseRef-ProprietaryIntel
-  license_family: Proprietary
-  size: 119572546
-  timestamp: 1698350694044
 - kind: conda
   name: mkl
   version: 2023.2.0
@@ -13878,22 +13827,6 @@ packages:
 - kind: conda
   name: mkl-devel
   version: 2023.2.0
-  build: h694c41f_50500
-  build_number: 50500
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/mkl-devel-2023.2.0-h694c41f_50500.conda
-  sha256: f77a346d56fdc79d952363ee3fb9f0a6c74e8f930e8b36f402b8367a4d37248d
-  md5: 1b4d0235ef253a1e19459351badf4f9f
-  depends:
-  - mkl 2023.2.0 h54c2260_50500
-  - mkl-include 2023.2.0 h6bab518_50500
-  license: LicenseRef-ProprietaryIntel
-  license_family: Proprietary
-  size: 30040
-  timestamp: 1698351189548
-- kind: conda
-  name: mkl-devel
-  version: 2023.2.0
   build: ha770c72_50496
   build_number: 50496
   subdir: linux-64
@@ -13907,19 +13840,6 @@ packages:
   license_family: Proprietary
   size: 29681
   timestamp: 1698351536220
-- kind: conda
-  name: mkl-include
-  version: 2023.2.0
-  build: h6bab518_50500
-  build_number: 50500
-  subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/mkl-include-2023.2.0-h6bab518_50500.conda
-  sha256: 8e33f6bc6b93a6af9486b7bc00cedb987bbf3b7e5a20afb06e5c4e4a517ac2b1
-  md5: 835abb8ded5e26f23ea6996259c7972e
-  license: LicenseRef-ProprietaryIntel
-  license_family: Proprietary
-  size: 588448
-  timestamp: 1698350992610
 - kind: conda
   name: mkl-include
   version: 2023.2.0
