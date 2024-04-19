@@ -1,6 +1,6 @@
 from numbers import Integral, Real
 
-from sklearn.base import BaseEstimator
+from sklearn.base import BaseEstimator, _fit_context
 from sklearn.utils._param_validation import HasMethods, Interval
 
 
@@ -62,6 +62,7 @@ class RetrieverReranker(BaseEstimator):
         self.threshold = threshold
         self.drop_duplicates = drop_duplicates
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X=None, y=None):
         """Compute the vocabulary and the idf.
 
@@ -78,7 +79,6 @@ class RetrieverReranker(BaseEstimator):
         self
             The fitted estimator.
         """
-        self._validate_params()
         return self
 
     @staticmethod

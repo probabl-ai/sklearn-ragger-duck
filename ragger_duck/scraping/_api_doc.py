@@ -6,7 +6,7 @@ import re
 import warnings
 
 from numpydoc.docscrape import NumpyDocString
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, _fit_context
 
 SKLEARN_API_URL = "https://scikit-learn.org/stable/modules/generated/"
 
@@ -200,6 +200,7 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
 
     _parameter_constraints = {}
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X=None, y=None):
         """No-op operation, only validate parameters.
 
@@ -216,7 +217,6 @@ class APINumPyDocExtractor(BaseEstimator, TransformerMixin):
         self
             The fitted estimator.
         """
-        self._validate_params()
         return self
 
     def transform(self, X):

@@ -9,7 +9,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from joblib import Parallel, delayed
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, _fit_context
 from sklearn.utils._param_validation import Interval
 
 from ._shared import _chunk_document
@@ -167,6 +167,7 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
         self.chunk_overlap = chunk_overlap
         self.n_jobs = n_jobs
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X=None, y=None):
         """No-op operation, only validate parameters.
 
@@ -183,7 +184,6 @@ class UserGuideDocExtractor(BaseEstimator, TransformerMixin):
         self
             The fitted estimator.
         """
-        self._validate_params()
         if self.chunk_size is not None:
             self.text_splitter_ = RecursiveCharacterTextSplitter(
                 separators=["\n\n", "\n", " "],

@@ -1,6 +1,6 @@
 import logging
 
-from sklearn.base import BaseEstimator
+from sklearn.base import BaseEstimator, _fit_context
 from sklearn.utils._param_validation import HasMethods
 
 logger = logging.getLogger(__name__)
@@ -37,6 +37,25 @@ class BasicPromptingStrategy(BaseEstimator):
         self.llm = llm
         self.retriever = retriever
         self.use_retrieved_context = use_retrieved_context
+
+    @_fit_context(prefer_skip_nested_validation=False)
+    def fit(self, X=None, y=None):
+        """No-op operation, only validate parameters.
+
+        Parameters
+        ----------
+        X : None
+            This parameter is ignored.
+
+        y : None
+            This parameter is ignored.
+
+        Returns
+        -------
+        self
+            The fitted estimator.
+        """
+        return self
 
     def __call__(self, query, **prompt_kwargs):
         logger.info(f"Query: {query}")

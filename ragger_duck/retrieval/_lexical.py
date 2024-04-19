@@ -3,7 +3,7 @@ import time
 from numbers import Integral
 
 import numpy as np
-from sklearn.base import BaseEstimator, clone
+from sklearn.base import BaseEstimator, _fit_context, clone
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.utils._param_validation import HasMethods, Interval
 from sklearn.utils.validation import check_is_fitted
@@ -43,6 +43,7 @@ class BM25Retriever(BaseEstimator):
         self.b = b
         self.k1 = k1
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X, y=None):
         """Compute the vocabulary and the idf.
 
@@ -59,7 +60,6 @@ class BM25Retriever(BaseEstimator):
         self
             The fitted estimator.
         """
-        self._validate_params()
         self.X_fit_ = X
 
         if isinstance(X[0], dict):

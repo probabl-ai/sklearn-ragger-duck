@@ -3,7 +3,7 @@ import time
 from numbers import Integral
 
 import faiss
-from sklearn.base import BaseEstimator
+from sklearn.base import BaseEstimator, _fit_context
 from sklearn.utils._param_validation import HasMethods, Interval
 from sklearn.utils.validation import check_is_fitted
 
@@ -41,6 +41,7 @@ class SemanticRetriever(BaseEstimator):
         self.embedding = embedding
         self.top_k = top_k
 
+    @_fit_context(prefer_skip_nested_validation=False)
     def fit(self, X, y=None):
         """Embed the sentences and create the index.
 
@@ -57,7 +58,6 @@ class SemanticRetriever(BaseEstimator):
         self
             The fitted estimator.
         """
-        self._validate_params()
         self.X_fit_ = X
         start = time.time()
         self.X_embedded_ = self.embedding.fit_transform(X)
