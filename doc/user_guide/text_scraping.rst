@@ -28,7 +28,7 @@ specifically designed for certain portions of the scikit-learn documentation.
 API documentation
 =================
 
-We refer to "API documentation" to the following documentation entry point:
+We refer to "API documentation" as the following documentation entry point:
 https://scikit-learn.org/stable/modules/classes.html.
 
 It corresponds to the documentation of each class and function implemented in
@@ -42,27 +42,26 @@ we show a generated HTML page containing the documentation of a scikit-learn est
     :class: transparent-image
 
 Before diving into the chunking mechanism, it is interesting to think about the type of
-queries that such documentation can help at answering. Indeed, these documentation pages
-are intended to provide information about class or function parameters, short usage
-snippet of code and related classes or functions. The narration on these pages are
-relatively short and further discussions are generally provided in the user guide
-instead. So we would expect that the chunks of documentation to be useful to answer
-questions as:
+queries that such documentation can help answer. Indeed, these documentation pages are
+intended to provide information about class or function parameters, short usage snippets
+of code, and related classes or functions. The narration on these pages is relatively
+short, and further discussions are generally provided in the user guide instead. So we
+would expect that the chunks of documentation to be useful to answer questions such as:
 
 - What are the parameters of `LogisticRegression`?
 - What are the values of the `strategy` parameter in a dummy classifier?
 
-So now that we better framed our expectations, we can think about the chunks extraction.
-We could go forward with the naive approach described above. However, it will fall sort
-to help the LLM to answer the questions. Let's go into an example to illustrate this
-point.
+Now that we have better framed our expectations, we can think about the chunks
+extraction. We could go forward with the naive approach described above. However, it
+will fall short to help the LLM answer the questions. Let's go into an example to
+illustrate this point.
 
-Let's consider the second question above: "What are the values of the `strategy`
-parameter in a dummy classifier?". While our retrievers (:ref:`information_retrieval`)
-are able to get the association between the `DummyClassifier` and the `strategy`
-parameter, the LLM will not be able to get this link if the chunk retrieved does not
-contain this relationship. Indeed, the naive approach will provide a chunk where
-`strategy` could be mentioned but it might not belong to the `DummyClassifier` class.
+Consider the second question above: "What are the values of the `strategy` parameter in
+a dummy classifier?" While our retrievers (:ref:`information_retrieval`) are able to get
+the association between the `DummyClassifier` and the strategy parameter, the LLM will
+not be able to get this link if the chunk retrieved does not contain this relationship.
+Indeed, the naive approach will provide a chunk where strategy could be mentioned, but
+it might not belong to the `DummyClassifier` class.
 
 For instance, we could retrieve the following three chunks that are relatively relevant
 to the query:
@@ -123,35 +122,34 @@ to the query:
         - If "constant", then replace missing values with fill_value. Can be
           used with strings or numeric data.
 
-So the chunks are relevant to the `strategy` parameter but they are related to
-`DummyClassifier`, `DummyRegressor` and `SimpleImputer` classes.
+Therefore, the chunks are relevant to the strategy parameter, but they are related to
+the `DummyClassifier`, `DummyRegressor`, and `SimpleImputer` classes.
 
-If we provide such information to a human that is not aware about the scikit-learn API,
-they will not be able to know which of the above chunks is relevant to answer to the
-query. If they are experts, then they might use their previous knowledge to select the
+If we provide such information to a human who is not familiar with the scikit-learn API,
+they will not be able to determine which of the above chunks is relevant to answer the
+query. If they are experts, they might use their previous knowledge to select the
 relevant chunk.
 
-So when it comes an LLM, you should not be expecting more than a human: if the LLM has
-been trained on some similar queries, then it might be able to use the relevant
-information but otherwise, it will not be the case. As an example, Mistral 7b model
-would only summarize the information of the chunks and provide a really unhelpful
-answer.
+So when it comes to an LLM, you should not expect more than a human: if the LLM has been
+trained on similar queries, then it might be able to use the relevant information, but
+otherwise, it will not be the case. For example, the Mistral 7b model would only
+summarize the information of the chunks and provide an unhelpful answer.
 
 As a straightforward solution to the above problem, we could think that we should go
-beyond the naive chunking strategy. For instance, if our chunk would contain the
-associated class or function to the parameter description, then it will allow to
-disambiguate the information and thus help our LLM to answer the
-relevant question.
+beyond the naive chunking strategy. For instance, if our chunk contains the associated
+class or function to the parameter description, then it will allow us to disambiguate
+the information and thus help our LLM answer the relevant question.
 
-As previously stated, scikit-learn use `numpydoc` formalism to document the classes and
-functions. This library comes with a parser that structures the docstring information
-such that you know about the section, the parameters, the types, etc. We implemented
-:class:`~ragger_duck.scraping.APINumPyDocExtractor` that leverages this information to
-build meaningful chunks of documentation. The chunk size in this case is not controlled
-but because of the nature of the documentation, we know that it will never be too large.
+As previously stated, scikit-learn uses the `numpydoc` formalism to document the classes
+and functions. This library comes with a parser that structures the docstring
+information, such that you know about the section, the parameters, the types, etc. We
+implemented :class:`~ragger_duck.scraping.APINumPyDocExtractor` that leverages this
+information to build meaningful chunks of documentation. The chunk size in this case is
+not controlled, but because of the nature of the documentation, we know that it will
+never be too large.
 
-As an example, a chunk created and that is going to be relevant to the previous query is
-the following::
+For example, a chunk created that is going to be relevant to the previous query is the
+following::
 
     source: https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html
     content: Parameter strategy of sklearn.dummy.DummyClassifier.
@@ -185,9 +183,9 @@ the following::
         0.24.' and has the following type(s): {"most_frequent", "prior", "stratified",
         "uniform", "constant"}, default="prior"
 
-In some ways, we tried to build chunks keeping a sort of relationship. In this case, by
-providing still the three previous chunks but keeping the class relationship, a Mistral
-7b model is able to disambiguate the information and provide a relevant answer.
+By providing chunks that maintain the relationship between the parameter and its
+corresponding class, we enable the Mistral 7b model to disambiguate the information and
+provide a relevant answer.
 
 User Guide documentation
 ========================
