@@ -58,6 +58,27 @@ class BasicPromptingStrategy(BaseEstimator):
         return self
 
     def __call__(self, query, **prompt_kwargs):
+        """Query the LLM model to answer the query.
+
+        Parameters
+        ----------
+        query : str
+            The query to answer.
+
+        prompt_kwargs : dict
+            Additional keyword arguments to pass to the LLM model. It is expected that
+            `llm` accepts these arguments when calling `llm(prompt, **prompt_kwargs)`.
+
+        Returns
+        -------
+        stream : generator
+            In most cases, we expect `llm` to return a generator such that it can
+            stream to the application.
+
+        sources : set of str
+            The sources of the retrieved context. If `use_retrieved_context` is False,
+            this value is None.
+        """
         logger.info(f"Query: {query}")
         if self.use_retrieved_context:
             context = self.retriever.query(query=query)
