@@ -38,7 +38,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=75d19225"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/text_scraping';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
@@ -452,7 +452,8 @@ Therefore, we need to provide chunks of documentation that are relatively limite
 focused to not reach the context limit.</p>
 <p>The most common strategy is to extract chunks of text with a given number of tokens and
 an overlap between chunks.</p>
-<a class="transparent-image reference internal image-reference" href="../_images/naive_chunks.png"><img alt="../_images/naive_chunks.png" class="transparent-image align-center" src="../_images/naive_chunks.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/naive_chunks.png"><img alt="../_images/naive_chunks.png" class="transparent-image align-center" src="../_images/naive_chunks.png" style="width: 100%;" />
+</a>
 <p>The various tutorials to build RAG models use this strategy. While it is a fast way to
 get started, it is not the best strategy to get the most out of the scikit-learn
 documentation. In the subsequent sections, we present different strategies
@@ -465,7 +466,8 @@ specifically designed for certain portions of the scikit-learn documentation.</p
 scikit-learn. This documentation is automatically generated from the docstrings of the
 classes and functions. These docstrings follow the <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> formatting. As an example,
 we show a generated HTML page containing the documentation of a scikit-learn estimator:</p>
-<a class="transparent-image reference internal image-reference" href="../_images/api_doc_generated_html.png"><img alt="../_images/api_doc_generated_html.png" class="transparent-image align-center" src="../_images/api_doc_generated_html.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/api_doc_generated_html.png"><img alt="../_images/api_doc_generated_html.png" class="transparent-image align-center" src="../_images/api_doc_generated_html.png" style="width: 100%;" />
+</a>
 <p>Before diving into the chunking mechanism, it is interesting to think about the type of
 queries that such documentation can help answer. Indeed, these documentation pages are
 intended to provide information about class or function parameters, short usage snippets
@@ -705,7 +707,8 @@ handwritten and provides a detailed explanation of the concepts of machine learn
 concept and how those translate into scikit-learn usage. The HTML generated pages are
 available at <a class="reference external" href="https://scikit-learn.org/stable/user_guide.html">https://scikit-learn.org/stable/user_guide.html</a>. Each page have the
 following look:</p>
-<a class="transparent-image reference internal image-reference" href="../_images/user_guide_html.png"><img alt="../_images/user_guide_html.png" class="transparent-image align-center" src="../_images/user_guide_html.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/user_guide_html.png"><img alt="../_images/user_guide_html.png" class="transparent-image align-center" src="../_images/user_guide_html.png" style="width: 100%;" />
+</a>
 <p>Here, we observed that the information is not structure as in the API documentation.
 The naive approach of chunking is more appropriate.
 <a class="reference internal" href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideDocExtractor</span></code></a> is a scraper that chunks the
@@ -731,11 +734,13 @@ HTML generated pages are available at
 <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/index.html">https://scikit-learn.org/stable/auto_examples/index.html</a>.</p>
 <p>We mainly have two types of examples in scikit-learn. The first type are more related to
 a usage example as shown below:</p>
-<a class="transparent-image reference internal image-reference" href="../_images/example_usage_html.png"><img alt="../_images/example_usage_html.png" class="transparent-image align-center" src="../_images/example_usage_html.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/example_usage_html.png"><img alt="../_images/example_usage_html.png" class="transparent-image align-center" src="../_images/example_usage_html.png" style="width: 100%;" />
+</a>
 <p>These examples have a title and a description followed by a single block of code.</p>
 <p>The second type of examples are more tutorial-like and have sections with titles and
 interlace code blocks with text. An example is shown below:</p>
-<a class="transparent-image reference internal image-reference" href="../_images/example_tutorial_html.png"><img alt="../_images/example_tutorial_html.png" class="transparent-image align-center" src="../_images/example_tutorial_html.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/example_tutorial_html.png"><img alt="../_images/example_tutorial_html.png" class="transparent-image align-center" src="../_images/example_tutorial_html.png" style="width: 100%;" />
+</a>
 <p><a class="reference internal" href="../references/generated/ragger_duck.scraping.GalleryExampleExtractor.html#ragger_duck.scraping.GalleryExampleExtractor" title="ragger_duck.scraping.GalleryExampleExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GalleryExampleExtractor</span></code></a> is a scraper that chunks these
 two types of example. In the first case, it will chunk the title and the description as
 an individual block an chunk separately the code block. In the second case, it will
@@ -869,7 +874,7 @@ pipeline and a retriever with a unique Python instance.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.6.
     <br/>
   </p>
 </div>

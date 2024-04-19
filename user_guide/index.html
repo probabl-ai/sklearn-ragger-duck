@@ -38,7 +38,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=75d19225"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/index';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
@@ -449,7 +449,8 @@ main components.</p>
 <p>Before to go in more details regarding Retrieval Augmented Generation (RAG), let’s
 first define the framework in which we will use a large language model (LLM). The
 graphic below represents the interaction between our user and the LLM.</p>
-<a class="transparent-image reference internal image-reference" href="../_images/llm.png"><img alt="../_images/llm.png" class="transparent-image align-center" src="../_images/llm.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/llm.png"><img alt="../_images/llm.png" class="transparent-image align-center" src="../_images/llm.png" style="width: 100%;" />
+</a>
 <p>In this proof-of-concept (POC), we are interested in a “zero-shot” setting. It means
 that we expect our user to formulate a question in natural language, and the LLM will
 generate an answer.</p>
@@ -457,7 +458,8 @@ generate an answer.</p>
 GPT-* from OpenAI or (ii) by locally running the model using open-weight models such as
 Mistral or LLama.</p>
 <p>Now, let’s introduce the RAG framework.</p>
-<a class="transparent-image reference internal image-reference" href="../_images/rag.png"><img alt="../_images/rag.png" class="transparent-image align-center" src="../_images/rag.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/rag.png"><img alt="../_images/rag.png" class="transparent-image align-center" src="../_images/rag.png" style="width: 100%;" />
+</a>
 <p>The major difference with the previous framework is an additional step that consists of
 retrieving relevant information from a given source of information before answering the
 user’s query. The retrieved information is provided as a context to the LLM during
@@ -473,7 +475,8 @@ retrieval components when used for a RAG framework.</p>
 <h3>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h3>
 <p>Before explaining how a retriever is trained, we will first show the main components of
 such a retriever.</p>
-<a class="transparent-image reference internal image-reference" href="../_images/retrieval_phase.png"><img alt="../_images/retrieval_phase.png" class="transparent-image align-center" src="../_images/retrieval_phase.png" style="width: 100%;" /></a>
+<a class="transparent-image reference internal image-reference" href="../_images/retrieval_phase.png"><img alt="../_images/retrieval_phase.png" class="transparent-image align-center" src="../_images/retrieval_phase.png" style="width: 100%;" />
+</a>
 <p>A retriever has two main components: (i) an algorithm to transform natural text into a
 mathematical vector representation and (ii) a database containing vectors and their
 corresponding natural text. This database is also capable of finding the most similar
@@ -659,7 +662,7 @@ important if you want to obtain meaningful results.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.6.
     <br/>
   </p>
 </div>
