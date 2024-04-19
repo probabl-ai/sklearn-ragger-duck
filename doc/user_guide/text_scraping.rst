@@ -57,11 +57,12 @@ will fall short to help the LLM answer the questions. Let's go into an example t
 illustrate this point.
 
 Consider the second question above: "What are the values of the `strategy` parameter in
-a dummy classifier?" While our retrievers (:ref:`information_retrieval`) are able to get
-the association between the `DummyClassifier` and the strategy parameter, the LLM will
-not be able to get this link if the chunk retrieved does not contain this relationship.
-Indeed, the naive approach will provide a chunk where strategy could be mentioned, but
-it might not belong to the `DummyClassifier` class.
+a dummy classifier?" While our retrievers (refer to the section
+:ref:`information_retrieval` of the documentation) are able to get the association
+between the :class:`~sklearn.dummy.DummyClassifier` and the strategy parameter, the LLM
+will not be able to get this link if the chunk retrieved does not contain this
+relationship. Indeed, the naive approach will provide a chunk where strategy could be
+mentioned, but it might not belong to the :class:`~sklearn.dummy.DummyClassifier` class.
 
 For instance, we could retrieve the following three chunks that are relatively relevant
 to the query:
@@ -123,7 +124,8 @@ to the query:
           used with strings or numeric data.
 
 Therefore, the chunks are relevant to the strategy parameter, but they are related to
-the `DummyClassifier`, `DummyRegressor`, and `SimpleImputer` classes.
+the :class:`~sklearn.dummy.DummyClassifier`, :class:`~sklearn.dummy.DummyRegressor`, and
+:class:`~sklearn.impute.SimpleImputer` classes.
 
 If we provide such information to a human who is not familiar with the scikit-learn API,
 they will not be able to determine which of the above chunks is relevant to answer the
