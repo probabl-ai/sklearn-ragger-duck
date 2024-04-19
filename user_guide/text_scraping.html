@@ -457,8 +457,8 @@ an overlap between chunks.</p>
 get started, it is not the best strategy to get the most out of the scikit-learn
 documentation. In the subsequent sections, we present different strategies
 specifically designed for certain portions of the scikit-learn documentation.</p>
-<section id="api-documentation">
-<h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h2>
+<section id="api-documentation-scraper">
+<span id="api-doc-scraping"></span><h2>API documentation scraper<a class="headerlink" href="#api-documentation-scraper" title="Link to this heading">#</a></h2>
 <p>We refer to “API documentation” as the following documentation entry point:
 <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html">https://scikit-learn.org/stable/modules/classes.html</a>.</p>
 <p>It corresponds to the documentation of each class and function implemented in
@@ -605,12 +605,152 @@ strategy is described as &#39;Strategy to use to generate predictions.
 <p>By providing chunks that maintain the relationship between the parameter and its
 corresponding class, we enable the Mistral 7b model to disambiguate the information and
 provide a relevant answer.</p>
+<section id="chunk-formatting-leveraging-numpydoc">
+<h3>Chunk formatting leveraging <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code><a class="headerlink" href="#chunk-formatting-leveraging-numpydoc" title="Link to this heading">#</a></h3>
+<p>In this section, we provide detailed information regarding the formatting used to create
+the chunks for classes and functions by leveraging the <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> formalism. You can
+refer to <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">the numpydoc documentation</a> have more information
+regarding this formalism.</p>
+<p>We are creating individual chunks for the following sections:</p>
+<ul class="simple">
+<li><p>class signature with default parameters</p></li>
+<li><p>class short and extended summary</p></li>
+<li><p>class parameters description</p></li>
+<li><p>class attributes description</p></li>
+<li><p>associated class or function in “See Also” section</p></li>
+<li><p>class note section</p></li>
+<li><p>class example usage</p></li>
+<li><p>class references</p></li>
+</ul>
+<p>For each of these sections, we create a chunk of text in natural language to summarize
+the information. A similar approach is used for functions and methods of a class. We
+provide an example of chunks extracted for the
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.image.extract_patches_2d.html">sklearn.feature_extraction.image.extract_patches_2d</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sklearn.feature_extraction.image.extract_patches_2d
+The parameters of extract_patches_2d with their default values when known are:
+image, patch_size, max_patches (default=None), random_state (default=None).
+The description of the extract_patches_2d is as follow.
+Reshape a 2D image into a collection of patches.
+The resulting patches are allocated in a dedicated array.
+Read more in the :ref:`User Guide &lt;image_feature_extraction&gt;`.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Parameter image of sklearn.feature_extraction.image.extract_patches_2d.
+image is described as &#39;The original image data. For color images, the last dimension
+specifies
+the channel: a RGB image would have `n_channels=3`.&#39; and has the following type(s):
+ndarray of shape (image_height, image_width) or
+(image_height, image_width, n_channels)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Parameter</span> <span class="n">patch_size</span> <span class="n">of</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">feature_extraction</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches_2d</span><span class="o">.</span>
+<span class="n">patch_size</span> <span class="ow">is</span> <span class="n">described</span> <span class="k">as</span> <span class="s1">&#39;The dimensions of one patch.&#39;</span> <span class="ow">and</span> <span class="n">has</span> <span class="n">the</span> <span class="n">following</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="nb">int</span> <span class="p">(</span><span class="n">patch_height</span><span class="p">,</span> <span class="n">patch_width</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Parameter max_patches of sklearn.feature_extraction.image.extract_patches_2d.
+max_patches is described as &#39;The maximum number of patches to extract. If
+`max_patches` is a float between 0 and 1, it is taken to be a proportion of the
+total number of patches. If `max_patches` is None it corresponds to the total number
+of patches that can be extracted.&#39; and has the following type(s): int or float,
+default=None
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Parameter random_state of sklearn.feature_extraction.image.extract_patches_2d.
+random_state is described as &#39;Determines the random number generator used for
+random sampling when `max_patches` is not None. Use an int to make the randomness
+deterministic.
+See :term:`Glossary &lt;random_state&gt;`.&#39; and has the following type(s): int,
+RandomState instance, default=None
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>patches is returned by sklearn.feature_extraction.image.extract_patches_2d.
+patches is described as &#39;The collection of patches extracted from the image, where
+`n_patches` is either `max_patches` or the total number of patches that can be
+extracted.&#39; and has the following type(s): array of shape
+(n_patches, patch_height, patch_width) or
+(n_patches, patch_height, patch_width, n_channels)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sklearn</span><span class="o">.</span><span class="n">feature_extraction</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches_2d</span>
+<span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">usage</span> <span class="n">example</span> <span class="n">of</span> <span class="n">extract_patches_2d</span><span class="p">:</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_sample_image</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="c1"># Use the array data from the first image in this dataset:</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">one_image</span> <span class="o">=</span> <span class="n">load_sample_image</span><span class="p">(</span><span class="s2">&quot;china.jpg&quot;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Image shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">one_image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="n">Image</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">427</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">extract_patches_2d</span><span class="p">(</span><span class="n">one_image</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Patches shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="n">Patches</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">272214</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="c1"># Here are just two of these patches:</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">patches</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">[[[</span><span class="mi">174</span> <span class="mi">201</span> <span class="mi">231</span><span class="p">]</span>
+      <span class="p">[</span><span class="mi">174</span> <span class="mi">201</span> <span class="mi">231</span><span class="p">]]</span>
+     <span class="p">[[</span><span class="mi">173</span> <span class="mi">200</span> <span class="mi">230</span><span class="p">]</span>
+      <span class="p">[</span><span class="mi">173</span> <span class="mi">200</span> <span class="mi">230</span><span class="p">]]]</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">patches</span><span class="p">[</span><span class="mi">800</span><span class="p">])</span>
+    <span class="p">[[[</span><span class="mi">187</span> <span class="mi">214</span> <span class="mi">243</span><span class="p">]</span>
+      <span class="p">[</span><span class="mi">188</span> <span class="mi">215</span> <span class="mi">244</span><span class="p">]]</span>
+     <span class="p">[[</span><span class="mi">187</span> <span class="mi">214</span> <span class="mi">243</span><span class="p">]</span>
+      <span class="p">[</span><span class="mi">188</span> <span class="mi">215</span> <span class="mi">244</span><span class="p">]]]</span>
+</pre></div>
+</div>
 </section>
-<section id="user-guide-documentation">
-<h2>User Guide documentation<a class="headerlink" href="#user-guide-documentation" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideDocExtractor</span></code></a> is a scraper that extract
-documentation from the user guide. It is a simple scraper that extract
-text information from the webpage. Additionally, this text can be chunked.</p>
+</section>
+<section id="user-guide-documentation-scraper">
+<h2>User Guide documentation scraper<a class="headerlink" href="#user-guide-documentation-scraper" title="Link to this heading">#</a></h2>
+<p>We refer to “User Guide documentation” to the narrative documentation that is
+handwritten and provides a detailed explanation of the concepts of machine learning
+concept and how those translate into scikit-learn usage. The HTML generated pages are
+available at <a class="reference external" href="https://scikit-learn.org/stable/user_guide.html">https://scikit-learn.org/stable/user_guide.html</a>. Each page have the
+following look:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/user_guide_html.png"><img alt="../_images/user_guide_html.png" class="transparent-image align-center" src="../_images/user_guide_html.png" style="width: 100%;" /></a>
+<p>Here, we observed that the information is not structure as in the API documentation.
+The naive approach of chunking is more appropriate.
+<a class="reference internal" href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideDocExtractor</span></code></a> is a scraper that chunks the
+documentation in this manner. It relies on <code class="docutils literal notranslate"><span class="pre">beautifulsoup4</span></code> to parse the HTML content
+and recursively chunk the content.</p>
+<p>It provides two main parameters <code class="docutils literal notranslate"><span class="pre">chunk_size</span></code> and <code class="docutils literal notranslate"><span class="pre">chunk_overlap</span></code> to controlled the
+chunking process. It is quite important to not have too large chunks such that the
+number of token does not exceed the limit of the retriever. Otherwise, the embeddings
+will just truncate the input. Also, it seems that having a small overlap is beneficial
+to not retrieve multiple times the same information.</p>
+<p>Here, we can forsee an improvement by parsing the documentation at the section
+high-level and perform the chunking within these sections. This improvement could
+done in the future.</p>
+<p>The class also provides the parameter <code class="docutils literal notranslate"><span class="pre">folders_to_exclude</span></code> to exclude some files or
+folders that we don’t want to incorporate into our index.</p>
+</section>
+<section id="example-gallery-scraper">
+<h2>Example gallery scraper<a class="headerlink" href="#example-gallery-scraper" title="Link to this heading">#</a></h2>
+<p>The last type of documentation in scikit-learn is the gallery of examples. It
+corresponds to a set of python examples that show some usage cases or tutorial-like
+examples. These examples are written to follow the formalism of <code class="docutils literal notranslate"><span class="pre">sphinx-gallery</span></code>. The
+HTML generated pages are available at
+<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/index.html">https://scikit-learn.org/stable/auto_examples/index.html</a>.</p>
+<p>We mainly have two types of examples in scikit-learn. The first type are more related to
+a usage example as shown below:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/example_usage_html.png"><img alt="../_images/example_usage_html.png" class="transparent-image align-center" src="../_images/example_usage_html.png" style="width: 100%;" /></a>
+<p>These examples have a title and a description followed by a single block of code.</p>
+<p>The second type of examples are more tutorial-like and have sections with titles and
+interlace code blocks with text. An example is shown below:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/example_tutorial_html.png"><img alt="../_images/example_tutorial_html.png" class="transparent-image align-center" src="../_images/example_tutorial_html.png" style="width: 100%;" /></a>
+<p><a class="reference internal" href="../references/generated/ragger_duck.scraping.GalleryExampleExtractor.html#ragger_duck.scraping.GalleryExampleExtractor" title="ragger_duck.scraping.GalleryExampleExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GalleryExampleExtractor</span></code></a> is a scraper that chunks these
+two types of example. In the first case, it will chunk the title and the description as
+an individual block an chunk separately the code block. In the second case, it will
+instead parse first the section of the example and create blocks for each section. Then,
+we will chunk each block separately. The idea behind this strategy is that a section
+of text is usually an introduction or a description of the code that follows it.</p>
+</section>
+<section id="scraper-api">
+<h2>Scraper API<a class="headerlink" href="#scraper-api" title="Link to this heading">#</a></h2>
+<p>The different scraper classes have a common API that is the scikit-learn transformer
+API. They all implement the method <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>. The
+scrappers are stateless and only parameter validation is done during <code class="docutils literal notranslate"><span class="pre">fit</span></code>. All the
+processing is happening when calling <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
+<p>This API allows to leverage the scikit-learn <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> and for instance to create A
+pipeline and a retriever with a unique Python instance.</p>
 </section>
 </section>
 
@@ -660,8 +800,13 @@ text information from the webpage. Additionally, this text can be chunked.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation">API documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation">User Guide documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation-scraper">API documentation scraper</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-formatting-leveraging-numpydoc">Chunk formatting leveraging <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation-scraper">User Guide documentation scraper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gallery-scraper">Example gallery scraper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraper-api">Scraper API</a></li>
 </ul>
   </nav></div>
 
