@@ -25,6 +25,8 @@ get started, it is not the best strategy to get the most out of the scikit-learn
 documentation. In the subsequent sections, we present different strategies
 specifically designed for certain portions of the scikit-learn documentation.
 
+.. _api_doc_scraping:
+
 API documentation
 =================
 
@@ -188,6 +190,91 @@ following::
 By providing chunks that maintain the relationship between the parameter and its
 corresponding class, we enable the Mistral 7b model to disambiguate the information and
 provide a relevant answer.
+
+Chunk formatting leveraging `numpydoc`
+--------------------------------------
+
+In this section, we provide detailed information regarding the formatting used to create
+the chunks for classes and functions by leveraging the `numpydoc` formalism. You can
+refer to `the numpydoc documentation
+<https://numpydoc.readthedocs.io/en/latest/format.html>`_ have more information
+regarding this formalism.
+
+We are creating individual chunks for the following sections:
+
+- class signature with default parameters
+- class short and extended summary
+- class parameters description
+- class attributes description
+- associated class or function in "See Also" section
+- class note section
+- class example usage
+- class references
+
+For each of these sections, we create a chunk of text in natural language to summarize
+the information. A similar approach is used for functions and methods of a class. We
+provide an example of chunks extracted for the
+`sklearn.feature_extraction.image.extract_patches_2d
+<https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.image.extract_patches_2d.html>`_:
+
+::
+
+    sklearn.feature_extraction.image.extract_patches_2d
+    The parameters of extract_patches_2d with their default values when known are: image, patch_size, max_patches (default=None), random_state (default=None).
+    The description of the extract_patches_2d is as follow.
+    Reshape a 2D image into a collection of patches.
+    The resulting patches are allocated in a dedicated array.
+    Read more in the :ref:`User Guide <image_feature_extraction>`.
+
+::
+    Parameter image of sklearn.feature_extraction.image.extract_patches_2d.
+    image is described as 'The original image data. For color images, the last dimension specifies
+    the channel: a RGB image would have `n_channels=3`.' and has the following type(s): ndarray of shape (image_height, image_width) or (image_height, image_width, n_channels)
+
+::
+
+    Parameter patch_size of sklearn.feature_extraction.image.extract_patches_2d.
+    patch_size is described as 'The dimensions of one patch.' and has the following type(s): tuple of int (patch_height, patch_width)
+XXXXXXXX
+ Parameter max_patches of sklearn.feature_extraction.image.extract_patches_2d.
+max_patches is described as 'The maximum number of patches to extract. If `max_patches` is a float
+between 0 and 1, it is taken to be a proportion of the total number
+of patches. If `max_patches` is None it corresponds to the total number
+of patches that can be extracted.' and has the following type(s): int or float, default=None
+XXXXXXXX
+ Parameter random_state of sklearn.feature_extraction.image.extract_patches_2d.
+random_state is described as 'Determines the random number generator used for random sampling when
+`max_patches` is not None. Use an int to make the randomness
+deterministic.
+See :term:`Glossary <random_state>`.' and has the following type(s): int, RandomState instance, default=None
+XXXXXXXX
+ patches is returned by sklearn.feature_extraction.image.extract_patches_2d.
+patches is described as 'The collection of patches extracted from the image, where `n_patches`
+is either `max_patches` or the total number of patches that can be
+extracted.' and has the following type(s): array of shape (n_patches, patch_height, patch_width) or (n_patches, patch_height, patch_width, n_channels)
+XXXXXXXX
+ sklearn.feature_extraction.image.extract_patches_2d
+Here is a usage example of extract_patches_2d:
+    >>> from sklearn.datasets import load_sample_image
+    >>> from sklearn.feature_extraction import image
+    >>> # Use the array data from the first image in this dataset:
+    >>> one_image = load_sample_image("china.jpg")
+    >>> print('Image shape: {}'.format(one_image.shape))
+    Image shape: (427, 640, 3)
+    >>> patches = image.extract_patches_2d(one_image, (2, 2))
+    >>> print('Patches shape: {}'.format(patches.shape))
+    Patches shape: (272214, 2, 2, 3)
+    >>> # Here are just two of these patches:
+    >>> print(patches[1])
+    [[[174 201 231]
+      [174 201 231]]
+     [[173 200 230]
+      [173 200 230]]]
+    >>> print(patches[800])
+    [[[187 214 243]
+      [188 215 244]]
+     [[187 214 243]
+      [188 215 244]]]
 
 User Guide documentation
 ========================
