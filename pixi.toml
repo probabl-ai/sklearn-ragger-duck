@@ -170,19 +170,19 @@ sentence-transformers = "2.7.0"
 [feature.cpu.tasks]
 start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
-test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
 build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [feature.mps.tasks]
 start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
-test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
 build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [feature.cuda.tasks]
 start-ragger-duck = { cmd = "DEVICE=cuda GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
 train-retrievers = { cmd = "DEVICE=cuda python train_retrievers.py", cwd = "scripts" }
-test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report term-missing ragger_duck" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
 build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
 
 [environments]
