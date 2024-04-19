@@ -450,42 +450,159 @@ extracted from the documentation.</p>
 <p>The first important aspect is to be aware that the context of the LLM is limited.
 Therefore, we need to provide chunks of documentation that are relatively limited and
 focused to not reach the context limit.</p>
-<p>The most common strategy is therefore to extract chunks of text with given number of
-token and overlap between chunks.</p>
+<p>The most common strategy is to extract chunks of text with a given number of tokens and
+an overlap between chunks.</p>
 <a class="transparent-image reference internal image-reference" href="../_images/naive_chunks.png"><img alt="../_images/naive_chunks.png" class="transparent-image align-center" src="../_images/naive_chunks.png" style="width: 100%;" /></a>
-<p>The various tutorial to build RAG models are using this strategy. While it is a fast
-way to get started, it is not the best strategy to get the most of the scikit-learn
-documentation. In the subsequent sections, we present different strategies specifically
-designed for some portion of the scikit-learn documentation.</p>
+<p>The various tutorials to build RAG models use this strategy. While it is a fast way to
+get started, it is not the best strategy to get the most out of the scikit-learn
+documentation. In the subsequent sections, we present different strategies
+specifically designed for certain portions of the scikit-learn documentation.</p>
 <section id="api-documentation">
 <h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">#</a></h2>
-<p>We refer to “API documentation” to the following documentation entry point:
+<p>We refer to “API documentation” as the following documentation entry point:
 <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html">https://scikit-learn.org/stable/modules/classes.html</a>.</p>
 <p>It corresponds to the documentation of each class and function implemented in
-scikit-learn. This documentation is automatically generated from the docstrings
-of the classes and functions. These docstrings follow the <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> formatting.
-As an example, we show a generated HTML page containing the documentation of a
-scikit-learn estimator:</p>
+scikit-learn. This documentation is automatically generated from the docstrings of the
+classes and functions. These docstrings follow the <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> formatting. As an example,
+we show a generated HTML page containing the documentation of a scikit-learn estimator:</p>
 <a class="transparent-image reference internal image-reference" href="../_images/api_doc_generated_html.png"><img alt="../_images/api_doc_generated_html.png" class="transparent-image align-center" src="../_images/api_doc_generated_html.png" style="width: 100%;" /></a>
-<p>Before diving into the chunking mechanism, it is interesting to think about the type
-of queries that such documentation can help at answering. Indeed, these documentation
-pages are intended to provide information about class or function parameters, short
-usage snippet of code and related classes or functions. The narration on these pages
-are relatively short and further discussions are generally provided in the user guide
-instead. So we would expect that the chunks of documentation to be useful to answer
-questions as:</p>
+<p>Before diving into the chunking mechanism, it is interesting to think about the type of
+queries that such documentation can help answer. Indeed, these documentation pages are
+intended to provide information about class or function parameters, short usage snippets
+of code, and related classes or functions. The narration on these pages is relatively
+short, and further discussions are generally provided in the user guide instead. So we
+would expect that the chunks of documentation to be useful to answer questions such as:</p>
 <ul class="simple">
 <li><p>What are the parameters of <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>?</p></li>
 <li><p>What are the values of the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter in a dummy classifier?</p></li>
 </ul>
-<p><a class="reference internal" href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> is a more advanced scraper
-that uses <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> and it scraper to extract the documentation. Indeed, the
-<code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> scraper will parse the different sections and we build meaningful
-chunks of documentation from the parsed sections. While, we don’t control for
-the chunk size, the chunks are build such that they contain information only
-of a specific parameter and always refer to the class or function. We hope that
-scraping in such way can remove ambiguity that could exist when building chunks
-without any control.</p>
+<p>Now that we have better framed our expectations, we can think about the chunks
+extraction. We could go forward with the naive approach described above. However, it
+will fall short to help the LLM answer the questions. Let’s go into an example to
+illustrate this point.</p>
+<p>Consider the second question above: “What are the values of the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter in
+a dummy classifier?” While our retrievers (<a class="reference internal" href="information_retrieval.html#information-retrieval"><span class="std std-ref">Retriever</span></a>) are able to get
+the association between the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> and the strategy parameter, the LLM will
+not be able to get this link if the chunk retrieved does not contain this relationship.
+Indeed, the naive approach will provide a chunk where strategy could be mentioned, but
+it might not belong to the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> class.</p>
+<p>For instance, we could retrieve the following three chunks that are relatively relevant
+to the query:</p>
+<p><strong>Chunk #1</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>strategy : {&quot;most_frequent&quot;, &quot;prior&quot;, &quot;stratified&quot;, &quot;uniform&quot;, \
+            &quot;constant&quot;}, default=&quot;prior&quot;
+        Strategy to use to generate predictions.
+
+        * &quot;most_frequent&quot;: the `predict` method always returns the most
+          frequent class label in the observed `y` argument passed to `fit`.
+          The `predict_proba` method returns the matching one-hot encoded
+          vector.
+        * &quot;prior&quot;: the `predict` method always returns the most frequent
+          class label in the observed `y` argument passed to `fit` (like
+          &quot;most_frequent&quot;). ``predict_proba`` always returns the empirical
+          class distribution of `y` also known as the empirical class prior
+          distribution.
+        * &quot;stratified&quot;: the `predict_proba` method randomly samples one-hot
+          vectors from a multinomial distribution parametrized by the empirical
+          class prior probabilities.
+          The `predict` method returns the class label which got probability
+          one in the one-hot vector of `predict_proba`.
+          Each sampled row of both methods is therefore independent and
+          identically distributed.
+        * &quot;uniform&quot;: generates predictions uniformly at random from the list
+          of unique classes observed in `y`, i.e. each class has equal
+          probability.
+        * &quot;constant&quot;: always predicts a constant label that is provided by
+          the user. This is useful for metrics that evaluate a non-majority
+          class.
+</pre></div>
+</div>
+<p><strong>Chunk #2</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">strategy</span> <span class="p">:</span> <span class="p">{</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;quantile&quot;</span><span class="p">,</span> <span class="s2">&quot;constant&quot;</span><span class="p">},</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
+        <span class="n">Strategy</span> <span class="n">to</span> <span class="n">use</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">predictions</span><span class="o">.</span>
+
+        <span class="o">*</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">always</span> <span class="n">predicts</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">the</span> <span class="n">training</span> <span class="nb">set</span>
+        <span class="o">*</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span> <span class="n">always</span> <span class="n">predicts</span> <span class="n">the</span> <span class="n">median</span> <span class="n">of</span> <span class="n">the</span> <span class="n">training</span> <span class="nb">set</span>
+        <span class="o">*</span> <span class="s2">&quot;quantile&quot;</span><span class="p">:</span> <span class="n">always</span> <span class="n">predicts</span> <span class="n">a</span> <span class="n">specified</span> <span class="n">quantile</span> <span class="n">of</span> <span class="n">the</span> <span class="n">training</span> <span class="nb">set</span><span class="p">,</span>
+          <span class="n">provided</span> <span class="k">with</span> <span class="n">the</span> <span class="n">quantile</span> <span class="n">parameter</span><span class="o">.</span>
+        <span class="o">*</span> <span class="s2">&quot;constant&quot;</span><span class="p">:</span> <span class="n">always</span> <span class="n">predicts</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">value</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">provided</span> <span class="n">by</span>
+          <span class="n">the</span> <span class="n">user</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Chunk #3</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">strategy</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span>
+    <span class="n">The</span> <span class="n">imputation</span> <span class="n">strategy</span><span class="o">.</span>
+
+    <span class="o">-</span> <span class="n">If</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="n">replace</span> <span class="n">missing</span> <span class="n">values</span> <span class="n">using</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">along</span>
+      <span class="n">each</span> <span class="n">column</span><span class="o">.</span> <span class="n">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="n">used</span> <span class="k">with</span> <span class="n">numeric</span> <span class="n">data</span><span class="o">.</span>
+    <span class="o">-</span> <span class="n">If</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="n">replace</span> <span class="n">missing</span> <span class="n">values</span> <span class="n">using</span> <span class="n">the</span> <span class="n">median</span> <span class="n">along</span>
+      <span class="n">each</span> <span class="n">column</span><span class="o">.</span> <span class="n">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="n">used</span> <span class="k">with</span> <span class="n">numeric</span> <span class="n">data</span><span class="o">.</span>
+    <span class="o">-</span> <span class="n">If</span> <span class="s2">&quot;most_frequent&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="n">replace</span> <span class="n">missing</span> <span class="n">using</span> <span class="n">the</span> <span class="n">most</span> <span class="n">frequent</span>
+      <span class="n">value</span> <span class="n">along</span> <span class="n">each</span> <span class="n">column</span><span class="o">.</span> <span class="n">Can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">with</span> <span class="n">strings</span> <span class="ow">or</span> <span class="n">numeric</span> <span class="n">data</span><span class="o">.</span>
+      <span class="n">If</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">such</span> <span class="n">value</span><span class="p">,</span> <span class="n">only</span> <span class="n">the</span> <span class="n">smallest</span> <span class="ow">is</span> <span class="n">returned</span><span class="o">.</span>
+    <span class="o">-</span> <span class="n">If</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="n">replace</span> <span class="n">missing</span> <span class="n">values</span> <span class="k">with</span> <span class="n">fill_value</span><span class="o">.</span> <span class="n">Can</span> <span class="n">be</span>
+      <span class="n">used</span> <span class="k">with</span> <span class="n">strings</span> <span class="ow">or</span> <span class="n">numeric</span> <span class="n">data</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Therefore, the chunks are relevant to the strategy parameter, but they are related to
+the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code>, and <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> classes.</p>
+<p>If we provide such information to a human who is not familiar with the scikit-learn API,
+they will not be able to determine which of the above chunks is relevant to answer the
+query. If they are experts, they might use their previous knowledge to select the
+relevant chunk.</p>
+<p>So when it comes to an LLM, you should not expect more than a human: if the LLM has been
+trained on similar queries, then it might be able to use the relevant information, but
+otherwise, it will not be the case. For example, the Mistral 7b model would only
+summarize the information of the chunks and provide an unhelpful answer.</p>
+<p>As a straightforward solution to the above problem, we could think that we should go
+beyond the naive chunking strategy. For instance, if our chunk contains the associated
+class or function to the parameter description, then it will allow us to disambiguate
+the information and thus help our LLM answer the relevant question.</p>
+<p>As previously stated, scikit-learn uses the <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> formalism to document the classes
+and functions. This library comes with a parser that structures the docstring
+information, such that you know about the section, the parameters, the types, etc. We
+implemented <a class="reference internal" href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> that leverages this
+information to build meaningful chunks of documentation. The chunk size in this case is
+not controlled, but because of the nature of the documentation, we know that it will
+never be too large.</p>
+<p>For example, a chunk created that is going to be relevant to the previous query is the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source: https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html
+content: Parameter strategy of sklearn.dummy.DummyClassifier.
+strategy is described as &#39;Strategy to use to generate predictions.
+
+* &quot;most_frequent&quot;: the `predict` method always returns the most
+  frequent class label in the observed `y` argument passed to `fit`.
+  The `predict_proba` method returns the matching one-hot encoded
+  vector.
+* &quot;prior&quot;: the `predict` method always returns the most frequent
+  class label in the observed `y` argument passed to `fit` (like
+  &quot;most_frequent&quot;). ``predict_proba`` always returns the empirical
+  class distribution of `y` also known as the empirical class prior
+  distribution.
+* &quot;stratified&quot;: the `predict_proba` method randomly samples one-hot
+  vectors from a multinomial distribution parametrized by the empirical
+  class prior probabilities.
+  The `predict` method returns the class label which got probability
+  one in the one-hot vector of `predict_proba`.
+  Each sampled row of both methods is therefore independent and
+  identically distributed.
+* &quot;uniform&quot;: generates predictions uniformly at random from the list
+  of unique classes observed in `y`, i.e. each class has equal
+  probability.
+* &quot;constant&quot;: always predicts a constant label that is provided by
+  the user. This is useful for metrics that evaluate a non-majority
+  class.
+
+.. versionchanged:: 0.24
+    The default value of `strategy` has changed to &quot;prior&quot; in version
+    0.24.&#39; and has the following type(s): {&quot;most_frequent&quot;, &quot;prior&quot;, &quot;stratified&quot;,
+    &quot;uniform&quot;, &quot;constant&quot;}, default=&quot;prior&quot;
+</pre></div>
+</div>
+<p>By providing chunks that maintain the relationship between the parameter and its
+corresponding class, we enable the Mistral 7b model to disambiguate the information and
+provide a relevant answer.</p>
 </section>
 <section id="user-guide-documentation">
 <h2>User Guide documentation<a class="headerlink" href="#user-guide-documentation" title="Link to this heading">#</a></h2>
