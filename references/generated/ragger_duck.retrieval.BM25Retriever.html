@@ -482,7 +482,15 @@ document.write(`
 <dd class="field-even"><dl class="simple">
 <dt><strong>X_fit_</strong><span class="classifier">list of str or dict</span></dt><dd><p>The input data.</p>
 </dd>
-<dt><strong>X_embedded_</strong><span class="classifier">ndarray of shape (n_sentences, n_features)</span></dt><dd><p>The embedded data.</p>
+<dt><strong>X_counts_</strong><span class="classifier">sparse matrix of shape (n_documents, n_features)</span></dt><dd><p>The count of terms in documents.</p>
+</dd>
+<dt><strong>count_vectorizer_</strong><span class="classifier">transformer</span></dt><dd><p>The count vectorizer used to compute the count of terms in documents.</p>
+</dd>
+<dt><strong>n_terms_by_document_</strong><span class="classifier">ndarray of shape (n_sentences,)</span></dt><dd><p>The number of terms by document.</p>
+</dd>
+<dt><strong>averaged_document_length_</strong><span class="classifier">float</span></dt><dd><p>The average number of terms by document.</p>
+</dd>
+<dt><strong>idf_</strong><span class="classifier">ndarray of shape (n_features,)</span></dt><dd><p>The inverse document frequency.</p>
 </dd>
 </dl>
 </dd>
