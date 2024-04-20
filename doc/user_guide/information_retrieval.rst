@@ -22,7 +22,13 @@ Here, we implement the :class:`~ragger_duck.retrieval.BM25Retriever` that uses a
 :class:`~sklearn.feature_extraction.text.CountVectorizer` to build the
 vocabulary. Then, we use a TF-IDF weighting scheme to weight the vocabulary.
 During the a query, we provide a similarity score between the query and the
-each documentation chunk seen during training.
+each documentation chunk seen during training. We can represent the retriever with the
+following diagram:
+
+.. image:: /_static/img/diagram/bm25.png
+    :width: 100%
+    :align: center
+    :class: transparent-image
 
 To have more details regarding the scoring used by the BM25 retriever, you can refer to
 this `Wikipedia page <https://en.wikipedia.org/wiki/Okapi_BM25>`_.
@@ -42,7 +48,13 @@ approximate nearest neighbor algorithm, namely `FAISS
 <https://github.com/facebookresearch/faiss>`_.
 
 As embedding, we provide a :class:`~ragger_duck.embedding.SentenceTransformer` that
-download any pre-trained sentence transformers from HuggingFace.
+download any pre-trained sentence transformers from HuggingFace. A diagram representing
+this approach is:
+
+.. image:: /_static/img/diagram/sbert.png
+    :width: 100%
+    :align: center
+    :class: transparent-image
 
 Reranker: merging lexical and semantic retrievers results
 =========================================================
@@ -50,7 +62,13 @@ Reranker: merging lexical and semantic retrievers results
 If we use both lexical and semantic retrievers, we need to merge the results of both
 retrievers. :class:`~ragger_duck.retrieval.RetrieverReranker` makes such reranking by
 using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
-Bing query-document pairs and is available on HuggingFace.
+Bing query-document pairs and is available on HuggingFace. A diagram showing the
+reranking process is:
+
+.. image:: /_static/img/diagram/cross_encoder.png
+    :width: 100%
+    :align: center
+    :class: transparent-image
 
 API of retrivers and reranker
 =============================
