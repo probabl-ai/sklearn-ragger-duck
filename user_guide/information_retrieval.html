@@ -458,7 +458,10 @@ robust to synonyms or to the context of the words.</p>
 <code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code> to build the
 vocabulary. Then, we use a TF-IDF weighting scheme to weight the vocabulary.
 During the a query, we provide a similarity score between the query and the
-each documentation chunk seen during training.</p>
+each documentation chunk seen during training. We can represent the retriever with the
+following diagram:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/bm25.png"><img alt="../_images/bm25.png" class="transparent-image align-center" src="../_images/bm25.png" style="width: 100%;" />
+</a>
 <p>To have more details regarding the scoring used by the BM25 retriever, you can refer to
 this <a class="reference external" href="https://en.wikipedia.org/wiki/Okapi_BM25">Wikipedia page</a>.</p>
 </section>
@@ -473,14 +476,20 @@ and words similarity.</p>
 <p><a class="reference internal" href="../references/generated/ragger_duck.retrieval.SemanticRetriever.html#ragger_duck.retrieval.SemanticRetriever" title="ragger_duck.retrieval.SemanticRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">SemanticRetriever</span></code></a> are using a given embedding and an
 approximate nearest neighbor algorithm, namely <a class="reference external" href="https://github.com/facebookresearch/faiss">FAISS</a>.</p>
 <p>As embedding, we provide a <a class="reference internal" href="../references/generated/ragger_duck.embedding.SentenceTransformer.html#ragger_duck.embedding.SentenceTransformer" title="ragger_duck.embedding.SentenceTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SentenceTransformer</span></code></a> that
-download any pre-trained sentence transformers from HuggingFace.</p>
+download any pre-trained sentence transformers from HuggingFace. A diagram representing
+this approach is:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/sbert.png"><img alt="../_images/sbert.png" class="transparent-image align-center" src="../_images/sbert.png" style="width: 100%;" />
+</a>
 </section>
 <section id="reranker-merging-lexical-and-semantic-retrievers-results">
 <h2>Reranker: merging lexical and semantic retrievers results<a class="headerlink" href="#reranker-merging-lexical-and-semantic-retrievers-results" title="Link to this heading">#</a></h2>
 <p>If we use both lexical and semantic retrievers, we need to merge the results of both
 retrievers. <a class="reference internal" href="../references/generated/ragger_duck.retrieval.RetrieverReranker.html#ragger_duck.retrieval.RetrieverReranker" title="ragger_duck.retrieval.RetrieverReranker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieverReranker</span></code></a> makes such reranking by
 using a cross-encoder model. In our case, cross-encoder model is trained on Microsoft
-Bing query-document pairs and is available on HuggingFace.</p>
+Bing query-document pairs and is available on HuggingFace. A diagram showing the
+reranking process is:</p>
+<a class="transparent-image reference internal image-reference" href="../_images/cross_encoder.png"><img alt="../_images/cross_encoder.png" class="transparent-image align-center" src="../_images/cross_encoder.png" style="width: 100%;" />
+</a>
 </section>
 <section id="api-of-retrivers-and-reranker">
 <h2>API of retrivers and reranker<a class="headerlink" href="#api-of-retrivers-and-reranker" title="Link to this heading">#</a></h2>
