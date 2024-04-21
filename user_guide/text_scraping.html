@@ -30,6 +30,10 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -162,7 +166,7 @@
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../auto_examples/index.html">
-                        Examples
+                        Example gallery
                       </a>
                     </li>
                 
@@ -309,7 +313,7 @@ document.write(`
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../auto_examples/index.html">
-                        Examples
+                        Example gallery
                       </a>
                     </li>
                 
@@ -475,7 +479,7 @@ of code, and related classes or functions. The narration on these pages is relat
 short, and further discussions are generally provided in the user guide instead. So we
 would expect that the chunks of documentation to be useful to answer questions such as:</p>
 <ul class="simple">
-<li><p>What are the parameters of <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>?</p></li>
+<li><p>What are the parameters of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a>?</p></li>
 <li><p>What are the values of the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter in a dummy classifier?</p></li>
 </ul>
 <p>Now that we have better framed our expectations, we can think about the chunks
@@ -485,10 +489,10 @@ illustrate this point.</p>
 <p>Consider the second question above: “What are the values of the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter in
 a dummy classifier?” While our retrievers (refer to the section
 <a class="reference internal" href="information_retrieval.html#information-retrieval"><span class="std std-ref">Retriever</span></a> of the documentation) are able to get the association
-between the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code> and the strategy parameter, the LLM
+between the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html#sklearn.dummy.DummyClassifier" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code></a> and the strategy parameter, the LLM
 will not be able to get this link if the chunk retrieved does not contain this
 relationship. Indeed, the naive approach will provide a chunk where strategy could be
-mentioned, but it might not belong to the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code> class.</p>
+mentioned, but it might not belong to the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html#sklearn.dummy.DummyClassifier" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code></a> class.</p>
 <p>For instance, we could retrieve the following three chunks that are relatively relevant
 to the query:</p>
 <p><strong>Chunk #1</strong>:</p>
@@ -548,8 +552,8 @@ to the query:</p>
 </pre></div>
 </div>
 <p>Therefore, the chunks are relevant to the strategy parameter, but they are related to
-the <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DummyRegressor</span></code>, and
-<code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleImputer</span></code> classes.</p>
+the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html#sklearn.dummy.DummyClassifier" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DummyClassifier</span></code></a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html#sklearn.dummy.DummyRegressor" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DummyRegressor</span></code></a>, and
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html#sklearn.impute.SimpleImputer" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleImputer</span></code></a> classes.</p>
 <p>If we provide such information to a human who is not familiar with the scikit-learn API,
 they will not be able to determine which of the above chunks is relevant to answer the
 query. If they are experts, they might use their previous knowledge to select the
@@ -754,8 +758,9 @@ of text is usually an introduction or a description of the code that follows it.
 API. They all implement the method <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>. The
 scrappers are stateless and only parameter validation is done during <code class="docutils literal notranslate"><span class="pre">fit</span></code>. All the
 processing is happening when calling <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
-<p>This API allows to leverage the scikit-learn <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> and for instance to create A
-pipeline and a retriever with a unique Python instance.</p>
+<p>This API allows to leverage the scikit-learn
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> and for instance to create A pipeline and a
+retriever with a unique Python instance.</p>
 </section>
 </section>
 
