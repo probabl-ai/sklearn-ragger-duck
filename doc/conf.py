@@ -3,6 +3,8 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 from ragger_duck import __version__
@@ -21,6 +23,7 @@ release = __version__
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
+    "sphinx_gallery.gen_gallery",
     "numpydoc",
 ]
 
@@ -80,6 +83,19 @@ autosummary_generate = True
 # this is needed for some reason...
 # see https://github.com/numpy/numpydoc/issues/69
 numpydoc_show_class_members = False
+
+# -- Options for sphinx-gallery -----------------------------------------------
+
+# Generate the plot for the gallery
+plot_gallery = True
+
+sphinx_gallery_conf = {
+    "doc_module": "ragger_duck",
+    "backreferences_dir": os.path.join("references/generated"),
+    "examples_dirs": "../examples",
+    "gallery_dirs": "auto_examples",
+    "reference_url": {"ragger_duck": None},
+}
 
 # -- Additional temporary hacks -----------------------------------------------
 

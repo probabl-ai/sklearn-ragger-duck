@@ -199,3 +199,5 @@ models/*/*
 models/*.gguf
 ragger_duck/embedding/tests/data/.locks/*
 ragger_duck/embedding/tests/data/models--sentence-transformers--paraphrase-albert-small-v2/*
+doc/auto_examples/*
+doc/sg_execution_times.rst
