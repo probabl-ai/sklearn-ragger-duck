@@ -50,7 +50,7 @@ of code, and related classes or functions. The narration on these pages is relat
 short, and further discussions are generally provided in the user guide instead. So we
 would expect that the chunks of documentation to be useful to answer questions such as:
 
-- What are the parameters of `LogisticRegression`?
+- What are the parameters of :class:`~sklearn.linear_model.LogisticRegression`?
 - What are the values of the `strategy` parameter in a dummy classifier?
 
 Now that we have better framed our expectations, we can think about the chunks
@@ -369,5 +369,6 @@ API. They all implement the method `fit`, `transform`, and `fit_transform`. The
 scrappers are stateless and only parameter validation is done during `fit`. All the
 processing is happening when calling `transform`.
 
-This API allows to leverage the scikit-learn `Pipeline` and for instance to create A
-pipeline and a retriever with a unique Python instance.
+This API allows to leverage the scikit-learn
+:class:`~sklearn.pipeline.Pipeline` and for instance to create A pipeline and a
+retriever with a unique Python instance.

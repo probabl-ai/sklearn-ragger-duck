@@ -7,7 +7,6 @@ Example gallery
 
 
 
-
 .. raw:: html
 
     <div class="sphx-glr-thumbnails">

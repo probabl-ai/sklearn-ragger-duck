@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class SentenceTransformer(BaseEstimator, TransformerMixin):
     """Sentence transformer that embeds sentences to embeddings.
 
-    This is a thin wrapper around :class:`sentence_transformers.SentenceTransformer`
+    This is a thin wrapper around :class:`~sentence_transformers.SentenceTransformer`
     that follows the scikit-learn API and thus can be used inside a scikit-learn
     pipeline.
 

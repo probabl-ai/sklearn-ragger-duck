@@ -16,7 +16,7 @@ class RetrieverReranker(BaseEstimator):
         The retrievers to use for retrieving the context. We expect the retrievers to
         implement a `query` method.
 
-    cross_encoder : :obj:`sentence_transformers.CrossEncoder`
+    cross_encoder : :class:`~sentence_transformers.cross_encoder.CrossEncoder`
         Cross-encoder used to rerank the results of the hybrid retriever.
 
     min_top_k : int, default=None
