@@ -49,7 +49,7 @@ html_css_files = [
 ]
 html_sidebars = {
     "install": [],
-    "auto_examples/index": [],
+    "auto_examples/*": [],
     "whats_new": [],
     "about": [],
 }
