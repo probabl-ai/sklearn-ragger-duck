@@ -39,6 +39,16 @@ source files as a submodule::
 
   git clone --recursive git@github.com:glemaitre/sklearn-ragger-duck.git
 
+Install dependencies using `pixi`
+---------------------------------
+
+The subsequent steps will require some dependencies to be installed. They are defined
+in the `pixi.lock` file and can be installed using `pixi install`. However, you need
+to specify which environment you want to use as stated in the previous section. Here,
+we will use the `cpu` environment::
+
+  pixi install --frozen -e cpu
+
 Build the scikit-learn documentation
 ------------------------------------
 

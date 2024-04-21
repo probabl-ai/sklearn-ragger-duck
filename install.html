@@ -459,6 +459,16 @@ source files as a submodule:</p>
 </pre></div>
 </div>
 </section>
+<section id="install-dependencies-using-pixi">
+<h3>Install dependencies using <code class="docutils literal notranslate"><span class="pre">pixi</span></code><a class="headerlink" href="#install-dependencies-using-pixi" title="Link to this heading">#</a></h3>
+<p>The subsequent steps will require some dependencies to be installed. They are defined
+in the <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> file and can be installed using <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">install</span></code>. However, you need
+to specify which environment you want to use as stated in the previous section. Here,
+we will use the <code class="docutils literal notranslate"><span class="pre">cpu</span></code> environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pixi</span> <span class="n">install</span> <span class="o">--</span><span class="n">frozen</span> <span class="o">-</span><span class="n">e</span> <span class="n">cpu</span>
+</pre></div>
+</div>
+</section>
 <section id="build-the-scikit-learn-documentation">
 <h3>Build the scikit-learn documentation<a class="headerlink" href="#build-the-scikit-learn-documentation" title="Link to this heading">#</a></h3>
 <p>First, we need to build the scikit-learn documentation since some of the retrievers
@@ -567,6 +577,7 @@ can be better handled with <code class="docutils literal notranslate"><span clas
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-ragger-duck">Deploy Ragger Duck</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-project">Cloning the project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dependencies-using-pixi">Install dependencies using <code class="docutils literal notranslate"><span class="pre">pixi</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-scikit-learn-documentation">Build the scikit-learn documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-semantic-and-lexical-retrievers">Train the semantic and lexical retrievers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-large-language-model">Download the Large Language Model</a></li>
