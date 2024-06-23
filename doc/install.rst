@@ -37,7 +37,7 @@ The GitHub repository self-contained all the necessary source files for building
 RAG. You need to clone the repository in a recursive way to get the scikit-learn
 source files as a submodule::
 
-  git clone --recursive git@github.com:glemaitre/sklearn-ragger-duck.git
+  git clone --recursive git@github.com:probabl-ai/sklearn-ragger-duck.git
 
 Install dependencies using `pixi`
 ---------------------------------
