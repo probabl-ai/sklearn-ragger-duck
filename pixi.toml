@@ -26,7 +26,7 @@ joblib = "*"
 langchain = "*"
 numpydoc = "*"
 # align the version of scikit-learn with the submodule one to avoid rebuilding it
-scikit-learn = "1.4.1.post1"
+scikit-learn = "1.5.0"
 sphinx-gallery = "*"
 # Dependencies for the web app
 fastapi = "*"
@@ -72,8 +72,6 @@ transformers = "4.39.3"
 sentence-transformers = "2.7.0"
 
 # [feature.mps.pypi-dependencies]
-# # the latest version requires xcode 15.2
-# # xcode 15.3 that is the latest release is buggy
 # lama-cpp-python = "*"
 # ragger_duck = { path=".", editable=true }
 
