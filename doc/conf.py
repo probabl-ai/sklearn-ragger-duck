@@ -11,7 +11,7 @@ import sys
 from ragger_duck import __version__
 
 project = "Ragger Duck"
-copyright = "2023, G. Lemaitre"
+copyright = "2023, G. Lemaitresphinx_copybutton"
 author = "G. Lemaitre"
 release = __version__
 
@@ -27,7 +27,13 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_gallery.gen_gallery",
     "numpydoc",
+    "sphinx_copybutton",
 ]
+
+# Specify how to identify the prompt when copying code snippets
+copybutton_prompt_text = r">>> |\.\.\. "
+copybutton_prompt_is_regexp = True
+copybutton_exclude = "style"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "_templates", "Thumbs.db", ".DS_Store"]
