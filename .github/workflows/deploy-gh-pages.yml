@@ -10,6 +10,8 @@ on:
 
 jobs:
   deploy-gh-pages:
+    permissions:
+        contents: write
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +29,7 @@ jobs:
 
     - name: Update the main gh-page website
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      uses: peaceiris/actions-gh-pages@v3.6.1
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./doc/_build/html
