@@ -1,6 +1,6 @@
 :orphan:
 
-.. _general_examples
+.. _general_examples:
 
 Example gallery
 ===============
@@ -14,7 +14,30 @@ Example gallery
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how the different documentation scraping strategies work in ragger_duc...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_documentation_scraping_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_documentation_scraping.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Documentation scraping strategies</div>
     </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_documentation_scraping
 
 
 .. only:: html
@@ -24,6 +47,10 @@ Example gallery
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html

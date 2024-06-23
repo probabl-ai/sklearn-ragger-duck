@@ -1,0 +1,1260 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Documentation scraping strategies &#8212; Ragger Duck 0.0.1.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ragger_duck.css?v=43f9b375" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=75d19225"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_documentation_scraping';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release history" href="../whats_new.html" />
+    <link rel="prev" title="Example gallery" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Ragger Duck 0.0.1.dev0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Ragger Duck 0.0.1.dev0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../references/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Example gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../whats_new.html">
+                        Release history
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../about.html">
+                        About us
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/glemaitre/sklearn-ragger-duck" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../references/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Example gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../whats_new.html">
+                        Release history
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../about.html">
+                        About us
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/glemaitre/sklearn-ragger-duck" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Example gallery</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Documentatio...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-documentation-scraping-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="documentation-scraping-strategies">
+<span id="sphx-glr-auto-examples-plot-documentation-scraping-py"></span><h1>Documentation scraping strategies<a class="headerlink" href="#documentation-scraping-strategies" title="Link to this heading">#</a></h1>
+<p>This example illustrates how the different documentation scraping strategies work
+in <code class="docutils literal notranslate"><span class="pre">ragger_duck</span></code>.</p>
+<section id="api-documentation-scraping">
+<h2>API documentation scraping<a class="headerlink" href="#api-documentation-scraping" title="Link to this heading">#</a></h2>
+<p>First, we look at the <a class="reference internal" href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">APINumPyDocExtractor</span></code></a> class. This
+class is used to scrape the API documentation of scikit-learn. It leverages the
+<code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> scraper and create semi-structured chunk of text.</p>
+<p>Let’s show an example where we scrape the documentation of
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier" title="(in scikit-learn v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></a>. Our scrapper requires the HTML
+generated file to infer if this is part of the public API. To do so,s we copied the
+HTML generated file in the folder <code class="docutils literal notranslate"><span class="pre">toy_documentation/api</span></code>. We can therefore process
+this folder.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+
+<span class="kn">from</span> <span class="nn">ragger_duck.scraping</span> <span class="kn">import</span> <a href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">APINumPyDocExtractor</span></a>
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_api_doc</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;toy_documentation&quot;</span> <span class="o">/</span> <span class="s2">&quot;api&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a> <span class="o">=</span> <a href="../references/generated/ragger_duck.scraping.APINumPyDocExtractor.html#ragger_duck.scraping.APINumPyDocExtractor" title="ragger_duck.scraping.APINumPyDocExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">APINumPyDocExtractor</span></a><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_api_doc</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The source of the chunk is </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier
+The parameters of RandomForestClassifier with their default values when known are: n_estimators (default=100), criterion (default=gini), max_depth (default=None), min_samples_split (default=2), min_samples_leaf (default=1), min_weight_fraction_leaf (default=0.0), max_features (default=sqrt), max_leaf_nodes (default=None), min_impurity_decrease (default=0.0), bootstrap (default=True), oob_score (default=False), n_jobs (default=None), random_state (default=None), verbose (default=0), warm_start (default=False), class_weight (default=None), ccp_alpha (default=0.0), max_samples (default=None), monotonic_cst (default=None).
+The description of the RandomForestClassifier is as follow.
+A random forest classifier.
+A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. Trees in the forest use the best split strategy, i.e. equivalent to passing `splitter=&quot;best&quot;` to the underlying :class:`~sklearn.tree.DecisionTreeRegressor`. The sub-sample size is controlled with the `max_samples` parameter if `bootstrap=True` (default), otherwise the whole dataset is used to build each tree.
+For a comparison between tree-based ensemble models see the example :ref:`sphx_glr_auto_examples_ensemble_plot_forest_hist_grad_boosting_comparison.py`.
+Read more in the :ref:`User Guide &lt;forest&gt;`.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter n_estimators of sklearn.ensemble.RandomForestClassifier.
+n_estimators is described as &#39;The number of trees in the forest.
+
+.. versionchanged:: 0.22
+   The default value of ``n_estimators`` changed from 10 to 100
+   in 0.22.&#39; and has the following type(s): int, default=100
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter criterion of sklearn.ensemble.RandomForestClassifier.
+criterion is described as &#39;The function to measure the quality of a split. Supported criteria are
+&quot;gini&quot; for the Gini impurity and &quot;log_loss&quot; and &quot;entropy&quot; both for the
+Shannon information gain, see :ref:`tree_mathematical_formulation`.
+Note: This parameter is tree-specific.&#39; and has the following type(s): {&quot;gini&quot;, &quot;entropy&quot;, &quot;log_loss&quot;}, default=&quot;gini&quot;
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter max_depth of sklearn.ensemble.RandomForestClassifier.
+max_depth is described as &#39;The maximum depth of the tree. If None, then nodes are expanded until
+all leaves are pure or until all leaves contain less than
+min_samples_split samples.&#39; and has the following type(s): int, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter min_samples_split of sklearn.ensemble.RandomForestClassifier.
+min_samples_split is described as &#39;The minimum number of samples required to split an internal node:
+
+- If int, then consider `min_samples_split` as the minimum number.
+- If float, then `min_samples_split` is a fraction and
+  `ceil(min_samples_split * n_samples)` are the minimum
+  number of samples for each split.
+
+.. versionchanged:: 0.18
+   Added float values for fractions.&#39; and has the following type(s): int or float, default=2
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter min_samples_leaf of sklearn.ensemble.RandomForestClassifier.
+min_samples_leaf is described as &#39;The minimum number of samples required to be at a leaf node.
+A split point at any depth will only be considered if it leaves at
+least ``min_samples_leaf`` training samples in each of the left and
+right branches.  This may have the effect of smoothing the model,
+especially in regression.
+
+- If int, then consider `min_samples_leaf` as the minimum number.
+- If float, then `min_samples_leaf` is a fraction and
+  `ceil(min_samples_leaf * n_samples)` are the minimum
+  number of samples for each node.
+
+.. versionchanged:: 0.18
+   Added float values for fractions.&#39; and has the following type(s): int or float, default=1
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter min_weight_fraction_leaf of sklearn.ensemble.RandomForestClassifier.
+min_weight_fraction_leaf is described as &#39;The minimum weighted fraction of the sum total of weights (of all
+the input samples) required to be at a leaf node. Samples have
+equal weight when sample_weight is not provided.&#39; and has the following type(s): float, default=0.0
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter max_features of sklearn.ensemble.RandomForestClassifier.
+max_features is described as &#39;The number of features to consider when looking for the best split:
+
+- If int, then consider `max_features` features at each split.
+- If float, then `max_features` is a fraction and
+  `max(1, int(max_features * n_features_in_))` features are considered at each
+  split.
+- If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.
+- If &quot;log2&quot;, then `max_features=log2(n_features)`.
+- If None, then `max_features=n_features`.
+
+.. versionchanged:: 1.1
+    The default of `max_features` changed from `&quot;auto&quot;` to `&quot;sqrt&quot;`.
+
+Note: the search for a split does not stop until at least one
+valid partition of the node samples is found, even if it requires to
+effectively inspect more than ``max_features`` features.&#39; and has the following type(s): {&quot;sqrt&quot;, &quot;log2&quot;, None}, int or float, default=&quot;sqrt&quot;
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter max_leaf_nodes of sklearn.ensemble.RandomForestClassifier.
+max_leaf_nodes is described as &#39;Grow trees with ``max_leaf_nodes`` in best-first fashion.
+Best nodes are defined as relative reduction in impurity.
+If None then unlimited number of leaf nodes.&#39; and has the following type(s): int, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter min_impurity_decrease of sklearn.ensemble.RandomForestClassifier.
+min_impurity_decrease is described as &#39;A node will be split if this split induces a decrease of the impurity
+greater than or equal to this value.
+
+The weighted impurity decrease equation is the following::
+
+    N_t / N * (impurity - N_t_R / N_t * right_impurity
+                        - N_t_L / N_t * left_impurity)
+
+where ``N`` is the total number of samples, ``N_t`` is the number of
+samples at the current node, ``N_t_L`` is the number of samples in the
+left child, and ``N_t_R`` is the number of samples in the right child.
+
+``N``, ``N_t``, ``N_t_R`` and ``N_t_L`` all refer to the weighted sum,
+if ``sample_weight`` is passed.
+
+.. versionadded:: 0.19&#39; and has the following type(s): float, default=0.0
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter bootstrap of sklearn.ensemble.RandomForestClassifier.
+bootstrap is described as &#39;Whether bootstrap samples are used when building trees. If False, the
+whole dataset is used to build each tree.&#39; and has the following type(s): bool, default=True
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter oob_score of sklearn.ensemble.RandomForestClassifier.
+oob_score is described as &#39;Whether to use out-of-bag samples to estimate the generalization score.
+By default, :func:`~sklearn.metrics.accuracy_score` is used.
+Provide a callable with signature `metric(y_true, y_pred)` to use a
+custom metric. Only available if `bootstrap=True`.&#39; and has the following type(s): bool or callable, default=False
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter n_jobs of sklearn.ensemble.RandomForestClassifier.
+n_jobs is described as &#39;The number of jobs to run in parallel. :meth:`fit`, :meth:`predict`,
+:meth:`decision_path` and :meth:`apply` are all parallelized over the
+trees. ``None`` means 1 unless in a :obj:`joblib.parallel_backend`
+context. ``-1`` means using all processors. See :term:`Glossary
+&lt;n_jobs&gt;` for more details.&#39; and has the following type(s): int, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter random_state of sklearn.ensemble.RandomForestClassifier.
+random_state is described as &#39;Controls both the randomness of the bootstrapping of the samples used
+when building trees (if ``bootstrap=True``) and the sampling of the
+features to consider when looking for the best split at each node
+(if ``max_features &lt; n_features``).
+See :term:`Glossary &lt;random_state&gt;` for details.&#39; and has the following type(s): int, RandomState instance or None, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter verbose of sklearn.ensemble.RandomForestClassifier.
+verbose is described as &#39;Controls the verbosity when fitting and predicting.&#39; and has the following type(s): int, default=0
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter warm_start of sklearn.ensemble.RandomForestClassifier.
+warm_start is described as &#39;When set to ``True``, reuse the solution of the previous call to fit
+and add more estimators to the ensemble, otherwise, just fit a whole
+new forest. See :term:`Glossary &lt;warm_start&gt;` and
+:ref:`gradient_boosting_warm_start` for details.&#39; and has the following type(s): bool, default=False
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter class_weight of sklearn.ensemble.RandomForestClassifier.
+class_weight is described as &#39;Weights associated with classes in the form ``{class_label: weight}``.
+If not given, all classes are supposed to have weight one. For
+multi-output problems, a list of dicts can be provided in the same
+order as the columns of y.
+
+Note that for multioutput (including multilabel) weights should be
+defined for each class of every column in its own dict. For example,
+for four-class multilabel classification weights should be
+[{0: 1, 1: 1}, {0: 1, 1: 5}, {0: 1, 1: 1}, {0: 1, 1: 1}] instead of
+[{1:1}, {2:5}, {3:1}, {4:1}].
+
+The &quot;balanced&quot; mode uses the values of y to automatically adjust
+weights inversely proportional to class frequencies in the input data
+as ``n_samples / (n_classes * np.bincount(y))``
+
+The &quot;balanced_subsample&quot; mode is the same as &quot;balanced&quot; except that
+weights are computed based on the bootstrap sample for every tree
+grown.
+
+For multi-output, the weights of each column of y will be multiplied.
+
+Note that these weights will be multiplied with sample_weight (passed
+through the fit method) if sample_weight is specified.&#39; and has the following type(s): {&quot;balanced&quot;, &quot;balanced_subsample&quot;}, dict or list of dicts, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter ccp_alpha of sklearn.ensemble.RandomForestClassifier.
+ccp_alpha is described as &#39;Complexity parameter used for Minimal Cost-Complexity Pruning. The
+subtree with the largest cost complexity that is smaller than
+``ccp_alpha`` will be chosen. By default, no pruning is performed. See
+:ref:`minimal_cost_complexity_pruning` for details.
+
+.. versionadded:: 0.22&#39; and has the following type(s): non-negative float, default=0.0
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter max_samples of sklearn.ensemble.RandomForestClassifier.
+max_samples is described as &#39;If bootstrap is True, the number of samples to draw from X
+to train each base estimator.
+
+- If None (default), then draw `X.shape[0]` samples.
+- If int, then draw `max_samples` samples.
+- If float, then draw `max(round(n_samples * max_samples), 1)` samples. Thus,
+  `max_samples` should be in the interval `(0.0, 1.0]`.
+
+.. versionadded:: 0.22&#39; and has the following type(s): int or float, default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter monotonic_cst of sklearn.ensemble.RandomForestClassifier.
+monotonic_cst is described as &#39;Indicates the monotonicity constraint to enforce on each feature.
+  - 1: monotonic increase
+  - 0: no constraint
+  - -1: monotonic decrease
+
+If monotonic_cst is None, no constraints are applied.
+
+Monotonicity constraints are not supported for:
+  - multiclass classifications (i.e. when `n_classes &gt; 2`),
+  - multioutput classifications (i.e. when `n_outputs_ &gt; 1`),
+  - classifications trained on data with missing values.
+
+The constraints hold over the probability of the positive class.
+
+Read more in the :ref:`User Guide &lt;monotonic_cst_gbdt&gt;`.
+
+.. versionadded:: 1.4&#39; and has the following type(s): array-like of int of shape (n_features), default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute estimator_ of sklearn.ensemble.RandomForestClassifier.
+estimator_ is described as &#39;The child estimator template used to create the collection of fitted
+sub-estimators.
+
+.. versionadded:: 1.2
+   `base_estimator_` was renamed to `estimator_`.&#39; and has the following type(s): :class:`~sklearn.tree.DecisionTreeClassifier`
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute estimators_ of sklearn.ensemble.RandomForestClassifier.
+estimators_ is described as &#39;The collection of fitted sub-estimators.&#39; and has the following type(s): list of DecisionTreeClassifier
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute classes_ of sklearn.ensemble.RandomForestClassifier.
+classes_ is described as &#39;The classes labels (single output problem), or a list of arrays of
+class labels (multi-output problem).&#39; and has the following type(s): ndarray of shape (n_classes,) or a list of such arrays
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute n_classes_ of sklearn.ensemble.RandomForestClassifier.
+n_classes_ is described as &#39;The number of classes (single output problem), or a list containing the
+number of classes for each output (multi-output problem).&#39; and has the following type(s): int or list
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute n_features_in_ of sklearn.ensemble.RandomForestClassifier.
+n_features_in_ is described as &#39;Number of features seen during :term:`fit`.
+
+.. versionadded:: 0.24&#39; and has the following type(s): int
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute feature_names_in_ of sklearn.ensemble.RandomForestClassifier.
+feature_names_in_ is described as &#39;Names of features seen during :term:`fit`. Defined only when `X`
+has feature names that are all strings.
+
+.. versionadded:: 1.0&#39; and has the following type(s): ndarray of shape (`n_features_in_`,)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute n_outputs_ of sklearn.ensemble.RandomForestClassifier.
+n_outputs_ is described as &#39;The number of outputs when ``fit`` is performed.&#39; and has the following type(s): int
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute feature_importances_ of sklearn.ensemble.RandomForestClassifier.
+feature_importances_ is described as &#39;The impurity-based feature importances.
+The higher, the more important the feature.
+The importance of a feature is computed as the (normalized)
+total reduction of the criterion brought by that feature.  It is also
+known as the Gini importance.
+
+Warning: impurity-based feature importances can be misleading for
+high cardinality features (many unique values). See
+:func:`sklearn.inspection.permutation_importance` as an alternative.&#39; and has the following type(s): ndarray of shape (n_features,)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute oob_score_ of sklearn.ensemble.RandomForestClassifier.
+oob_score_ is described as &#39;Score of the training dataset obtained using an out-of-bag estimate.
+This attribute exists only when ``oob_score`` is True.&#39; and has the following type(s): float
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute oob_decision_function_ of sklearn.ensemble.RandomForestClassifier.
+oob_decision_function_ is described as &#39;Decision function computed with out-of-bag estimate on the training
+set. If n_estimators is small it might be possible that a data point
+was never left out during the bootstrap. In this case,
+`oob_decision_function_` might contain NaN. This attribute exists
+only when ``oob_score`` is True.&#39; and has the following type(s): ndarray of shape (n_samples, n_classes) or (n_samples, n_classes, n_outputs)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Attribute estimators_samples_ of sklearn.ensemble.RandomForestClassifier.
+estimators_samples_ is described as &#39;The subset of drawn samples (i.e., the in-bag samples) for each base
+estimator. Each subset is defined by an array of the indices selected.
+
+.. versionadded:: 1.4&#39; and has the following type(s): list of arrays
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier
+The following functions or classes are related to RandomForestClassifier:
+- sklearn.tree.DecisionTreeClassifier: A decision tree classifier.
+- sklearn.ensemble.ExtraTreesClassifier: Ensemble of extremely randomized
+tree classifiers.
+- sklearn.ensemble.HistGradientBoostingClassifier: A Histogram-based Gradient
+Boosting Classification Tree, very fast for big datasets (n_samples &gt;=
+10_000).
+
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier
+Notes: The default values for the parameters controlling the size of the trees
+(e.g. ``max_depth``, ``min_samples_leaf``, etc.) lead to fully grown and
+unpruned trees which can potentially be very large on some data sets. To
+reduce memory consumption, the complexity and size of the trees should be
+controlled by setting those parameter values.
+
+The features are always randomly permuted at each split. Therefore,
+the best found split may vary, even with the same training data,
+``max_features=n_features`` and ``bootstrap=False``, if the improvement
+of the criterion is identical for several splits enumerated during the
+search of the best split. To obtain a deterministic behaviour during
+fitting, ``random_state`` has to be fixed.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier
+Here is a usage example of RandomForestClassifier:
+&gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier
+&gt;&gt;&gt; from sklearn.datasets import make_classification
+&gt;&gt;&gt; X, y = make_classification(n_samples=1000, n_features=4,
+...                            n_informative=2, n_redundant=0,
+...                            random_state=0, shuffle=False)
+&gt;&gt;&gt; clf = RandomForestClassifier(max_depth=2, random_state=0)
+&gt;&gt;&gt; clf.fit(X, y)
+RandomForestClassifier(...)
+&gt;&gt;&gt; print(clf.predict([[0, 0, 0, 0]]))
+[1]
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier
+Here are some references related to RandomForestClassifier:
+.. [1] L. Breiman, &quot;Random Forests&quot;, Machine Learning, 45(1), 5-32, 2001.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.apply
+The parameters of apply with their default values when known are: self, X.
+The description of the apply is as follow.
+Apply trees in the forest to X, return leaf indices.
+
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.apply.
+X is described as &#39;The input samples. Internally, its dtype will be converted to
+``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csr_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+X_leaves is returned by sklearn.ensemble.RandomForestClassifier.apply.
+X_leaves is described as &#39;For each datapoint x in X and for each tree in the forest,
+return the index of the leaf x ends up in.&#39; and has the following type(s): ndarray of shape (n_samples, n_estimators)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.decision_path
+The parameters of decision_path with their default values when known are: self, X.
+The description of the decision_path is as follow.
+Return the decision path in the forest.
+.. versionadded:: 0.18
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.decision_path.
+X is described as &#39;The input samples. Internally, its dtype will be converted to
+``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csr_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+indicator is returned by sklearn.ensemble.RandomForestClassifier.decision_path.
+indicator is described as &#39;Return a node indicator matrix where non zero elements indicates
+that the samples goes through the nodes. The matrix is of CSR
+format.&#39; and has the following type(s): sparse matrix of shape (n_samples, n_nodes)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+n_nodes_ptr is returned by sklearn.ensemble.RandomForestClassifier.decision_path.
+n_nodes_ptr is described as &#39;The columns from indicator[n_nodes_ptr[i]:n_nodes_ptr[i+1]]
+gives the indicator value for the i-th estimator.&#39; and has the following type(s): ndarray of shape (n_estimators + 1,)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.fit
+The parameters of fit with their default values when known are: self, X, y, sample_weight (default=None).
+The description of the fit is as follow.
+Build a forest of trees from the training set (X, y).
+
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.fit.
+X is described as &#39;The training input samples. Internally, its dtype will be converted
+to ``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csc_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter y of sklearn.ensemble.RandomForestClassifier.fit.
+y is described as &#39;The target values (class labels in classification, real numbers in
+regression).&#39; and has the following type(s): array-like of shape (n_samples,) or (n_samples, n_outputs)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter sample_weight of sklearn.ensemble.RandomForestClassifier.fit.
+sample_weight is described as &#39;Sample weights. If None, then samples are equally weighted. Splits
+that would create child nodes with net zero or negative weight are
+ignored while searching for a split in each node. In the case of
+classification, splits are also ignored if they would result in any
+single class carrying a negative weight in either child node.&#39; and has the following type(s): array-like of shape (n_samples,), default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+self is returned by sklearn.ensemble.RandomForestClassifier.fit.
+self is described as &#39;Fitted estimator.&#39; and has the following type(s): object
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.get_metadata_routing
+The parameters of get_metadata_routing with their default values when known are: self.
+The description of the get_metadata_routing is as follow.
+Get metadata routing of this object.
+Please check :ref:`User Guide &lt;metadata_routing&gt;` on how the routing mechanism works.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+routing is returned by sklearn.ensemble.RandomForestClassifier.get_metadata_routing.
+routing is described as &#39;A :class:`~sklearn.utils.metadata_routing.MetadataRequest` encapsulating
+routing information.&#39; and has the following type(s): MetadataRequest
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.get_params
+The parameters of get_params with their default values when known are: self, deep (default=True).
+The description of the get_params is as follow.
+Get parameters for this estimator.
+
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter deep of sklearn.ensemble.RandomForestClassifier.get_params.
+deep is described as &#39;If True, will return the parameters for this estimator and
+contained subobjects that are estimators.&#39; and has the following type(s): bool, default=True
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+params is returned by sklearn.ensemble.RandomForestClassifier.get_params.
+params is described as &#39;Parameter names mapped to their values.&#39; and has the following type(s): dict
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.predict
+The parameters of predict with their default values when known are: self, X.
+The description of the predict is as follow.
+Predict class for X.
+The predicted class of an input sample is a vote by the trees in the forest, weighted by their probability estimates. That is, the predicted class is the one with highest mean probability estimate across the trees.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.predict.
+X is described as &#39;The input samples. Internally, its dtype will be converted to
+``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csr_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+y is returned by sklearn.ensemble.RandomForestClassifier.predict.
+y is described as &#39;The predicted classes.&#39; and has the following type(s): ndarray of shape (n_samples,) or (n_samples, n_outputs)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.predict_log_proba
+The parameters of predict_log_proba with their default values when known are: self, X.
+The description of the predict_log_proba is as follow.
+Predict class log-probabilities for X.
+The predicted class log-probabilities of an input sample is computed as the log of the mean predicted class probabilities of the trees in the forest.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.predict_log_proba.
+X is described as &#39;The input samples. Internally, its dtype will be converted to
+``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csr_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+p is returned by sklearn.ensemble.RandomForestClassifier.predict_log_proba.
+p is described as &#39;The class probabilities of the input samples. The order of the
+classes corresponds to that in the attribute :term:`classes_`.&#39; and has the following type(s): ndarray of shape (n_samples, n_classes), or a list of such arrays
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.predict_proba
+The parameters of predict_proba with their default values when known are: self, X.
+The description of the predict_proba is as follow.
+Predict class probabilities for X.
+The predicted class probabilities of an input sample are computed as the mean predicted class probabilities of the trees in the forest. The class probability of a single tree is the fraction of samples of the same class in a leaf.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.predict_proba.
+X is described as &#39;The input samples. Internally, its dtype will be converted to
+``dtype=np.float32``. If a sparse matrix is provided, it will be
+converted into a sparse ``csr_matrix``.&#39; and has the following type(s): {array-like, sparse matrix} of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+p is returned by sklearn.ensemble.RandomForestClassifier.predict_proba.
+p is described as &#39;The class probabilities of the input samples. The order of the
+classes corresponds to that in the attribute :term:`classes_`.&#39; and has the following type(s): ndarray of shape (n_samples, n_classes), or a list of such arrays
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.score
+The parameters of score with their default values when known are: self, X, y, sample_weight (default=None).
+The description of the score is as follow.
+Return the mean accuracy on the given test data and labels.
+In multi-label classification, this is the subset accuracy which is a harsh metric since you require for each sample that each label set be correctly predicted.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter X of sklearn.ensemble.RandomForestClassifier.score.
+X is described as &#39;Test samples.&#39; and has the following type(s): array-like of shape (n_samples, n_features)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter y of sklearn.ensemble.RandomForestClassifier.score.
+y is described as &#39;True labels for `X`.&#39; and has the following type(s): array-like of shape (n_samples,) or (n_samples, n_outputs)
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter sample_weight of sklearn.ensemble.RandomForestClassifier.score.
+sample_weight is described as &#39;Sample weights.&#39; and has the following type(s): array-like of shape (n_samples,), default=None
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+score is returned by sklearn.ensemble.RandomForestClassifier.score.
+score is described as &#39;Mean accuracy of ``self.predict(X)`` w.r.t. `y`.&#39; and has the following type(s): float
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.set_fit_request
+The parameters of set_fit_request with their default values when known are: self, sample_weight (default=$UNCHANGED$).
+The description of the set_fit_request is as follow.
+Request metadata passed to the ``fit`` method.
+Note that this method is only relevant if ``enable_metadata_routing=True`` (see :func:`sklearn.set_config`). Please see :ref:`User Guide &lt;metadata_routing&gt;` on how the routing mechanism works.
+The options for each parameter are:
+- ``True``: metadata is requested, and passed to ``fit`` if provided. The request is ignored if metadata is not provided.
+- ``False``: metadata is not requested and the meta-estimator will not pass it to ``fit``.
+- ``None``: metadata is not requested, and the meta-estimator will raise an error if the user provides it.
+- ``str``: metadata should be passed to the meta-estimator with this given alias instead of the original name.
+The default (``sklearn.utils.metadata_routing.UNCHANGED``) retains the existing request. This allows you to change the request for some parameters and not others.
+.. versionadded:: 1.3
+.. note:: This method is only relevant if this estimator is used as a sub-estimator of a meta-estimator, e.g. used inside a :class:`~sklearn.pipeline.Pipeline`. Otherwise it has no effect.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter sample_weight of sklearn.ensemble.RandomForestClassifier.set_fit_request.
+sample_weight is described as &#39;Metadata routing for ``sample_weight`` parameter in ``fit``.&#39; and has the following type(s): str, True, False, or None, default=sklearn.utils.metadata_routing.UNCHANGED
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+self is returned by sklearn.ensemble.RandomForestClassifier.set_fit_request.
+self is described as &#39;The updated object.&#39; and has the following type(s): object
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.set_params
+The parameters of set_params with their default values when known are: self, params.
+The description of the set_params is as follow.
+Set the parameters of this estimator.
+The method works on simple estimators as well as on nested objects (such as :class:`~sklearn.pipeline.Pipeline`). The latter have parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it&#39;s possible to update each component of a nested object.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter **params of sklearn.ensemble.RandomForestClassifier.set_params.
+**params is described as &#39;Estimator parameters.&#39; and has the following type(s): dict
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+self is returned by sklearn.ensemble.RandomForestClassifier.set_params.
+self is described as &#39;Estimator instance.&#39; and has the following type(s): estimator instance
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+sklearn.ensemble.RandomForestClassifier.set_score_request
+The parameters of set_score_request with their default values when known are: self, sample_weight (default=$UNCHANGED$).
+The description of the set_score_request is as follow.
+Request metadata passed to the ``score`` method.
+Note that this method is only relevant if ``enable_metadata_routing=True`` (see :func:`sklearn.set_config`). Please see :ref:`User Guide &lt;metadata_routing&gt;` on how the routing mechanism works.
+The options for each parameter are:
+- ``True``: metadata is requested, and passed to ``score`` if provided. The request is ignored if metadata is not provided.
+- ``False``: metadata is not requested and the meta-estimator will not pass it to ``score``.
+- ``None``: metadata is not requested, and the meta-estimator will raise an error if the user provides it.
+- ``str``: metadata should be passed to the meta-estimator with this given alias instead of the original name.
+The default (``sklearn.utils.metadata_routing.UNCHANGED``) retains the existing request. This allows you to change the request for some parameters and not others.
+.. versionadded:: 1.3
+.. note:: This method is only relevant if this estimator is used as a sub-estimator of a meta-estimator, e.g. used inside a :class:`~sklearn.pipeline.Pipeline`. Otherwise it has no effect.
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Parameter sample_weight of sklearn.ensemble.RandomForestClassifier.set_score_request.
+sample_weight is described as &#39;Metadata routing for ``sample_weight`` parameter in ``score``.&#39; and has the following type(s): str, True, False, or None, default=sklearn.utils.metadata_routing.UNCHANGED
+
+The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+self is returned by sklearn.ensemble.RandomForestClassifier.set_score_request.
+self is described as &#39;The updated object.&#39; and has the following type(s): object
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>hello world
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.096 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-documentation-scraping-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/ee7e3ae92106ee3d2ba37fd6f6bea128/plot_documentation_scraping.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_documentation_scraping.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/83e167b8af1bf8554e4136d426f034c5/plot_documentation_scraping.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_documentation_scraping.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Example gallery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../whats_new.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Release history</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation-scraping">API documentation scraping</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/glemaitre/sklearn-ragger-duck/edit/main/doc/auto_examples/plot_documentation_scraping.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/auto_examples/plot_documentation_scraping.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2023, G. Lemaitre.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
