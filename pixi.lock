@@ -1096,6 +1096,8 @@ environments:
     - url: https://conda.anaconda.org/nvidia/
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/pytorch/
+    indexes:
+    - https://pypi.org/simple
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -1516,6 +1518,8 @@ environments:
     - url: https://conda.anaconda.org/nvidia/
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/pytorch/
+    indexes:
+    - https://pypi.org/simple
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -2847,6 +2851,8 @@ environments:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/pytorch/
+    indexes:
+    - https://pypi.org/simple
     packages:
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/accessible-pygments-0.0.5-pyhd8ed1ab_0.conda
