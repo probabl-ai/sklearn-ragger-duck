@@ -6,7 +6,9 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]  # [ubuntu-latest, macos-latest, macos-14]
+        # with macos-latest, we cannot use MPS to allocate memory
+        # using macos-12 instead
+        os: [ubuntu-latest, macos-12]
         environment: [cpu]
     runs-on: ${{ matrix.os }}
     steps:
