@@ -234,7 +234,7 @@ this folder.
     warm_start is described as 'When set to ``True``, reuse the solution of the previous call to fit
     and add more estimators to the ensemble, otherwise, just fit a whole
     new forest. See :term:`Glossary <warm_start>` and
-    :ref:`gradient_boosting_warm_start` for details.' and has the following type(s): bool, default=False
+    :ref:`tree_ensemble_warm_start` for details.' and has the following type(s): bool, default=False
 
     The source of the chunk is https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
 
@@ -740,7 +740,7 @@ this folder.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.099 seconds)
+   **Total running time of the script:** (0 minutes 0.082 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_documentation_scraping.py:
