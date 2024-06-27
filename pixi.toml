@@ -74,9 +74,9 @@ torchvision = { version = "*", channel = "pytorch" }
 transformers = "4.39.3"
 sentence-transformers = "2.7.0"
 
-# [feature.mps.pypi-dependencies]
-# lama-cpp-python = "*"
-# ragger_duck = { path=".", editable=true }
+[feature.mps.pypi-dependencies]
+llama-cpp-python = "*"
+ragger_duck = { path=".", editable=true }
 
 # CPU-specfic configuration
 [feature.cpu]
@@ -111,9 +111,9 @@ torchvision = { version = "*", channel = "pytorch" }
 transformers = "4.39.3"
 sentence-transformers = "2.7.0"
 
-[feature.cpu.pypi-dependencies]
-llama-cpp-python = "*"
-ragger_duck = { path=".", editable=true }
+# [feature.cpu.pypi-dependencies]
+# llama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
 
 # margaret-specfic configuration for CUDA 11.7
 [feature.cuda-11-7]
