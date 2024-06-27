@@ -26,4 +26,4 @@ jobs:
         uses: codecov/codecov-action@v4.5.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: glemaitre/doc-search-rag-based-llm
+          slug: probabl-ai/sklearn-ragger-duck
