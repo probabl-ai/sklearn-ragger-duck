@@ -1,7 +1,7 @@
 # Ragger Duck
 
 ![tests](https://github.com/probabl-ai/sklearn-ragger-duck/actions/workflows/python-app.yml/badge.svg)
-[![codecov](https://codecov.io/gh/glemaitre/doc-search-rag-based-llm/graph/badge.svg?token=L0XPWwoPLw)](https://codecov.io/gh/glemaitre/doc-search-rag-based-llm)
+[![codecov](https://codecov.io/gh/probabl-ai/sklearn-ragger-duck/graph/badge.svg?token=OYY9GF6B5T)](https://codecov.io/gh/probabl-ai/sklearn-ragger-duck)
 ![doc](https://github.com/probabl-ai/sklearn-ragger-duck/actions/workflows/deploy-gh-pages.yml/badge.svg)
 
 A rubber duck that should answer to your scikit-learn questions. But this is just
