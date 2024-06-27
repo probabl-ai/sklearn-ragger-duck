@@ -32,7 +32,7 @@ channels = ["conda-forge", "pytorch"]
 platforms = ["linux-64", "osx-64", "osx-arm64"]
 
 [tool.pixi.tasks]
-install-ragger-duck ={ cmd = "pip install -e ." }
+install-ragger-duck = { cmd = "pip install -e ." }
 build-doc-sklearn = { cmd = "make html-noplot", cwd = "local_sklearn/scikit-learn/doc" }
 clean-doc-sklearn = { cmd = "make clean", cwd = "local_sklearn/scikit-learn/doc" }
 clean-doc-ragger-duck = { cmd = "rm -rf _build", cwd = "doc" }
