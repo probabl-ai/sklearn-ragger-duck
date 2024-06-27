@@ -27,6 +27,191 @@ classifiers = [
 Homepage = "https://github.com/glemaitre/sklearn-ragger-duck"
 Issues = "https://github.com/glemaitre/sklearn-ragger-duck/issues"
 
+[tool.pixi.project]
+channels = ["conda-forge", "pytorch"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.tasks]
+install-ragger-duck = { cmd = "pip install -e ." }
+build-doc-sklearn = { cmd = "make html-noplot", cwd = "local_sklearn/scikit-learn/doc" }
+clean-doc-sklearn = { cmd = "make clean", cwd = "local_sklearn/scikit-learn/doc" }
+clean-doc-ragger-duck = { cmd = "rm -rf _build", cwd = "doc" }
+fetch-mistral-7b = { cmd = "wget -O 'mistral-7b-instruct-v0.2.Q6_K.gguf' 'https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q6_K.gguf?download=true'", cwd = "models" }
+
+[tool.pixi.dependencies]
+python = "*"
+wget = "*"
+compilers = "*"
+# Dependencies for training retrievers and inference with models
+beautifulsoup4 = "*"
+joblib = "*"
+langchain = "*"
+numpydoc = "*"
+# align the version of scikit-learn with the submodule one to avoid rebuilding it
+scikit-learn = "1.5.0"
+sphinx-gallery = "*"
+# Dependencies for the web app
+fastapi = "*"
+uvicorn = "*"
+websockets = "*"
+# Dependencies for the documentation
+pydata-sphinx-theme = "*"
+sphinx = "*"
+# Dependencies for testing
+pytest = "*"
+pytest-cov = "*"
+# Dependencies to build the local scikit-learn documentation
+matplotlib = "*"
+packaging = "*"
+pandas = "*"
+pillow = "*"
+plotly = "*"
+polars = "*"
+pooch = "*"
+scikit-image = "*"
+seaborn = "*"
+sphinx-copybutton = "*"
+sphinxext-opengraph = "*"
+sphinx-prompt = "*"
+
+[tool.pixi.system-requirements]
+linux = "4.18"
+
+# MPS-specfic configuration
+[tool.pixi.feature.mps]
+platforms = ["osx-arm64"]
+
+[tool.pixi.feature.mps.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/osx-arm64-activate.sh"]
+
+[tool.pixi.feature.mps.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+# [tool.pixi.feature.mps.pypi-dependencies]
+# lama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
+
+# CPU-specfic configuration
+[tool.pixi.feature.cpu]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.feature.cpu.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/linux-64-cpu-activate.sh"]
+
+[tool.pixi.feature.cpu.target.linux-64.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+cpuonly = { version = "*", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+[tool.pixi.feature.cpu.target.osx-64.dependencies]
+faiss-cpu = { version = "1.7.4", channel = "conda-forge" }
+libfaiss = { version = "1.7.4", channel = "conda-forge" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+[tool.pixi.feature.cpu.target.osx-arm64.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+[pixi.tool.feature.cpu.pypi-dependencies]
+llama-cpp-python = "*"
+ragger_duck = { path=".", editable=true }
+
+# margaret-specfic configuration for CUDA 11.7
+[tool.pixi.feature.cuda-11-7]
+platforms = ["linux-64"]
+system-requirements = { cuda = "11.7" }
+tool.pixi.feature.cuda-11-7.channels = ["nvidia", {channel = "pytorch", priority = -1}]
+
+[tool.pixi.feature.cuda-11-7.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/margaret-activate.sh"]
+
+[tool.pixi.feature.cuda-11-7.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+cuda-nvcc = { version = "11.7.*", channel = "nvidia" }
+cuda-toolkit = { version = "11.4.*", channel = "nvidia" }
+cuda-runtime = { version = "11.7.*", channel = "nvidia" }
+pytorch = { version = "2.0.1", channel = "pytorch" }
+pytorch-cuda = { version = "11.7.*", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+# [tool.pixi.feature.margaret.pypi-dependencies]
+# llama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
+
+# GPU CUDA 12.1
+[tool.pixi.feature.cuda-12-1]
+platforms = ["linux-64"]
+system-requirements = { cuda = "12.1" }
+tool.pixi.feature.cuda-12-1.channels = ["nvidia", {channel = "pytorch", priority = -1}]
+
+[tool.pixi.feature.cuda-12-1.activation]
+# set environment variable for building llmama-cpp via pip
+scripts = ["build_scripts/margaret-activate.sh"]
+
+[tool.pixi.feature.cuda-12-1.dependencies]
+faiss-cpu = { version = "1.8.0", channel = "pytorch" }
+libfaiss = { version = "1.8.0", channel = "pytorch" }
+cuda-nvcc = { version = "12.1.*", channel = "nvidia" }
+cuda-toolkit = { version = "12.1.*", channel = "nvidia" }
+cuda-runtime = { version = "12.1.*", channel = "nvidia" }
+pytorch = { version = "2.2.1", channel = "pytorch" }
+pytorch-cuda = { version = "12.1.*", channel = "pytorch" }
+torchvision = { version = "*", channel = "pytorch" }
+transformers = "4.39.3"
+sentence-transformers = "2.7.0"
+
+# [tool.pixi.feature.cuda-12-1.pypi-dependencies]
+# llama-cpp-python = "*"
+# ragger_duck = { path=".", editable=true }
+
+# tasks per type of hardware
+
+[tool.pixi.feature.cpu.tasks]
+start-ragger-duck = { cmd = "DEVICE=cpu uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=cpu python train_retrievers.py", cwd = "scripts" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
+
+[tool.pixi.feature.mps.tasks]
+start-ragger-duck = { cmd = "DEVICE=mps GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=mps python train_retrievers.py", cwd = "scripts" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
+
+[tool.pixi.feature.cuda.tasks]
+start-ragger-duck = { cmd = "DEVICE=cuda GPU_LAYERS=-1 uvicorn main:app --reload --host 0.0.0.0 --port 8123", cwd = "app" }
+train-retrievers = { cmd = "DEVICE=cuda python train_retrievers.py", cwd = "scripts" }
+test-ragger-duck = { cmd = "pytest -vsl --cov=ragger_duck --cov-report=xml ragger_duck" }
+build-doc-ragger-duck = { cmd = "make html", cwd = "doc" }
+
+[tool.pixi.environments]
+mps = ["mps"]
+cpu = ["cpu"]
+cuda-11-7 = ["cuda-11-7", "cuda"]
+cuda-12-1 = ["cuda-12-1", "cuda"]
+
 [tool.black]
 line-length = 88
 target_version = ['py38', 'py39', 'py310']
