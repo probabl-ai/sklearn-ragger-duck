@@ -130,7 +130,7 @@ torchvision = { version = "*", channel = "pytorch" }
 transformers = "4.39.3"
 sentence-transformers = "2.7.0"
 
-[feature.cpu.pypi-dependencies]
+[pixi.tool.feature.cpu.pypi-dependencies]
 llama-cpp-python = "*"
 ragger_duck = { path=".", editable=true }
 
@@ -211,7 +211,6 @@ mps = ["mps"]
 cpu = ["cpu"]
 cuda-11-7 = ["cuda-11-7", "cuda"]
 cuda-12-1 = ["cuda-12-1", "cuda"]
-
 
 [tool.black]
 line-length = 88
