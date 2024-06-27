@@ -52,6 +52,9 @@ sphinx-copybutton = "*"
 sphinxext-opengraph = "*"
 sphinx-prompt = "*"
 
+[feature.dev.dependencies]
+ipykernel = "*"
+
 [system-requirements]
 linux = "4.18"
 
@@ -189,3 +192,4 @@ mps = ["mps"]
 cpu = ["cpu"]
 cuda-11-7 = ["cuda-11-7", "cuda"]
 cuda-12-1 = ["cuda-12-1", "cuda"]
+dev = ["mps", "dev"]
