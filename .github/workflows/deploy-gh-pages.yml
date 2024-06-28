@@ -22,11 +22,10 @@ jobs:
       with:
         pixi-version: v0.24.2
         environments: cpu
-        activate-environment: true
         frozen: true
 
     - name: Build documentation
-      run: pixi run build-doc-ragger-duck
+      run: pixi run --frozen -e dev build-doc-ragger-duck
 
     - name: Update the main gh-page website
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
