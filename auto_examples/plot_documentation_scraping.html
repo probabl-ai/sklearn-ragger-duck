@@ -501,7 +501,70 @@ answer.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> offer a structured information based on the sections of the
 docstring, we therefore use these sections and create hand-crafted chunks that we
 find meaningful in regards to the API documentation.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.077 seconds)</p>
+</section>
+<section id="user-guide-documentation-scraping">
+<h2>User guide documentation scraping<a class="headerlink" href="#user-guide-documentation-scraping" title="Link to this heading">#</a></h2>
+<p>First, we look at the <code class="xref py py-class docutils literal notranslate"><span class="pre">UserGuideExtractor</span></code> class. This
+class is used to scrape the user guide documentation of scikit-learn. The chunking
+strategy is really simple: we split the text into chunks of a fixed size.
+Additionally, chunks can be overlapping. Those behaviors can be controlled by the
+<code class="docutils literal notranslate"><span class="pre">chunk_size</span></code> and <code class="docutils literal notranslate"><span class="pre">chunk_overlap</span></code> parameters.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ragger_duck.scraping</span> <span class="kn">import</span> <a href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">UserGuideDocExtractor</span></a>
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_user_guide</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;toy_documentation&quot;</span> <span class="o">/</span> <span class="s2">&quot;user_guide&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a> <span class="o">=</span> <a href="../references/generated/ragger_duck.scraping.UserGuideDocExtractor.html#ragger_duck.scraping.UserGuideDocExtractor" title="ragger_duck.scraping.UserGuideDocExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">UserGuideDocExtractor</span></a><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_user_guide</span></a>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>We provide an example of two overlapping chunks.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chunk #1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chunk #2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Chunk #1
+
+Getting Started¶
+The purpose of this guide is to illustrate some of the main features that
+scikit-learn provides. It assumes a very basic working knowledge of
+machine learning practices (model fitting, predicting, cross-validation,
+etc.). Please refer to our installation instructions for installing scikit-learn.
+Scikit-learn is an open source machine learning library that supports
+supervised and unsupervised learning. It also provides various tools for
+
+Chunk #2
+
+supervised and unsupervised learning. It also provides various tools for
+model fitting, data preprocessing, model selection, model evaluation,
+and many other utilities.
+Fitting and predicting: estimator basics¶
+Scikit-learn provides dozens of built-in machine learning algorithms and
+models, called estimators. Each estimator can be fitted to some data
+using its fit method.
+Here is a simple example where we fit a
+RandomForestClassifier to some very basic data:
+</pre></div>
+</div>
+<p>The size of the chunks might varies depending of the break characters in the text.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>456
+462
+</pre></div>
+</div>
+<p>It should be noted that we could improve this strategy by using a more sophisticated
+chunking strategy. For instance, we could detect the sections and make sure to not
+define chunks overlapping between independent sections. In the same manner, we could
+think of a strategy to not split code block of the user guide since they are quite
+small and self-contained.</p>
+</section>
+<section id="examples-documentation-scraping">
+<h2>Examples documentation scraping<a class="headerlink" href="#examples-documentation-scraping" title="Link to this heading">#</a></h2>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.106 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-documentation-scraping-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/ee7e3ae92106ee3d2ba37fd6f6bea128/plot_documentation_scraping.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_documentation_scraping.ipynb</span></code></a></p>
@@ -561,6 +624,8 @@ find meaningful in regards to the API documentation.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation-scraping">API documentation scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation-scraping">User guide documentation scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-documentation-scraping">Examples documentation scraping</a></li>
 </ul>
   </nav></div>
 

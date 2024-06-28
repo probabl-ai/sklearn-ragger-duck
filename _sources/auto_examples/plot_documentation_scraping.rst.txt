@@ -136,7 +136,7 @@ instance, this is the first chunk of text.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-56
+.. GENERATED FROM PYTHON SOURCE LINES 45-64
 
 The first line of the chunk corresponds to the estimator or class name and its
 module. This information is useful to disambiguate the documentation when using an
@@ -150,10 +150,118 @@ Since `numpydoc` offer a structured information based on the sections of the
 docstring, we therefore use these sections and create hand-crafted chunks that we
 find meaningful in regards to the API documentation.
 
+User guide documentation scraping
+---------------------------------
+First, we look at the :class:`~ragger_duck.scraping.UserGuideExtractor` class. This
+class is used to scrape the user guide documentation of scikit-learn. The chunking
+strategy is really simple: we split the text into chunks of a fixed size.
+Additionally, chunks can be overlapping. Those behaviors can be controlled by the
+`chunk_size` and `chunk_overlap` parameters.
+
+.. GENERATED FROM PYTHON SOURCE LINES 64-71
+
+.. code-block:: Python
+
+    from ragger_duck.scraping import UserGuideDocExtractor
+
+    path_user_guide = Path(".") / "toy_documentation" / "user_guide"
+    chunks = UserGuideDocExtractor(chunk_size=500, chunk_overlap=100).fit_transform(
+        path_user_guide
+    )
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 72-73
+
+We provide an example of two overlapping chunks.
+
+.. GENERATED FROM PYTHON SOURCE LINES 73-78
+
+.. code-block:: Python
+
+    print("Chunk #1\n")
+    print(chunks[0]["text"])
+    print("\nChunk #2\n")
+    print(chunks[1]["text"])
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Chunk #1
+
+    Getting Started¶
+    The purpose of this guide is to illustrate some of the main features that
+    scikit-learn provides. It assumes a very basic working knowledge of
+    machine learning practices (model fitting, predicting, cross-validation,
+    etc.). Please refer to our installation instructions for installing scikit-learn.
+    Scikit-learn is an open source machine learning library that supports
+    supervised and unsupervised learning. It also provides various tools for
+
+    Chunk #2
+
+    supervised and unsupervised learning. It also provides various tools for
+    model fitting, data preprocessing, model selection, model evaluation,
+    and many other utilities.
+    Fitting and predicting: estimator basics¶
+    Scikit-learn provides dozens of built-in machine learning algorithms and
+    models, called estimators. Each estimator can be fitted to some data
+    using its fit method.
+    Here is a simple example where we fit a
+    RandomForestClassifier to some very basic data:
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 79-80
+
+The size of the chunks might varies depending of the break characters in the text.
+
+.. GENERATED FROM PYTHON SOURCE LINES 80-83
+
+.. code-block:: Python
+
+    print(len(chunks[0]["text"]))
+    print(len(chunks[1]["text"]))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    456
+    462
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 84-92
+
+It should be noted that we could improve this strategy by using a more sophisticated
+chunking strategy. For instance, we could detect the sections and make sure to not
+define chunks overlapping between independent sections. In the same manner, we could
+think of a strategy to not split code block of the user guide since they are quite
+small and self-contained.
+
+Examples documentation scraping
+-------------------------------
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.077 seconds)
+   **Total running time of the script:** (0 minutes 0.106 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_documentation_scraping.py:

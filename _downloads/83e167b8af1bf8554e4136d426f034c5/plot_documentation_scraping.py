@@ -53,3 +53,39 @@ print(chunks[0]["text"])
 # Since `numpydoc` offer a structured information based on the sections of the
 # docstring, we therefore use these sections and create hand-crafted chunks that we
 # find meaningful in regards to the API documentation.
+#
+# User guide documentation scraping
+# ---------------------------------
+# First, we look at the :class:`~ragger_duck.scraping.UserGuideExtractor` class. This
+# class is used to scrape the user guide documentation of scikit-learn. The chunking
+# strategy is really simple: we split the text into chunks of a fixed size.
+# Additionally, chunks can be overlapping. Those behaviors can be controlled by the
+# `chunk_size` and `chunk_overlap` parameters.
+from ragger_duck.scraping import UserGuideDocExtractor
+
+path_user_guide = Path(".") / "toy_documentation" / "user_guide"
+chunks = UserGuideDocExtractor(chunk_size=500, chunk_overlap=100).fit_transform(
+    path_user_guide
+)
+
+# %%
+# We provide an example of two overlapping chunks.
+print("Chunk #1\n")
+print(chunks[0]["text"])
+print("\nChunk #2\n")
+print(chunks[1]["text"])
+
+# %%
+# The size of the chunks might varies depending of the break characters in the text.
+print(len(chunks[0]["text"]))
+print(len(chunks[1]["text"]))
+
+# %%
+# It should be noted that we could improve this strategy by using a more sophisticated
+# chunking strategy. For instance, we could detect the sections and make sure to not
+# define chunks overlapping between independent sections. In the same manner, we could
+# think of a strategy to not split code block of the user guide since they are quite
+# small and self-contained.
+#
+# Examples documentation scraping
+# -------------------------------
