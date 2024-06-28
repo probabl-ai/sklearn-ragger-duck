@@ -22,6 +22,7 @@ jobs:
       with:
         pixi-version: v0.24.2
         environments: cpu
+        activate-environment: true
         frozen: true
 
     - name: Build documentation
