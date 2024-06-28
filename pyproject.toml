@@ -58,5 +58,6 @@ exclude=[
 # folder.
 "scripts/*"=["E402"]
 "doc/conf.py"=["E402"]
+"examples/*"=["E402"]
 "app/main.py"=["E402"]
 "ragger_duck/scraping/tests/data/gallery/stable/*.py"=["E402"]
