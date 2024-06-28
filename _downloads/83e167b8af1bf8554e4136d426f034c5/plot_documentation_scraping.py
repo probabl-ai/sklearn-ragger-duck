@@ -27,9 +27,29 @@ path_api_doc = Path(".") / "toy_documentation" / "api"
 chunks = APINumPyDocExtractor().fit_transform(path_api_doc)
 
 # %%
-for chunk in chunks:
-    print(f"The source of the chunk is {chunk['source']}\n")
-    print(f"{chunk['text']}\n")
+# The chunks are stored in a list of dictionaries.
+print(f"Chunks is {type(chunks)}")
+print(f"A chunk is {type(chunks[0])}")
 
 # %%
-print("hello world")
+# A chunk contains 2 keys: `"source"` that is the HTML source page and `"text"` that is
+# the extracted text.
+chunks[0].keys()
+
+# %%
+# For the API documentation, we use `numpydoc` to generate meaningful chunks. For
+# instance, this is the first chunk of text.
+print(chunks[0]["text"])
+
+# %%
+# The first line of the chunk corresponds to the estimator or class name and its
+# module. This information is useful to disambiguate the documentation when using an
+# LLM: sometimes we can have multiple parameters name defined in different classes or
+# functions. An LLM will tend to summarize the information coming from the different
+# chunks. However, if we provide the class or function name and this information is
+# present in the user prompt, then the LLM is likely to generate a more accurate
+# answer.
+#
+# Since `numpydoc` offer a structured information based on the sections of the
+# docstring, we therefore use these sections and create hand-crafted chunks that we
+# find meaningful in regards to the API documentation.
