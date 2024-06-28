@@ -89,3 +89,66 @@ print(len(chunks[1]["text"]))
 #
 # Examples documentation scraping
 # -------------------------------
+# Finally, we look at the :class:`~ragger_duck.scraping.GalleryExampleExtractor` class.
+# This class is used to scrape examples from the scikit-learn gallery.
+from ragger_duck.scraping import GalleryExampleExtractor
+
+path_examples = Path(".") / "toy_documentation" / "gallery"
+chunks = GalleryExampleExtractor(chunk_size=1_000).fit_transform(path_examples)
+
+# %%
+# In scikit-learn, we have two types of examples. The first type only contain a single
+# introduction paragraph and follow with a single code blocks. The second type contains
+# multiple blocks of code and text and look like a tutorial.
+#
+# We therefore have different strategies. Let's look first at the first type of
+# example.
+
+# %%
+# extract the chunk of the first example
+chunks_text = [chunk["text"] for chunk in chunks if "pca" in chunk["source"]]
+print(len(chunks_text))
+
+# %%
+# We see that for the first type of example, we only have a few chunks. Let's check in
+# more details the content of the chunks.
+for chunk in chunks_text:
+    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    print(chunk)
+    print("\n")
+
+# %%
+# For those type of examples, we split the text block from the code block. Once these
+# blocks are separated, we create chunks of a fixed size.
+#
+# Let's now look at the second type of example.
+chunks_text = [chunk["text"] for chunk in chunks if "causal" in chunk["source"]]
+print(len(chunks_text))
+
+# %%
+# For the second type of example, we observe many more chunks. Let's check in more
+# details the content of the chunks.
+for chunk in chunks_text:
+    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    print(chunk)
+    print("\n")
+
+# %%
+# For those type of examples, we first detect the sections using
+# `sphinx-gallery` and once get the text and code blocks within these sections. Since
+# the code is usually related to the text around it, we do not split the text from the
+# code blocks. Instead, we create chunks of a fixed size.
+#
+# Conclusion
+# ----------
+# In this example, we have seen the different strategies used to scrape the API
+# documentation, user guide documentation, and examples documentation of scikit-learn.
+# The API documentation is the most structured and we can leverage the sections of the
+# docstring to create meaningful chunks. The user guide documentation is less
+# structured and we use a simple chunking strategy. Finally, the examples
+# documentation is the less structured and we use a more sophisticated strategy to
+# detect the sections and create meaningful chunks.
+#
+# Since the documentation scrapping is a crucial step for the RAG model, more
+# sophisticated strategies could be used to improve the quality of the generated
+# chunks. Here, they are enough advanced to make a proof of concept.

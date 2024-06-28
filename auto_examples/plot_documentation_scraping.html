@@ -564,6 +564,328 @@ small and self-contained.</p>
 </section>
 <section id="examples-documentation-scraping">
 <h2>Examples documentation scraping<a class="headerlink" href="#examples-documentation-scraping" title="Link to this heading">#</a></h2>
+<p>Finally, we look at the <a class="reference internal" href="../references/generated/ragger_duck.scraping.GalleryExampleExtractor.html#ragger_duck.scraping.GalleryExampleExtractor" title="ragger_duck.scraping.GalleryExampleExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GalleryExampleExtractor</span></code></a> class.
+This class is used to scrape examples from the scikit-learn gallery.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ragger_duck.scraping</span> <span class="kn">import</span> <a href="../references/generated/ragger_duck.scraping.GalleryExampleExtractor.html#ragger_duck.scraping.GalleryExampleExtractor" title="ragger_duck.scraping.GalleryExampleExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">GalleryExampleExtractor</span></a>
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_examples</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;toy_documentation&quot;</span> <span class="o">/</span> <span class="s2">&quot;gallery&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a> <span class="o">=</span> <a href="../references/generated/ragger_duck.scraping.GalleryExampleExtractor.html#ragger_duck.scraping.GalleryExampleExtractor" title="ragger_duck.scraping.GalleryExampleExtractor" class="sphx-glr-backref-module-ragger_duck-scraping sphx-glr-backref-type-py-class"><span class="n">GalleryExampleExtractor</span></a><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1_000</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path_examples</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>In scikit-learn, we have two types of examples. The first type only contain a single
+introduction paragraph and follow with a single code blocks. The second type contains
+multiple blocks of code and text and look like a tutorial.</p>
+<p>We therefore have different strategies. Let’s look first at the first type of
+example.</p>
+<p>extract the chunk of the first example</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a> <span class="k">if</span> <span class="s2">&quot;pca&quot;</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+<p>We see that for the first type of example, we only have a few chunks. Let’s check in
+more details the content of the chunks.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+=======================================================
+Comparison of LDA and PCA 2D projection of Iris dataset
+=======================================================
+
+The Iris dataset represents 3 kind of Iris flowers (Setosa, Versicolour
+and Virginica) with 4 attributes: sepal length, sepal width, petal length
+and petal width.
+
+Principal Component Analysis (PCA) applied to this data identifies the
+combination of attributes (principal components, or directions in the
+feature space) that account for the most variance in the data. Here we
+plot the different samples on the 2 first principal components.
+
+Linear Discriminant Analysis (LDA) tries to identify attributes that
+account for the most variance *between classes*. In particular,
+LDA, in contrast to PCA, is a supervised method, using known class labels.
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+iris = datasets.load_iris()
+
+X = iris.data
+y = iris.target
+target_names = iris.target_names
+
+pca = PCA(n_components=2)
+X_r = pca.fit(X).transform(X)
+
+lda = LinearDiscriminantAnalysis(n_components=2)
+X_r2 = lda.fit(X, y).transform(X)
+
+# Percentage of variance explained for each components
+print(
+    &quot;explained variance ratio (first two components): %s&quot;
+    % str(pca.explained_variance_ratio_)
+)
+
+plt.figure()
+colors = [&quot;navy&quot;, &quot;turquoise&quot;, &quot;darkorange&quot;]
+lw = 2
+
+for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+    plt.scatter(
+        X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=0.8, lw=lw, label=target_name
+    )
+plt.legend(loc=&quot;best&quot;, shadow=False, scatterpoints=1)
+plt.title(&quot;PCA of IRIS dataset&quot;)
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+plt.figure()
+for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+    plt.scatter(
+        X_r2[y == i, 0], X_r2[y == i, 1], alpha=0.8, color=color, label=target_name
+    )
+plt.legend(loc=&quot;best&quot;, shadow=False, scatterpoints=1)
+plt.title(&quot;LDA of IRIS dataset&quot;)
+
+plt.show()
+</pre></div>
+</div>
+<p>For those type of examples, we split the text block from the code block. Once these
+blocks are separated, we create chunks of a fixed size.</p>
+<p>Let’s now look at the second type of example.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks</span></a> <span class="k">if</span> <span class="s2">&quot;causal&quot;</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+<p>For the second type of example, we observe many more chunks. Let’s check in more
+details the content of the chunks.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunks_text</span></a><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">chunk</span></a><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+===================================================
+Failure of Machine Learning to infer causal effects
+===================================================
+
+Machine Learning models are great for measuring statistical associations.
+Unfortunately, unless we&#39;re willing to make strong assumptions about the data,
+those models are unable to infer causal effects.
+
+To illustrate this, we will simulate a situation in which we try to answer one
+of the most important questions in economics of education: **what is the causal
+effect of earning a college degree on hourly wages?** Although the answer to
+this question is crucial to policy makers, `Omitted-Variable Biases
+&lt;https://en.wikipedia.org/wiki/Omitted-variable_bias&gt;`_ (OVB) prevent us from
+identifying that causal effect.
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+The dataset: simulated hourly wages
+-----------------------------------
+
+The data generating process is laid out in the code below. Work experience in
+years and a measure of ability are drawn from Normal distributions; the
+hourly wage of one of the parents is drawn from Beta distribution. We then
+create an indicator of college degree which is positively impacted by ability
+and parental hourly wage. Finally, we model hourly wages as a linear function
+of all the previous variables and a random component. Note that all variables
+have a positive effect on hourly wages.
+import numpy as np
+import pandas as pd
+
+n_samples = 10_000
+rng = np.random.RandomState(32)
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+experiences = rng.normal(20, 10, size=n_samples).astype(int)
+experiences[experiences &lt; 0] = 0
+abilities = rng.normal(0, 0.15, size=n_samples)
+parent_hourly_wages = 50 * rng.beta(2, 8, size=n_samples)
+parent_hourly_wages[parent_hourly_wages &lt; 0] = 0
+college_degrees = (
+    9 * abilities + 0.02 * parent_hourly_wages + rng.randn(n_samples) &gt; 0.7
+).astype(int)
+
+true_coef = pd.Series(
+    {
+        &quot;college degree&quot;: 2.0,
+        &quot;ability&quot;: 5.0,
+        &quot;experience&quot;: 0.2,
+        &quot;parent hourly wage&quot;: 1.0,
+    }
+)
+hourly_wages = (
+    true_coef[&quot;experience&quot;] * experiences
+    + true_coef[&quot;parent hourly wage&quot;] * parent_hourly_wages
+    + true_coef[&quot;college degree&quot;] * college_degrees
+    + true_coef[&quot;ability&quot;] * abilities
+    + rng.normal(0, 1, size=n_samples)
+)
+
+hourly_wages[hourly_wages &lt; 0] = 0
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Description of the simulated data
+---------------------------------
+
+The following plot shows the distribution of each variable, and pairwise
+scatter plots. Key to our OVB story is the positive relationship between
+ability and college degree.
+import seaborn as sns
+
+df = pd.DataFrame(
+    {
+        &quot;college degree&quot;: college_degrees,
+        &quot;ability&quot;: abilities,
+        &quot;hourly wage&quot;: hourly_wages,
+        &quot;experience&quot;: experiences,
+        &quot;parent hourly wage&quot;: parent_hourly_wages,
+    }
+)
+
+grid = sns.pairplot(df, diag_kind=&quot;kde&quot;, corner=True)
+
+In the next section, we train predictive models and we therefore split the
+target column from over features and we split the data into a training and a
+testing set.
+from sklearn.model_selection import train_test_split
+
+target_name = &quot;hourly wage&quot;
+X, y = df.drop(columns=target_name), df[target_name]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Income prediction with fully observed variables
+-----------------------------------------------
+
+First, we train a predictive model, a
+:class:`~sklearn.linear_model.LinearRegression` model. In this experiment,
+we assume that all variables used by the true generative model are available.
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+features_names = [&quot;experience&quot;, &quot;parent hourly wage&quot;, &quot;college degree&quot;, &quot;ability&quot;]
+
+regressor_with_ability = LinearRegression()
+regressor_with_ability.fit(X_train[features_names], y_train)
+y_pred_with_ability = regressor_with_ability.predict(X_test[features_names])
+R2_with_ability = r2_score(y_test, y_pred_with_ability)
+
+print(f&quot;R2 score with ability: {R2_with_ability:.3f}&quot;)
+
+This model predicts well the hourly wages as shown by the high R2 score. We
+plot the model coefficients to show that we exactly recover the values of
+the true generative model.
+import matplotlib.pyplot as plt
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+model_coef = pd.Series(regressor_with_ability.coef_, index=features_names)
+coef = pd.concat(
+    [true_coef[features_names], model_coef],
+    keys=[&quot;Coefficients of true generative model&quot;, &quot;Model coefficients&quot;],
+    axis=1,
+)
+ax = coef.plot.barh()
+ax.set_xlabel(&quot;Coefficient values&quot;)
+ax.set_title(&quot;Coefficients of the linear regression including the ability features&quot;)
+_ = plt.tight_layout()
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Income prediction with partial observations
+-------------------------------------------
+
+In practice, intellectual abilities are not observed or are only estimated
+from proxies that inadvertently measure education as well (e.g. by IQ tests).
+But omitting the &quot;ability&quot; feature from a linear model inflates the estimate
+via a positive OVB.
+features_names = [&quot;experience&quot;, &quot;parent hourly wage&quot;, &quot;college degree&quot;]
+
+regressor_without_ability = LinearRegression()
+regressor_without_ability.fit(X_train[features_names], y_train)
+y_pred_without_ability = regressor_without_ability.predict(X_test[features_names])
+R2_without_ability = r2_score(y_test, y_pred_without_ability)
+
+print(f&quot;R2 score without ability: {R2_without_ability:.3f}&quot;)
+
+The predictive power of our model is similar when we omit the ability feature
+in terms of R2 score. We now check if the coefficient of the model are
+different from the true generative model.
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+model_coef = pd.Series(regressor_without_ability.coef_, index=features_names)
+coef = pd.concat(
+    [true_coef[features_names], model_coef],
+    keys=[&quot;Coefficients of true generative model&quot;, &quot;Model coefficients&quot;],
+    axis=1,
+)
+ax = coef.plot.barh()
+ax.set_xlabel(&quot;Coefficient values&quot;)
+_ = ax.set_title(&quot;Coefficients of the linear regression excluding the ability feature&quot;)
+plt.tight_layout()
+plt.show()
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Lessons learned
+---------------
+
+Machine learning models are not designed for the estimation of causal
+effects. While we showed this with a linear model, OVB can affect any type of
+model.
+
+Whenever interpreting a coefficient or a change in predictions brought about
+by a change in one of the features, it is important to keep in mind
+potentially unobserved variables that could be correlated with both the
+feature in question and the target variable. Such variables are called
+`Confounding Variables &lt;https://en.wikipedia.org/wiki/Confounding&gt;`_. In
+order to still estimate causal effect in the presence of confounding,
+researchers usually conduct experiments in which the treatment variable (e.g.
+college degree) is randomized. When an experiment is prohibitively expensive
+or unethical, researchers can sometimes use other causal inference techniques
+such as `Instrumental Variables
+&lt;https://en.wikipedia.org/wiki/Instrumental_variables_estimation&gt;`_ (IV)
+estimations.
+</pre></div>
+</div>
+<p>For those type of examples, we first detect the sections using
+<code class="docutils literal notranslate"><span class="pre">sphinx-gallery</span></code> and once get the text and code blocks within these sections. Since
+the code is usually related to the text around it, we do not split the text from the
+code blocks. Instead, we create chunks of a fixed size.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this example, we have seen the different strategies used to scrape the API
+documentation, user guide documentation, and examples documentation of scikit-learn.
+The API documentation is the most structured and we can leverage the sections of the
+docstring to create meaningful chunks. The user guide documentation is less
+structured and we use a simple chunking strategy. Finally, the examples
+documentation is the less structured and we use a more sophisticated strategy to
+detect the sections and create meaningful chunks.</p>
+<p>Since the documentation scrapping is a crucial step for the RAG model, more
+sophisticated strategies could be used to improve the quality of the generated
+chunks. Here, they are enough advanced to make a proof of concept.</p>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.106 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-documentation-scraping-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
@@ -626,6 +948,7 @@ small and self-contained.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-documentation-scraping">API documentation scraping</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide-documentation-scraping">User guide documentation scraping</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-documentation-scraping">Examples documentation scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 

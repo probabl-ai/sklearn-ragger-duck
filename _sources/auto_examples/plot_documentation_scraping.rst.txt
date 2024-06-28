@@ -247,7 +247,7 @@ The size of the chunks might varies depending of the break characters in the tex
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-92
+.. GENERATED FROM PYTHON SOURCE LINES 84-94
 
 It should be noted that we could improve this strategy by using a more sophisticated
 chunking strategy. For instance, we could detect the sections and make sure to not
@@ -257,6 +257,415 @@ small and self-contained.
 
 Examples documentation scraping
 -------------------------------
+Finally, we look at the :class:`~ragger_duck.scraping.GalleryExampleExtractor` class.
+This class is used to scrape examples from the scikit-learn gallery.
+
+.. GENERATED FROM PYTHON SOURCE LINES 94-99
+
+.. code-block:: Python
+
+    from ragger_duck.scraping import GalleryExampleExtractor
+
+    path_examples = Path(".") / "toy_documentation" / "gallery"
+    chunks = GalleryExampleExtractor(chunk_size=1_000).fit_transform(path_examples)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 100-106
+
+In scikit-learn, we have two types of examples. The first type only contain a single
+introduction paragraph and follow with a single code blocks. The second type contains
+multiple blocks of code and text and look like a tutorial.
+
+We therefore have different strategies. Let's look first at the first type of
+example.
+
+.. GENERATED FROM PYTHON SOURCE LINES 108-109
+
+extract the chunk of the first example
+
+.. GENERATED FROM PYTHON SOURCE LINES 109-112
+
+.. code-block:: Python
+
+    chunks_text = [chunk["text"] for chunk in chunks if "pca" in chunk["source"]]
+    print(len(chunks_text))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    3
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 113-115
+
+We see that for the first type of example, we only have a few chunks. Let's check in
+more details the content of the chunks.
+
+.. GENERATED FROM PYTHON SOURCE LINES 115-120
+
+.. code-block:: Python
+
+    for chunk in chunks_text:
+        print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        print(chunk)
+        print("\n")
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    =======================================================
+    Comparison of LDA and PCA 2D projection of Iris dataset
+    =======================================================
+
+    The Iris dataset represents 3 kind of Iris flowers (Setosa, Versicolour
+    and Virginica) with 4 attributes: sepal length, sepal width, petal length
+    and petal width.
+
+    Principal Component Analysis (PCA) applied to this data identifies the
+    combination of attributes (principal components, or directions in the
+    feature space) that account for the most variance in the data. Here we
+    plot the different samples on the 2 first principal components.
+
+    Linear Discriminant Analysis (LDA) tries to identify attributes that
+    account for the most variance *between classes*. In particular,
+    LDA, in contrast to PCA, is a supervised method, using known class labels.
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    import matplotlib.pyplot as plt
+    from sklearn import datasets
+    from sklearn.decomposition import PCA
+    from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+    iris = datasets.load_iris()
+
+    X = iris.data
+    y = iris.target
+    target_names = iris.target_names
+
+    pca = PCA(n_components=2)
+    X_r = pca.fit(X).transform(X)
+
+    lda = LinearDiscriminantAnalysis(n_components=2)
+    X_r2 = lda.fit(X, y).transform(X)
+
+    # Percentage of variance explained for each components
+    print(
+        "explained variance ratio (first two components): %s"
+        % str(pca.explained_variance_ratio_)
+    )
+
+    plt.figure()
+    colors = ["navy", "turquoise", "darkorange"]
+    lw = 2
+
+    for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+        plt.scatter(
+            X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=0.8, lw=lw, label=target_name
+        )
+    plt.legend(loc="best", shadow=False, scatterpoints=1)
+    plt.title("PCA of IRIS dataset")
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    plt.figure()
+    for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+        plt.scatter(
+            X_r2[y == i, 0], X_r2[y == i, 1], alpha=0.8, color=color, label=target_name
+        )
+    plt.legend(loc="best", shadow=False, scatterpoints=1)
+    plt.title("LDA of IRIS dataset")
+
+    plt.show()
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 121-125
+
+For those type of examples, we split the text block from the code block. Once these
+blocks are separated, we create chunks of a fixed size.
+
+Let's now look at the second type of example.
+
+.. GENERATED FROM PYTHON SOURCE LINES 125-128
+
+.. code-block:: Python
+
+    chunks_text = [chunk["text"] for chunk in chunks if "causal" in chunk["source"]]
+    print(len(chunks_text))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    9
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 129-131
+
+For the second type of example, we observe many more chunks. Let's check in more
+details the content of the chunks.
+
+.. GENERATED FROM PYTHON SOURCE LINES 131-136
+
+.. code-block:: Python
+
+    for chunk in chunks_text:
+        print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        print(chunk)
+        print("\n")
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    ===================================================
+    Failure of Machine Learning to infer causal effects
+    ===================================================
+
+    Machine Learning models are great for measuring statistical associations.
+    Unfortunately, unless we're willing to make strong assumptions about the data,
+    those models are unable to infer causal effects.
+
+    To illustrate this, we will simulate a situation in which we try to answer one
+    of the most important questions in economics of education: **what is the causal
+    effect of earning a college degree on hourly wages?** Although the answer to
+    this question is crucial to policy makers, `Omitted-Variable Biases
+    <https://en.wikipedia.org/wiki/Omitted-variable_bias>`_ (OVB) prevent us from
+    identifying that causal effect.
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    The dataset: simulated hourly wages
+    -----------------------------------
+
+    The data generating process is laid out in the code below. Work experience in
+    years and a measure of ability are drawn from Normal distributions; the
+    hourly wage of one of the parents is drawn from Beta distribution. We then
+    create an indicator of college degree which is positively impacted by ability
+    and parental hourly wage. Finally, we model hourly wages as a linear function
+    of all the previous variables and a random component. Note that all variables
+    have a positive effect on hourly wages.
+    import numpy as np
+    import pandas as pd
+
+    n_samples = 10_000
+    rng = np.random.RandomState(32)
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    experiences = rng.normal(20, 10, size=n_samples).astype(int)
+    experiences[experiences < 0] = 0
+    abilities = rng.normal(0, 0.15, size=n_samples)
+    parent_hourly_wages = 50 * rng.beta(2, 8, size=n_samples)
+    parent_hourly_wages[parent_hourly_wages < 0] = 0
+    college_degrees = (
+        9 * abilities + 0.02 * parent_hourly_wages + rng.randn(n_samples) > 0.7
+    ).astype(int)
+
+    true_coef = pd.Series(
+        {
+            "college degree": 2.0,
+            "ability": 5.0,
+            "experience": 0.2,
+            "parent hourly wage": 1.0,
+        }
+    )
+    hourly_wages = (
+        true_coef["experience"] * experiences
+        + true_coef["parent hourly wage"] * parent_hourly_wages
+        + true_coef["college degree"] * college_degrees
+        + true_coef["ability"] * abilities
+        + rng.normal(0, 1, size=n_samples)
+    )
+
+    hourly_wages[hourly_wages < 0] = 0
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Description of the simulated data
+    ---------------------------------
+
+    The following plot shows the distribution of each variable, and pairwise
+    scatter plots. Key to our OVB story is the positive relationship between
+    ability and college degree.
+    import seaborn as sns
+
+    df = pd.DataFrame(
+        {
+            "college degree": college_degrees,
+            "ability": abilities,
+            "hourly wage": hourly_wages,
+            "experience": experiences,
+            "parent hourly wage": parent_hourly_wages,
+        }
+    )
+
+    grid = sns.pairplot(df, diag_kind="kde", corner=True)
+
+    In the next section, we train predictive models and we therefore split the
+    target column from over features and we split the data into a training and a
+    testing set.
+    from sklearn.model_selection import train_test_split
+
+    target_name = "hourly wage"
+    X, y = df.drop(columns=target_name), df[target_name]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Income prediction with fully observed variables
+    -----------------------------------------------
+
+    First, we train a predictive model, a
+    :class:`~sklearn.linear_model.LinearRegression` model. In this experiment,
+    we assume that all variables used by the true generative model are available.
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import r2_score
+
+    features_names = ["experience", "parent hourly wage", "college degree", "ability"]
+
+    regressor_with_ability = LinearRegression()
+    regressor_with_ability.fit(X_train[features_names], y_train)
+    y_pred_with_ability = regressor_with_ability.predict(X_test[features_names])
+    R2_with_ability = r2_score(y_test, y_pred_with_ability)
+
+    print(f"R2 score with ability: {R2_with_ability:.3f}")
+
+    This model predicts well the hourly wages as shown by the high R2 score. We
+    plot the model coefficients to show that we exactly recover the values of
+    the true generative model.
+    import matplotlib.pyplot as plt
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    model_coef = pd.Series(regressor_with_ability.coef_, index=features_names)
+    coef = pd.concat(
+        [true_coef[features_names], model_coef],
+        keys=["Coefficients of true generative model", "Model coefficients"],
+        axis=1,
+    )
+    ax = coef.plot.barh()
+    ax.set_xlabel("Coefficient values")
+    ax.set_title("Coefficients of the linear regression including the ability features")
+    _ = plt.tight_layout()
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Income prediction with partial observations
+    -------------------------------------------
+
+    In practice, intellectual abilities are not observed or are only estimated
+    from proxies that inadvertently measure education as well (e.g. by IQ tests).
+    But omitting the "ability" feature from a linear model inflates the estimate
+    via a positive OVB.
+    features_names = ["experience", "parent hourly wage", "college degree"]
+
+    regressor_without_ability = LinearRegression()
+    regressor_without_ability.fit(X_train[features_names], y_train)
+    y_pred_without_ability = regressor_without_ability.predict(X_test[features_names])
+    R2_without_ability = r2_score(y_test, y_pred_without_ability)
+
+    print(f"R2 score without ability: {R2_without_ability:.3f}")
+
+    The predictive power of our model is similar when we omit the ability feature
+    in terms of R2 score. We now check if the coefficient of the model are
+    different from the true generative model.
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    model_coef = pd.Series(regressor_without_ability.coef_, index=features_names)
+    coef = pd.concat(
+        [true_coef[features_names], model_coef],
+        keys=["Coefficients of true generative model", "Model coefficients"],
+        axis=1,
+    )
+    ax = coef.plot.barh()
+    ax.set_xlabel("Coefficient values")
+    _ = ax.set_title("Coefficients of the linear regression excluding the ability feature")
+    plt.tight_layout()
+    plt.show()
+
+
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Lessons learned
+    ---------------
+
+    Machine learning models are not designed for the estimation of causal
+    effects. While we showed this with a linear model, OVB can affect any type of
+    model.
+
+    Whenever interpreting a coefficient or a change in predictions brought about
+    by a change in one of the features, it is important to keep in mind
+    potentially unobserved variables that could be correlated with both the
+    feature in question and the target variable. Such variables are called
+    `Confounding Variables <https://en.wikipedia.org/wiki/Confounding>`_. In
+    order to still estimate causal effect in the presence of confounding,
+    researchers usually conduct experiments in which the treatment variable (e.g.
+    college degree) is randomized. When an experiment is prohibitively expensive
+    or unethical, researchers can sometimes use other causal inference techniques
+    such as `Instrumental Variables
+    <https://en.wikipedia.org/wiki/Instrumental_variables_estimation>`_ (IV)
+    estimations.
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 137-155
+
+For those type of examples, we first detect the sections using
+`sphinx-gallery` and once get the text and code blocks within these sections. Since
+the code is usually related to the text around it, we do not split the text from the
+code blocks. Instead, we create chunks of a fixed size.
+
+Conclusion
+----------
+In this example, we have seen the different strategies used to scrape the API
+documentation, user guide documentation, and examples documentation of scikit-learn.
+The API documentation is the most structured and we can leverage the sections of the
+docstring to create meaningful chunks. The user guide documentation is less
+structured and we use a simple chunking strategy. Finally, the examples
+documentation is the less structured and we use a more sophisticated strategy to
+detect the sections and create meaningful chunks.
+
+Since the documentation scrapping is a crucial step for the RAG model, more
+sophisticated strategies could be used to improve the quality of the generated
+chunks. Here, they are enough advanced to make a proof of concept.
 
 
 .. rst-class:: sphx-glr-timing
