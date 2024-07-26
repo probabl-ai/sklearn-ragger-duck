@@ -687,6 +687,10 @@ chunks. Here, they are enough advanced to make a proof of concept.
 
       :download:`Download Python source code: plot_documentation_scraping.py <plot_documentation_scraping.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_documentation_scraping.zip <plot_documentation_scraping.zip>`
+
 
 .. only:: html
 

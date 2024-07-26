@@ -15,7 +15,7 @@ Example gallery
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how the different documentation scraping strategies work in ragger_duc...">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how the different documentation scraping strategies work in ragger_duck.">
 
 .. only:: html
 
