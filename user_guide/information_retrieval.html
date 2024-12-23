@@ -460,7 +460,7 @@ likely to be similar.</p>
 retriever does not take into account the meaning of the words. For instance, this is not
 robust to synonyms or to the context of the words.</p>
 <p>Here, we implement the <a class="reference internal" href="../references/generated/ragger_duck.retrieval.BM25Retriever.html#ragger_duck.retrieval.BM25Retriever" title="ragger_duck.retrieval.BM25Retriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a> that uses a
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a> to build the
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a> to build the
 vocabulary. Then, we use a TF-IDF weighting scheme to weight the vocabulary.
 During the a query, we provide a similarity score between the query and the
 each documentation chunk seen during training. We can represent the retriever with the
